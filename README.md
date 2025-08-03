@@ -1,73 +1,146 @@
-# Welcome to your Lovable project
+# Donia's Minimal Portfolio
 
-## Project info
+A modern, responsive personal portfolio website showcasing Donia's skills, experience, projects, and achievements. Built with React, TypeScript, and Tailwind CSS for a clean, professional presentation.
 
-**URL**: https://lovable.dev/projects/a9ce9dc3-3042-4396-8fa2-7384ce82786b
+## 🚀 Features
 
-## How can I edit this code?
+- **Modern Design**: Clean, minimal aesthetic with smooth animations
+- **Responsive Layout**: Optimized for all devices and screen sizes
+- **Interactive Elements**: Custom cursor, smooth scrolling, and hover effects
+- **Comprehensive Sections**:
+  - Hero section with personal introduction
+  - About section with background information
+  - Skills showcase with progress indicators
+  - Professional experience timeline
+  - Educational courses and certifications
+  - Honors and awards
+  - Project portfolio with detailed descriptions
+  - Contact information and social links
 
-There are several ways of editing your application.
+## 🛠️ Technologies Used
 
-**Use Lovable**
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **Styling**: Tailwind CSS with custom animations
+- **UI Components**: shadcn/ui with Radix UI primitives
+- **Routing**: React Router DOM
+- **State Management**: TanStack Query for data fetching
+- **Icons**: Lucide React
+- **Forms**: React Hook Form with Zod validation
+- **Animations**: Custom CSS animations and Intersection Observer API
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a9ce9dc3-3042-4396-8fa2-7384ce82786b) and start prompting.
+## 📦 Installation & Setup
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd donia-minimal-folio
+   ```
 
-Follow these steps:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Open your browser**
+   Navigate to `http://localhost:5173` to view the portfolio
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🏗️ Project Structure
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── Portfolio/          # Portfolio-specific components
+│   │   ├── HeroSection.tsx
+│   │   ├── AboutSection.tsx
+│   │   ├── SkillsSection.tsx
+│   │   ├── ExperienceSection.tsx
+│   │   ├── ProjectsSection.tsx
+│   │   ├── CoursesSection.tsx
+│   │   ├── HonorsAwardsSection.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   └── ...
+│   └── ui/                 # Reusable UI components
+├── pages/                  # Page components
+├── lib/                    # Utility functions
+├── hooks/                  # Custom React hooks
+├── data/                   # Static data and content
+└── assets/                 # Images and static assets
 ```
 
-**Edit a file directly in GitHub**
+## 🚀 Available Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality
 
-**Use GitHub Codespaces**
+## 🎨 Customization
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Content Updates
+- Update personal information in the respective section components
+- Modify project data in the `ProjectsSection.tsx`
+- Edit skills and experience in their respective components
 
-## What technologies are used for this project?
+### Styling
+- Customize colors and themes in `tailwind.config.ts`
+- Modify animations in `src/index.css`
+- Update component styles using Tailwind classes
 
-This project is built with:
+### Adding New Sections
+1. Create a new component in `src/components/Portfolio/`
+2. Import and add it to the main `Index.tsx` page
+3. Follow the existing component patterns for consistency
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📱 Responsive Design
 
-## How can I deploy this project?
+The portfolio is fully responsive and optimized for:
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (320px - 767px)
 
-Simply open [Lovable](https://lovable.dev/projects/a9ce9dc3-3042-4396-8fa2-7384ce82786b) and click on Share -> Publish.
+## 🌐 Deployment
 
-## Can I connect a custom domain to my Lovable project?
+### Manual Deployment
+1. Build the project: `npm run build`
+2. Deploy the `dist` folder to your preferred hosting service
+3. Configure your domain in the hosting settings
 
-Yes, you can!
+## 🔧 Development
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Code Style
+- Follow TypeScript best practices
+- Use functional components with hooks
+- Maintain consistent naming conventions
+- Add proper TypeScript types for all props and data
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Performance
+- Optimize images and assets
+- Use lazy loading for components when appropriate
+- Minimize bundle size with proper imports
+
+## 📄 License
+
+This project is private and intended for personal portfolio use.
+
+## 🤝 Contributing
+
+This is a personal portfolio project. For any suggestions or improvements, please reach out directly.
+
+---
+
+**Built with ❤️ using React, TypeScript, and Tailwind CSS**
