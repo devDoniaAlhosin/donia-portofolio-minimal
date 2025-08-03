@@ -6,8 +6,8 @@ export const HeroSection = () => {
     { icon: MapPin, text: 'Egypt', href: null },
     { icon: Phone, text: '+20 106 164 2356', href: 'tel:+201061642356' },
     { icon: Mail, text: 'doniaelhussien', href: 'mailto:doniaelhussien@email.com' },
-    { icon: Linkedin, text: 'LinkedIn', href: 'https://linkedin.com/in/donia-alhosin' },
-    { icon: Github, text: 'GitHub', href: 'https://github.com/donia-alhosin' },
+    { icon: Linkedin, text: 'LinkedIn', href: 'https://www.linkedin.com/in/donia-alhosin-756a3b1ab/' },
+    { icon: Github, text: 'GitHub', href: 'https://github.com/devDoniaAlhosin' },
   ];
 
   const scrollToProjects = () => {
