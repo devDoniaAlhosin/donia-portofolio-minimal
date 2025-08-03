@@ -76,7 +76,8 @@ export const HeroSection = () => {
                 </div>
                 
                 <p className="text-sm text-muted-foreground/70 max-w-sm mx-auto leading-relaxed px-4">
-                  Creating modern, responsive websites with exceptional user experiences
+                  Full-Stack Developer specializing in WordPress, React & custom solutions. 
+                  Delivered 50+ projects with 98% client satisfaction across e-commerce, logistics & healthcare.
                 </p>
               </div>
 
