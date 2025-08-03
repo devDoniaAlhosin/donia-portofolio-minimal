@@ -123,12 +123,15 @@ export const HeroSection = () => {
                  <Button 
                    variant="outline" 
                    size="default"
-                   className="flex-1 border-2 border-border hover:border-accent hover:bg-accent/10 hover:text-accent text-sm font-semibold py-3 rounded-xl transition-all duration-300"
+                   className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                    onClick={() => {
                      window.open('/cv-donia-alhosin.pdf', '_blank');
                    }}
                  >
-                   Download CV
+                   <span className="relative z-10 text-foreground group-hover:text-foreground transition-colors duration-300">
+                     Download CV
+                   </span>
+                   <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-accent/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
                  </Button>
               </div>
 
@@ -235,12 +238,15 @@ export const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="default"
-                className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base"
+                className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                 onClick={() => {
                   window.open('/cv-donia-alhosin.pdf', '_blank');
                 }}
               >
-                Download CV
+                <span className="relative z-10 text-foreground group-hover:text-foreground transition-colors duration-300">
+                  Download CV
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-accent/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></div>
               </Button>
             </div>
           </div>

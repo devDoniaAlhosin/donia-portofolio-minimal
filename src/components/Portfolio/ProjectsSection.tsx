@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Calendar, Users, Star, Eye, Code2, Palette, Globe } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import projectsData from '@/data/projects.json';
 
 type ProjectFilter = 'all' | 'native' | 'wordpress' | 'ui';
 
@@ -13,6 +14,7 @@ interface Project {
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
+  githubUrl2?: string;
   images: string[];
   longDescription: string;
   features: string[];
@@ -28,147 +30,10 @@ export const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const projects: Project[] = (projectsData?.projects as Project[]) || [];
+  const filters: Array<{key: string, label: string}> = projectsData?.filters || [];
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "E-commerce WordPress Site",
-      description: "Custom WooCommerce solution with advanced product filtering and payment integration.",
-      longDescription: "A comprehensive e-commerce platform built with WordPress and WooCommerce, featuring advanced product filtering, secure payment processing, and a modern responsive design. The project includes custom plugin development for enhanced functionality and seamless user experience.",
-      category: "wordpress",
-      technologies: ["WordPress", "WooCommerce", "PHP", "CSS3", "JavaScript", "MySQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      images: [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
-      ],
-      features: ["Advanced product filtering", "Secure payment processing", "Mobile responsive design", "Custom admin dashboard"],
-      challenges: ["Complex product variations", "Payment gateway integration", "Performance optimization"],
-      solutions: ["Custom WooCommerce hooks", "Stripe API integration", "Caching and CDN implementation"],
-      duration: "3 months",
-      teamSize: "Solo",
-      rating: 4.8,
-      views: 1250
-    },
-    {
-      id: 2,
-      title: "React Portfolio Website",
-      description: "Modern, responsive portfolio built with React and TypeScript featuring smooth animations.",
-      longDescription: "A cutting-edge portfolio website showcasing modern web development techniques with React, TypeScript, and Framer Motion. Features include smooth page transitions, interactive animations, and a fully responsive design that adapts to all devices.",
-      category: "native",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      images: [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
-      ],
-      features: ["Smooth animations", "Dark/Light mode", "Contact form", "Project showcase"],
-      challenges: ["Performance optimization", "Cross-browser compatibility", "SEO implementation"],
-      solutions: ["Code splitting", "Progressive enhancement", "Meta tags optimization"],
-      duration: "2 months",
-      teamSize: "Solo",
-      rating: 4.9,
-      views: 2100
-    },
-    {
-      id: 3,
-      title: "Business Website Redesign",
-      description: "Complete UI/UX redesign and development for a professional services company.",
-      longDescription: "A complete transformation of a professional services company website, focusing on modern design principles, improved user experience, and enhanced conversion rates. The project involved extensive user research and iterative design improvements.",
-      category: "ui",
-      technologies: ["Figma", "WordPress", "Custom CSS", "JavaScript", "Adobe Creative Suite"],
-      liveUrl: "https://example.com",
-      images: [
-        "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop"
-      ],
-      features: ["Modern UI design", "Improved navigation", "Contact forms", "Service showcase"],
-      challenges: ["Brand consistency", "User flow optimization", "Content organization"],
-      solutions: ["Design system creation", "User journey mapping", "Information architecture"],
-      duration: "4 months",
-      teamSize: "3 people",
-      rating: 4.7,
-      views: 890
-    },
-    {
-      id: 4,
-      title: "Custom WordPress Theme",
-      description: "Bespoke WordPress theme with custom post types and advanced customizer options.",
-      longDescription: "A fully custom WordPress theme developed from scratch, featuring advanced customizer options, custom post types, and a modular design system. The theme includes comprehensive documentation and is optimized for performance and SEO.",
-      category: "wordpress",
-      technologies: ["WordPress", "PHP", "ACF", "SCSS", "Gulp", "Git"],
-      githubUrl: "https://github.com",
-      images: [
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
-      ],
-      features: ["Custom post types", "Advanced customizer", "Modular design", "Performance optimized"],
-      challenges: ["Theme architecture", "Customizer API", "Backward compatibility"],
-      solutions: ["Object-oriented PHP", "WordPress standards", "Version control"],
-      duration: "6 weeks",
-      teamSize: "Solo",
-      rating: 4.6,
-      views: 750
-    },
-    {
-      id: 5,
-      title: "Task Management App",
-      description: "Full-stack web application for project and task management with team collaboration features.",
-      longDescription: "A comprehensive task management application built with modern web technologies, featuring real-time collaboration, project tracking, and team management capabilities. The app includes advanced features like time tracking, reporting, and integrations.",
-      category: "native",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io", "JWT"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      images: [
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop"
-      ],
-      features: ["Real-time collaboration", "Project tracking", "Team management", "Time tracking"],
-      challenges: ["Real-time updates", "Data synchronization", "User permissions"],
-      solutions: ["WebSocket implementation", "Optimistic updates", "Role-based access"],
-      duration: "5 months",
-      teamSize: "4 people",
-      rating: 4.8,
-      views: 1650
-    },
-    {
-      id: 6,
-      title: "Restaurant Website UI",
-      description: "Elegant restaurant website design with online menu and reservation system interface.",
-      longDescription: "An elegant and user-friendly restaurant website design featuring an online menu system, reservation booking interface, and beautiful food photography. The design focuses on creating an appetizing and professional online presence.",
-      category: "ui",
-      technologies: ["Figma", "Adobe XD", "Prototyping", "User Research", "Adobe Photoshop"],
-      liveUrl: "https://example.com",
-      images: [
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop"
-      ],
-      features: ["Online menu system", "Reservation booking", "Food gallery", "Contact information"],
-      challenges: ["Menu management", "Booking system UX", "Mobile optimization"],
-      solutions: ["Dynamic menu updates", "Simplified booking flow", "Touch-friendly design"],
-      duration: "3 weeks",
-      teamSize: "2 people",
-      rating: 4.5,
-      views: 620
-    }
-  ];
-
-  const filters = [
-    { key: 'all', label: 'All Projects' },
-    { key: 'native', label: 'Native Web' },
-    { key: 'wordpress', label: 'WordPress' },
-    { key: 'ui', label: 'UI Design' }
-  ] as const;
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
@@ -202,60 +67,109 @@ export const ProjectsSection = () => {
 
   return (
     <section id="projects" className="py-16 sm:py-20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-56 sm:w-80 h-56 sm:h-80 bg-gradient-to-tl from-accent/3 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '4s'}}></div>
+        <div className="absolute bottom-0 right-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-tl from-accent/6 via-accent/3 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '6s', animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-accent/3 to-transparent rounded-full blur-3xl animate-pulse" style={{animationDuration: '8s', animationDelay: '2s'}}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div 
           ref={headerRef}
-          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ease-out ${
+          className={`text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`}
         >
+          <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
+              <Globe size={14} className="sm:w-4 sm:h-4 text-white" />
+            </div>
+            <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">Projects</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
             Featured Projects
           </h2>
-          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
+                     <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 mb-8 sm:mb-12">
             A showcase of my recent work in WordPress development, web applications, and UI design.
           </p>
 
-          {/* Filter buttons */}
-          <div className={`flex flex-wrap justify-center gap-3 transition-all duration-700 ease-out ${
+ 
+          <div className={`relative transition-all duration-700 ease-out ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           }`} style={{transitionDelay: '0.2s'}}>
+
+             <div className="hidden sm:flex items-center justify-center">
+               <div className="bg-background/60 backdrop-blur-sm rounded-2xl border border-border/50 p-2 shadow-lg relative overflow-hidden">
+
+                 <div 
+                   className="absolute top-2 bottom-2 bg-gradient-to-r from-accent to-accent/80 rounded-xl shadow-lg shadow-accent/25 transition-all duration-500 ease-out"
+                   style={{
+                     left: `${filters.findIndex(f => f.key === activeFilter) * (100 / filters.length)}%`,
+                     width: `${100 / filters.length}%`
+                   }}
+                 />
+                 <div className="flex gap-1 relative z-10">
+                   {filters.map((filter) => (
+                     <button
+                       key={filter.key}
+                       onClick={() => setActiveFilter(filter.key as ProjectFilter)}
+                       className={`relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-500 ease-out ${
+                         activeFilter === filter.key
+                           ? 'text-white'
+                           : 'text-muted-foreground hover:text-primary hover:bg-accent/10'
+                       }`}
+                     >
+                       <span className="relative z-10">{filter.label}</span>
+                       {activeFilter === filter.key && (
+                         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-accent/10 animate-pulse"></div>
+                       )}
+                     </button>
+                   ))}
+                 </div>
+               </div>
+             </div>
+
+                                                                                                       
+               <div className="sm:hidden">
+                 <div className="flex flex-wrap justify-center gap-2 px-4">
             {filters.map((filter) => (
-              <Button
+                     <button
                 key={filter.key}
-                variant={activeFilter === filter.key ? "cta" : "outline"}
-                onClick={() => setActiveFilter(filter.key)}
-                className="interactive"
-              >
-                {filter.label}
-              </Button>
-            ))}
+                       onClick={() => setActiveFilter(filter.key as ProjectFilter)}
+                       className={`relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-500 ease-out ${
+                         activeFilter === filter.key
+                           ? 'text-white bg-gradient-to-r from-accent to-accent/80 shadow-lg shadow-accent/25'
+                           : 'text-muted-foreground bg-background/60 backdrop-blur-sm border border-border/50 hover:text-primary hover:bg-accent/10'
+                       }`}
+                     >
+                       <span className="relative z-10">{filter.label}</span>
+                       {activeFilter === filter.key && (
+                         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-accent/10 animate-pulse"></div>
+                       )}
+                     </button>
+                   ))}
+                 </div>
+               </div>
           </div>
         </div>
 
-        {/* Projects grid */}
-        <div 
-          ref={contentRef}
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 transition-all duration-1000 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
-        >
+
+                 <div 
+           ref={contentRef}
+           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-1000 ease-out ${
+             contentVisible 
+               ? 'opacity-100 translate-y-0' 
+               : 'opacity-0 translate-y-8'
+           }`}
+         >
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative bg-background/60 backdrop-blur-sm rounded-xl border border-border/50 hover:border-accent/30 transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 overflow-hidden cursor-pointer ${
+              className={`group relative bg-background/80 backdrop-blur-xl rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-500 ease-out overflow-hidden cursor-pointer hover:shadow-xl hover:shadow-accent/10 ${
                 contentVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
@@ -263,186 +177,177 @@ export const ProjectsSection = () => {
               style={{transitionDelay: `${index * 0.1}s`}}
               onClick={() => openModal(project)}
             >
-              {/* Project image */}
-              <div className="relative h-48 sm:h-56 overflow-hidden">
+
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={project.images[0]} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent to-black/20"></div>
                 
-                {/* Category badge */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs font-medium bg-background/80 backdrop-blur-sm text-accent rounded-full border border-accent/20">
+                  <span className="px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-xs font-medium rounded-lg">
                     {project.category === 'wordpress' ? 'WordPress' : 
                      project.category === 'native' ? 'Web App' : 'UI Design'}
                   </span>
                 </div>
 
-                {/* Stats overlay */}
-                <div className="absolute bottom-4 right-4 flex items-center gap-3 text-white/80 text-xs">
-                  <div className="flex items-center gap-1">
-                    <Eye size={12} />
-                    <span>{project.views}</span>
+                <div className="absolute bottom-4 right-4 flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 backdrop-blur-sm rounded-lg">
+                    <Eye size={12} className="text-white/70" />
+                    <span className="text-white/80 text-xs">{project.views.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 backdrop-blur-sm rounded-lg">
                     <Star size={12} className="fill-yellow-400 text-yellow-400" />
-                    <span>{project.rating}</span>
+                    <span className="text-white/80 text-xs">{project.rating}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-primary mb-2 group-hover:text-accent transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
-                  {project.description}
-                </p>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech, index) => (
+              <div className="p-5 space-y-4">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold text-primary leading-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {project.technologies.slice(0, 2).map((tech, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-accent/10 text-accent text-xs rounded-md border border-accent/20"
+                      className="px-2.5 py-1 bg-accent/8 text-accent text-xs font-medium rounded-md border border-accent/20"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md">
-                      +{project.technologies.length - 3}
+                  {project.technologies.length > 2 && (
+                    <span className="px-2.5 py-1 bg-muted/20 text-muted-foreground text-xs font-medium rounded-md border border-border/30">
+                      +{project.technologies.length - 2}
                     </span>
                   )}
                 </div>
 
-                {/* Project stats */}
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                  <div className="flex items-center gap-1">
-                    <Calendar size={12} />
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar size={14} className="text-accent/60" />
                     <span>{project.duration}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Users size={12} />
+                  <div className="flex items-center gap-1.5">
+                    <Users size={14} className="text-accent/60" />
                     <span>{project.teamSize}</span>
                   </div>
                 </div>
 
-                {/* View Details Button */}
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full interactive"
+                  className="w-full h-10 bg-accent/5 border-accent/20 hover:bg-accent/15 hover:border-accent/40 hover:scale-105 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 font-medium text-foreground hover:text-foreground"
                   onClick={(e) => {
                     e.stopPropagation();
                     openModal(project);
                   }}
                 >
-                  View Details
+                  <span className="text-sm">View Details</span>
+                  <ExternalLink size={14} className="ml-2 group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300" />
                 </Button>
               </div>
-
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          ))}
-        </div>
+                          </div>
+            ))}
+          </div>
       </div>
 
-      {/* Project Modal */}
+
       {selectedProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop with smooth animation */}
           <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-md backdrop-entrance"
+             className="absolute inset-0 bg-black/70 backdrop-blur-xl backdrop-entrance"
             onClick={closeModal}
           />
           
-          {/* Modal container with smooth entrance animation */}
+           
           <div 
-            className="relative bg-background/95 backdrop-blur-xl rounded-3xl max-w-5xl w-full max-h-[95vh] overflow-hidden shadow-2xl border border-border/20 modal-entrance"
+             className="relative bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-2xl rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-hidden shadow-2xl border border-border/30 modal-entrance"
           >
-            {/* Animated border gradient */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent/20 via-transparent to-accent/10 opacity-0 animate-pulse"></div>
+             
+             <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-accent/30 via-accent/10 to-accent/20 opacity-0 animate-pulse"></div>
             
-                         {/* Modal content with scroll */}
+             
              <div className="relative max-h-[95vh] overflow-y-auto">
-               {/* Modal Header */}
-               <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border/50 p-6 rounded-t-3xl">
+               
+               <div className="sticky top-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95 backdrop-blur-xl border-b border-border/40 p-6 rounded-t-3xl z-10">
                  <div className="flex items-center justify-between">
-                   <div>
-                     <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-2">
-                       {selectedProject.title}
-                     </h2>
-                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                       <span className="px-3 py-1 bg-accent/10 text-accent rounded-full border border-accent/20">
-                         {selectedProject.category === 'wordpress' ? 'WordPress' : 
-                          selectedProject.category === 'native' ? 'Web App' : 'UI Design'}
-                       </span>
-                       <div className="flex items-center gap-1">
-                         <Calendar size={14} />
-                         <span>{selectedProject.duration}</span>
-                       </div>
-                       <div className="flex items-center gap-1">
-                         <Users size={14} />
-                         <span>{selectedProject.teamSize}</span>
-                       </div>
+                   <div className="flex items-center gap-3">
+                     <div className="w-8 h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
+                       <Globe size={16} className="text-white" />
                      </div>
+                     <span className="text-sm font-semibold text-accent tracking-wide uppercase">Project Details</span>
                    </div>
                    <Button
                      variant="ghost"
                      size="sm"
                      onClick={closeModal}
-                     className="text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-300"
+                     className="text-muted-foreground hover:text-primary hover:bg-accent/10 rounded-full transition-all duration-300 hover:scale-110"
                    >
                      <X size={20} />
                    </Button>
                  </div>
                </div>
-
-               {/* Modal Content */}
-               <div className="p-6">
-                 {/* Image Gallery */}
-                 <div className="relative mb-8">
-                   <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden bg-muted shadow-lg">
+                <div className="p-8">
+                  {/* Enhanced Image Gallery */}
+                  <div className="relative mb-10">
+                    <div className="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20">
                      <img 
                        src={selectedProject.images[currentImageIndex]} 
                        alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                       className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                        className="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-105"
                      />
                      
-                     {/* Navigation arrows */}
+                      {/* Enhanced gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      
+                      {/* Enhanced navigation arrows */}
                      {selectedProject.images.length > 1 && (
                        <>
                          <button
                            onClick={prevImage}
-                           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-lg"
+                            className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-background/95 backdrop-blur-xl rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-xl border border-border/30"
                          >
-                           <ChevronLeft size={24} />
+                            <ChevronLeft size={28} />
                          </button>
                          <button
                            onClick={nextImage}
-                           className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-lg"
+                            className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-background/95 backdrop-blur-xl rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-xl border border-border/30"
                          >
-                           <ChevronRight size={24} />
+                            <ChevronRight size={28} />
                          </button>
                        </>
                      )}
+                      
+                      {/* Image counter */}
+                      {selectedProject.images.length > 1 && (
+                        <div className="absolute top-6 right-6 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-primary border border-border/30">
+                          {currentImageIndex + 1} / {selectedProject.images.length}
+                        </div>
+                      )}
                    </div>
 
-                   {/* Image indicators */}
+                    {/* Enhanced image indicators */}
                    {selectedProject.images.length > 1 && (
-                     <div className="flex justify-center gap-3 mt-6">
+                      <div className="flex justify-center gap-4 mt-8">
                        {selectedProject.images.map((_, index) => (
                          <button
                            key={index}
                            onClick={() => setCurrentImageIndex(index)}
-                           className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+                            className={`w-4 h-4 rounded-full transition-all duration-300 hover:scale-125 ${
                              index === currentImageIndex 
-                               ? 'bg-accent shadow-lg shadow-accent/30' 
-                               : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                                ? 'bg-accent shadow-lg shadow-accent/40 scale-125' 
+                                : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
                            }`}
                          />
                        ))}
@@ -450,81 +355,110 @@ export const ProjectsSection = () => {
                    )}
                  </div>
 
-                 {/* Project Details */}
-                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                   {/* Main Content */}
+  
+                  <div className="mb-10">
+                    <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-8 border border-accent/20 backdrop-blur-sm">
+                      <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6 leading-tight">
+                        {selectedProject.title}
+                      </h2>
+                      <div className="flex flex-wrap items-center gap-6 text-sm">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/15 text-accent rounded-full border border-accent/30 backdrop-blur-sm">
+                          <div className="w-2 h-2 bg-accent rounded-full"></div>
+                          <span className="font-semibold">
+                            {selectedProject.category === 'wordpress' ? 'WordPress' : 
+                             selectedProject.category === 'native' ? 'Web App' : 'UI Design'}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                          <Calendar size={16} className="text-accent" />
+                          <span className="font-medium">{selectedProject.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                          <Users size={16} className="text-accent" />
+                          <span className="font-medium">{selectedProject.teamSize}</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                          <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                          <span className="font-medium">{selectedProject.rating}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                      
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                    <div className="lg:col-span-2 space-y-8">
-                     <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                       <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 bg-accent rounded-full"></div>
-                         Description
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-8 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                          <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                          Project Overview
                        </h3>
-                       <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-muted-foreground leading-relaxed text-lg">
                          {selectedProject.longDescription}
                        </p>
                      </div>
 
-                     <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                       <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 bg-accent rounded-full"></div>
+                                            <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                         <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                           <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
                          Key Features
-                       </h3>
-                       <ul className="space-y-3">
-                         {selectedProject.features.map((feature, index) => (
-                           <li key={index} className="flex items-start gap-3 text-muted-foreground group">
-                             <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                             <span className="group-hover:text-primary transition-colors duration-300">{feature}</span>
-                           </li>
-                         ))}
-                       </ul>
-                     </div>
-
-                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                       <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                         <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                           <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                           Challenges
                          </h3>
-                         <ul className="space-y-3">
-                           {selectedProject.challenges.map((challenge, index) => (
-                             <li key={index} className="flex items-start gap-3 text-muted-foreground group">
-                               <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                               <span className="group-hover:text-primary transition-colors duration-300">{challenge}</span>
-                             </li>
+                         <div className="space-y-2">
+                           {selectedProject.features.map((feature, index) => (
+                             <div key={index} className="flex items-center gap-3 p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300 group">
+                               <div className="w-2 h-2 bg-green-500 rounded-sm flex-shrink-0 group-hover:scale-125 group-hover:rotate-45 transition-all duration-300"></div>
+                               <span className="text-sm text-muted-foreground group-hover:text-primary transition-colors duration-300">{feature}</span>
+                             </div>
                            ))}
-                         </ul>
+                         </div>
                        </div>
 
-                       <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                         <h3 className="text-xl font-semibold text-primary mb-4 flex items-center gap-2">
-                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                           Solutions
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                         <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                           <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                             <div className="w-1 h-6 bg-gradient-to-b from-orange-500 to-orange-400 rounded-full"></div>
+                             Challenges Faced
+                           </h3>
+                           <div className="space-y-2">
+                             {selectedProject.challenges.map((challenge, index) => (
+                               <div key={index} className="flex items-center gap-3 p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300 group">
+                                 <div className="w-2 h-2 bg-orange-500 transform rotate-45 flex-shrink-0 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300"></div>
+                                 <span className="text-sm text-muted-foreground group-hover:text-primary transition-colors duration-300">{challenge}</span>
+                               </div>
+                             ))}
+                           </div>
+                         </div>
+
+                         <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                           <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                             <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
+                             Solutions Implemented
                          </h3>
-                         <ul className="space-y-3">
+                           <div className="space-y-2">
                            {selectedProject.solutions.map((solution, index) => (
-                             <li key={index} className="flex items-start gap-3 text-muted-foreground group">
-                               <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                               <span className="group-hover:text-primary transition-colors duration-300">{solution}</span>
-                             </li>
-                           ))}
-                         </ul>
-                       </div>
+                               <div key={index} className="flex items-center gap-3 p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300 group">
+                                 <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 group-hover:scale-125 group-hover:bg-green-400 transition-all duration-300"></div>
+                                 <span className="text-sm text-muted-foreground group-hover:text-primary transition-colors duration-300">{solution}</span>
+                               </div>
+                             ))}
+                           </div>
+                         </div>
                      </div>
                    </div>
 
-                   {/* Sidebar */}
+       
                    <div className="space-y-6">
                      {/* Technologies */}
-                     <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                       <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 bg-accent rounded-full"></div>
-                         Technologies
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                          Technologies Used
                        </h3>
                        <div className="flex flex-wrap gap-2">
                          {selectedProject.technologies.map((tech, index) => (
                            <span
                              key={index}
-                             className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full border border-accent/20 hover:bg-accent/20 hover:scale-105 transition-all duration-300"
+                              className="px-3 py-1.5 bg-accent/15 text-accent text-xs rounded-full border border-accent/30 hover:bg-accent/25 hover:scale-105 transition-all duration-300 font-medium backdrop-blur-sm"
                            >
                              {tech}
                            </span>
@@ -532,43 +466,43 @@ export const ProjectsSection = () => {
                        </div>
                      </div>
 
-                     {/* Project Stats */}
-                     <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                       <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 bg-accent rounded-full"></div>
-                         Project Stats
+                                           {/* Enhanced Project Stats */}
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                          Project Statistics
                        </h3>
                        <div className="space-y-3">
-                         <div className="flex items-center justify-between p-3 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors duration-300">
-                           <span className="text-sm text-muted-foreground">Rating</span>
-                           <div className="flex items-center gap-1">
+                          <div className="flex items-center justify-between p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300">
+                            <span className="text-xs text-muted-foreground font-medium">Rating</span>
+                            <div className="flex items-center gap-2">
                              <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                             <span className="font-semibold">{selectedProject.rating}</span>
+                              <span className="font-bold text-base">{selectedProject.rating}</span>
                            </div>
                          </div>
-                         <div className="flex items-center justify-between p-3 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors duration-300">
-                           <span className="text-sm text-muted-foreground">Views</span>
-                           <div className="flex items-center gap-1">
-                             <Eye size={16} />
-                             <span className="font-semibold">{selectedProject.views}</span>
+                          <div className="flex items-center justify-between p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300">
+                            <span className="text-xs text-muted-foreground font-medium">Views</span>
+                            <div className="flex items-center gap-2">
+                              <Eye size={16} className="text-accent" />
+                              <span className="font-bold text-base">{selectedProject.views.toLocaleString()}</span>
                            </div>
                          </div>
-                         <div className="flex items-center justify-between p-3 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors duration-300">
-                           <span className="text-sm text-muted-foreground">Duration</span>
-                           <span className="font-semibold">{selectedProject.duration}</span>
+                          <div className="flex items-center justify-between p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300">
+                            <span className="text-xs text-muted-foreground font-medium">Duration</span>
+                            <span className="font-bold text-base">{selectedProject.duration}</span>
                          </div>
-                         <div className="flex items-center justify-between p-3 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors duration-300">
-                           <span className="text-sm text-muted-foreground">Team Size</span>
-                           <span className="font-semibold">{selectedProject.teamSize}</span>
+                          <div className="flex items-center justify-between p-3 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 transition-all duration-300">
+                            <span className="text-xs text-muted-foreground font-medium">Team Size</span>
+                            <span className="font-bold text-base">{selectedProject.teamSize}</span>
                          </div>
                        </div>
                      </div>
 
-                     {/* Project Links */}
-                     <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 border border-border/30 modal-element">
-                       <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 bg-accent rounded-full"></div>
-                         Links
+                                           {/* Enhanced Project Links */}
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                          Project Links
                        </h3>
                        <div className="space-y-3">
                          {selectedProject.liveUrl && (
@@ -576,32 +510,55 @@ export const ProjectsSection = () => {
                              variant="cta"
                              size="sm"
                              asChild
-                             className="w-full interactive hover:scale-105 transition-transform duration-300"
+                              className="w-full interactive hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/25"
                            >
                              <a
                                href={selectedProject.liveUrl}
                                target="_blank"
                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
                              >
                                <Globe size={16} />
-                               Live Demo
+                                <span className="font-semibold">Live Demo</span>
+                                <ExternalLink size={14} />
                              </a>
                            </Button>
                          )}
-                         {selectedProject.githubUrl && (
+                         {selectedProject.githubUrl && selectedProject.githubUrl !== "#" && (
                            <Button
                              variant="outline"
                              size="sm"
                              asChild
-                             className="w-full interactive hover:scale-105 transition-transform duration-300"
+                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10"
                            >
                              <a
                                href={selectedProject.githubUrl}
                                target="_blank"
                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
                              >
                                <Github size={16} />
-                               View Code
+                                <span className="font-semibold">GitHub Repository</span>
+                                <ExternalLink size={14} />
+                             </a>
+                           </Button>
+                         )}
+                         {selectedProject.githubUrl2 && selectedProject.githubUrl2 !== "#" && (
+                           <Button
+                             variant="outline"
+                             size="sm"
+                             asChild
+                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10"
+                           >
+                             <a
+                               href={selectedProject.githubUrl2}
+                               target="_blank"
+                               rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                             >
+                               <Github size={16} />
+                                <span className="font-semibold">GitHub Repository 2</span>
+                                <ExternalLink size={14} />
                              </a>
                            </Button>
                          )}

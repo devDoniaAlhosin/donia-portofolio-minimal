@@ -10,89 +10,106 @@ export const CoursesSection = () => {
   
   const courses = [
     {
-      name: "Advanced WordPress Development",
-      provider: "WordPress Academy",
-      period: "Jan 2023 - Mar 2023",
-      duration: "3 months",
-      certificate: "Advanced Certification",
+      name: "Software Testing Track",
+      provider: "Digital Egypt Pioneers Initiative",
+      period: "July 2025 - Present",
+      duration: "Ongoing",
+      certificate: "Training Diploma",
       progress: 100,
       skillsGained: [
-        "Custom plugin development and WordPress hooks",
-        "Advanced theme customization and child themes",
-        "WordPress REST API integration and custom endpoints",
-        "Performance optimization and caching strategies"
+        "Software testing methodologies and best practices",
+        "Quality assurance processes and tools",
+        "Test case design and execution",
+        "Automated testing frameworks and techniques"
       ],
       icon: BookOpen,
       level: "Advanced",
       rating: 4.9
     },
     {
-      name: "React & Modern JavaScript",
-      provider: "Frontend Masters",
-      period: "Sep 2022 - Dec 2022",
-      duration: "4 months",
-      certificate: "Professional Certification",
+      name: "Full-Stack Development Diploma using PHP",
+      provider: "Information Technology Institute (ITI)",
+      period: "May 2024 - Oct 2024",
+      duration: "6 months",
+      certificate: "Professional Diploma",
       progress: 100,
       skillsGained: [
-        "React Hooks and Context API for state management",
-        "Modern ES6+ JavaScript features and async programming",
-        "Component-based architecture and reusable design patterns",
-        "Testing with Jest and React Testing Library"
+        "PHP backend development and frameworks",
+        "Database design and management",
+        "Full-stack web application development",
+        "Modern development practices and tools"
       ],
       icon: Zap,
-      level: "Intermediate",
+      level: "Advanced",
       rating: 4.8
     },
     {
-      name: "UI/UX Design Fundamentals",
-      provider: "Design Institute",
-      period: "May 2022 - Aug 2022",
-      duration: "4 months",
-      certificate: "Design Certification",
+      name: "Maharath Courses",
+      provider: "Maharath Training Institute",
+      period: "May 2024",
+      duration: "1 month",
+      certificate: "Multiple Certifications",
       progress: 100,
       skillsGained: [
-        "User research methods and persona development",
-        "Wireframing and prototyping with Figma",
-        "Color theory, typography, and visual hierarchy",
-        "Usability testing and accessibility best practices"
+        "Ubuntu Linux Essentials and system administration",
+        "Database fundamentals and SQL",
+        "Computer network fundamentals and protocols",
+        "System architecture and infrastructure"
       ],
       icon: Award,
       level: "Intermediate",
       rating: 4.7
     },
     {
-      name: "Full-Stack Web Development",
-      provider: "Code Academy",
-      period: "Jan 2021 - Jun 2021",
-      duration: "6 months",
-      certificate: "Full-Stack Certification",
+      name: "Front-End Web Development Diploma",
+      provider: "AMIT Learning",
+      period: "Oct 2023 - April 2024",
+      duration: "7 months",
+      certificate: "Professional Diploma",
       progress: 100,
       skillsGained: [
-        "Frontend development with HTML5, CSS3, and JavaScript",
-        "Backend development with Node.js and Express",
-        "Database design and management with MySQL",
-        "Version control with Git and collaborative development"
+        "HTML5, CSS3, and JavaScript fundamentals",
+        "Responsive web design and modern frameworks",
+        "eCommerce project development (Grade: 100%)",
+        "Front-end optimization and performance"
       ],
       icon: GraduationCap,
-      level: "Beginner to Intermediate",
+      level: "Intermediate",
+      rating: 4.9
+    },
+    {
+      name: "CCNAv7",
+      provider: "National Telecommunication Institute (NTI)",
+      period: "Nov 2023 - Dec 2023",
+      duration: "2 months",
+      certificate: "Cisco Certification",
+      progress: 100,
+      skillsGained: [
+        "Cisco networking fundamentals and protocols",
+        "Network configuration and troubleshooting",
+        "Routing and switching technologies",
+        "Network security and management"
+      ],
+      icon: Star,
+      level: "Advanced",
       rating: 4.6
     },
     {
-      name: "Responsive Web Design Certification",
-      provider: "freeCodeCamp",
-      period: "Aug 2020 - Dec 2020",
-      duration: "5 months",
-      certificate: "Responsive Design Certification",
+      name: "Bachelor of Engineering (BSc)",
+      provider: "Egyptian Academy for Engineering and Advanced Technology",
+      period: "Oct 2018 - Jun 2023",
+      duration: "5 years",
+      certificate: "Bachelor's Degree",
       progress: 100,
       skillsGained: [
-        "Mobile-first responsive design principles",
-        "CSS Grid and Flexbox for modern layouts",
-        "CSS animations and transitions",
-        "Cross-browser compatibility and web standards"
+        "Communications and Electronics Engineering",
+        "Cumulative GPA: 3.4146 (Very Good with honor)",
+        "Graduation Project: Smart Wearable Glasses for Autistic Kids (Excellent A+)",
+        "Research methodology and technical writing"
       ],
-      icon: Star,
-      level: "Beginner",
-      rating: 4.5
+      icon: GraduationCap,
+      level: "University Degree",
+      rating: 4.8
     }
   ];
 

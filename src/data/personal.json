@@ -1,0 +1,36 @@
+{
+  "name": "Donia Alhosin",
+  "title": "Web Developer",
+  "email": "doniaelhussien@gmail.com",
+  "description": "Passionate Web developer creating modern, responsive websites that deliver exceptional user experiences and drive business success.",
+  "logo": {
+    "initials": "DA",
+    "fullName": "DONIA ALHOSIN"
+  },
+  "social": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/donia-alhosin-756a3b1ab/",
+      "icon": "Linkedin",
+      "color": "hover:text-blue-400"
+    },
+    {
+      "platform": "Upwork",
+      "url": "https://www.upwork.com/freelancers/~01d0770e3b5c34bb70?mp_source=share",
+      "icon": "ExternalLink",
+      "color": "hover:text-green-400"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:doniaelhussien@gmail.com",
+      "icon": "Mail",
+      "color": "hover:text-red-400"
+    }
+  ],
+  "navigation": [
+    { "name": "About", "href": "#about" },
+    { "name": "Experience", "href": "#experience" },
+    { "name": "Projects", "href": "#projects" },
+    { "name": "Contact", "href": "#contact" }
+  ]
+} 

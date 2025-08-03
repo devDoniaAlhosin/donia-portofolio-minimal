@@ -9,49 +9,49 @@ export const ExperienceSection = () => {
   
   const experiences = [
     {
-      title: "Senior WordPress Developer",
-      company: "Freelance",
-      period: "2022 - Present",
-      location: "Remote",
+      title: "Web Developer",
+      company: "BohemianGeeks Marketing Agency",
+      period: "January 2025 - Present",
+      location: "New Cairo, Egypt",
       type: "Full-time",
-      achievements: [
-        "Delivered 30+ custom WordPress websites for diverse clients",
-        "Specialized in e-commerce solutions using WooCommerce",
-        "Achieved 98% client satisfaction rate with on-time delivery"
-      ],
-      skills: ["WordPress", "WooCommerce", "PHP", "JavaScript", "CSS3"],
-      icon: Briefcase,
-      stats: { projects: 30, satisfaction: 98, clients: 25 }
+             achievements: [
+         "Developing custom WordPress websites and portfolios for diverse clients",
+         "Building and customizing e-commerce solutions using WooCommerce",
+         "Optimizing and customizing WordPress plugins for enhanced functionality",
+         "Creating responsive designs and implementing modern web technologies"
+       ],
+      skills: ["PHP", "JavaScript", "WordPress", "HTML5", "CSS3", "WooCommerce", "SEO", "Performance"],
+      icon: Briefcase
     },
     {
       title: "Web Developer",
-      company: "Digital Agency",
-      period: "2021 - 2022",
-      location: "Cairo, Egypt",
-      type: "Full-time",
+      company: "Upwork Freelancer",
+      period: "January 2025 - Present",
+      location: "Remote",
+      type: "Freelance",
       achievements: [
-        "Developed responsive websites using modern web technologies",
-        "Collaborated with design team to implement pixel-perfect UIs",
-        "Optimized website performance improving load times by 40%"
+        "Delivering high-quality web development solutions to international clients",
+        "Specialized in WordPress development and custom website solutions",
+        "Maintaining excellent client relationships with 100% project completion rate",
+        "Working on diverse projects from small business websites to complex applications"
       ],
-      skills: ["React", "JavaScript", "HTML5", "CSS3", "Performance"],
-      icon: TrendingUp,
-      stats: { projects: 15, performance: 40, team: 8 }
+      skills: ["WordPress", "WooCommerce", "PHP", "JavaScript", "CSS3", "Client Management", "React"],
+      icon: TrendingUp
     },
     {
-      title: "Junior Web Developer",
-      company: "Tech Startup",
-      period: "2020 - 2021",
-      location: "Remote",
-      type: "Full-time",
+      title: "WordPress Instructor",
+      company: "ITI (Information Technology Institute)",
+      period: "July 2025 - Present",
+      location: "New Capital, Egypt",
+      type: "Part-time",
       achievements: [
-        "Built interactive web applications using React and JavaScript",
-        "Maintained and updated existing WordPress installations",
-        "Learned best practices in version control and team collaboration"
+        "Teaching WordPress development fundamentals to aspiring developers",
+        "Creating comprehensive course materials and hands-on exercises",
+        "Mentoring students in web development best practices and techniques",
+        "Helping students build their first WordPress websites and applications"
       ],
-      skills: ["React", "JavaScript", "WordPress", "Git", "Teamwork"],
-      icon: Users,
-      stats: { projects: 12, learning: 100, collaboration: 5 }
+      skills: ["WordPress", "Teaching", "Mentoring", "Education"],
+      icon: Users
     }
   ];
 
@@ -160,15 +160,7 @@ export const ExperienceSection = () => {
                       </div>
                     </div>
 
-                    {/* Stats row */}
-                    <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
-                      {Object.entries(exp.stats).map(([key, value]) => (
-                        <div key={key} className="text-center p-2 sm:p-3 bg-background/50 rounded-lg border border-border/30">
-                          <div className="text-lg sm:text-2xl font-bold text-accent">{value}</div>
-                          <div className="text-xs text-muted-foreground capitalize">{key}</div>
-                        </div>
-                      ))}
-                    </div>
+
 
                     {/* Skills */}
                     <div className="flex flex-wrap gap-2 mb-4">

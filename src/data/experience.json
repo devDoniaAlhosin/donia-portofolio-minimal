@@ -1,0 +1,52 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "title": "Web Developer",
+      "company": "BohemianGeeks Marketing Agency",
+      "period": "January 2025 - Present",
+      "location": "Remote",
+      "type": "Full Time",
+      "achievements": [
+        "Developing custom WordPress websites and portfolios for diverse clients",
+        "Building and customizing e-commerce solutions using WooCommerce",
+        "Optimizing and customizing WordPress plugins for enhanced functionality",
+        "Creating responsive designs and implementing modern web technologies"
+      ],
+      "skills": ["WordPress", "WooCommerce", "PHP", "CSS3", "JavaScript", "Responsive Design"],
+      "icon": "Briefcase"
+    },
+    {
+      "id": 2,
+      "title": "Web Developer",
+      "company": "Upwork Freelancer",
+      "period": "January 2025 - Present",
+      "location": "Remote",
+      "type": "Freelance",
+      "achievements": [
+        "Delivering high-quality web development solutions to international clients",
+        "Managing multiple projects simultaneously with strict deadlines",
+        "Providing technical consultation and project planning services",
+        "Building long-term client relationships through excellent communication"
+      ],
+      "skills": ["WordPress", "React", "JavaScript", "CSS3", "HTML5", "Git"],
+      "icon": "Globe"
+    },
+    {
+      "id": 3,
+      "title": "WordPress Instructor",
+      "company": "ITI (Information Technology Institute)",
+      "period": "July 2025",
+      "location": "Egypt",
+      "type": "Part Time",
+      "achievements": [
+        "Teaching WordPress development fundamentals to students",
+        "Creating comprehensive course materials and practical exercises",
+        "Mentoring students in web development best practices",
+        "Conducting hands-on workshops and project-based learning"
+      ],
+      "skills": ["WordPress", "Teaching", "Curriculum Development", "Mentoring"],
+      "icon": "GraduationCap"
+    }
+  ]
+} 

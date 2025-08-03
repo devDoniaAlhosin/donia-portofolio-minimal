@@ -231,51 +231,6 @@
     }
   }
 
-  /* Mobile menu animation */
-  .mobile-menu-enter {
-    animation: slideDown 0.3s ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Timeline styles */
-  .timeline-item {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5rem;
-    width: 12px;
-    height: 12px;
-    background: hsl(var(--accent));
-    border-radius: 50%;
-    border: 3px solid hsl(var(--background));
-    box-shadow: 0 0 0 2px hsl(var(--accent));
-  }
-
-  .timeline-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 1.5rem;
-    width: 2px;
-    height: calc(100% - 1rem);
-    background: hsl(var(--border));
-  }
-
   /* Modal animations */
   @keyframes modalEntrance {
     0% {
@@ -317,22 +272,111 @@
     }
   }
 
-  /* Modal entrance animation */
   .modal-entrance {
     animation: modalEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Backdrop entrance animation */
   .backdrop-entrance {
     animation: backdropFadeIn 0.4s ease-out forwards;
   }
-
-  /* Smooth hover effects for modal elements */
   .modal-element {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .modal-element:hover {
     transform: translateY(-2px);
+  }
+
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+
+  /* Smooth scrolling for mobile tabs */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+     /* Enhanced glassy effect for mobile tabs */
+   .backdrop-blur-xl {
+     backdrop-filter: blur(24px);
+     -webkit-backdrop-filter: blur(24px);
+   }
+
+   /* Smooth scale utilities for filter tabs */
+   .scale-102 {
+     transform: scale(1.02);
+   }
+
+   .scale-105 {
+     transform: scale(1.05);
+   }
+
+   /* Smooth filter toggle animations */
+   .filter-toggle-enter {
+     animation: filterToggleEnter 0.5s ease-out forwards;
+   }
+
+   .filter-toggle-exit {
+     animation: filterToggleExit 0.3s ease-out forwards;
+   }
+
+   @keyframes filterToggleEnter {
+     0% {
+       opacity: 0;
+       transform: scale(0.95) translateY(5px);
+     }
+     100% {
+       opacity: 1;
+       transform: scale(1) translateY(0);
+     }
+   }
+
+   @keyframes filterToggleExit {
+     0% {
+       opacity: 1;
+       transform: scale(1) translateY(0);
+     }
+     100% {
+       opacity: 0;
+       transform: scale(0.95) translateY(5px);
+     }
+   }
+
+  /* Mobile menu slide down animation */
+  .animate-slideDown {
+    animation: slideDown 0.4s ease-out forwards;
+  }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Line clamp utilities for text truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
