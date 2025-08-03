@@ -5,7 +5,7 @@ export const HeroSection = () => {
   const contactInfo = [
     { icon: MapPin, text: 'Egypt', href: null },
     { icon: Phone, text: '+20 106 164 2356', href: 'tel:+201061642356' },
-    { icon: Mail, text: 'donia.alhosin@email.com', href: 'mailto:donia.alhosin@email.com' },
+    { icon: Mail, text: 'doniaelhussien', href: 'mailto:doniaelhussien@email.com' },
     { icon: Linkedin, text: 'LinkedIn', href: 'https://linkedin.com/in/donia-alhosin' },
     { icon: Github, text: 'GitHub', href: 'https://github.com/donia-alhosin' },
   ];
@@ -85,11 +85,11 @@ export const HeroSection = () => {
                  {contactInfo.filter(item => item.text !== 'Egypt').map((item, index) => {
                   const Icon = item.icon;
                                      const content = (
-                     <div className="group flex items-center gap-2.5 px-4 py-3 rounded-xl bg-background/80 backdrop-blur-sm border border-border/60 hover:border-accent/50 hover:bg-background/90 transition-all duration-300 shadow-sm hover:shadow-md">
-                       <div className="w-8 h-8 bg-accent/15 rounded-lg flex items-center justify-center group-hover:bg-accent/25 transition-colors">
+                     <div className="group flex items-center gap-2.5 px-3 py-3 rounded-xl bg-background/80 backdrop-blur-sm border border-border/60 hover:border-accent/50 hover:bg-background/90 transition-all duration-300 shadow-sm hover:shadow-md">
+                       <div className="w-8 h-8 bg-accent/15 rounded-lg flex items-center justify-center group-hover:bg-accent/25 transition-colors flex-shrink-0">
                          <Icon size={14} className="text-accent/80 group-hover:text-accent transition-colors" />
                        </div>
-                       <span className="text-xs text-foreground/90 group-hover:text-foreground transition-colors font-medium">{item.text}</span>
+                       <span className="text-xs text-foreground/90 group-hover:text-foreground transition-colors font-medium truncate">{item.text}</span>
                      </div>
                    );
 
@@ -125,7 +125,12 @@ export const HeroSection = () => {
                    size="default"
                    className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                    onClick={() => {
-                     window.open('/cv-donia-alhosin.pdf', '_blank');
+                     const link = document.createElement('a');
+                     link.href = '/src/assets/doniaAlhosin-resume.pdf';
+                     link.download = 'DoniaAlhosin-Resume.pdf';
+                     document.body.appendChild(link);
+                     link.click();
+                     document.body.removeChild(link);
                    }}
                  >
                    <span className="relative z-10 text-foreground group-hover:text-foreground transition-colors duration-300">
@@ -240,7 +245,12 @@ export const HeroSection = () => {
                 size="default"
                 className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                 onClick={() => {
-                  window.open('/cv-donia-alhosin.pdf', '_blank');
+                  const link = document.createElement('a');
+                  link.href = '/src/assets/doniaAlhosin-resume.pdf';
+                  link.download = 'DoniaAlhosin-Resume.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
                 }}
               >
                 <span className="relative z-10 text-foreground group-hover:text-foreground transition-colors duration-300">

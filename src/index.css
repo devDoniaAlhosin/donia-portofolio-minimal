@@ -125,6 +125,23 @@
     cursor: none; /* Custom cursor */
   }
 
+  /* Hide cursor on mobile devices */
+  @media (max-width: 768px) {
+    body {
+      cursor: none !important;
+    }
+    
+    * {
+      cursor: none !important;
+    }
+    
+    /* Hide custom cursor elements on mobile */
+    .cursor-dot,
+    .cursor-outline {
+      display: none !important;
+    }
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;

@@ -298,7 +298,7 @@ export const ProjectsSection = () => {
                    </Button>
                  </div>
                </div>
-                <div className="p-8">
+                <div className="p-4 sm:p-6 md:p-8">
                   {/* Enhanced Image Gallery */}
                   <div className="relative mb-10">
                     <div className="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20">
@@ -357,8 +357,8 @@ export const ProjectsSection = () => {
 
   
                   <div className="mb-10">
-                    <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-8 border border-accent/20 backdrop-blur-sm">
-                      <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6 leading-tight">
+                    <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-4 sm:p-6 md:p-8 border border-accent/20 backdrop-blur-sm">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight">
                         {selectedProject.title}
                       </h2>
                       <div className="flex flex-wrap items-center gap-6 text-sm">
@@ -386,21 +386,21 @@ export const ProjectsSection = () => {
                   </div>
 
                       
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                   <div className="lg:col-span-2 space-y-8">
-                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-8 border border-border/30 modal-element shadow-lg">
-                        <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
-                          <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+                   <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-4 sm:p-6 md:p-8 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-xl sm:text-2xl font-bold text-primary mb-6 flex items-center gap-3">
+                          <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
                           Project Overview
                        </h3>
-                        <p className="text-muted-foreground leading-relaxed text-lg">
+                        <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
                          {selectedProject.longDescription}
                        </p>
                      </div>
 
-                                            <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                         <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                           <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
+                                            <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-border/30 modal-element shadow-lg">
+                         <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                           <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
                          Key Features
                          </h3>
                          <div className="space-y-2">
@@ -415,8 +415,8 @@ export const ProjectsSection = () => {
 
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                          <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                           <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                             <div className="w-1 h-6 bg-gradient-to-b from-orange-500 to-orange-400 rounded-full"></div>
+                           <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                             <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-orange-500 to-orange-400 rounded-full"></div>
                              Challenges Faced
                            </h3>
                            <div className="space-y-2">
@@ -430,8 +430,8 @@ export const ProjectsSection = () => {
                          </div>
 
                          <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                           <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                             <div className="w-1 h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
+                           <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                             <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-green-500 to-green-400 rounded-full"></div>
                              Solutions Implemented
                          </h3>
                            <div className="space-y-2">
@@ -447,11 +447,11 @@ export const ProjectsSection = () => {
                    </div>
 
        
-                   <div className="space-y-6">
+                   <div className="space-y-4 sm:space-y-6">
                      {/* Technologies */}
-                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
                           Technologies Used
                        </h3>
                        <div className="flex flex-wrap gap-2">
@@ -467,9 +467,9 @@ export const ProjectsSection = () => {
                      </div>
 
                                            {/* Enhanced Project Stats */}
-                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-lg sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
                           Project Statistics
                        </h3>
                        <div className="space-y-3">

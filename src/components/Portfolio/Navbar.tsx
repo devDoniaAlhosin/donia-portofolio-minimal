@@ -72,21 +72,23 @@ export const Navbar = () => {
         </div>
 
         <div className="md:hidden">
-          <div className={`flex items-center justify-between h-16 transition-all duration-300 ${
+          <div className={`flex items-center justify-between h-16 mx-3 mt-4 rounded-2xl border transition-all duration-300 ${
             isScrolled
-              ? 'bg-background/95 backdrop-blur-md border-b border-accent/20'
-              : 'bg-transparent'
+              ? 'bg-white/95 backdrop-blur-md border-accent/20 shadow-lg'
+              : 'bg-white/90 backdrop-blur-sm border-accent/10'
           }`}>
-            <Logo size="md" showFullName={true} />
+            <div className="flex items-center justify-between w-full px-2">
+              <Logo size="md" showFullName={true} />
 
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="relative z-50"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="relative z-50"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </Button>
+            </div>
           </div>
 
           {isMobileMenuOpen && (
