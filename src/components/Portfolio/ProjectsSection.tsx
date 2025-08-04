@@ -255,7 +255,7 @@ export const ProjectsSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 bg-accent/90 text-white text-xs font-medium rounded-lg">
+                  <span className="px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg shadow-lg shadow-accent/25">
                     {project.category === 'wordpress' ? 'WordPress' : 
                      project.category === 'native' ? 'Web App' : 'UI Design'}
                   </span>
@@ -644,7 +644,7 @@ export const ProjectsSection = () => {
                              variant="outline"
                              size="sm"
                              asChild
-                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10"
+                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
                            >
                              <a
                                href={selectedProject.githubUrl}
@@ -663,7 +663,7 @@ export const ProjectsSection = () => {
                              variant="outline"
                              size="sm"
                              asChild
-                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10"
+                              className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
                            >
                              <a
                                href={selectedProject.githubUrl2}

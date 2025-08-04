@@ -26,8 +26,8 @@
     {
       "id": 2,
       "title": "FastFWD – Logistics Services Platform",
-      "description": "ACF integration with WooCommerce for advanced order data management in logistics platform.",
-      "longDescription": "Developed custom ACF (Advanced Custom Fields) integration with WooCommerce for FastFWD's logistics platform to enhance order data management. The integration provides advanced custom fields for logistics-specific data, improved order tracking, and streamlined workflow management for the global freight forwarding and supply chain solutions platform.",
+      "description": "ACF integration with WooCommerce for advanced shipment data management in logistics platform.",
+      "longDescription": "Developed custom ACF (Advanced Custom Fields) integration with WooCommerce for FastFWD's logistics platform to enhance shipment data management. The integration provides advanced custom fields for logistics-specific data, improved shipment tracking, and streamlined workflow management for the global freight forwarding and supply chain solutions platform.",
       "category": "wordpress",
       "technologies": ["WordPress", "WooCommerce", "ACF", "PHP", "MySQL", "CSS3", "JavaScript"],
       "liveUrl": "https://fastfwd.xyz/",
@@ -35,9 +35,9 @@
       "images": [
         "/assets/fastfwd.png"
       ],
-      "features": ["ACF-WooCommerce Integration", "Custom Order Data Fields", "Logistics-Specific Data Management", "Enhanced Order Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
-      "challenges": ["Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
-      "solutions": ["Advanced ACF integration for logistics data", "Custom order management system", "Multi-service booking platform", "Industry-specific solution modules"],
+      "features": ["ACF-WooCommerce Integration", "Custom Shipment Data Fields", "Logistics-Specific Data Management", "Enhanced Shipment Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
+      "challenges": ["WooCommerce system compatibility for shipment tracking", "Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
+      "solutions": ["Advanced ACF integration for logistics data", "Custom shipment tracking system", "WooCommerce hooks for shipment data"],
       "duration": " 2 weeks ",
       "teamSize": "2 People",
       "rating": 4.7,
