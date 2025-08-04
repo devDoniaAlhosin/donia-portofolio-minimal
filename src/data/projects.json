@@ -319,7 +319,7 @@
     }
   ],
   "filters": [
-    { "key": "all", "label": "All" },
+    { "key": "all", "label": "All Projects" },
     { "key": "native", "label": "Native Web" },
     { "key": "wordpress", "label": "WordPress" },
     { "key": "ui", "label": "UI Design" }

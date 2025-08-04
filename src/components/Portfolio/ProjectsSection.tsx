@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown } from 'lucide-react';
+import { ExternalLink, Github, X, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import projectsData from '@/data/projects.json';
 
@@ -322,23 +322,7 @@ export const ProjectsSection = () => {
                       {/* Enhanced gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                       
-                      {/* Enhanced navigation arrows */}
-                     {selectedProject.images.length > 1 && (
-                       <>
-                         <button
-                           onClick={prevImage}
-                            className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-background/95 backdrop-blur-xl rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-xl border border-border/30"
-                         >
-                            <ChevronLeft size={28} />
-                         </button>
-                         <button
-                           onClick={nextImage}
-                            className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-background/95 backdrop-blur-xl rounded-full flex items-center justify-center text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 shadow-xl border border-border/30"
-                         >
-                            <ChevronRight size={28} />
-                         </button>
-                       </>
-                     )}
+
                       
                       {/* Image counter */}
                       {selectedProject.images.length > 1 && (
