@@ -11,9 +11,9 @@
       "githubUrl": "https://github.com/devDoniaAlhosin/woocommerce-custom-sa-states-cites.git",
       "githubUrl2": "https://github.com/devDoniaAlhosin/woocommerce-ac-installation-service",
       "images": [
-        "/src/assets/binmomen.png",
-        "/src/assets/binmomen.png",
-        "/src/assets/binmomen.png"
+        "/assets/binmomen.png",
+        "/assets/binmomen.png",
+        "/assets/binmomen.png"
       ],
       "features": ["Custom SA States and Cities Plugin", "AC Installation Services Addon", "Arabic RTL Support", "Multi-brand Product Catalog", "Installment Payment Plans", "Saudi Arabia Shipping Integration"],
       "challenges": ["Custom WooCommerce plugin development", "Saudi Arabia location integration", "Arabic RTL layout implementation", "Service booking system integration"],
@@ -33,7 +33,7 @@
       "liveUrl": "https://fastfwd.xyz/",
       "githubUrl": "#",
       "images": [
-        "/src/assets/fastfwd.png"
+        "/assets/fastfwd.png"
       ],
       "features": ["ACF-WooCommerce Integration", "Custom Order Data Fields", "Logistics-Specific Data Management", "Enhanced Order Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
       "challenges": ["Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
@@ -53,7 +53,7 @@
       "liveUrl": "#",
       "githubUrl": "#",
       "images": [
-        "/src/assets/stily.png"
+        "/assets/stily.png"
       
       ],
       "features": ["WooCommerce Booking System", "Multi-step Booking Interface", "Service Customization", "Real-time Availability", "WordPress Integration", "Responsive Design"],
@@ -74,7 +74,7 @@
       "liveUrl": "https://dondigitaltech.com/",
       "githubUrl": "#",
       "images": [
-        "/src/assets/don-tech.png"
+        "/assets/don-tech.png"
       ],
       "features": ["WordPress Portfolio Website", "Multi-Sector Portfolio Showcase", "International Partnerships Display", "Vision 2030 Alignment", "Geographical Market Presence", "Professional Corporate Design"],
       "challenges": ["WordPress portfolio website development", "Multi-sector portfolio presentation", "International partnership showcase", "Vision 2030 alignment"],
@@ -94,7 +94,7 @@
       "liveUrl": "https://diamondcovereg.com/",
       "githubUrl": "https://github.com/devDoniaAlhosin/car-service-plugin",
       "images": [
-        "/src/assets/diamond-cover.png"],
+        "/assets/diamond-cover.png"],
       "features": ["WhatsApp Integration", "Dynamic Car Details Management", "Time Slot Booking System", "Multi-Service Management", "WooCommerce Integration", "Arabic Language Support"],
       "challenges": ["WhatsApp API integration", "Dynamic car type/model selection", "Time slot management", "Multi-service booking system", "Arabic RTL support"],
       "solutions": ["Custom WordPress plugin development", "WhatsApp booking integration", "Advanced form validation", "WooCommerce hooks integration", "Responsive booking interface"],
@@ -113,7 +113,7 @@
       "liveUrl": "https://sealyme.com/warranty",
       "githubUrl": "https://github.com/devDoniaAlhosin/serial-number-verfier",
       "images": [
-        "/src/assets/sealyme.png"
+        "/assets/sealyme.png"
       ],
       "features": ["Warranty Registration System", "Serial Number Verification", "CSV Import/Export", "Admin Management Interface", "File Upload Support", "Arabic RTL Support"],
       "challenges": ["Warranty registration system development", "Serial number verification", "CSV data management", "File upload security", "Arabic RTL support"],
@@ -135,7 +135,7 @@
       "githubUrl2": "https://github.com/devDoniaAlhosin/Restaurant-Reservation-Client",
       "images": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
-        "/src/assets/resturant-reservation.png"
+        "/assets/resturant-reservation.png"
       ],
       "features": ["Angular Frontend", "Laravel Backend", "Table Reservation System", "Menu Management", "User Authentication", "Admin Dashboard", "RESTful API"],
       "challenges": ["Full-stack Angular-Laravel development", "RESTful API design", "Real-time booking system", "User authentication and authorization", "Database design and optimization"],
@@ -287,7 +287,7 @@
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
-        "/src/assets/sealy-home-page-redesign.png"
+        "/assets/sealy-home-page-redesign.png"
       ],
       "features": ["Home Page Redesign", "Shop Page Design", "Single Product Page", "User Experience Design", "Responsive Design", "E-commerce Interface"],
       "challenges": ["E-commerce user experience optimization", "Product presentation enhancement", "Navigation flow improvement", "Mobile-first design approach"],
@@ -307,7 +307,7 @@
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
-        "/src/assets/product-card-sealy.png"
+        "/assets/product-card-sealy.png"
       ],
       "features": ["Product Card Layout Design", "Visual Hierarchy Optimization", "Call-to-Action Integration", "Product Information Display", "Responsive Card Design", "Conversion-Focused Elements"],
       "challenges": ["Product information hierarchy", "Visual appeal optimization", "Conversion rate improvement", "Mobile-responsive design", "Brand consistency maintenance"],
