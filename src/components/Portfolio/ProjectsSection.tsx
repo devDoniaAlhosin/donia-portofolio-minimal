@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Calendar, Users, Star, Eye, Code2, Palette, Globe } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import projectsData from '@/data/projects.json';
 
@@ -30,10 +30,25 @@ export const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const projects: Project[] = (projectsData?.projects as Project[]) || [];
   const filters: Array<{key: string, label: string}> = projectsData?.filters || [];
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 100);
+    projects.forEach(project => {
+      if (project.images && project.images.length > 0) {
+        const img = new Image();
+        img.src = project.images[0];
+      }
+    });
+
+    return () => clearTimeout(timer);
+  }, [projects]);
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
@@ -65,6 +80,38 @@ export const ProjectsSection = () => {
     }
   };
 
+  const handleFilterSelect = (filterKey: ProjectFilter) => {
+    setActiveFilter(filterKey);
+    setIsFilterDropdownOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    console.log('Dropdown toggle clicked, current state:', isFilterDropdownOpen);
+    setIsFilterDropdownOpen(!isFilterDropdownOpen);
+  };
+
+  const getActiveFilterLabel = () => {
+    const activeFilterData = filters.find(f => f.key === activeFilter);
+    return activeFilterData ? activeFilterData.label : 'All Projects';
+  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      const dropdownContainer = document.querySelector('.filter-dropdown-container');
+      if (dropdownContainer && !dropdownContainer.contains(target)) {
+        setIsFilterDropdownOpen(false);
+      }
+    };
+
+    if (isFilterDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFilterDropdownOpen]);
+
   return (
     <section id="projects" className="py-16 sm:py-20 relative overflow-hidden">
       <div className="absolute inset-0">
@@ -76,7 +123,7 @@ export const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div 
           ref={headerRef}
-          className={`text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
+          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -96,11 +143,11 @@ export const ProjectsSection = () => {
           </p>
 
  
-          <div className={`relative transition-all duration-700 ease-out ${
-            headerVisible 
+          <div className={`relative transition-all duration-500 ease-out ${
+            (headerVisible || isInitialLoad)
               ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`} style={{transitionDelay: '0.2s'}}>
+              : 'opacity-0 translate-y-4'
+          }`} style={{transitionDelay: '0.1s'}}>
 
              <div className="hidden sm:flex items-center justify-center">
                <div className="bg-background/60 backdrop-blur-sm rounded-2xl border border-border/50 p-2 shadow-lg relative overflow-hidden">
@@ -135,23 +182,48 @@ export const ProjectsSection = () => {
 
                                                                                                        
                <div className="sm:hidden">
-                 <div className="flex flex-wrap justify-center gap-2 px-4">
-            {filters.map((filter) => (
+                 <div className="flex justify-center px-4">
+                   <div className="relative w-full max-w-xs filter-dropdown-container z-[9998]">
                      <button
-                key={filter.key}
-                       onClick={() => setActiveFilter(filter.key as ProjectFilter)}
-                       className={`relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-500 ease-out ${
-                         activeFilter === filter.key
-                           ? 'text-white bg-gradient-to-r from-accent to-accent/80 shadow-lg shadow-accent/25'
-                           : 'text-muted-foreground bg-background/60 backdrop-blur-sm border border-border/50 hover:text-primary hover:bg-accent/10'
+                       onClick={toggleDropdown}
+                       className="w-full flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-sm rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-300 shadow-lg"
+                     >
+                       <span className="text-sm font-medium text-primary">{getActiveFilterLabel()}</span>
+                       <ChevronDown 
+                         size={16} 
+                         className={`text-muted-foreground transition-transform duration-300 ${
+                           isFilterDropdownOpen ? 'rotate-180' : ''
+                         }`} 
+                       />
+                     </button>
+                     
+                     <div 
+                       className={`absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-sm rounded-2xl border-2 border-border/40 shadow-2xl z-[9999] overflow-hidden transition-all duration-300 ${
+                         isFilterDropdownOpen 
+                           ? 'opacity-100 translate-y-0 pointer-events-auto' 
+                           : 'opacity-0 -translate-y-2 pointer-events-none'
                        }`}
                      >
-                       <span className="relative z-10">{filter.label}</span>
-                       {activeFilter === filter.key && (
-                         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-accent/10 animate-pulse"></div>
-                       )}
-                     </button>
-                   ))}
+                       <div className="p-1">
+                         {filters.map((filter) => (
+                           <button
+                             key={filter.key}
+                             onClick={() => handleFilterSelect(filter.key as ProjectFilter)}
+                             className={`w-full flex items-center px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent/10 rounded-xl ${
+                               activeFilter === filter.key
+                                 ? 'text-accent bg-accent/5 border-l-4 border-accent'
+                                 : 'text-muted-foreground hover:text-primary'
+                             }`}
+                           >
+                             <span className="flex-1 text-left">{filter.label}</span>
+                             {activeFilter === filter.key && (
+                               <div className="w-2 h-2 bg-accent rounded-full"></div>
+                             )}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   </div>
                  </div>
                </div>
           </div>
@@ -160,21 +232,21 @@ export const ProjectsSection = () => {
 
                  <div 
            ref={contentRef}
-           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-1000 ease-out ${
-             contentVisible 
+           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700 ease-out ${
+             (contentVisible || isInitialLoad)
                ? 'opacity-100 translate-y-0' 
-               : 'opacity-0 translate-y-8'
+               : 'opacity-0 translate-y-4'
            }`}
          >
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative bg-background/80 backdrop-blur-xl rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-500 ease-out overflow-hidden cursor-pointer hover:shadow-xl hover:shadow-accent/10 ${
-                contentVisible 
+              className={`group relative bg-background/80 backdrop-blur-sm rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-300 ease-out overflow-hidden cursor-pointer hover:shadow-lg hover:shadow-accent/10 ${
+                (contentVisible || isInitialLoad)
                   ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
+                  : 'opacity-0 translate-y-4'
               }`}
-              style={{transitionDelay: `${index * 0.1}s`}}
+              style={{transitionDelay: `${Math.min(index * 0.03, 0.2)}s`}}
               onClick={() => openModal(project)}
             >
 
@@ -182,24 +254,25 @@ export const ProjectsSection = () => {
                 <img 
                   src={project.images[0]} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-xs font-medium rounded-lg">
+                  <span className="px-3 py-1.5 bg-accent/90 text-white text-xs font-medium rounded-lg">
                     {project.category === 'wordpress' ? 'WordPress' : 
                      project.category === 'native' ? 'Web App' : 'UI Design'}
                   </span>
                 </div>
 
                 <div className="absolute bottom-4 right-4 flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 backdrop-blur-sm rounded-lg">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 rounded-lg">
                     <Eye size={12} className="text-white/70" />
                     <span className="text-white/80 text-xs">{project.views.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 backdrop-blur-sm rounded-lg">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 rounded-lg">
                     <Star size={12} className="fill-yellow-400 text-yellow-400" />
                     <span className="text-white/80 text-xs">{project.rating}</span>
                   </div>

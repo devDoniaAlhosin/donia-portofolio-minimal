@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useScrollAnimation = (threshold = 0.1) => {
+export const useScrollAnimation = (threshold = 0.05) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +15,7 @@ export const useScrollAnimation = (threshold = 0.1) => {
       },
       {
         threshold,
-        rootMargin: '0px 0px -50px 0px', // Trigger slightly before element is fully visible
+        rootMargin: '0px 0px -100px 0px', 
       }
     );
 

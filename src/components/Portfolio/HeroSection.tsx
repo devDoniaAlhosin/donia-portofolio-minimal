@@ -267,7 +267,7 @@ export const HeroSection = () => {
             <div className="relative">
               {/* Main visual box */}
               <div className="w-72 lg:w-80 h-72 lg:h-80 bg-gradient-to-br from-accent/10 to-accent/5 rounded-3xl border border-accent/20 flex items-center justify-center">
-                <div className="text-center space-y-4">
+                <div className="text-left sm:text-center space-y-4">
                   <div className="w-14 lg:w-16 h-14 lg:h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto">
                     <Code size={28} className="text-accent lg:w-8 lg:h-8" />
                   </div>

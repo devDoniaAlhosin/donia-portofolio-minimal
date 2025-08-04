@@ -43,7 +43,7 @@ export const AboutSection = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div 
           ref={headerRef}
-          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ease-out ${
+          className={`text-left sm:text-center mb-12 sm:mb-16 transition-all duration-1000 ease-out ${
             headerVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -119,7 +119,7 @@ export const AboutSection = () => {
         </div>
 
         {/* Bottom call-to-action */}
-        <div className="mt-12 sm:mt-16 text-center">
+        <div className="mt-12 sm:mt-16 text-left sm:text-center">
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded-xl border border-accent/20 hover:border-accent/30 transition-all duration-300 hover:scale-105">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
             <span className="text-sm font-semibold text-accent">Ready to work together?</span>
