@@ -75,7 +75,7 @@ export const HeroSection = () => {
                   <div className="w-1 h-1 bg-accent/60 rounded-full"></div>
                 </div>
                 
-                <p className="text-sm text-muted-foreground/70 max-w-sm mx-auto leading-relaxed px-4">
+                <p className="text-sm text-foreground/90 max-w-sm mx-auto leading-tight px-4">
                   Full-Stack Developer specializing in WordPress, React & custom solutions. 
                   Delivered 50+ projects with 98% client satisfaction across e-commerce, logistics & healthcare.
                 </p>
@@ -198,7 +198,7 @@ export const HeroSection = () => {
                 <Palette size={12} className="text-accent/60 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               </div>
               
-              <p className="text-xs sm:text-sm md:text-base text-muted-foreground/70 max-w-lg mx-auto lg:mx-0 leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base text-foreground/90 max-w-lg mx-auto lg:mx-0 leading-tight px-2 sm:px-0">
                 Creating modern, responsive websites with exceptional user experiences
               </p>
             </div>

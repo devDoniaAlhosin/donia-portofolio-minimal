@@ -38,8 +38,8 @@
       "features": ["ACF-WooCommerce Integration", "Custom Order Data Fields", "Logistics-Specific Data Management", "Enhanced Order Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
       "challenges": ["Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
       "solutions": ["Advanced ACF integration for logistics data", "Custom order management system", "Multi-service booking platform", "Industry-specific solution modules"],
-      "duration": "3 months",
-      "teamSize": "Solo",
+      "duration": " 2 weeks ",
+      "teamSize": "2 People",
       "rating": 4.7,
       "views": 980
     },
@@ -50,7 +50,7 @@
       "longDescription": "Designed and developed a responsive WordPress website with WooCommerce integration for car care service appointments. The platform features a custom WooCommerce booking system with multi-step booking interface, real-time availability, and service customization, providing customers with a seamless car care service booking experience.",
       "category": "wordpress",
       "technologies": ["WordPress", "WooCommerce", "PHP", "MySQL", "CSS3", "JavaScript"],
-      "liveUrl": "#",
+      "liveUrl": "https://stily.com.sa/",
       "githubUrl": "#",
       "images": [
         "/assets/stily.png"
@@ -59,7 +59,7 @@
       "features": ["WooCommerce Booking System", "Multi-step Booking Interface", "Service Customization", "Real-time Availability", "WordPress Integration", "Responsive Design"],
       "challenges": ["WooCommerce booking system integration", "Multi-step booking flow", "Real-time scheduling", "Service management"],
       "solutions": ["Custom WooCommerce booking plugin", "Progressive booking steps", "Calendar integration", "Service configuration system"],
-      "duration": "5 months",
+      "duration": "A Week",
       "teamSize": "Solo",
       "rating": 4.9,
       "views": 2100
@@ -79,7 +79,7 @@
       "features": ["WordPress Portfolio Website", "Multi-Sector Portfolio Showcase", "International Partnerships Display", "Vision 2030 Alignment", "Geographical Market Presence", "Professional Corporate Design"],
       "challenges": ["WordPress portfolio website development", "Multi-sector portfolio presentation", "International partnership showcase", "Vision 2030 alignment"],
       "solutions": ["WordPress theme development", "Comprehensive sector categorization", "International partnership highlighting", "Vision 2030 integration"],
-      "duration": "2 months",
+      "duration": "2 Days",
       "teamSize": "Solo",
       "rating": 4.6,
       "views": 750
@@ -98,7 +98,7 @@
       "features": ["WhatsApp Integration", "Dynamic Car Details Management", "Time Slot Booking System", "Multi-Service Management", "WooCommerce Integration", "Arabic Language Support"],
       "challenges": ["WhatsApp API integration", "Dynamic car type/model selection", "Time slot management", "Multi-service booking system", "Arabic RTL support"],
       "solutions": ["Custom WordPress plugin development", "WhatsApp booking integration", "Advanced form validation", "WooCommerce hooks integration", "Responsive booking interface"],
-      "duration": "6 months",
+      "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.8,
       "views": 1650
@@ -118,7 +118,7 @@
       "features": ["Warranty Registration System", "Serial Number Verification", "CSV Import/Export", "Admin Management Interface", "File Upload Support", "Arabic RTL Support"],
       "challenges": ["Warranty registration system development", "Serial number verification", "CSV data management", "File upload security", "Arabic RTL support"],
       "solutions": ["Custom WordPress plugin development", "Database optimization", "CSV import/export functionality", "Secure file upload system", "RTL layout implementation"],
-      "duration": "4 months",
+      "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.7,
       "views": 890
@@ -206,7 +206,7 @@
       "features": ["Simple Portfolio Design", "Skills Showcase", "Project Display", "Contact Information", "Responsive Design", "Angular Fundamentals"],
       "challenges": ["Simple portfolio design", "Content organization", "Skills presentation", "Mobile optimization"],
       "solutions": ["Angular component architecture", "Clean design implementation", "Professional presentation", "Mobile-first responsive design"],
-      "duration": "1 month",
+      "duration": "A Day",
       "teamSize": "Solo",
       "rating": 4.6,
       "views": 750
@@ -250,7 +250,7 @@
       "features": ["Product Display", "Shopping Cart", "Local Storage", "Responsive Design"],
       "challenges": ["State management", "Data persistence", "Cross-browser compatibility"],
       "solutions": ["Local storage implementation", "DOM manipulation", "Progressive enhancement"],
-      "duration": "2 months",
+      "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.4,
       "views": 580
@@ -289,7 +289,7 @@
       "images": [
         "/assets/sealy-home-page-redesign.png"
       ],
-      "features": ["Home Page Redesign", "Shop Page Design", "Single Product Page", "User Experience Design", "Responsive Design", "E-commerce Interface"],
+      "features": ["Home Page Redesign", "Shop Page Design", "Single Product Page", "User Experience Design",  "E-commerce Interface"],
       "challenges": ["E-commerce user experience optimization", "Product presentation enhancement", "Navigation flow improvement", "Mobile-first design approach"],
       "solutions": ["Modern UI design implementation", "Intuitive navigation structure", "Enhanced product visualization", "User-centered design approach"],
       "duration": "A Week",

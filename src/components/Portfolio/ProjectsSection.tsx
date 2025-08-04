@@ -31,6 +31,7 @@ export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [fullscreenImage, setFullscreenImage] = useState<{src: string, alt: string} | null>(null);
   const projects: Project[] = (projectsData?.projects as Project[]) || [];
   const filters: Array<{key: string, label: string}> = projectsData?.filters || [];
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -44,6 +45,45 @@ export const ProjectsSection = () => {
       }
     });
   }, [projects]);
+
+  // Keyboard navigation for fullscreen gallery
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!fullscreenImage || !selectedProject) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          closeFullscreenImage();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          prevImage();
+          setFullscreenImage({
+            src: selectedProject.images[currentImageIndex === 0 ? selectedProject.images.length - 1 : currentImageIndex - 1],
+            alt: `${selectedProject.title} - Image ${currentImageIndex === 0 ? selectedProject.images.length : currentImageIndex}`
+          });
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          nextImage();
+          setFullscreenImage({
+            src: selectedProject.images[currentImageIndex === selectedProject.images.length - 1 ? 0 : currentImageIndex + 1],
+            alt: `${selectedProject.title} - Image ${currentImageIndex === selectedProject.images.length - 1 ? 1 : currentImageIndex + 2}`
+          });
+          break;
+      }
+    };
+
+    if (fullscreenImage) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [fullscreenImage, selectedProject, currentImageIndex]);
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
@@ -73,6 +113,15 @@ export const ProjectsSection = () => {
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
+  };
+
+  const openFullscreenImage = (src: string, alt: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFullscreenImage({ src, alt });
+  };
+
+  const closeFullscreenImage = () => {
+    setFullscreenImage(null);
   };
 
 
@@ -179,13 +228,12 @@ export const ProjectsSection = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative bg-background/80 backdrop-blur-sm rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-300 ease-out overflow-hidden cursor-pointer hover:shadow-lg hover:shadow-accent/10 ${
+              className={`group relative bg-background/80 backdrop-blur-sm rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-300 ease-out overflow-hidden hover:shadow-lg hover:shadow-accent/10 ${
                 (contentVisible || isInitialLoad)
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-4'
               }`}
               style={{transitionDelay: `${Math.min(index * 0.03, 0.2)}s`}}
-              onClick={() => openModal(project)}
             >
 
               <div className="relative h-56 overflow-hidden">
@@ -193,8 +241,16 @@ export const ProjectsSection = () => {
                   src={project.images[0]} 
                   alt={project.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-zoom-in"
+                  onClick={(e) => openFullscreenImage(project.images[0], project.title, e)}
                 />
+                
+                {/* Fullscreen indicator */}
+                <div className="absolute top-2 right-2 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
@@ -218,7 +274,7 @@ export const ProjectsSection = () => {
               </div>
 
 
-              <div className="p-5 space-y-4">
+              <div className="p-5 space-y-4 cursor-pointer" onClick={() => openModal(project)}>
                 <div className="space-y-3">
                   <h3 className="text-lg font-bold text-primary leading-tight">
                     {project.title}
@@ -312,17 +368,51 @@ export const ProjectsSection = () => {
                 <div className="p-4 sm:p-6 md:p-8">
                   {/* Enhanced Image Gallery */}
                   <div className="relative mb-10">
-                    <div className="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20">
+                    <div className="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20 group">
                      <img 
                        src={selectedProject.images[currentImageIndex]} 
                        alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-105"
+                        className="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-105 cursor-zoom-in"
+                       onClick={(e) => openFullscreenImage(selectedProject.images[currentImageIndex], `${selectedProject.title} - Image ${currentImageIndex + 1}`, e)}
                      />
                      
                       {/* Enhanced gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                       
-
+                      {/* Fullscreen indicator */}
+                      <div className="absolute top-4 left-4 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                      
+                      {/* Navigation arrows */}
+                      {selectedProject.images.length > 1 && (
+                        <>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              prevImage();
+                            }}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              nextImage();
+                            }}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </>
+                      )}
                       
                       {/* Image counter */}
                       {selectedProject.images.length > 1 && (
@@ -332,14 +422,44 @@ export const ProjectsSection = () => {
                       )}
                    </div>
 
+                    {/* Thumbnail Gallery */}
+                   {selectedProject.images.length > 1 && (
+                     <div className="mt-6">
+                       <div className="flex gap-3 overflow-x-auto pb-2">
+                         {selectedProject.images.map((image, index) => (
+                           <button
+                             key={index}
+                             onClick={() => setCurrentImageIndex(index)}
+                             className={`flex-shrink-0 relative group ${
+                               index === currentImageIndex 
+                                 ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' 
+                                 : 'ring-1 ring-border/50'
+                             }`}
+                           >
+                             <img 
+                               src={image} 
+                               alt={`${selectedProject.title} - Thumbnail ${index + 1}`}
+                               className="w-20 h-16 object-cover rounded-lg transition-all duration-300 hover:scale-105"
+                             />
+                             {index === currentImageIndex && (
+                               <div className="absolute inset-0 bg-accent/20 rounded-lg flex items-center justify-center">
+                                 <div className="w-2 h-2 bg-accent rounded-full"></div>
+                               </div>
+                             )}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   )}
+
                     {/* Enhanced image indicators */}
                    {selectedProject.images.length > 1 && (
-                      <div className="flex justify-center gap-4 mt-8">
+                      <div className="flex justify-center gap-4 mt-6">
                        {selectedProject.images.map((_, index) => (
                          <button
                            key={index}
                            onClick={() => setCurrentImageIndex(index)}
-                            className={`w-4 h-4 rounded-full transition-all duration-300 hover:scale-125 ${
+                            className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
                              index === currentImageIndex 
                                 ? 'bg-accent shadow-lg shadow-accent/40 scale-125' 
                                 : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
@@ -519,7 +639,7 @@ export const ProjectsSection = () => {
                              </a>
                            </Button>
                          )}
-                         {selectedProject.githubUrl && selectedProject.githubUrl !== "#" && (
+                         {selectedProject.githubUrl && selectedProject.githubUrl !== "#" && selectedProject.category !== "wordpress" && (
                            <Button
                              variant="outline"
                              size="sm"
@@ -538,7 +658,7 @@ export const ProjectsSection = () => {
                              </a>
                            </Button>
                          )}
-                         {selectedProject.githubUrl2 && selectedProject.githubUrl2 !== "#" && (
+                         {selectedProject.githubUrl2 && selectedProject.githubUrl2 !== "#" && selectedProject.category !== "wordpress" && (
                            <Button
                              variant="outline"
                              size="sm"
@@ -566,6 +686,79 @@ export const ProjectsSection = () => {
            </div>
          </div>
        )}
+
+      {fullscreenImage && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4" onClick={closeFullscreenImage}>
+          <div className="relative max-w-[90vw] max-h-[90vh] group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={fullscreenImage.src} 
+              alt={fullscreenImage.alt}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+            
+            {/* Close button */}
+            <button
+              onClick={closeFullscreenImage}
+              className="absolute top-4 right-4 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 z-10"
+            >
+              <X size={24} />
+            </button>
+            
+            {/* Navigation arrows for fullscreen gallery */}
+            {selectedProject && selectedProject.images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                    // Update fullscreen image to match current image
+                    setFullscreenImage({
+                      src: selectedProject.images[currentImageIndex === 0 ? selectedProject.images.length - 1 : currentImageIndex - 1],
+                      alt: `${selectedProject.title} - Image ${currentImageIndex === 0 ? selectedProject.images.length : currentImageIndex}`
+                    });
+                  }}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                    // Update fullscreen image to match current image
+                    setFullscreenImage({
+                      src: selectedProject.images[currentImageIndex === selectedProject.images.length - 1 ? 0 : currentImageIndex + 1],
+                      alt: `${selectedProject.title} - Image ${currentImageIndex === selectedProject.images.length - 1 ? 1 : currentImageIndex + 2}`
+                    });
+                  }}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+            
+            {/* Image counter for fullscreen */}
+            {selectedProject && selectedProject.images.length > 1 && (
+              <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
+                {currentImageIndex + 1} / {selectedProject.images.length}
+              </div>
+            )}
+            
+            {/* Gallery title and image info */}
+            <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm rounded-lg p-4">
+              <p className="text-white text-sm font-medium mb-1">{fullscreenImage.alt}</p>
+              {selectedProject && (
+                <p className="text-white/70 text-xs">Click outside or press ESC to close • Use arrow keys to navigate</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
