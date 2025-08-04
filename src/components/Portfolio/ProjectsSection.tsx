@@ -30,24 +30,19 @@ export const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const projects: Project[] = (projectsData?.projects as Project[]) || [];
   const filters: Array<{key: string, label: string}> = projectsData?.filters || [];
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInitialLoad(false);
-    }, 100);
+    setIsInitialLoad(false);
     projects.forEach(project => {
       if (project.images && project.images.length > 0) {
         const img = new Image();
         img.src = project.images[0];
       }
     });
-
-    return () => clearTimeout(timer);
   }, [projects]);
 
   const filteredProjects = activeFilter === 'all' 
@@ -80,37 +75,7 @@ export const ProjectsSection = () => {
     }
   };
 
-  const handleFilterSelect = (filterKey: ProjectFilter) => {
-    setActiveFilter(filterKey);
-    setIsFilterDropdownOpen(false);
-  };
 
-  const toggleDropdown = () => {
-    console.log('Dropdown toggle clicked, current state:', isFilterDropdownOpen);
-    setIsFilterDropdownOpen(!isFilterDropdownOpen);
-  };
-
-  const getActiveFilterLabel = () => {
-    const activeFilterData = filters.find(f => f.key === activeFilter);
-    return activeFilterData ? activeFilterData.label : 'All Projects';
-  };
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      const dropdownContainer = document.querySelector('.filter-dropdown-container');
-      if (dropdownContainer && !dropdownContainer.contains(target)) {
-        setIsFilterDropdownOpen(false);
-      }
-    };
-
-    if (isFilterDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isFilterDropdownOpen]);
 
   return (
     <section id="projects" className="py-16 sm:py-20 relative overflow-hidden">
@@ -179,50 +144,23 @@ export const ProjectsSection = () => {
                  </div>
                </div>
              </div>
-
-                                                                                                       
-               <div className="sm:hidden">
+                                                                                 
+               <div className="sm:hidden mb-6">
                  <div className="flex justify-center px-4">
-                   <div className="relative w-full max-w-xs filter-dropdown-container z-[9998]">
-                     <button
-                       onClick={toggleDropdown}
-                       className="w-full flex items-center justify-between px-4 py-3 bg-background/80 backdrop-blur-sm rounded-2xl border-2 border-border/40 hover:border-accent/50 transition-all duration-300 shadow-lg"
-                     >
-                       <span className="text-sm font-medium text-primary">{getActiveFilterLabel()}</span>
-                       <ChevronDown 
-                         size={16} 
-                         className={`text-muted-foreground transition-transform duration-300 ${
-                           isFilterDropdownOpen ? 'rotate-180' : ''
-                         }`} 
-                       />
-                     </button>
-                     
-                     <div 
-                       className={`absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-sm rounded-2xl border-2 border-border/40 shadow-2xl z-[9999] overflow-hidden transition-all duration-300 ${
-                         isFilterDropdownOpen 
-                           ? 'opacity-100 translate-y-0 pointer-events-auto' 
-                           : 'opacity-0 -translate-y-2 pointer-events-none'
-                       }`}
-                     >
-                       <div className="p-1">
-                         {filters.map((filter) => (
-                           <button
-                             key={filter.key}
-                             onClick={() => handleFilterSelect(filter.key as ProjectFilter)}
-                             className={`w-full flex items-center px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent/10 rounded-xl ${
-                               activeFilter === filter.key
-                                 ? 'text-accent bg-accent/5 border-l-4 border-accent'
-                                 : 'text-muted-foreground hover:text-primary'
-                             }`}
-                           >
-                             <span className="flex-1 text-left">{filter.label}</span>
-                             {activeFilter === filter.key && (
-                               <div className="w-2 h-2 bg-accent rounded-full"></div>
-                             )}
-                           </button>
-                         ))}
-                       </div>
-                     </div>
+                   <div className="flex gap-2 overflow-x-auto w-full max-w-md">
+                     {filters.map((filter) => (
+                       <button
+                         key={filter.key}
+                         onClick={() => setActiveFilter(filter.key as ProjectFilter)}
+                         className={`flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 ${
+                           activeFilter === filter.key
+                             ? 'bg-accent text-white shadow-sm'
+                             : 'bg-background/60 text-muted-foreground hover:text-primary hover:bg-background/80'
+                         }`}
+                       >
+                         {filter.label}
+                       </button>
+                     ))}
                    </div>
                  </div>
                </div>
@@ -232,7 +170,7 @@ export const ProjectsSection = () => {
 
                  <div 
            ref={contentRef}
-           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700 ease-out ${
+           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 transition-all duration-700 ease-out relative z-2 ${
              (contentVisible || isInitialLoad)
                ? 'opacity-100 translate-y-0' 
                : 'opacity-0 translate-y-4'
