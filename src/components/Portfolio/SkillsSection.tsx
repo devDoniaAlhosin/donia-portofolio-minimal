@@ -17,10 +17,10 @@ export const SkillsSection = () => {
     {
       icon: Globe,
       title: "Frontend Development",
-      description: "Modern web applications using React, JavaScript, HTML5, and CSS3",
+      description: "Modern web applications using React, Angular, JavaScript, HTML5, CSS3, and SCSS",
       level: 90,
       category: "Development",
-      tags: ["React", "JavaScript", "HTML5", "CSS3"]
+      tags: ["React", "Angular", "JavaScript", "HTML5", "CSS3", "SCSS"]
     },
     {
       icon: Palette,
@@ -41,18 +41,18 @@ export const SkillsSection = () => {
     {
       icon: Database,
       title: "Backend Integration",
-      description: "PHP, MySQL, and API integrations for dynamic functionality and data management",
+      description: "PHP, Laravel, Node.js, MySQL, MongoDB, and API integrations for dynamic functionality and data management",
       level: 88,
       category: "Development",
-      tags: ["PHP", "MySQL", "APIs", "REST"]
+      tags: ["PHP", "Laravel", "Node.js", "MySQL", "MongoDB", "APIs", "REST"]
     },
     {
       icon: Layers,
       title: "Modern Frameworks",
-      description: "React, Tailwind CSS, and modern development tools for scalable applications",
+      description: "React, Angular, Tailwind CSS, and modern development tools for scalable applications",
       level: 87,
       category: "Development",
-      tags: ["React", "Tailwind", "TypeScript", "Vite"]
+      tags: ["React", "Angular", "Tailwind", "TypeScript", "Vite"]
     },
     {
       icon: GitBranch,
@@ -89,10 +89,10 @@ export const SkillsSection = () => {
     {
       icon: Cpu,
       title: "Technical Architecture",
-      description: "Scalable application architecture and system design principles",
+      description: "Scalable application architecture, MVC patterns, and system design principles",
       level: 82,
       category: "Development",
-      tags: ["Architecture", "Scalability", "Design Patterns", "Best Practices"]
+      tags: ["Architecture", "MVC", "Scalability", "Design Patterns", "Best Practices"]
     },
     {
       icon: Shield,

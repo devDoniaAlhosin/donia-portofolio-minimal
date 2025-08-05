@@ -1,6 +1,6 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { useState, useEffect } from 'react';
-import { BookOpen, Calendar, Clock, Award, ChevronDown, ChevronUp, Star, GraduationCap, Sparkles, Zap } from 'lucide-react';
+import { BookOpen, Calendar, Clock, Award, ChevronDown, ChevronUp, Star, GraduationCap, Sparkles, Zap, ExternalLink } from 'lucide-react';
 
 export const CoursesSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -32,6 +32,7 @@ export const CoursesSection = () => {
       period: "May 2024 - Oct 2024",
       duration: "6 months",
       certificate: "Professional Diploma",
+      certificateLink: "https://drive.google.com/file/d/1vID9Vekukh26y2iCIKOvq46e1my6fGiR/view?usp=sharing",
       progress: 100,
       skillsGained: [
         "PHP backend development and frameworks",
@@ -66,6 +67,7 @@ export const CoursesSection = () => {
       period: "Oct 2023 - April 2024",
       duration: "7 months",
       certificate: "Professional Diploma",
+      certificateLink: "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
       progress: 100,
       skillsGained: [
         "HTML5, CSS3, and JavaScript fundamentals",
@@ -83,6 +85,7 @@ export const CoursesSection = () => {
       period: "Nov 2023 - Dec 2023",
       duration: "2 months",
       certificate: "Cisco Certification",
+      certificateLink: "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
       progress: 100,
       skillsGained: [
         "Cisco networking fundamentals and protocols",
@@ -280,6 +283,24 @@ export const CoursesSection = () => {
                         <span className="text-xs text-muted-foreground">{course.rating}</span>
                       </div>
                       <span className="text-xs text-muted-foreground">{course.duration}</span>
+                      {course.certificateLink && (
+                        <a
+                          href={course.certificateLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            window.open(course.certificateLink, '_blank', 'noopener,noreferrer');
+                          }}
+                          className="inline-flex items-center justify-center px-3 py-1.5 ml-2 bg-accent text-white border border-accent/60 rounded-md shadow-lg transition-all duration-300 hover:scale-110 text-xs font-semibold relative z-10"
+                          title="View Certificate"
+                        >
+                          <Award size={14} className="mr-1" />
+                          <span>Certificate</span>
+                          <ExternalLink size={12} className="ml-1" />
+                        </a>
+                      )}
                     </div>
 
                     {/* Expandable content */}

@@ -477,9 +477,9 @@ export const ProjectsSection = () => {
                         {selectedProject.title}
                       </h2>
                       <div className="flex flex-wrap items-center gap-6 text-sm">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-accent/15 text-accent rounded-full border border-accent/30 backdrop-blur-sm">
+                        <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-black sm:bg-accent/15 text-white sm:text-accent rounded-full border border-accent/30 backdrop-blur-sm">
                           <div className="w-2 h-2 bg-accent rounded-full"></div>
-                          <span className="font-semibold">
+                          <span className="font-semibold text-xs sm:text-sm">
                             {selectedProject.category === 'wordpress' ? 'WordPress' : 
                              selectedProject.category === 'native' ? 'Web App' : 'UI Design'}
                           </span>
@@ -569,11 +569,11 @@ export const ProjectsSection = () => {
                           <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
                           Technologies Used
                        </h3>
-                       <div className="flex flex-wrap gap-2">
+                       <div className="flex flex-wrap gap-1.5 sm:gap-2">
                          {selectedProject.technologies.map((tech, index) => (
                            <span
                              key={index}
-                              className="px-3 py-1.5 bg-accent/15 text-accent text-xs rounded-full border border-accent/30 hover:bg-accent/25 hover:scale-105 transition-all duration-300 font-medium backdrop-blur-sm"
+                              className="px-2 sm:px-3 py-1 sm:py-1.5 bg-accent/15 text-accent text-xs rounded-full border border-accent/30 hover:bg-accent/25 hover:scale-105 transition-all duration-300 font-medium backdrop-blur-sm"
                            >
                              {tech}
                            </span>
