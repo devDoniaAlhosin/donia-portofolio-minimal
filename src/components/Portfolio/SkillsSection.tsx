@@ -1,108 +1,15 @@
-import { Code, Palette, Database, Globe, Smartphone, Layers, Zap, Sparkles, GitBranch, Figma, Terminal, Server, Cpu, Shield, Rocket } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import data from '@/data/skills_services.json';
 
 export const SkillsSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
   
-  const skills = [
-    {
-      icon: Code,
-      title: "WordPress Development",
-      description: "Custom themes, plugins, and full website development with advanced customization",
-      level: 95,
-      category: "Development",
-      tags: ["WordPress", "PHP", "Themes", "Plugins"]
-    },
-    {
-      icon: Globe,
-      title: "Frontend Development",
-      description: "Modern web applications using React, Angular, JavaScript, HTML5, CSS3, and SCSS",
-      level: 90,
-      category: "Development",
-      tags: ["React", "Angular", "JavaScript", "HTML5", "CSS3", "SCSS"]
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "User-centered design with focus on usability, accessibility, and modern aesthetics",
-      level: 85,
-      category: "Design",
-      tags: ["Figma", "Prototyping", "User Research", "Accessibility"]
-    },
-    {
-      icon: Smartphone,
-      title: "Responsive Design",
-      description: "Mobile-first approach ensuring perfect display and functionality across all devices",
-      level: 92,
-      category: "Design",
-      tags: ["Mobile-First", "CSS Grid", "Flexbox", "Media Queries"]
-    },
-    {
-      icon: Database,
-      title: "Backend Integration",
-      description: "PHP, Laravel, Node.js, MySQL, MongoDB, and API integrations for dynamic functionality and data management",
-      level: 88,
-      category: "Development",
-      tags: ["PHP", "Laravel", "Node.js", "MySQL", "MongoDB", "APIs", "REST"]
-    },
-    {
-      icon: Layers,
-      title: "Modern Frameworks",
-      description: "React, Angular, Tailwind CSS, and modern development tools for scalable applications",
-      level: 87,
-      category: "Development",
-      tags: ["React", "Angular", "Tailwind", "TypeScript", "Vite"]
-    },
-    {
-      icon: GitBranch,
-      title: "Version Control",
-      description: "Git workflow, collaborative development, and code management best practices",
-      level: 89,
-      category: "Tools",
-      tags: ["Git", "GitHub", "Collaboration", "Workflow"]
-    },
-    {
-      icon: Figma,
-      title: "Design Tools",
-      description: "Professional design tools for wireframing, prototyping, and visual design",
-      level: 83,
-      category: "Design",
-      tags: ["Figma", "Adobe", "Wireframing", "Prototyping"]
-    },
-    {
-      icon: Terminal,
-      title: "Development Tools",
-      description: "Modern development environment setup and optimization for productivity",
-      level: 86,
-      category: "Tools",
-      tags: ["VS Code", "Terminal", "NPM", "DevTools"]
-    },
-    {
-      icon: Server,
-      title: "Performance Optimization",
-      description: "Website speed optimization, caching strategies, and performance monitoring",
-      level: 84,
-      category: "Development",
-      tags: ["Caching", "CDN", "Optimization", "Monitoring"]
-    },
-    {
-      icon: Cpu,
-      title: "Technical Architecture",
-      description: "Scalable application architecture, MVC patterns, and system design principles",
-      level: 82,
-      category: "Development",
-      tags: ["Architecture", "MVC", "Scalability", "Design Patterns", "Best Practices"]
-    },
-    {
-      icon: Shield,
-      title: "Security & Testing",
-      description: "Security best practices, testing methodologies, and quality assurance",
-      level: 81,
-      category: "Development",
-      tags: ["Security", "Testing", "QA", "Best Practices"]
-    }
-  ];
+  const skills = data.skills.map((item) => ({
+    ...item,
+    Icon: (Icons as any)[item.icon],
+  }));
 
   return (
     <section id="skills" className="py-16 sm:py-20 relative overflow-hidden">
@@ -123,7 +30,7 @@ export const SkillsSection = () => {
         >
           <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
-              <Zap size={14} className="sm:w-4 sm:h-4 text-white" />
+              <Icons.Zap size={14} className="sm:w-4 sm:h-4 text-white" />
             </div>
             <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">Skills & Expertise</span>
           </div>
@@ -144,7 +51,7 @@ export const SkillsSection = () => {
           }`}
         >
           {skills.map((skill, index) => {
-            const Icon = skill.icon;
+            const Icon = (skill as any).Icon;
             return (
               <div
                 key={index}
@@ -219,7 +126,7 @@ export const SkillsSection = () => {
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded-lg sm:rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
             <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse"></div>
             <span className="text-xs sm:text-sm font-semibold text-accent">Continuously learning and evolving</span>
-            <Rocket size={12} className="sm:w-3.5 sm:h-3.5 text-accent" />
+            <Icons.Rocket size={12} className="sm:w-3.5 sm:h-3.5 text-accent" />
           </div>
         </div>
       </div>

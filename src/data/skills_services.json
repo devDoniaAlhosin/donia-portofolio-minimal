@@ -1,0 +1,139 @@
+{
+  "servicesMeta": {
+    "title": "What I Offer",
+    "subtitle": "Minimal, modern web solutions focused on performance & quality."
+  },
+  "services": [
+    {
+      "icon": "Code",
+      "title": "Web Development",
+      "description": "Modern, responsive websites with clean code, accessibility, and performance in mind.",
+      "subtitle": "Websites, Landing Pages, SPAs",
+      "category": "Development",
+      "features": ["Responsive UI", "Clean, maintainable code", "Accessibility (A11y)"]
+    },
+    {
+      "icon": "Globe",
+      "title": "WordPress Solutions",
+      "description": "Custom themes, plugins, and CMS setup tailored for easy content management.",
+      "subtitle": "Themes, Plugins, CMS",
+      "category": "WordPress",
+      "features": ["Custom themes", "Plugin integration", "Easy CMS editing"]
+    },
+    {
+      "icon": "Shield",
+      "title": "Testing & QA",
+      "description": "Manual and automated testing (unit, integration, E2E) to ensure reliability and quality.",
+      "subtitle": "Unit, Integration, E2E",
+      "category": "Quality",
+      "features": ["Unit & integration tests", "E2E coverage", "Bug prevention"]
+    },
+    {
+      "icon": "Rocket",
+      "title": "Performance & SEO",
+      "description": "Speed optimization and on‑page SEO to improve ranking and user experience.",
+      "subtitle": "Core Web Vitals, On‑Page SEO",
+      "category": "Performance",
+      "features": ["Core Web Vitals", "Image optimization", "On‑page SEO"]
+    }
+  ],
+  "skills": [
+    {
+      "icon": "Code",
+      "title": "WordPress Development",
+      "description": "Custom themes, plugins, and full website development with advanced customization",
+      "level": 95,
+      "category": "Development",
+      "tags": ["WordPress", "PHP", "Themes", "Plugins"]
+    },
+    {
+      "icon": "Globe",
+      "title": "Frontend Development",
+      "description": "Modern web applications using React, Angular, JavaScript, HTML5, CSS3, and SCSS",
+      "level": 90,
+      "category": "Development",
+      "tags": ["React", "Angular", "JavaScript", "HTML5", "CSS3", "SCSS"]
+    },
+    {
+      "icon": "Palette",
+      "title": "UI/UX Design",
+      "description": "User-centered design focused on usability, accessibility, and clean, minimal aesthetics",
+      "level": 85,
+      "category": "Design",
+      "tags": ["Wireframing", "Prototyping", "Accessibility", "Design Systems"]
+    },
+    {
+      "icon": "TestTubes",
+      "title": "Testing & QA",
+      "description": "Unit, integration, and E2E testing to ensure stability and confidence in releases",
+      "level": 88,
+      "category": "Quality",
+      "tags": ["Jest", "React Testing Library", "Cypress", "Vitest"]
+    },
+    {
+      "icon": "Database",
+      "title": "Backend Integration",
+      "description": "PHP, Laravel, Node.js, MySQL, MongoDB, and API integrations for dynamic functionality and data management",
+      "level": 88,
+      "category": "Development",
+      "tags": ["PHP", "Laravel", "Node.js", "MySQL", "MongoDB", "APIs", "REST"]
+    },
+    {
+      "icon": "Layers",
+      "title": "Modern Frameworks",
+      "description": "React, Angular, Tailwind CSS, and modern development tools for scalable applications",
+      "level": 87,
+      "category": "Development",
+      "tags": ["React", "Angular", "Tailwind", "TypeScript", "Vite"]
+    },
+    {
+      "icon": "GitBranch",
+      "title": "Version Control",
+      "description": "Git workflow, collaborative development, and code management best practices",
+      "level": 89,
+      "category": "Tools",
+      "tags": ["Git", "GitHub", "Collaboration", "Workflow"]
+    },
+    {
+      "icon": "Figma",
+      "title": "Design Tools",
+      "description": "Professional design tools for wireframing, prototyping, and visual design",
+      "level": 83,
+      "category": "Design",
+      "tags": ["Figma", "Adobe", "Wireframing", "Prototyping"]
+    },
+    {
+      "icon": "Terminal",
+      "title": "Development Tools",
+      "description": "Modern development environment setup and optimization for productivity",
+      "level": 86,
+      "category": "Tools",
+      "tags": ["VS Code", "Terminal", "NPM", "DevTools"]
+    },
+    {
+      "icon": "Server",
+      "title": "Performance Optimization",
+      "description": "Website speed optimization, caching strategies, and performance monitoring",
+      "level": 84,
+      "category": "Development",
+      "tags": ["Caching", "CDN", "Optimization", "Monitoring"]
+    },
+    {
+      "icon": "Cpu",
+      "title": "Technical Architecture",
+      "description": "Scalable application architecture, MVC patterns, and system design principles",
+      "level": 82,
+      "category": "Development",
+      "tags": ["Architecture", "MVC", "Scalability", "Design Patterns", "Best Practices"]
+    },
+    {
+      "icon": "Shield",
+      "title": "Security Best Practices",
+      "description": "OWASP-minded development, secure data handling, and dependency hygiene",
+      "level": 82,
+      "category": "Development",
+      "tags": ["OWASP", "Encryption", "Auth", "Dependency Audits"]
+    }
+  ]
+}
+

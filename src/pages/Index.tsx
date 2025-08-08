@@ -8,6 +8,7 @@ import { ExperienceSection } from '@/components/Portfolio/ExperienceSection';
 import { CoursesSection } from '@/components/Portfolio/CoursesSection';
 import { HonorsAwardsSection } from '@/components/Portfolio/HonorsAwardsSection';
 import { ProjectsSection } from '@/components/Portfolio/ProjectsSection';
+import { ServicesSection } from '@/components/Portfolio/ServicesSection';
 import { Footer } from '@/components/Portfolio/Footer';
 import { BackToTop } from '@/components/Portfolio/BackToTop';
 import { WhatsAppButton } from '@/components/Portfolio/WhatsAppButton';
@@ -50,6 +51,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutSection />
+        <ServicesSection />
         <SkillsSection />
         <ExperienceSection />
         <CoursesSection />
