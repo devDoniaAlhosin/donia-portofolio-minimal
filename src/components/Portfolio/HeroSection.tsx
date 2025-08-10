@@ -127,7 +127,7 @@ export const HeroSection = () => {
                    className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                    onClick={() => {
                      const link = document.createElement('a');
-                     link.href = '/src/assets/doniaAlhosin-resume.pdf';
+                      link.href = '/assets/DoniaAlhosin_resume.pdf';
                      link.download = 'DoniaAlhosin-Resume.pdf';
                      document.body.appendChild(link);
                      link.click();
@@ -247,7 +247,7 @@ export const HeroSection = () => {
                 className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] border-border hover:border-accent/50 hover:bg-accent/5 text-sm sm:text-base relative overflow-hidden group"
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = '/src/assets/doniaAlhosin-resume.pdf';
+                  link.href = '/assets/DoniaAlhosin_resume.pdf';
                   link.download = 'DoniaAlhosin-Resume.pdf';
                   document.body.appendChild(link);
                   link.click();
