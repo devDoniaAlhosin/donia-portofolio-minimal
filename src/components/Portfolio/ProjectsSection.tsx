@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, X, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown } from 'lucide-react';
+import { ExternalLink, Github, X, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown, Briefcase } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import projectsData from '@/data/projects.json';
 
@@ -11,6 +11,7 @@ interface Project {
   title: string;
   description: string;
   category: ProjectFilter;
+    company?: string;
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -254,11 +255,16 @@ export const ProjectsSection = () => {
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 space-y-2">
                   <span className="px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg shadow-lg shadow-accent/25">
                     {project.category === 'wordpress' ? 'WordPress' : 
                      project.category === 'native' ? 'Web App' : 'UI Design'}
                   </span>
+                  {project.company && (
+                    <span className="px-3 py-1.5 bg-black/60 text-white text-xs font-medium rounded-lg border border-white/10 backdrop-blur-sm">
+                      While at {project.company}
+                    </span>
+                  )}
                 </div>
 
                 <div className="absolute bottom-4 right-4 flex items-center gap-2">
@@ -496,6 +502,12 @@ export const ProjectsSection = () => {
                           <Star size={16} className="text-yellow-500 fill-yellow-500" />
                           <span className="font-medium">{selectedProject.rating}</span>
                         </div>
+                        {selectedProject.company && (
+                          <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                            <Briefcase size={16} className="text-accent" />
+                            <span className="font-medium">While at {selectedProject.company}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
