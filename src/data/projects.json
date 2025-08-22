@@ -35,7 +35,7 @@
       "liveUrl": "https://fastfwd.xyz/",
       "githubUrl": "#",
       "images": [
-        "/assets/fastfwd.png"
+        "/assets/fast-fwd.png"
       ],
       "features": ["ACF-WooCommerce Integration", "Custom Shipment Data Fields", "Logistics-Specific Data Management", "Enhanced Shipment Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
       "challenges": ["WooCommerce system compatibility for shipment tracking", "Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
