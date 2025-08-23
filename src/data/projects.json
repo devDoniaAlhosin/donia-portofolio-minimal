@@ -12,10 +12,9 @@
       "githubUrl": "https://github.com/devDoniaAlhosin/woocommerce-custom-sa-states-cites.git",
       "githubUrl2": "https://github.com/devDoniaAlhosin/woocommerce-ac-installation-service",
       "images": [
-        "/assets/binmomen.png",
-        "/assets/binmomen.png",
-        "/assets/binmomen.png"
-      ],
+        "/assets/bin-moamen.png"
+
+     ],
       "features": ["Custom SA States and Cities Plugin", "AC Installation Services Addon", "Arabic RTL Support", "Multi-brand Product Catalog", "Installment Payment Plans", "Saudi Arabia Shipping Integration"],
       "challenges": ["Custom WooCommerce plugin development", "Saudi Arabia location integration", "Arabic RTL layout implementation", "Service booking system integration"],
       "solutions": ["Custom plugin development for SA states/cities", "WooCommerce hooks integration", "Service management system", "Arabic localization"],
@@ -56,7 +55,7 @@
       "liveUrl": "https://stily.com.sa/",
       "githubUrl": "#",
       "images": [
-        "/assets/stily.png"
+        "/assets/stily-image.png"
       
       ],
       "features": ["WooCommerce Booking System", "Multi-step Booking Interface", "Service Customization", "Real-time Availability", "WordPress Integration", "Responsive Design"],
