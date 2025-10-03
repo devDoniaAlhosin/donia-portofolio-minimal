@@ -40,7 +40,7 @@
       "challenges": ["WooCommerce system compatibility for shipment tracking", "Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
       "solutions": ["Advanced ACF integration for logistics data", "Custom shipment tracking system", "WooCommerce hooks for shipment data"],
       "duration": " 2 weeks ",
-      "teamSize": "2 People",
+      "teamSize": "2 ",
       "rating": 4.7,
       "views": 980
     },
@@ -146,7 +146,7 @@
       "challenges": ["Full-stack Angular-Laravel development", "RESTful API design", "Real-time booking system", "User authentication and authorization", "Database design and optimization"],
       "solutions": ["Angular-Laravel integration", "RESTful API implementation", "Role-based access control", "Database optimization", "Frontend-backend communication"],
       "duration": "1 months",
-      "teamSize": "3 people",
+      "teamSize": "3 ",
       "rating": 4.8,
       "views": 1200
     },
@@ -158,17 +158,16 @@
       "category": "native",
       "technologies": ["Angular", "Node.js", "Express", "MongoDB", "TypeScript", "CSS3", "RESTful API"],
       "liveUrl": "https://goodreadslib.netlify.app/",
-      "githubUrl": "https://github.com",
+      "githubUrl": "https://github.com/devDoniaAlhosin/Angular-NodeJS-Project.git",
       "images": [
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop"
+        "/assets/goodreads.png"
+  
       ],
       "features": ["Book Management", "User Reviews", "Reading Lists", "Search Functionality", "RESTful API"],
       "challenges": ["Rapid development timeline", "Book data management", "User review system", "Search optimization"],
       "solutions": ["Efficient team collaboration", "RESTful API design", "Review system implementation", "Search indexing"],
       "duration": "2 weeks",
-      "teamSize": "2 people",
+      "teamSize": "2",
       "rating": 4.6,
       "views": 850
     },
@@ -278,7 +277,7 @@
       "challenges": ["Hardware integration", "Sensor calibration", "Mobile app development"],
       "solutions": ["Arduino programming", "Sensor integration", "Cross-platform development"],
       "duration": "8 months",
-      "teamSize": "4 people",
+      "teamSize": "4",
       "rating": 4.9,
       "views": 2800
     },
