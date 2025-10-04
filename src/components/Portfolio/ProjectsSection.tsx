@@ -373,10 +373,10 @@ export const ProjectsSection = () => {
                </div>
                 <div className="p-4 sm:p-6 md:p-8">
                   {/* Project Header with Image */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 items-stretch">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
                     {/* Project Title and Info */}
                     <div className="space-y-6">
-                      <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-4 sm:p-6 md:p-8 border border-accent/20 backdrop-blur-sm h-full flex flex-col justify-center">
+                      <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-4 sm:p-6 md:p-8 border border-accent/20 backdrop-blur-sm">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight">
                           {selectedProject.title}
                         </h2>
@@ -411,8 +411,8 @@ export const ProjectsSection = () => {
                     </div>
 
                     {/* Enhanced Image Gallery */}
-                    <div className="relative h-full">
-                      <div className="relative h-full min-h-[20rem] rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20 group">
+                    <div className="relative">
+                      <div className="relative h-80 sm:h-96 lg:h-[28rem] rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20 group">
                         <img 
                           src={selectedProject.images[currentImageIndex]} 
                           alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
@@ -465,36 +465,6 @@ export const ProjectsSection = () => {
                           </div>
                         )}
                       </div>
-
-                      {/* Thumbnail Gallery */}
-                      {selectedProject.images.length > 1 && (
-                        <div className="mt-4">
-                          <div className="flex gap-3 overflow-x-auto pb-2">
-                            {selectedProject.images.map((image, index) => (
-                              <button
-                                key={index}
-                                onClick={() => setCurrentImageIndex(index)}
-                                className={`flex-shrink-0 relative group ${
-                                  index === currentImageIndex 
-                                    ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' 
-                                    : 'ring-1 ring-border/50'
-                                }`}
-                              >
-                                <img 
-                                  src={image} 
-                                  alt={`${selectedProject.title} - Thumbnail ${index + 1}`}
-                                  className="w-20 h-16 object-cover rounded-lg transition-all duration-300 hover:scale-105 border border-border/20"
-                                />
-                                {index === currentImageIndex && (
-                                  <div className="absolute inset-0 bg-accent/20 rounded-lg flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-accent rounded-full"></div>
-                                  </div>
-                                )}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
 
                       {/* Enhanced image indicators */}
                       {selectedProject.images.length > 1 && (
