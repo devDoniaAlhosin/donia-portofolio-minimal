@@ -372,143 +372,146 @@ export const ProjectsSection = () => {
                  </div>
                </div>
                 <div className="p-4 sm:p-6 md:p-8">
-                  {/* Enhanced Image Gallery */}
-                  <div className="relative mb-10">
-                    <div className="relative h-72 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20 group">
-                     <img 
-                       src={selectedProject.images[currentImageIndex]} 
-                       alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-105 cursor-zoom-in"
-                       onClick={(e) => openFullscreenImage(selectedProject.images[currentImageIndex], `${selectedProject.title} - Image ${currentImageIndex + 1}`, e)}
-                     />
-                     
-                      {/* Enhanced gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                      
-                      {/* Fullscreen indicator */}
-                      <div className="absolute top-4 left-4 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                        </svg>
-                      </div>
-                      
-                      {/* Navigation arrows */}
-                      {selectedProject.images.length > 1 && (
-                        <>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              prevImage();
-                            }}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              nextImage();
-                            }}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </button>
-                        </>
-                      )}
-                      
-                      {/* Image counter */}
-                      {selectedProject.images.length > 1 && (
-                        <div className="absolute top-6 right-6 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-primary border border-border/30">
-                          {currentImageIndex + 1} / {selectedProject.images.length}
-                        </div>
-                      )}
-                   </div>
-
-                    {/* Thumbnail Gallery */}
-                   {selectedProject.images.length > 1 && (
-                     <div className="mt-6">
-                       <div className="flex gap-3 overflow-x-auto pb-2">
-                         {selectedProject.images.map((image, index) => (
-                           <button
-                             key={index}
-                             onClick={() => setCurrentImageIndex(index)}
-                             className={`flex-shrink-0 relative group ${
-                               index === currentImageIndex 
-                                 ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' 
-                                 : 'ring-1 ring-border/50'
-                             }`}
-                           >
-                             <img 
-                               src={image} 
-                               alt={`${selectedProject.title} - Thumbnail ${index + 1}`}
-                               className="w-20 h-16 object-cover rounded-lg transition-all duration-300 hover:scale-105"
-                             />
-                             {index === currentImageIndex && (
-                               <div className="absolute inset-0 bg-accent/20 rounded-lg flex items-center justify-center">
-                                 <div className="w-2 h-2 bg-accent rounded-full"></div>
-                               </div>
-                             )}
-                           </button>
-                         ))}
-                       </div>
-                     </div>
-                   )}
-
-                    {/* Enhanced image indicators */}
-                   {selectedProject.images.length > 1 && (
-                      <div className="flex justify-center gap-4 mt-6">
-                       {selectedProject.images.map((_, index) => (
-                         <button
-                           key={index}
-                           onClick={() => setCurrentImageIndex(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
-                             index === currentImageIndex 
-                                ? 'bg-accent shadow-lg shadow-accent/40 scale-125' 
-                                : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
-                           }`}
-                         />
-                       ))}
-                     </div>
-                   )}
-                 </div>
-
-  
-                  <div className="mb-10">
-                    <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-4 sm:p-6 md:p-8 border border-accent/20 backdrop-blur-sm">
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight">
-                        {selectedProject.title}
-                      </h2>
-                      <div className="flex flex-wrap items-center gap-6 text-sm">
-                        <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-black sm:bg-accent/15 text-white sm:text-accent rounded-full border border-accent/30 backdrop-blur-sm">
-                          <div className="w-2 h-2 bg-accent rounded-full"></div>
-                          <span className="font-semibold text-xs sm:text-sm">
-                            {selectedProject.category === 'wordpress' ? 'WordPress' : 
-                             selectedProject.category === 'native' ? 'Web App' : 'UI Design'}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
-                          <Calendar size={16} className="text-accent" />
-                          <span className="font-medium">{selectedProject.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
-                          <Users size={16} className="text-accent" />
-                          <span className="font-medium">{selectedProject.teamSize}</span>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
-                          <Star size={16} className="text-yellow-500 fill-yellow-500" />
-                          <span className="font-medium">{selectedProject.rating}</span>
-                        </div>
-                        {selectedProject.company && (
+                  {/* Project Header with Image */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 items-stretch">
+                    {/* Project Title and Info */}
+                    <div className="space-y-6">
+                      <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-4 sm:p-6 md:p-8 border border-accent/20 backdrop-blur-sm h-full flex flex-col justify-center">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight">
+                          {selectedProject.title}
+                        </h2>
+                        <div className="flex flex-wrap items-center gap-4 text-sm">
+                          <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-black sm:bg-accent/15 text-white sm:text-accent rounded-full border border-accent/30 backdrop-blur-sm">
+                            <div className="w-2 h-2 bg-accent rounded-full"></div>
+                            <span className="font-semibold text-xs sm:text-sm">
+                              {selectedProject.category === 'wordpress' ? 'WordPress' : 
+                               selectedProject.category === 'native' ? 'Web App' : 'UI Design'}
+                            </span>
+                          </div>
                           <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
-                            <Briefcase size={16} className="text-accent" />
-                            <span className="font-medium">While at {selectedProject.company}</span>
+                            <Calendar size={16} className="text-accent" />
+                            <span className="font-medium">{selectedProject.duration}</span>
+                          </div>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                            <Users size={16} className="text-accent" />
+                            <span className="font-medium">{selectedProject.teamSize}</span>
+                          </div>
+                          <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                            <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                            <span className="font-medium">{selectedProject.rating}</span>
+                          </div>
+                          {selectedProject.company && (
+                            <div className="flex items-center gap-2 px-4 py-2 bg-background/60 backdrop-blur-sm rounded-full border border-border/30">
+                              <Briefcase size={16} className="text-accent" />
+                              <span className="font-medium">While at {selectedProject.company}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Enhanced Image Gallery */}
+                    <div className="relative h-full">
+                      <div className="relative h-full min-h-[20rem] rounded-3xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted/30 shadow-2xl border border-border/20 group">
+                        <img 
+                          src={selectedProject.images[currentImageIndex]} 
+                          alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                          className="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-[1.02] cursor-zoom-in"
+                          onClick={(e) => openFullscreenImage(selectedProject.images[currentImageIndex], `${selectedProject.title} - Image ${currentImageIndex + 1}`, e)}
+                        />
+                        
+                        {/* Enhanced gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                        
+                        {/* Fullscreen indicator */}
+                        <div className="absolute top-4 left-4 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                          </svg>
+                        </div>
+                        
+                        {/* Navigation arrows */}
+                        {selectedProject.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                prevImage();
+                              }}
+                              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                nextImage();
+                              }}
+                              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                          </>
+                        )}
+                        
+                        {/* Image counter */}
+                        {selectedProject.images.length > 1 && (
+                          <div className="absolute top-6 right-6 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium text-primary border border-border/30">
+                            {currentImageIndex + 1} / {selectedProject.images.length}
                           </div>
                         )}
                       </div>
+
+                      {/* Thumbnail Gallery */}
+                      {selectedProject.images.length > 1 && (
+                        <div className="mt-4">
+                          <div className="flex gap-3 overflow-x-auto pb-2">
+                            {selectedProject.images.map((image, index) => (
+                              <button
+                                key={index}
+                                onClick={() => setCurrentImageIndex(index)}
+                                className={`flex-shrink-0 relative group ${
+                                  index === currentImageIndex 
+                                    ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' 
+                                    : 'ring-1 ring-border/50'
+                                }`}
+                              >
+                                <img 
+                                  src={image} 
+                                  alt={`${selectedProject.title} - Thumbnail ${index + 1}`}
+                                  className="w-20 h-16 object-cover rounded-lg transition-all duration-300 hover:scale-105 border border-border/20"
+                                />
+                                {index === currentImageIndex && (
+                                  <div className="absolute inset-0 bg-accent/20 rounded-lg flex items-center justify-center">
+                                    <div className="w-2 h-2 bg-accent rounded-full"></div>
+                                  </div>
+                                )}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Enhanced image indicators */}
+                      {selectedProject.images.length > 1 && (
+                        <div className="flex justify-center gap-4 mt-4">
+                          {selectedProject.images.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentImageIndex(index)}
+                              className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+                                index === currentImageIndex 
+                                  ? 'bg-accent shadow-lg shadow-accent/40 scale-125' 
+                                  : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
