@@ -1,23 +1,88 @@
 {
   "projects": [
-        {
+    {
+      "id": 17,
+      "title": "Open Cart Testing",
+      "description": "Comprehensive manual (User/Admin) and automation testing for Open Cart with 90% coverage.",
+      "longDescription": "Executed comprehensive manual testing for both User and Admin sides, covering 90% of Open Cart functionalities. Managed test cases and reporting using Jira to ensure traceability. The automation framework was built using Selenium WebDriver, following ISTQB standards and Agile methodologies.",
+      "category": "testing",
+      "technologies": [
+        "Manual Testing",
+        "Jira",
+        "Selenium",
+        "Java",
+        "TestNG",
+        "Maven"
+      ],
+      "liveUrl": "https://drive.google.com/drive/folders/1X4rABAQubLtFm_tzxpFBIYqu770971aS",
+      "githubUrl": "https://github.com/devDoniaAlhosin/SWT-DEPI-GraduationProject",
+      "images": [
+        "/assets/GRADPROJECT - Featured.png"
+      ],
+      "features": [
+        "Manual Testing (User & Admin)",
+        "90% Functional Coverage",
+        "Jira Test Management",
+        "Automated Regression Suite",
+        "Cross-browser Testing",
+        "Data-driven Framework"
+      ],
+      "challenges": [
+        "Handling dynamic elements",
+        "Synchronizing asynchronous operations"
+      ],
+      "solutions": [
+        "Implemented explicit waits",
+        "Page Object Model design pattern"
+      ],
+      "duration": "Ongoing",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 0
+    },
+    {
       "id": 1,
       "title": "Bin Momen – Home Devices eCommerce Website",
       "description": "Custom WooCommerce solution with SA States and Cities integration and AC installation services addon.",
       "longDescription": "A comprehensive e-commerce platform for home devices with custom WooCommerce functionality including Saudi Arabia states and cities integration, and a specialized AC installation services addon for enhanced customer experience. The website features a complete Arabic e-commerce experience with custom plugins for Saudi Arabia location management and AC installation service booking.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "WooCommerce", "PHP", "Custom Plugin", "MySQL", "CSS3", "JavaScript", "Arabic RTL"],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "Custom Plugin",
+        "MySQL",
+        "CSS3",
+        "JavaScript",
+        "Arabic RTL"
+      ],
       "liveUrl": "https://www.binmomen.com.sa/",
       "githubUrl": "https://github.com/devDoniaAlhosin/woocommerce-custom-sa-states-cites.git",
       "githubUrl2": "https://github.com/devDoniaAlhosin/woocommerce-ac-installation-service",
       "images": [
         "/assets/bin-moamen.png"
-
-     ],
-      "features": ["Custom SA States and Cities Plugin", "AC Installation Services Addon", "Arabic RTL Support", "Multi-brand Product Catalog", "Installment Payment Plans", "Saudi Arabia Shipping Integration"],
-      "challenges": ["Custom WooCommerce plugin development", "Saudi Arabia location integration", "Arabic RTL layout implementation", "Service booking system integration"],
-      "solutions": ["Custom plugin development for SA states/cities", "WooCommerce hooks integration", "Service management system", "Arabic localization"],
+      ],
+      "features": [
+        "Custom SA States and Cities Plugin",
+        "AC Installation Services Addon",
+        "Arabic RTL Support",
+        "Multi-brand Product Catalog",
+        "Installment Payment Plans",
+        "Saudi Arabia Shipping Integration"
+      ],
+      "challenges": [
+        "Custom WooCommerce plugin development",
+        "Saudi Arabia location integration",
+        "Arabic RTL layout implementation",
+        "Service booking system integration"
+      ],
+      "solutions": [
+        "Custom plugin development for SA states/cities",
+        "WooCommerce hooks integration",
+        "Service management system",
+        "Arabic localization"
+      ],
       "duration": "4 months",
       "teamSize": "Solo",
       "rating": 4.8,
@@ -30,15 +95,40 @@
       "longDescription": "Developed custom ACF (Advanced Custom Fields) integration with WooCommerce for FastFWD's logistics platform to enhance shipment data management. The integration provides advanced custom fields for logistics-specific data, improved shipment tracking, and streamlined workflow management for the global freight forwarding and supply chain solutions platform.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "WooCommerce", "ACF", "PHP", "MySQL", "CSS3", "JavaScript"],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "ACF",
+        "PHP",
+        "MySQL",
+        "CSS3",
+        "JavaScript"
+      ],
       "liveUrl": "https://fastfwd.xyz/",
       "githubUrl": "#",
       "images": [
         "/assets/fast-fwd.png"
       ],
-      "features": ["ACF-WooCommerce Integration", "Custom Shipment Data Fields", "Logistics-Specific Data Management", "Enhanced Shipment Tracking", "Workflow Automation", "Advanced Custom Fields Implementation"],
-      "challenges": ["WooCommerce system compatibility for shipment tracking", "Complex logistics workflow integration", "Multi-service platform management", "Global shipping coordination", "Industry-specific customization"],
-      "solutions": ["Advanced ACF integration for logistics data", "Custom shipment tracking system", "WooCommerce hooks for shipment data"],
+      "features": [
+        "ACF-WooCommerce Integration",
+        "Custom Shipment Data Fields",
+        "Logistics-Specific Data Management",
+        "Enhanced Shipment Tracking",
+        "Workflow Automation",
+        "Advanced Custom Fields Implementation"
+      ],
+      "challenges": [
+        "WooCommerce system compatibility for shipment tracking",
+        "Complex logistics workflow integration",
+        "Multi-service platform management",
+        "Global shipping coordination",
+        "Industry-specific customization"
+      ],
+      "solutions": [
+        "Advanced ACF integration for logistics data",
+        "Custom shipment tracking system",
+        "WooCommerce hooks for shipment data"
+      ],
       "duration": " 2 weeks ",
       "teamSize": "2 ",
       "rating": 4.7,
@@ -51,16 +141,39 @@
       "longDescription": "Designed and developed a responsive WordPress website with WooCommerce integration for car care service appointments. The platform features a custom WooCommerce booking system with multi-step booking interface, real-time availability, and service customization, providing customers with a seamless car care service booking experience.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "WooCommerce", "PHP", "MySQL", "CSS3", "JavaScript"],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "MySQL",
+        "CSS3",
+        "JavaScript"
+      ],
       "liveUrl": "https://stily.com.sa/",
       "githubUrl": "#",
       "images": [
         "/assets/stily-image.png"
-      
       ],
-      "features": ["WooCommerce Booking System", "Multi-step Booking Interface", "Service Customization", "Real-time Availability", "WordPress Integration", "Responsive Design"],
-      "challenges": ["WooCommerce booking system integration", "Multi-step booking flow", "Real-time scheduling", "Service management"],
-      "solutions": ["Custom WooCommerce booking plugin", "Progressive booking steps", "Calendar integration", "Service configuration system"],
+      "features": [
+        "WooCommerce Booking System",
+        "Multi-step Booking Interface",
+        "Service Customization",
+        "Real-time Availability",
+        "WordPress Integration",
+        "Responsive Design"
+      ],
+      "challenges": [
+        "WooCommerce booking system integration",
+        "Multi-step booking flow",
+        "Real-time scheduling",
+        "Service management"
+      ],
+      "solutions": [
+        "Custom WooCommerce booking plugin",
+        "Progressive booking steps",
+        "Calendar integration",
+        "Service configuration system"
+      ],
       "duration": "A Week",
       "teamSize": "Solo",
       "rating": 4.9,
@@ -73,15 +186,38 @@
       "longDescription": "A comprehensive WordPress portfolio website showcasing DON Technology's market presence characterized by diverse sectors with keen focus on technology solutions in the Kingdom of Saudi Arabia. The platform highlights international partnerships with US, Europe, and Saudi Arabia, featuring solutions across logistics, oil & gas, security & defense, culture & tourism, and information technology sectors aligned with Vision 2030.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "PHP", "MySQL", "CSS3", "JavaScript"],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "MySQL",
+        "CSS3",
+        "JavaScript"
+      ],
       "liveUrl": "https://dondigitaltech.com/",
       "githubUrl": "#",
       "images": [
         "/assets/don-mockup.png"
       ],
-      "features": ["WordPress Portfolio Website", "Multi-Sector Portfolio Showcase", "International Partnerships Display", "Vision 2030 Alignment", "Geographical Market Presence", "Professional Corporate Design"],
-      "challenges": ["WordPress portfolio website development", "Multi-sector portfolio presentation", "International partnership showcase", "Vision 2030 alignment"],
-      "solutions": ["WordPress theme development", "Comprehensive sector categorization", "International partnership highlighting", "Vision 2030 integration"],
+      "features": [
+        "WordPress Portfolio Website",
+        "Multi-Sector Portfolio Showcase",
+        "International Partnerships Display",
+        "Vision 2030 Alignment",
+        "Geographical Market Presence",
+        "Professional Corporate Design"
+      ],
+      "challenges": [
+        "WordPress portfolio website development",
+        "Multi-sector portfolio presentation",
+        "International partnership showcase",
+        "Vision 2030 alignment"
+      ],
+      "solutions": [
+        "WordPress theme development",
+        "Comprehensive sector categorization",
+        "International partnership highlighting",
+        "Vision 2030 integration"
+      ],
       "duration": "2 Days",
       "teamSize": "Solo",
       "rating": 4.6,
@@ -94,14 +230,43 @@
       "longDescription": "Developed the complete Diamond Cover Egypt website with a custom WordPress booking plugin for car services. The plugin features advanced car details management, WhatsApp integration, dynamic booking system with time slots, and comprehensive service management including paint protection, glass protection, thermal insulation, nano ceramic, and polishing services.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "PHP", "MySQL", "Custom Plugin", "CSS3", "JavaScript", "WhatsApp API", "WooCommerce"],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "MySQL",
+        "Custom Plugin",
+        "CSS3",
+        "JavaScript",
+        "WhatsApp API",
+        "WooCommerce"
+      ],
       "liveUrl": "https://diamondcovereg.com/",
       "githubUrl": "https://github.com/devDoniaAlhosin/car-service-plugin",
       "images": [
-        "/assets/diamond-cover.png"],
-      "features": ["WhatsApp Integration", "Dynamic Car Details Management", "Time Slot Booking System", "Multi-Service Management", "WooCommerce Integration", "Arabic Language Support"],
-      "challenges": ["WhatsApp API integration", "Dynamic car type/model selection", "Time slot management", "Multi-service booking system", "Arabic RTL support"],
-      "solutions": ["Custom WordPress plugin development", "WhatsApp booking integration", "Advanced form validation", "WooCommerce hooks integration", "Responsive booking interface"],
+        "/assets/diamond-cover.png"
+      ],
+      "features": [
+        "WhatsApp Integration",
+        "Dynamic Car Details Management",
+        "Time Slot Booking System",
+        "Multi-Service Management",
+        "WooCommerce Integration",
+        "Arabic Language Support"
+      ],
+      "challenges": [
+        "WhatsApp API integration",
+        "Dynamic car type/model selection",
+        "Time slot management",
+        "Multi-service booking system",
+        "Arabic RTL support"
+      ],
+      "solutions": [
+        "Custom WordPress plugin development",
+        "WhatsApp booking integration",
+        "Advanced form validation",
+        "WooCommerce hooks integration",
+        "Responsive booking interface"
+      ],
       "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.8,
@@ -114,15 +279,42 @@
       "longDescription": "Developed a comprehensive WordPress website with a custom plugin for serial number verification and warranty registration system. The plugin provides secure product authentication, warranty card registration, and verification services for SealyMe's mattress products in the Middle East market, featuring advanced admin management and customer verification interfaces.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
-      "technologies": ["WordPress", "PHP", "Custom Plugin", "MySQL", "CSS3", "JavaScript", "CSV Import/Export"],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Custom Plugin",
+        "MySQL",
+        "CSS3",
+        "JavaScript",
+        "CSV Import/Export"
+      ],
       "liveUrl": "https://sealyme.com/warranty",
       "githubUrl": "https://github.com/devDoniaAlhosin/serial-number-verfier",
       "images": [
         "/assets/sealyme.png"
       ],
-      "features": ["Warranty Registration System", "Serial Number Verification", "CSV Import/Export", "Admin Management Interface", "File Upload Support", "Arabic RTL Support"],
-      "challenges": ["Warranty registration system development", "Serial number verification", "CSV data management", "File upload security", "Arabic RTL support"],
-      "solutions": ["Custom WordPress plugin development", "Database optimization", "CSV import/export functionality", "Secure file upload system", "RTL layout implementation"],
+      "features": [
+        "Warranty Registration System",
+        "Serial Number Verification",
+        "CSV Import/Export",
+        "Admin Management Interface",
+        "File Upload Support",
+        "Arabic RTL Support"
+      ],
+      "challenges": [
+        "Warranty registration system development",
+        "Serial number verification",
+        "CSV data management",
+        "File upload security",
+        "Arabic RTL support"
+      ],
+      "solutions": [
+        "Custom WordPress plugin development",
+        "Database optimization",
+        "CSV import/export functionality",
+        "Secure file upload system",
+        "RTL layout implementation"
+      ],
       "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.7,
@@ -134,7 +326,15 @@
       "description": "Full-stack restaurant reservation system with Angular frontend and Laravel backend.",
       "longDescription": "A comprehensive restaurant reservation platform developed as an ITI graduation project, featuring a modern Angular frontend and a robust Laravel backend. The system includes table reservation management, menu management, user authentication, and admin dashboard with real-time booking capabilities.",
       "category": "native",
-      "technologies": ["Angular", "Laravel", "PHP", "MySQL", "TypeScript", "CSS3", "RESTful API"],
+      "technologies": [
+        "Angular",
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "TypeScript",
+        "CSS3",
+        "RESTful API"
+      ],
       "liveUrl": "#",
       "githubUrl": "https://github.com/devDoniaAlhosin/Restaurant-Reservation-Server",
       "githubUrl2": "https://github.com/devDoniaAlhosin/Restaurant-Reservation-Client",
@@ -142,9 +342,29 @@
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
         "/assets/resturant-reservation.png"
       ],
-      "features": ["Angular Frontend", "Laravel Backend", "Table Reservation System", "Menu Management", "User Authentication", "Admin Dashboard", "RESTful API"],
-      "challenges": ["Full-stack Angular-Laravel development", "RESTful API design", "Real-time booking system", "User authentication and authorization", "Database design and optimization"],
-      "solutions": ["Angular-Laravel integration", "RESTful API implementation", "Role-based access control", "Database optimization", "Frontend-backend communication"],
+      "features": [
+        "Angular Frontend",
+        "Laravel Backend",
+        "Table Reservation System",
+        "Menu Management",
+        "User Authentication",
+        "Admin Dashboard",
+        "RESTful API"
+      ],
+      "challenges": [
+        "Full-stack Angular-Laravel development",
+        "RESTful API design",
+        "Real-time booking system",
+        "User authentication and authorization",
+        "Database design and optimization"
+      ],
+      "solutions": [
+        "Angular-Laravel integration",
+        "RESTful API implementation",
+        "Role-based access control",
+        "Database optimization",
+        "Frontend-backend communication"
+      ],
       "duration": "1 months",
       "teamSize": "3 ",
       "rating": 4.8,
@@ -156,16 +376,39 @@
       "description": "Library management system built with Angular frontend and NodeJS backend in 2 weeks.",
       "longDescription": "A comprehensive library management system inspired by Goodreads, featuring book management, user reviews, and reading lists. Built with Angular for the frontend and NodeJS with MongoDB for the backend, completed in 2 weeks with a team of 2 developers.",
       "category": "native",
-      "technologies": ["Angular", "Node.js", "Express", "MongoDB", "TypeScript", "CSS3", "RESTful API"],
+      "technologies": [
+        "Angular",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "TypeScript",
+        "CSS3",
+        "RESTful API"
+      ],
       "liveUrl": "https://goodreadslib.netlify.app/",
       "githubUrl": "https://github.com/devDoniaAlhosin/Angular-NodeJS-Project.git",
       "images": [
         "/assets/goodreads.png"
-  
       ],
-      "features": ["Book Management", "User Reviews", "Reading Lists", "Search Functionality", "RESTful API"],
-      "challenges": ["Rapid development timeline", "Book data management", "User review system", "Search optimization"],
-      "solutions": ["Efficient team collaboration", "RESTful API design", "Review system implementation", "Search indexing"],
+      "features": [
+        "Book Management",
+        "User Reviews",
+        "Reading Lists",
+        "Search Functionality",
+        "RESTful API"
+      ],
+      "challenges": [
+        "Rapid development timeline",
+        "Book data management",
+        "User review system",
+        "Search optimization"
+      ],
+      "solutions": [
+        "Efficient team collaboration",
+        "RESTful API design",
+        "Review system implementation",
+        "Search indexing"
+      ],
       "duration": "2 weeks",
       "teamSize": "2",
       "rating": 4.6,
@@ -177,7 +420,13 @@
       "description": "Simple todo application built with Angular featuring task management and user data fetching.",
       "longDescription": "A clean and simple todo application built with Angular framework, featuring task management functionality, user data fetching, and intuitive task creation and management. The app demonstrates Angular fundamentals with a focus on user experience and data handling.",
       "category": "native",
-      "technologies": ["Angular", "TypeScript", "CSS3", "JavaScript", "Bootstrap"],
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "CSS3",
+        "JavaScript",
+        "Bootstrap"
+      ],
       "liveUrl": "https://fetch-data-todo-app.netlify.app/todo-list",
       "githubUrl": "",
       "images": [
@@ -185,9 +434,25 @@
         "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop"
       ],
-      "features": ["Simple Todo Management", "User Data Fetching", "CRUD Operations", "Responsive Design", "Angular Fundamentals"],
-      "challenges": ["Angular state management", "User data fetching", "Simple task organization", "Clean UI design"],
-      "solutions": ["Angular services implementation", "User API integration", "Intuitive task management", "Responsive design"],
+      "features": [
+        "Simple Todo Management",
+        "User Data Fetching",
+        "CRUD Operations",
+        "Responsive Design",
+        "Angular Fundamentals"
+      ],
+      "challenges": [
+        "Angular state management",
+        "User data fetching",
+        "Simple task organization",
+        "Clean UI design"
+      ],
+      "solutions": [
+        "Angular services implementation",
+        "User API integration",
+        "Intuitive task management",
+        "Responsive design"
+      ],
       "duration": "1 Day",
       "teamSize": "Solo",
       "rating": 4.5,
@@ -199,7 +464,13 @@
       "description": "Simple personal portfolio website built with Angular framework showcasing skills and projects.",
       "longDescription": "A clean and simple personal portfolio website built with Angular framework, featuring skills showcase, project display, and professional presentation. The portfolio demonstrates Angular fundamentals with a focus on clean design and user experience, showcasing front-end development expertise including React, Angular, Node.js, and WordPress technologies.",
       "category": "native",
-      "technologies": ["Angular", "TypeScript", "CSS3", "JavaScript", "Bootstrap"],
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "CSS3",
+        "JavaScript",
+        "Bootstrap"
+      ],
       "liveUrl": "https://protofolio-donia-alhosin.netlify.app/",
       "githubUrl": "",
       "images": [
@@ -207,9 +478,26 @@
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
       ],
-      "features": ["Simple Portfolio Design", "Skills Showcase", "Project Display", "Contact Information", "Responsive Design", "Angular Fundamentals"],
-      "challenges": ["Simple portfolio design", "Content organization", "Skills presentation", "Mobile optimization"],
-      "solutions": ["Angular component architecture", "Clean design implementation", "Professional presentation", "Mobile-first responsive design"],
+      "features": [
+        "Simple Portfolio Design",
+        "Skills Showcase",
+        "Project Display",
+        "Contact Information",
+        "Responsive Design",
+        "Angular Fundamentals"
+      ],
+      "challenges": [
+        "Simple portfolio design",
+        "Content organization",
+        "Skills presentation",
+        "Mobile optimization"
+      ],
+      "solutions": [
+        "Angular component architecture",
+        "Clean design implementation",
+        "Professional presentation",
+        "Mobile-first responsive design"
+      ],
       "duration": "A Day",
       "teamSize": "Solo",
       "rating": 4.6,
@@ -221,7 +509,13 @@
       "description": "Modern eCommerce frontend built with ReactJS and modern web technologies.",
       "longDescription": "A modern eCommerce frontend application built with ReactJS, featuring product browsing, shopping cart functionality, and user interface design. The project demonstrates modern React development practices and responsive design.",
       "category": "native",
-      "technologies": ["React", "JavaScript", "CSS3", "HTML5", "Bootstrap"],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "Bootstrap"
+      ],
       "liveUrl": "#",
       "githubUrl": "https://github.com",
       "images": [
@@ -229,9 +523,22 @@
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
       ],
-      "features": ["Product Catalog", "Shopping Cart", "User Interface", "Responsive Design"],
-      "challenges": ["State management", "Component architecture", "User experience"],
-      "solutions": ["React hooks", "Component composition", "UX optimization"],
+      "features": [
+        "Product Catalog",
+        "Shopping Cart",
+        "User Interface",
+        "Responsive Design"
+      ],
+      "challenges": [
+        "State management",
+        "Component architecture",
+        "User experience"
+      ],
+      "solutions": [
+        "React hooks",
+        "Component composition",
+        "UX optimization"
+      ],
       "duration": "3 months",
       "teamSize": "Solo",
       "rating": 4.7,
@@ -243,7 +550,12 @@
       "description": "E-commerce website built with pure vanilla JavaScript, HTML, and CSS.",
       "longDescription": "A complete eCommerce website built using only vanilla JavaScript, HTML, and CSS without any frameworks. The project demonstrates fundamental web development skills and modern JavaScript practices.",
       "category": "native",
-      "technologies": ["Vanilla JavaScript", "HTML5", "CSS3", "Local Storage"],
+      "technologies": [
+        "Vanilla JavaScript",
+        "HTML5",
+        "CSS3",
+        "Local Storage"
+      ],
       "liveUrl": "#",
       "githubUrl": "https://github.com",
       "images": [
@@ -251,9 +563,22 @@
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
       ],
-      "features": ["Product Display", "Shopping Cart", "Local Storage", "Responsive Design"],
-      "challenges": ["State management", "Data persistence", "Cross-browser compatibility"],
-      "solutions": ["Local storage implementation", "DOM manipulation", "Progressive enhancement"],
+      "features": [
+        "Product Display",
+        "Shopping Cart",
+        "Local Storage",
+        "Responsive Design"
+      ],
+      "challenges": [
+        "State management",
+        "Data persistence",
+        "Cross-browser compatibility"
+      ],
+      "solutions": [
+        "Local storage implementation",
+        "DOM manipulation",
+        "Progressive enhancement"
+      ],
       "duration": "3 Days",
       "teamSize": "Solo",
       "rating": 4.4,
@@ -265,7 +590,14 @@
       "description": "Innovative wearable technology with sensors for real-time health monitoring and educational support.",
       "longDescription": "A groundbreaking graduation project featuring smart wearable glasses designed specifically for autistic children. The system includes sensors for real-time health monitoring, educational support features, and companion mobile app and website for comprehensive care management.",
       "category": "native",
-      "technologies": ["Arduino", "C++", "Mobile App", "Web Development", "IoT", "Sensors"],
+      "technologies": [
+        "Arduino",
+        "C++",
+        "Mobile App",
+        "Web Development",
+        "IoT",
+        "Sensors"
+      ],
       "liveUrl": "#",
       "githubUrl": "https://github.com",
       "images": [
@@ -273,9 +605,22 @@
         "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
       ],
-      "features": ["Health Monitoring", "Educational Support", "Mobile App", "Real-time Data"],
-      "challenges": ["Hardware integration", "Sensor calibration", "Mobile app development"],
-      "solutions": ["Arduino programming", "Sensor integration", "Cross-platform development"],
+      "features": [
+        "Health Monitoring",
+        "Educational Support",
+        "Mobile App",
+        "Real-time Data"
+      ],
+      "challenges": [
+        "Hardware integration",
+        "Sensor calibration",
+        "Mobile app development"
+      ],
+      "solutions": [
+        "Arduino programming",
+        "Sensor integration",
+        "Cross-platform development"
+      ],
       "duration": "8 months",
       "teamSize": "4",
       "rating": 4.9,
@@ -287,15 +632,37 @@
       "description": "Complete UI redesign for SealyMe mattresses website including home, shop, and single product pages.",
       "longDescription": "A comprehensive UI design project for SealyMe mattresses website redesign, featuring modern and user-friendly interfaces for home page, shop page, and single product page. The design focuses on enhancing user experience, improving product presentation, and creating an intuitive e-commerce interface for mattress products.",
       "category": "ui",
-      "technologies": ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "User Research"],
+      "technologies": [
+        "Figma",
+        "UI/UX Design",
+        "Wireframing",
+        "Prototyping",
+        "User Research"
+      ],
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
         "/assets/sealy-home-page-redesign.png"
       ],
-      "features": ["Home Page Redesign", "Shop Page Design", "Single Product Page", "User Experience Design",  "E-commerce Interface"],
-      "challenges": ["E-commerce user experience optimization", "Product presentation enhancement", "Navigation flow improvement", "Mobile-first design approach"],
-      "solutions": ["Modern UI design implementation", "Intuitive navigation structure", "Enhanced product visualization", "User-centered design approach"],
+      "features": [
+        "Home Page Redesign",
+        "Shop Page Design",
+        "Single Product Page",
+        "User Experience Design",
+        "E-commerce Interface"
+      ],
+      "challenges": [
+        "E-commerce user experience optimization",
+        "Product presentation enhancement",
+        "Navigation flow improvement",
+        "Mobile-first design approach"
+      ],
+      "solutions": [
+        "Modern UI design implementation",
+        "Intuitive navigation structure",
+        "Enhanced product visualization",
+        "User-centered design approach"
+      ],
       "duration": "A Week",
       "teamSize": "Solo",
       "rating": 4.8,
@@ -307,15 +674,40 @@
       "description": "Modern product card design for Sealy Middle East mattress shop with enhanced visual appeal and user experience.",
       "longDescription": "A comprehensive product card design project for Sealy Middle East mattress shop, featuring modern and attractive product card layouts that enhance product presentation, improve user engagement, and create an intuitive shopping experience. The design focuses on showcasing mattress features, pricing, and call-to-action elements in an aesthetically pleasing and conversion-optimized format.",
       "category": "ui",
-      "technologies": ["Figma", "UI/UX Design", "Product Design", "Visual Design", "User Research"],
+      "technologies": [
+        "Figma",
+        "UI/UX Design",
+        "Product Design",
+        "Visual Design",
+        "User Research"
+      ],
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
         "/assets/product-card-sealy.png"
       ],
-      "features": ["Product Card Layout Design", "Visual Hierarchy Optimization", "Call-to-Action Integration", "Product Information Display", "Responsive Card Design", "Conversion-Focused Elements"],
-      "challenges": ["Product information hierarchy", "Visual appeal optimization", "Conversion rate improvement", "Mobile-responsive design", "Brand consistency maintenance"],
-      "solutions": ["Modern card layout implementation", "Strategic visual hierarchy", "Effective CTA placement", "Responsive design approach", "Brand-aligned visual elements"],
+      "features": [
+        "Product Card Layout Design",
+        "Visual Hierarchy Optimization",
+        "Call-to-Action Integration",
+        "Product Information Display",
+        "Responsive Card Design",
+        "Conversion-Focused Elements"
+      ],
+      "challenges": [
+        "Product information hierarchy",
+        "Visual appeal optimization",
+        "Conversion rate improvement",
+        "Mobile-responsive design",
+        "Brand consistency maintenance"
+      ],
+      "solutions": [
+        "Modern card layout implementation",
+        "Strategic visual hierarchy",
+        "Effective CTA placement",
+        "Responsive design approach",
+        "Brand-aligned visual elements"
+      ],
       "duration": "3 days",
       "teamSize": "Solo",
       "rating": 4.7,
@@ -323,9 +715,25 @@
     }
   ],
   "filters": [
-    { "key": "all", "label": "All Projects" },
-    { "key": "native", "label": "Native Web" },
-    { "key": "wordpress", "label": "WordPress" },
-    { "key": "ui", "label": "UI Design" }
+    {
+      "key": "all",
+      "label": "All Projects"
+    },
+    {
+      "key": "native",
+      "label": "Native Web"
+    },
+    {
+      "key": "wordpress",
+      "label": "WordPress"
+    },
+    {
+      "key": "ui",
+      "label": "UI Design"
+    },
+    {
+      "key": "testing",
+      "label": "Testing"
+    }
   ]
-} 
+}

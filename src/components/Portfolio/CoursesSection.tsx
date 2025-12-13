@@ -7,12 +7,12 @@ export const CoursesSection = () => {
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  
+
   const courses = [
     {
       name: "Software Testing Track",
       provider: "Digital Egypt Pioneers Initiative",
-      period: "July 2025 - Present",
+      period: "July 2025 - Dec 2025",
       duration: "Ongoing",
       certificate: "Training Diploma",
       progress: 100,
@@ -152,13 +152,12 @@ export const CoursesSection = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-        <div 
+        <div
           ref={headerRef}
-          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
-            headerVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${headerVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
@@ -174,62 +173,58 @@ export const CoursesSection = () => {
           </p>
         </div>
 
-        <div 
+        <div
           ref={contentRef}
-          className={`space-y-6 sm:space-y-8 transition-all duration-1000 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
+          className={`space-y-6 sm:space-y-8 transition-all duration-1000 ease-out ${contentVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+            }`}
         >
           {courses.map((course, index) => {
             const Icon = course.icon;
             const isExpanded = expandedCard === index;
             const isActive = activeIndex === index;
             const isPast = index < activeIndex;
-            
+
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 data-course-index={index}
-                className={`group relative transition-all duration-700 ease-out ${
-                  contentVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
-                }`}
-                style={{transitionDelay: `${index * 0.15}s`}}
+                className={`group relative transition-all duration-700 ease-out ${contentVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+                  }`}
+                style={{ transitionDelay: `${index * 0.15}s` }}
               >
                 {/* Active timeline line */}
                 {index < courses.length - 1 && (
                   <div className="absolute left-3 sm:left-6 top-12 sm:top-16 w-0.5 h-6 sm:h-8 transition-all duration-500 ease-out"
-                       style={{
-                         background: isActive 
-                           ? 'linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--accent) / 0.3))'
-                           : isPast
-                           ? 'linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--accent) / 0.1))'
-                           : 'hsl(var(--accent) / 0.1)'
-                       }}>
+                    style={{
+                      background: isActive
+                        ? 'linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--accent) / 0.3))'
+                        : isPast
+                          ? 'linear-gradient(to bottom, hsl(var(--accent)), hsl(var(--accent) / 0.1))'
+                          : 'hsl(var(--accent) / 0.1)'
+                    }}>
                   </div>
                 )}
 
-                <div 
-                  className={`relative bg-background/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg sm:rounded-xl border transition-all duration-500 ease-out hover:scale-[1.01] sm:hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 cursor-pointer ${
-                    isActive 
-                      ? 'border-accent/50 shadow-lg shadow-accent/20 ring-2 ring-accent/30' 
-                      : isPast
+                <div
+                  className={`relative bg-background/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg sm:rounded-xl border transition-all duration-500 ease-out hover:scale-[1.01] sm:hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 cursor-pointer ${isActive
+                    ? 'border-accent/50 shadow-lg shadow-accent/20 ring-2 ring-accent/30'
+                    : isPast
                       ? 'border-accent/20 shadow-md'
                       : 'border-border/50 hover:border-accent/30'
-                  } ${isExpanded ? 'ring-2 ring-accent/20 shadow-lg' : ''}`}
+                    } ${isExpanded ? 'ring-2 ring-accent/20 shadow-lg' : ''}`}
                   onClick={() => toggleCard(index)}
                 >
                   {/* Active timeline dot */}
-                  <div className={`absolute left-2 sm:left-4 top-4 sm:top-6 w-2 h-2 sm:w-3 sm:h-3 rounded-full border-2 border-background transition-all duration-500 ease-out ${
-                    isActive 
-                      ? 'bg-accent scale-125 shadow-lg shadow-accent/50' 
-                      : isPast
+                  <div className={`absolute left-2 sm:left-4 top-4 sm:top-6 w-2 h-2 sm:w-3 sm:h-3 rounded-full border-2 border-background transition-all duration-500 ease-out ${isActive
+                    ? 'bg-accent scale-125 shadow-lg shadow-accent/50'
+                    : isPast
                       ? 'bg-accent/60 scale-110'
                       : 'bg-accent/30'
-                  }`}>
+                    }`}>
                     {isActive && (
                       <div className="absolute inset-0 bg-accent rounded-full animate-ping opacity-75"></div>
                     )}
@@ -239,15 +234,13 @@ export const CoursesSection = () => {
                   <div className="ml-6 sm:ml-8">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 sm:mb-4 gap-3 sm:gap-0">
                       <div className="flex items-center gap-2 sm:gap-3">
-                        <div className={`w-8 h-8 sm:w-10 sm:h-10 bg-accent/10 rounded-lg flex items-center justify-center shadow-sm transition-all duration-500 ease-out ${
-                          isActive ? 'scale-110 shadow-md' : ''
-                        }`}>
+                        <div className={`w-8 h-8 sm:w-10 sm:h-10 bg-accent/10 rounded-lg flex items-center justify-center shadow-sm transition-all duration-500 ease-out ${isActive ? 'scale-110 shadow-md' : ''
+                          }`}>
                           <Icon size={16} className="sm:w-5 sm:h-5 text-accent" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className={`text-base sm:text-lg font-bold transition-all duration-300 truncate ${
-                            isActive ? 'text-accent' : 'text-primary group-hover:text-accent'
-                          }`}>
+                          <h3 className={`text-base sm:text-lg font-bold transition-all duration-300 truncate ${isActive ? 'text-accent' : 'text-primary group-hover:text-accent'
+                            }`}>
                             {course.name}
                           </h3>
                           <p className="text-accent font-medium text-sm sm:text-base truncate">
@@ -255,7 +248,7 @@ export const CoursesSection = () => {
                           </p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center justify-between sm:justify-end gap-2">
                         <div className="text-left sm:text-right">
                           <div className="flex items-center gap-1 text-muted-foreground text-xs sm:text-sm">
@@ -263,9 +256,8 @@ export const CoursesSection = () => {
                             <span>{course.period}</span>
                           </div>
                         </div>
-                        <button className={`p-1 sm:p-1.5 rounded-md transition-all duration-300 ${
-                          isActive ? 'bg-accent/20 hover:bg-accent/30' : 'bg-accent/10 hover:bg-accent/20'
-                        }`}>
+                        <button className={`p-1 sm:p-1.5 rounded-md transition-all duration-300 ${isActive ? 'bg-accent/20 hover:bg-accent/30' : 'bg-accent/10 hover:bg-accent/20'
+                          }`}>
                           {isExpanded ? <ChevronUp size={12} className="sm:w-3.5 sm:h-3.5 text-accent" /> : <ChevronDown size={12} className="sm:w-3.5 sm:h-3.5 text-accent" />}
                         </button>
                       </div>
@@ -273,9 +265,8 @@ export const CoursesSection = () => {
 
                     {/* Responsive stats */}
                     <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full transition-all duration-300 ${
-                        isActive ? 'bg-accent/20 text-accent' : 'bg-accent/10 text-accent'
-                      }`}>
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full transition-all duration-300 ${isActive ? 'bg-accent/20 text-accent' : 'bg-accent/10 text-accent'
+                        }`}>
                         {course.level}
                       </span>
                       <div className="flex items-center gap-1">
@@ -304,9 +295,8 @@ export const CoursesSection = () => {
                     </div>
 
                     {/* Expandable content */}
-                    <div className={`overflow-hidden transition-all duration-500 ease-out ${
-                      isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}>
+                    <div className={`overflow-hidden transition-all duration-500 ease-out ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}>
                       <div className="space-y-3 pt-3 sm:pt-4 border-t border-border/30">
                         <h4 className="font-semibold text-primary flex items-center gap-2 text-sm sm:text-base">
                           <Sparkles size={12} className="sm:w-3.5 sm:h-3.5 text-accent" />
@@ -325,11 +315,10 @@ export const CoursesSection = () => {
                   </div>
 
                   {/* Active hover overlay */}
-                  <div className={`absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    isActive 
-                      ? 'bg-gradient-to-br from-accent/5 to-transparent' 
-                      : 'bg-gradient-to-br from-accent/2 to-transparent'
-                  }`}></div>
+                  <div className={`absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isActive
+                    ? 'bg-gradient-to-br from-accent/5 to-transparent'
+                    : 'bg-gradient-to-br from-accent/2 to-transparent'
+                    }`}></div>
                 </div>
               </div>
             );

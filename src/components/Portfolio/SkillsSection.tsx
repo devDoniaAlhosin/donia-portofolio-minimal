@@ -5,7 +5,7 @@ import data from '@/data/skills_services.json';
 export const SkillsSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-  
+
   const skills = data.skills.map((item) => ({
     ...item,
     Icon: (Icons as any)[item.icon],
@@ -20,13 +20,12 @@ export const SkillsSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div 
+        <div
           ref={headerRef}
-          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
-            headerVisible 
-              ? 'opacity-100 translate-y-0' 
+          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${headerVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}
+            }`}
         >
           <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
@@ -42,25 +41,23 @@ export const SkillsSection = () => {
           </p>
         </div>
 
-        <div 
+        <div
           ref={contentRef}
-          className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6 transition-all duration-1000 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
+          className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6 transition-all duration-1000 ease-out ${contentVisible
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
-          }`}
+            }`}
         >
           {skills.map((skill, index) => {
             const Icon = (skill as any).Icon;
             return (
               <div
                 key={index}
-                className={`group relative bg-background/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg sm:rounded-xl border border-border/50 hover:border-accent/30 transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 break-inside-avoid ${
-                  contentVisible 
-                    ? 'opacity-100 translate-y-0' 
+                className={`group relative bg-background/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg sm:rounded-xl border border-border/50 hover:border-accent/30 transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 break-inside-avoid ${contentVisible
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
-                }`}
-                style={{transitionDelay: `${index * 0.1}s`}}
+                  }`}
+                style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 {/* Category badge */}
                 <div className="absolute top-3 right-3">
@@ -94,7 +91,7 @@ export const SkillsSection = () => {
                       <span className="text-accent font-bold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-muted/50 rounded-full h-1.5 sm:h-2 overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-gradient-to-r from-accent to-accent/80 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
@@ -104,7 +101,7 @@ export const SkillsSection = () => {
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                     {skill.tags.map((tag, tagIndex) => (
-                      <span 
+                      <span
                         key={tagIndex}
                         className="px-2 py-1 text-xs bg-background/50 text-muted-foreground rounded-md border border-border/30 group-hover:border-accent/20 transition-colors duration-300"
                       >

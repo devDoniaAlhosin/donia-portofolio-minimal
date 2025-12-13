@@ -10,7 +10,11 @@
       "description": "Modern, responsive websites with clean code, accessibility, and performance in mind.",
       "subtitle": "Websites, Landing Pages, SPAs",
       "category": "Development",
-      "features": ["Responsive UI", "Clean, maintainable code", "Accessibility (A11y)"]
+      "features": [
+        "Responsive UI",
+        "Clean, maintainable code",
+        "Accessibility (A11y)"
+      ]
     },
     {
       "icon": "Globe",
@@ -18,7 +22,11 @@
       "description": "Custom themes, plugins, and CMS setup tailored for easy content management.",
       "subtitle": "Themes, Plugins, CMS",
       "category": "WordPress",
-      "features": ["Custom themes", "Plugin integration", "Easy CMS editing"]
+      "features": [
+        "Custom themes",
+        "Plugin integration",
+        "Easy CMS editing"
+      ]
     },
     {
       "icon": "Shield",
@@ -26,7 +34,11 @@
       "description": "Manual and automated testing (unit, integration, E2E) to ensure reliability and quality.",
       "subtitle": "Unit, Integration, E2E",
       "category": "Quality",
-      "features": ["Unit & integration tests", "E2E coverage", "Bug prevention"]
+      "features": [
+        "Unit & integration tests",
+        "E2E coverage",
+        "Bug prevention"
+      ]
     },
     {
       "icon": "Rocket",
@@ -34,17 +46,40 @@
       "description": "Speed optimization and on‑page SEO to improve ranking and user experience.",
       "subtitle": "Core Web Vitals, On‑Page SEO",
       "category": "Performance",
-      "features": ["Core Web Vitals", "Image optimization", "On‑page SEO"]
+      "features": [
+        "Core Web Vitals",
+        "Image optimization",
+        "On‑page SEO"
+      ]
     }
   ],
   "skills": [
+    {
+      "icon": "Zap",
+      "title": "Automation Testing",
+      "description": "End-to-end test automation using Selenium, TestNG, and modern frameworks",
+      "level": 90,
+      "category": "Quality",
+      "tags": [
+        "Selenium",
+        "TestNG",
+        "Java",
+        "Maven",
+        "ISTQB"
+      ]
+    },
     {
       "icon": "Code",
       "title": "WordPress Development",
       "description": "Custom themes, plugins, and full website development with advanced customization",
       "level": 95,
       "category": "Development",
-      "tags": ["WordPress", "PHP", "Themes", "Plugins"]
+      "tags": [
+        "WordPress",
+        "PHP",
+        "Themes",
+        "Plugins"
+      ]
     },
     {
       "icon": "Globe",
@@ -52,15 +87,14 @@
       "description": "Modern web applications using React, Angular, JavaScript, HTML5, CSS3, and SCSS",
       "level": 90,
       "category": "Development",
-      "tags": ["React", "Angular", "JavaScript", "HTML5", "CSS3", "SCSS"]
-    },
-    {
-      "icon": "Palette",
-      "title": "UI/UX Design",
-      "description": "User-centered design focused on usability, accessibility, and clean, minimal aesthetics",
-      "level": 85,
-      "category": "Design",
-      "tags": ["Wireframing", "Prototyping", "Accessibility", "Design Systems"]
+      "tags": [
+        "React",
+        "Angular",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "SCSS"
+      ]
     },
     {
       "icon": "TestTubes",
@@ -68,7 +102,12 @@
       "description": "Unit, integration, and E2E testing to ensure stability and confidence in releases",
       "level": 88,
       "category": "Quality",
-      "tags": ["Jest", "React Testing Library", "Cypress", "Vitest"]
+      "tags": [
+        "Jest",
+        "React Testing Library",
+        "Cypress",
+        "Vitest"
+      ]
     },
     {
       "icon": "Database",
@@ -76,7 +115,15 @@
       "description": "PHP, Laravel, Node.js, MySQL, MongoDB, and API integrations for dynamic functionality and data management",
       "level": 88,
       "category": "Development",
-      "tags": ["PHP", "Laravel", "Node.js", "MySQL", "MongoDB", "APIs", "REST"]
+      "tags": [
+        "PHP",
+        "Laravel",
+        "Node.js",
+        "MySQL",
+        "MongoDB",
+        "APIs",
+        "REST"
+      ]
     },
     {
       "icon": "Layers",
@@ -84,7 +131,13 @@
       "description": "React, Angular, Tailwind CSS, and modern development tools for scalable applications",
       "level": 87,
       "category": "Development",
-      "tags": ["React", "Angular", "Tailwind", "TypeScript", "Vite"]
+      "tags": [
+        "React",
+        "Angular",
+        "Tailwind",
+        "TypeScript",
+        "Vite"
+      ]
     },
     {
       "icon": "GitBranch",
@@ -92,7 +145,12 @@
       "description": "Git workflow, collaborative development, and code management best practices",
       "level": 89,
       "category": "Tools",
-      "tags": ["Git", "GitHub", "Collaboration", "Workflow"]
+      "tags": [
+        "Git",
+        "GitHub",
+        "Collaboration",
+        "Workflow"
+      ]
     },
     {
       "icon": "Figma",
@@ -100,7 +158,12 @@
       "description": "Professional design tools for wireframing, prototyping, and visual design",
       "level": 83,
       "category": "Design",
-      "tags": ["Figma", "Adobe", "Wireframing", "Prototyping"]
+      "tags": [
+        "Figma",
+        "Adobe",
+        "Wireframing",
+        "Prototyping"
+      ]
     },
     {
       "icon": "Terminal",
@@ -108,7 +171,12 @@
       "description": "Modern development environment setup and optimization for productivity",
       "level": 86,
       "category": "Tools",
-      "tags": ["VS Code", "Terminal", "NPM", "DevTools"]
+      "tags": [
+        "VS Code",
+        "Terminal",
+        "NPM",
+        "DevTools"
+      ]
     },
     {
       "icon": "Server",
@@ -116,7 +184,12 @@
       "description": "Website speed optimization, caching strategies, and performance monitoring",
       "level": 84,
       "category": "Development",
-      "tags": ["Caching", "CDN", "Optimization", "Monitoring"]
+      "tags": [
+        "Caching",
+        "CDN",
+        "Optimization",
+        "Monitoring"
+      ]
     },
     {
       "icon": "Cpu",
@@ -124,7 +197,13 @@
       "description": "Scalable application architecture, MVC patterns, and system design principles",
       "level": 82,
       "category": "Development",
-      "tags": ["Architecture", "MVC", "Scalability", "Design Patterns", "Best Practices"]
+      "tags": [
+        "Architecture",
+        "MVC",
+        "Scalability",
+        "Design Patterns",
+        "Best Practices"
+      ]
     },
     {
       "icon": "Shield",
@@ -132,8 +211,12 @@
       "description": "OWASP-minded development, secure data handling, and dependency hygiene",
       "level": 82,
       "category": "Development",
-      "tags": ["OWASP", "Encryption", "Auth", "Dependency Audits"]
+      "tags": [
+        "OWASP",
+        "Encryption",
+        "Auth",
+        "Dependency Audits"
+      ]
     }
   ]
 }
-

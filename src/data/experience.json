@@ -13,7 +13,14 @@
         "Optimizing and customizing WordPress plugins for enhanced functionality",
         "Creating responsive designs and implementing modern web technologies"
       ],
-      "skills": ["WordPress", "WooCommerce", "PHP", "CSS3", "JavaScript", "Responsive Design"],
+      "skills": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "CSS3",
+        "JavaScript",
+        "Responsive Design"
+      ],
       "icon": "Briefcase"
     },
     {
@@ -29,12 +36,19 @@
         "Providing technical consultation and project planning services",
         "Building long-term client relationships through excellent communication"
       ],
-      "skills": ["WordPress", "React", "JavaScript", "CSS3", "HTML5", "Git"],
+      "skills": [
+        "WordPress",
+        "React",
+        "JavaScript",
+        "CSS3",
+        "HTML5",
+        "Git"
+      ],
       "icon": "Globe"
     },
     {
       "id": 3,
-      "title": "WordPress Instructor",
+      "title": "WordPress External Instructor",
       "company": "ITI (Information Technology Institute)",
       "period": "July 2025",
       "location": "Egypt",
@@ -45,8 +59,13 @@
         "Mentoring students in web development best practices",
         "Conducting hands-on workshops and project-based learning"
       ],
-      "skills": ["WordPress", "Teaching", "Curriculum Development", "Mentoring"],
+      "skills": [
+        "WordPress",
+        "Teaching",
+        "Curriculum Development",
+        "Mentoring"
+      ],
       "icon": "GraduationCap"
     }
   ]
-} 
+}
