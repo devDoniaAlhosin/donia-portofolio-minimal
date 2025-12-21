@@ -1,48 +1,297 @@
 {
   "projects": [
     {
-      "id": 17,
-      "title": "Open Cart Testing",
-      "description": "Comprehensive manual (User/Admin) and automation testing for Open Cart with 90% coverage.",
-      "longDescription": "Executed comprehensive manual testing for both User and Admin sides, covering 90% of Open Cart functionalities. Managed test cases and reporting using Jira to ensure traceability. The automation framework was built using Selenium WebDriver, following ISTQB standards and Agile methodologies.",
-      "category": "testing",
+      "id": 18,
+      "title": "Frontier Academy – Landing Page",
+      "description": "Comprehensive WordPress landing page for Finance for Business Managers course showcasing all course advantages, pricing, and enrollment features.",
+      "longDescription": "Designed and implemented a complete WordPress landing page for Frontier Academy's Finance for Business Managers course. The landing page comprehensively covers all course advantages, featuring problem-solution sections, instructor profiles, program details, pricing information, and enrollment forms. The page is designed to convert visitors by clearly communicating the value proposition, course benefits, and investment details, with a focus on helping business managers understand financials and make data-driven decisions.",
+      "category": "wordpress",
+      "company": "Bohemiangeeks",
       "technologies": [
-        "Manual Testing",
-        "Jira",
-        "Selenium",
-        "Java",
-        "TestNG",
-        "Maven"
+        "WordPress",
+        "PHP",
+        "CSS3",
+        "JavaScript",
+        "HTML5",
+        "Responsive Design"
       ],
-      "liveUrl": "https://drive.google.com/drive/folders/1X4rABAQubLtFm_tzxpFBIYqu770971aS",
-      "githubUrl": "https://github.com/devDoniaAlhosin/SWT-DEPI-GraduationProject",
+      "liveUrl": "https://www.frontier-me.com/finance-for-business-managers/",
+      "githubUrl": "#",
       "images": [
-        "/assets/GRADPROJECT - Featured.png"
+        "/assets/frontier-academy-finance.png"
       ],
       "features": [
-        "Manual Testing (User & Admin)",
-        "90% Functional Coverage",
-        "Jira Test Management",
-        "Automated Regression Suite",
-        "Cross-browser Testing",
-        "Data-driven Framework"
+        "Comprehensive Course Information Sections",
+        "Problem-Solution Presentation",
+        "Instructor Profile Showcase",
+        "Program Details & Curriculum",
+        "Pricing & Investment Comparison",
+        "Enrollment Form Integration",
+        "Responsive Design",
+        "Conversion-Optimized Layout",
+        "Course Benefits Highlighting",
+        "Social Proof & Testimonials"
       ],
       "challenges": [
-        "Handling dynamic elements",
-        "Synchronizing asynchronous operations"
+        "Presenting complex course information clearly",
+        "Balancing comprehensive content with user engagement",
+        "Creating compelling value proposition sections",
+        "Designing effective pricing comparison",
+        "Optimizing conversion rates",
+        "Ensuring mobile responsiveness"
       ],
       "solutions": [
-        "Implemented explicit waits",
-        "Page Object Model design pattern"
+        "Structured content sections with clear hierarchy",
+        "Visual problem-solution presentation",
+        "Strategic use of statistics and social proof",
+        "Clear pricing comparison with cost of inaction",
+        "Streamlined enrollment process",
+        "Mobile-first responsive design approach"
       ],
-      "duration": "Ongoing",
+      "duration": "2 Days",
       "teamSize": "Solo",
-      "rating": 5.0,
-      "views": 0
+      "rating": 4.9,
+      "views": 1450,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Frontier Academy Landing Page",
+          "url": "/assets/frontier-landing-page.png",
+          "description": "Complete landing page design and implementation"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Frontier Academy – LMS Website",
+      "description": "Complete WordPress LMS platform with LearnPress integration, referral system, course management, and corporate training features.",
+      "longDescription": "Developed and implemented a comprehensive WordPress Learning Management System (LMS) for Frontier Academy using LearnPress. The platform features a complete course management system with 5+ programs across multiple learning tracks including Corporate Finance, FP&A, Investment Banking, Private Equity, and more. The website includes a custom referral rewards system, instructor profiles, corporate training modules, 1-on-1 coaching session booking, shopping cart functionality, user accounts, and a responsive design optimized for educational content delivery.",
+      "category": "wordpress",
+      "company": "Bohemiangeeks",
+      "technologies": [
+        "WordPress",
+        "LearnPress",
+        "WooCommerce",
+        "PHP",
+        "Custom Plugin",
+        "MySQL",
+        "CSS3",
+        "JavaScript",
+        "HTML5",
+        "Responsive Design"
+      ],
+      "liveUrl": "https://frontier-me.com/",
+   
+      "images": [
+        "/assets/frontier-academy-website.png"
+      ],
+      "features": [
+        "LearnPress LMS Integration",
+        "Custom Referral Rewards System",
+        "Course Management & Catalog (5+ Programs)",
+        "Instructor Profile Management",
+        "Corporate Training Modules",
+        "1-on-1 Coaching Session Booking",
+        "Shopping Cart & Payment Integration",
+        "User Account System",
+        "Learning Tracks Organization",
+        "Multi-level Course Categories",
+        "Responsive Design",
+        "Arabic/English Language Support"
+      ],
+      "challenges": [
+        "LearnPress customization and integration",
+        "Building custom referral system",
+        "Managing complex course catalog structure",
+        "Integrating multiple payment gateways",
+        "User experience optimization for educational content",
+        "Performance optimization with large course library"
+      ],
+      "solutions": [
+        "Custom LearnPress theme development",
+        "Custom referral plugin development",
+        "Structured course taxonomy system",
+        "WooCommerce integration for payments",
+        "Optimized database queries",
+        "Caching and performance optimization"
+      ],
+      "duration": "2 Weeks",
+      "teamSize": "Solo",
+      "rating": 4.8,
+      "views": 2100
+    },
+    {
+      "id": 20,
+      "title": "ProcessBay – Consulting Portfolio",
+      "description": "Comprehensive WordPress portfolio website for NextGen consulting firm with 7 pages, blog system, and bilingual support (Arabic/English).",
+      "longDescription": "Designed and developed a complete WordPress portfolio website for ProcessBay, a NextGen consulting firm specializing in strategy, transformation, and digital enablement. Created custom designs for all 7 comprehensive pages including Home, About, Expertise, Industries, Contact, Insights (blog), and Consultation pages, then implemented each design into fully functional WordPress pages. The platform showcases the 5E Transformation Model (Envision, Evaluate, Engineer, Execute, Excel) and includes a full blog system for thought leadership content. The site supports bilingual functionality with Arabic and English language switching, modern responsive design, contact forms, and professional presentation of consulting services including Strategy & Transformation, Digital Enablement, Operational Excellence, and Innovation & Venture Building.",
+      "category": "wordpress",
+      "company": "Bohemiangeeks",
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "MySQL",
+        "CSS3",
+        "JavaScript",
+        "HTML5",
+        "Multilingual Support",
+        "Responsive Design"
+      ],
+      "liveUrl": "",
+      "githubUrl": "",
+      "images": [
+        "/assets/processbay-portfolio.png"
+      ],
+      "assets": [
+        {
+          "type": "image",
+          "name": "Home Page",
+          "url": "/assets/processbay-home.png",
+          "description": "Home page design and implementation"
+        },
+        {
+          "type": "image",
+          "name": "About Page",
+          "url": "/assets/processbay-about.png",
+          "description": "About page design and implementation"
+        },
+        {
+          "type": "image",
+          "name": "Expertise Page",
+          "url": "/assets/processbay-expertise.png",
+          "description": "Expertise page design and implementation"
+        },
+        {
+          "type": "image",
+          "name": "Industries Page",
+          "url": "/assets/processbay-indsutries.png",
+          "description": "Industries page design and implementation"
+        },
+        {
+          "type": "image",
+          "name": "Contact Page",
+          "url": "/assets/processbay-contact.png",
+          "description": "Contact page design and implementation"
+        },
+        {
+          "type": "image",
+          "name": "Insights Page",
+          "url": "/assets/processbay-insights.png",
+          "description": "Insights/Blog page design and implementation"
+        }
+      ],
+      "features": [
+        "Custom Page Designs for 7 Pages (Home, About, Expertise, Industries, Contact, Insights, Consultation)",
+        "Custom Design Implementation",
+        "Blog/Insights System",
+        "Bilingual Support (Arabic/English)",
+        "5E Transformation Model Showcase",
+        "Service Portfolio Display",
+        "Contact Forms Integration",
+        "Responsive Design",
+        "Modern Consulting Aesthetics",
+        "Strategic Content Presentation",
+        "Professional Corporate Design"
+      ],
+      "challenges": [
+        "Bilingual content management and switching",
+        "Complex page structure with multiple sections",
+        "Blog system integration and categorization",
+        "Professional consulting website design",
+        "Contact form functionality",
+        "RTL layout for Arabic content"
+      ],
+      "solutions": [
+        "Custom page design creation and implementation",
+        "Multilingual plugin integration",
+        "Structured content management system",
+        "Custom CSS and styling for each page",
+        "Custom form development",
+        "RTL CSS implementation for Arabic"
+      ],
+      "duration": "4 Days",
+      "teamSize": "Solo",
+      "rating": 4.7,
+      "views": 1800
+    },
+    {
+      "id": 21,
+      "title": "Travel & Tourism Blogging Website",
+      "description": "WordPress blogging platform for travel and tourism with JNews theme, TranslatePress multilingual support, and custom language tracking plugin.",
+      "longDescription": "Developed a comprehensive WordPress blogging website for Syyaha, a travel and tourism news platform. Built using JNews theme with TranslatePress for full Arabic/English bilingual support. Created a custom WordPress plugin that tracks posts by language using custom fields, allowing posts to be marked as Arabic or English. The plugin tracks and displays the count of Arabic and English posts, and enables filtering posts by language. The website features comprehensive travel content including destinations, hotels, airlines, travel technology, medical tourism, restaurants, and travel news, with full RTL support for Arabic content.",
+      "category": "wordpress",
+      "company": "Bohemiangeeks",
+      "technologies": [
+        "WordPress",
+        "JNews Theme",
+        "WPBakery",
+        "TranslatePress",
+        "Custom Plugin",
+        "PHP",
+        "MySQL",
+        "CSS3",
+        "JavaScript",
+        "HTML5",
+        "RTL Support"
+      ],
+      "liveUrl": "https://syyaha.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/syyaha-blog.png"
+      ],
+      "assets": [
+        {
+          "type": "image",
+          "name": "Home Page",
+          "url": "/assets/syyaha-home.png",
+          "description": "Home page design and layout"
+        },
+        {
+          "type": "image",
+          "name": "Categories Layout",
+          "url": "/assets/syyaha-categories-layout.png",
+          "description": "Categories page layout and design"
+        }
+      ],
+      "features": [
+        "JNews Theme Integration",
+        "WPBakery Page Builder",
+        "TranslatePress Multilingual Support (Arabic/English)",
+        "Custom Language Tracking Plugin",
+        "Custom Field-Based Post Language Classification",
+        "Arabic/English Post Count Tracking",
+        "Language-Based Post Filtering",
+        "RTL Layout for Arabic Content",
+        "Comprehensive Travel Content Categories",
+        "User Registration & Login System",
+        "Responsive Design",
+        "Currency Exchange Rates Display",
+        "Multi-Category Blog System"
+      ],
+      "challenges": [
+        "Custom plugin development for language tracking",
+        "Custom field integration for post language classification",
+        "Language-based filtering system",
+        "RTL layout implementation for Arabic",
+        "TranslatePress integration with custom functionality",
+        "Post count tracking and display"
+      ],
+      "solutions": [
+        "Custom WordPress plugin with language tracking functionality",
+        "Custom field implementation for post language metadata",
+        "Query modification for language-based filtering",
+        "RTL CSS implementation for Arabic content",
+        "TranslatePress hooks integration",
+        "Database queries for post count tracking"
+      ],
+      "duration": "3 Days",
+      "teamSize": "Solo",
+      "rating": 4.8,
+      "views": 1950
     },
     {
       "id": 1,
-      "title": "Bin Momen – Home Devices eCommerce Website",
+      "title": "Bin Momen – E-Commerce Website",
       "description": "Custom WooCommerce solution with SA States and Cities integration and AC installation services addon.",
       "longDescription": "A comprehensive e-commerce platform for home devices with custom WooCommerce functionality including Saudi Arabia states and cities integration, and a specialized AC installation services addon for enhanced customer experience. The website features a complete Arabic e-commerce experience with custom plugins for Saudi Arabia location management and AC installation service booking.",
       "category": "wordpress",
@@ -90,7 +339,7 @@
     },
     {
       "id": 2,
-      "title": "FastFWD – Logistics Services Platform",
+      "title": "FastFWD –  Logistics Platform",
       "description": "ACF integration with WooCommerce for advanced shipment data management in logistics platform.",
       "longDescription": "Developed custom ACF (Advanced Custom Fields) integration with WooCommerce for FastFWD's logistics platform to enhance shipment data management. The integration provides advanced custom fields for logistics-specific data, improved shipment tracking, and streamlined workflow management for the global freight forwarding and supply chain solutions platform.",
       "category": "wordpress",
@@ -181,7 +430,7 @@
     },
     {
       "id": 4,
-      "title": "Don Digital Tech – Technology Solutions Portfolio",
+      "title": "Don Digital Tech – Portfolio Website",
       "description": "WordPress portfolio website showcasing market presence across diverse sectors with international partnerships in US, Europe, and Saudi Arabia.",
       "longDescription": "A comprehensive WordPress portfolio website showcasing DON Technology's market presence characterized by diverse sectors with keen focus on technology solutions in the Kingdom of Saudi Arabia. The platform highlights international partnerships with US, Europe, and Saudi Arabia, featuring solutions across logistics, oil & gas, security & defense, culture & tourism, and information technology sectors aligned with Vision 2030.",
       "category": "wordpress",
@@ -628,7 +877,7 @@
     },
     {
       "id": 15,
-      "title": "SealyMe Mattresses Website – UI Design",
+      "title": "SealyMe  Website – UI Design",
       "description": "Complete UI redesign for SealyMe mattresses website including home, shop, and single product pages.",
       "longDescription": "A comprehensive UI design project for SealyMe mattresses website redesign, featuring modern and user-friendly interfaces for home page, shop page, and single product page. The design focuses on enhancing user experience, improving product presentation, and creating an intuitive e-commerce interface for mattress products.",
       "category": "ui",
@@ -670,7 +919,7 @@
     },
     {
       "id": 16,
-      "title": "Sealy Middle East – Product Card Design",
+      "title": "Sealyme – Product Card Design",
       "description": "Modern product card design for Sealy Middle East mattress shop with enhanced visual appeal and user experience.",
       "longDescription": "A comprehensive product card design project for Sealy Middle East mattress shop, featuring modern and attractive product card layouts that enhance product presentation, improve user engagement, and create an intuitive shopping experience. The design focuses on showcasing mattress features, pricing, and call-to-action elements in an aesthetically pleasing and conversion-optimized format.",
       "category": "ui",
@@ -712,6 +961,46 @@
       "teamSize": "Solo",
       "rating": 4.7,
       "views": 680
+    },
+    {
+      "id": 17,
+      "title": "Open Cart Testing",
+      "description": "Comprehensive manual (User/Admin) and automation testing for Open Cart with 90% coverage.",
+      "longDescription": "Executed comprehensive manual testing for both User and Admin sides, covering 90% of Open Cart functionalities. Managed test cases and reporting using Jira to ensure traceability. The automation framework was built using Selenium WebDriver, following ISTQB standards and Agile methodologies.",
+      "category": "testing",
+      "technologies": [
+        "Manual Testing",
+        "Jira",
+        "Selenium",
+        "Java",
+        "TestNG",
+        "Maven"
+      ],
+      "liveUrl": "https://drive.google.com/drive/folders/1X4rABAQubLtFm_tzxpFBIYqu770971aS",
+      "githubUrl": "https://github.com/devDoniaAlhosin/SWT-DEPI-GraduationProject",
+      "images": [
+        "/assets/GRADPROJECT - Featured.png"
+      ],
+      "features": [
+        "Manual Testing (User & Admin)",
+        "90% Functional Coverage",
+        "Jira Test Management",
+        "Automated Regression Suite",
+        "Cross-browser Testing",
+        "Data-driven Framework"
+      ],
+      "challenges": [
+        "Handling dynamic elements",
+        "Synchronizing asynchronous operations"
+      ],
+      "solutions": [
+        "Implemented explicit waits",
+        "Page Object Model design pattern"
+      ],
+      "duration": "Ongoing",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 0
     }
   ],
   "filters": [

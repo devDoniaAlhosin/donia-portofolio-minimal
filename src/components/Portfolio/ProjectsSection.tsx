@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, X, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown, Briefcase } from 'lucide-react';
+import { ExternalLink, Github, X, Calendar, Users, Star, Eye, Code2, Palette, Globe, ChevronDown, Briefcase, FileText, Image as ImageIcon, File, Download } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import projectsData from '@/data/projects.json';
 
 type ProjectFilter = 'all' | 'native' | 'wordpress' | 'ui' | 'testing';
+
+interface ProjectAsset {
+  type: 'image' | 'pdf' | 'document';
+  name: string;
+  url: string;
+  thumbnail?: string;
+  description?: string;
+}
 
 interface Project {
   id: number;
@@ -25,6 +33,7 @@ interface Project {
   teamSize: string;
   rating: number;
   views: number;
+  assets?: ProjectAsset[];
 }
 
 export const ProjectsSection = () => {
@@ -597,71 +606,152 @@ export const ProjectsSection = () => {
                     </div>
 
                     {/* Enhanced Project Links */}
-                    <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
-                      <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                        <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
-                        Project Links
-                      </h3>
-                      <div className="space-y-3">
-                        {selectedProject.liveUrl && (
-                          <Button
-                            variant="cta"
-                            size="sm"
-                            asChild
-                            className="w-full interactive hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/25"
-                          >
-                            <a
-                              href={selectedProject.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2"
-                            >
-                              <Globe size={16} />
-                              <span className="font-semibold">Live Demo</span>
-                              <ExternalLink size={14} />
-                            </a>
-                          </Button>
-                        )}
-                        {selectedProject.githubUrl && selectedProject.githubUrl !== "#" && selectedProject.category !== "wordpress" && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
-                          >
-                            <a
-                              href={selectedProject.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2"
-                            >
-                              <Github size={16} />
-                              <span className="font-semibold">GitHub Repository</span>
-                              <ExternalLink size={14} />
-                            </a>
-                          </Button>
-                        )}
-                        {selectedProject.githubUrl2 && selectedProject.githubUrl2 !== "#" && selectedProject.category !== "wordpress" && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            asChild
-                            className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
-                          >
-                            <a
-                              href={selectedProject.githubUrl2}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2"
-                            >
-                              <Github size={16} />
-                              <span className="font-semibold">GitHub Repository 2</span>
-                              <ExternalLink size={14} />
-                            </a>
-                          </Button>
-                        )}
+                    {(() => {
+                      const hasValidLiveUrl = selectedProject.liveUrl && selectedProject.liveUrl !== "#" && selectedProject.liveUrl.trim() !== "";
+                      const hasValidGithubUrl = selectedProject.githubUrl && selectedProject.githubUrl !== "#" && selectedProject.githubUrl.trim() !== "" && selectedProject.category !== "wordpress";
+                      const hasValidGithubUrl2 = selectedProject.githubUrl2 && selectedProject.githubUrl2 !== "#" && selectedProject.githubUrl2.trim() !== "" && selectedProject.category !== "wordpress";
+                      const hasValidLinks = hasValidLiveUrl || hasValidGithubUrl || hasValidGithubUrl2;
+
+                      if (!hasValidLinks) return null;
+
+                      return (
+                        <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                          <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                            <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                            Project Links
+                          </h3>
+                          <div className="space-y-3">
+                            {hasValidLiveUrl && (
+                              <Button
+                                variant="cta"
+                                size="sm"
+                                asChild
+                                className="w-full interactive hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/25"
+                              >
+                                <a
+                                  href={selectedProject.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-2"
+                                >
+                                  <Globe size={16} />
+                                  <span className="font-semibold">Live Demo</span>
+                                  <ExternalLink size={14} />
+                                </a>
+                              </Button>
+                            )}
+                            {hasValidGithubUrl && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
+                              >
+                                <a
+                                  href={selectedProject.githubUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-2"
+                                >
+                                  <Github size={16} />
+                                  <span className="font-semibold">GitHub Repository</span>
+                                  <ExternalLink size={14} />
+                                </a>
+                              </Button>
+                            )}
+                            {hasValidGithubUrl2 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="w-full interactive hover:scale-105 transition-all duration-300 border-accent/30 hover:bg-accent/10 text-foreground hover:text-foreground"
+                              >
+                                <a
+                                  href={selectedProject.githubUrl2}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-2"
+                                >
+                                  <Github size={16} />
+                                  <span className="font-semibold">GitHub Repository 2</span>
+                                  <ExternalLink size={14} />
+                                </a>
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* Project Assets */}
+                    {selectedProject.assets && selectedProject.assets.length > 0 && (
+                      <div className="bg-gradient-to-br from-background/60 via-background/50 to-background/60 backdrop-blur-xl rounded-3xl p-6 border border-border/30 modal-element shadow-lg">
+                        <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-gradient-to-b from-accent to-accent/60 rounded-full"></div>
+                          Project Assets
+                        </h3>
+                        <div className="space-y-3">
+                          {selectedProject.assets.map((asset, index) => {
+                            const getAssetIcon = () => {
+                              switch (asset.type) {
+                                case 'image':
+                                  return <ImageIcon size={18} className="text-accent" />;
+                                case 'pdf':
+                                  return <FileText size={18} className="text-red-500" />;
+                                case 'document':
+                                  return <File size={18} className="text-blue-500" />;
+                                default:
+                                  return <File size={18} className="text-muted-foreground" />;
+                              }
+                            };
+
+                            const getAssetTypeLabel = () => {
+                              switch (asset.type) {
+                                case 'image':
+                                  return 'Image';
+                                case 'pdf':
+                                  return 'PDF';
+                                case 'document':
+                                  return 'Document';
+                                default:
+                                  return 'File';
+                              }
+                            };
+
+                            return (
+                              <a
+                                key={index}
+                                href={asset.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-3 p-4 bg-background/30 backdrop-blur-sm rounded-xl border border-border/20 hover:bg-background/50 hover:border-accent/40 transition-all duration-300 cursor-pointer"
+                              >
+                                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center bg-background/50 border border-border/30">
+                                  {getAssetIcon()}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-sm font-semibold text-primary group-hover:text-accent transition-colors">
+                                      {asset.name}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-xs text-muted-foreground">{getAssetTypeLabel()}</span>
+                                    {asset.description && (
+                                      <>
+                                        <span className="text-xs text-muted-foreground">•</span>
+                                        <span className="text-xs text-muted-foreground truncate">{asset.description}</span>
+                                      </>
+                                    )}
+                                  </div>
+                                </div>
+                                <Download size={16} className="text-muted-foreground group-hover:text-accent transition-colors flex-shrink-0" />
+                              </a>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
