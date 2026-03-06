@@ -9,10 +9,11 @@
       "certificateLink": "https://drive.google.com/file/d/1cusazHJ_GonhJZP42qmSDlGp2sqeaaAZ/view?usp=sharing",
       "progress": 100,
       "skillsGained": [
-        "Software testing methodologies and best practices",
-        "Quality assurance processes and tools",
-        "Test case design and execution",
-        "Automated testing frameworks and techniques"
+        "Manual testing across web applications (functional, regression, smoke, usability)",
+        "Designing and executing detailed test cases, test scenarios, and checklists",
+        "Defect reporting and tracking, applying QA processes and best practices",
+        "Test automation using Java and Selenium WebDriver (page object model, locators, waits)",
+        "Completed ISTQB Foundation level syllabus and book, applying core testing principles"
       ],
       "icon": "book",
       "level": "Advanced",
@@ -27,10 +28,12 @@
       "certificateLink": "https://drive.google.com/file/d/1vID9Vekukh26y2iCIKOvq46e1my6fGiR/view?usp=sharing",
       "progress": 100,
       "skillsGained": [
-        "PHP backend development and frameworks",
-        "Database design and management",
-        "Full-stack web application development",
-        "Modern development practices and tools"
+        "PHP backend development with Laravel framework",
+        "Modern JavaScript for dynamic, interactive frontends",
+        "Single-page application development using Angular",
+        "API and backend development using Node.js",
+        "Relational database design, SQL, and optimization",
+        "End-to-end full-stack web application architecture and deployment"
       ],
       "icon": "zap",
       "level": "Advanced",
@@ -63,7 +66,8 @@
       "progress": 100,
       "skillsGained": [
         "HTML5, CSS3, and JavaScript fundamentals",
-        "Responsive web design and modern frameworks",
+        "Responsive web design and modern front-end frameworks (including React)",
+        "Building component-based UIs and managing state in React",
         "eCommerce project development (Grade: 100%)",
         "Front-end optimization and performance"
       ],
