@@ -1,6 +1,7 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { useState, useEffect } from 'react';
 import { BookOpen, Calendar, Clock, Award, ChevronDown, ChevronUp, Star, GraduationCap, Sparkles, Zap, ExternalLink } from 'lucide-react';
+import coursesData from '@/data/courses.json';
 
 export const CoursesSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -8,113 +9,18 @@ export const CoursesSection = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const courses = [
-    {
-      name: "Software Testing Track",
-      provider: "Digital Egypt Pioneers Initiative",
-      period: "July 2025 - Dec 2025",
-      duration: "Ongoing",
-      certificate: "Training Diploma",
-      progress: 100,
-      skillsGained: [
-        "Software testing methodologies and best practices",
-        "Quality assurance processes and tools",
-        "Test case design and execution",
-        "Automated testing frameworks and techniques"
-      ],
-      icon: BookOpen,
-      level: "Advanced",
-      rating: 4.9
-    },
-    {
-      name: "Full-Stack Development Diploma using PHP",
-      provider: "Information Technology Institute (ITI)",
-      period: "May 2024 - Oct 2024",
-      duration: "6 months",
-      certificate: "Professional Diploma",
-      certificateLink: "https://drive.google.com/file/d/1vID9Vekukh26y2iCIKOvq46e1my6fGiR/view?usp=sharing",
-      progress: 100,
-      skillsGained: [
-        "PHP backend development and frameworks",
-        "Database design and management",
-        "Full-stack web application development",
-        "Modern development practices and tools"
-      ],
-      icon: Zap,
-      level: "Advanced",
-      rating: 4.8
-    },
-    {
-      name: "Maharath Courses",
-      provider: "Maharath Training Institute",
-      period: "May 2024",
-      duration: "1 month",
-      certificate: "Multiple Certifications",
-      progress: 100,
-      skillsGained: [
-        "Ubuntu Linux Essentials and system administration",
-        "Database fundamentals and SQL",
-        "Computer network fundamentals and protocols",
-        "System architecture and infrastructure"
-      ],
-      icon: Award,
-      level: "Intermediate",
-      rating: 4.7
-    },
-    {
-      name: "Front-End Web Development Diploma",
-      provider: "AMIT Learning",
-      period: "Oct 2023 - April 2024",
-      duration: "7 months",
-      certificate: "Professional Diploma",
-      certificateLink: "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
-      progress: 100,
-      skillsGained: [
-        "HTML5, CSS3, and JavaScript fundamentals",
-        "Responsive web design and modern frameworks",
-        "eCommerce project development (Grade: 100%)",
-        "Front-end optimization and performance"
-      ],
-      icon: GraduationCap,
-      level: "Intermediate",
-      rating: 4.9
-    },
-    {
-      name: "CCNAv7",
-      provider: "National Telecommunication Institute (NTI)",
-      period: "Nov 2023 - Dec 2023",
-      duration: "2 months",
-      certificate: "Cisco Certification",
-      certificateLink: "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
-      progress: 100,
-      skillsGained: [
-        "Cisco networking fundamentals and protocols",
-        "Network configuration and troubleshooting",
-        "Routing and switching technologies",
-        "Network security and management"
-      ],
-      icon: Star,
-      level: "Advanced",
-      rating: 4.6
-    },
-    {
-      name: "Bachelor of Engineering (BSc)",
-      provider: "Egyptian Academy for Engineering and Advanced Technology",
-      period: "Oct 2018 - Jun 2023",
-      duration: "5 years",
-      certificate: "Bachelor's Degree",
-      progress: 100,
-      skillsGained: [
-        "Communications and Electronics Engineering",
-        "Cumulative GPA: 3.4146 (Very Good with honor)",
-        "Graduation Project: Smart Wearable Glasses for Autistic Kids (Excellent A+)",
-        "Research methodology and technical writing"
-      ],
-      icon: GraduationCap,
-      level: "University Degree",
-      rating: 4.8
-    }
-  ];
+  const iconMap: Record<string, typeof BookOpen> = {
+    book: BookOpen,
+    zap: Zap,
+    award: Award,
+    graduation: GraduationCap,
+    star: Star
+  };
+
+  const courses = coursesData.courses.map(course => ({
+    ...course,
+    icon: iconMap[course.icon as keyof typeof iconMap] || BookOpen
+  }));
 
   const toggleCard = (index: number) => {
     setExpandedCard(expandedCard === index ? null : index);
