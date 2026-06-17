@@ -1,39 +1,40 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { useState } from 'react';
-import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Star, Award, TrendingUp, Users } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Star, TrendingUp, Users } from 'lucide-react';
 
 export const ExperienceSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [activeStat, setActiveStat] = useState(0);
   
   const experiences = [
     {
-      title: "Web Developer",
+      title: "Software Developer",
       company: "BohemianGeeks Marketing Agency",
       period: "January 2025 - Present",
       location: "New Cairo, Egypt",
       type: "Full-time",
              achievements: [
-         "Developing custom WordPress websites and portfolios for diverse clients",
-         "Building and customizing e-commerce solutions using WooCommerce",
-         "Optimizing and customizing WordPress plugins for enhanced functionality",
-         "Creating responsive designs and implementing modern web technologies"
+         "Built custom WordPress and React-based websites aligned with client business goals",
+         "Delivered scalable e-commerce solutions with WooCommerce and tailored checkout flows",
+         "Improved plugin behavior and site performance through targeted optimizations",
+         "Implemented responsive, modern interfaces with accessibility and UX best practices"
        ],
-      skills: ["PHP", "JavaScript", "WordPress", "HTML5", "CSS3", "WooCommerce", "SEO", "Performance"],
+      skills: ["PHP", "JavaScript", "WordPress", "HTML5", "CSS3", "WooCommerce", "RankMath", "Performance"],
       icon: Briefcase
     },
     {
-      title: "Web Developer",
+      title: "Software Developer",
       company: "Upwork Freelancer",
       period: "January 2025 - Present",
       location: "Remote",
       type: "Freelance",
       achievements: [
-        "Delivering high-quality web development solutions to international clients",
-        "Specialized in WordPress development and custom website solutions",
-        "Maintaining excellent client relationships with 100% project completion rate",
-        "Working on diverse projects from small business websites to complex applications"
+        "Delivered production-ready web solutions for international clients across multiple industries",
+        "Developed custom WordPress implementations and reusable React UI components",
+        "Maintained a 100% project completion record with clear communication and ownership",
+        "Managed end-to-end delivery from scoping and implementation to post-launch support"
       ],
       skills: ["WordPress", "WooCommerce", "PHP", "JavaScript", "CSS3", "Client Management", "React"],
       icon: TrendingUp
@@ -45,10 +46,10 @@ export const ExperienceSection = () => {
       location: "New Capital, Egypt",
       type: "Part-time",
       achievements: [
-        "Teaching WordPress development fundamentals to aspiring developers",
-        "Creating comprehensive course materials and hands-on exercises",
-        "Mentoring students in web development best practices and techniques",
-        "Helping students build their first WordPress websites and applications"
+        "Taught WordPress development fundamentals through practical, project-based sessions",
+        "Designed structured learning materials and hands-on technical labs",
+        "Mentored students on coding standards, debugging, and real-world workflows",
+        "Guided learners to ship complete portfolio-ready WordPress projects"
       ],
       skills: ["WordPress", "Teaching", "Mentoring", "Education"],
       icon: Users
@@ -58,6 +59,30 @@ export const ExperienceSection = () => {
   const toggleCard = (index: number) => {
     setExpandedCard(expandedCard === index ? null : index);
   };
+
+  const stats = [
+    {
+      label: 'Projects Delivered',
+      value: '50+',
+      description: 'Web builds delivered from concept to launch.',
+      progress: 88,
+      icon: Briefcase
+    },
+    {
+      label: 'Client Satisfaction',
+      value: '98%',
+      description: 'Consistently positive client feedback and outcomes.',
+      progress: 98,
+      icon: TrendingUp
+    },
+    {
+      label: 'Delivery Reliability',
+      value: '100%',
+      description: 'Projects completed with strong ownership and consistency.',
+      progress: 100,
+      icon: Star
+    }
+  ];
 
   return (
     <section id="experience" className="py-16 sm:py-20 relative overflow-hidden">
@@ -83,11 +108,58 @@ export const ExperienceSection = () => {
             <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">Experience</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
-            My Professional Journey
+            Experience That Drives Results
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            A timeline of my growth in web development and WordPress expertise, showcasing key achievements and milestones.
+            A focused timeline of software development work across product delivery, freelance execution, and technical mentoring.
           </p>
+        </div>
+
+        <div className="mb-8 sm:mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {stats.map((stat, index) => {
+              const StatIcon = stat.icon;
+              const isActive = activeStat === index;
+
+              return (
+                <button
+                  key={stat.label}
+                  type="button"
+                  onClick={() => setActiveStat(index)}
+                  onMouseEnter={() => setActiveStat(index)}
+                  className={`relative text-left rounded-xl border p-4 transition-all duration-300 overflow-hidden ${
+                    isActive
+                      ? 'border-accent/50 bg-accent/10 shadow-lg shadow-accent/10 -translate-y-0.5'
+                      : 'border-border/60 bg-background/60 backdrop-blur-sm hover:border-accent/30 hover:bg-background/80'
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none" />
+                  <div className="relative z-10 flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+                      <p className="text-2xl font-bold text-primary mt-1">{stat.value}</p>
+                    </div>
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${isActive ? 'bg-accent/20' : 'bg-accent/10'}`}>
+                      <StatIcon size={16} className="text-accent" />
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 mt-4">
+                    <div className="h-1.5 rounded-full bg-accent/10 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-accent to-accent/70 transition-all duration-700 ease-out"
+                        style={{ width: `${isActive ? stat.progress : Math.max(20, stat.progress - 25)}%` }}
+                      />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-3 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 text-sm text-muted-foreground">
+            {stats[activeStat].description}
+          </div>
         </div>
 
         <div 
@@ -145,6 +217,9 @@ export const ExperienceSection = () => {
                       
                       <div className="flex items-center justify-between sm:justify-end gap-2">
                         <div className="text-left sm:text-right">
+                          <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-accent mb-1.5">
+                            {exp.type}
+                          </span>
                           <div className="flex items-center gap-1 text-muted-foreground text-xs sm:text-sm">
                             <Calendar size={12} className="sm:w-3.5 sm:h-3.5" />
                             <span>{exp.period}</span>

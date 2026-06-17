@@ -1,6 +1,137 @@
 {
   "projects": [
     {
+      "id": 23,
+      "title": "FouadHoussien LMS Platform",
+      "description": "End-to-end native Laravel platform with full LMS, CMS, integrated AI chatbot, Bunny video delivery, and payment flows via Paymob and Fawaterak.",
+      "longDescription": "Designed and developed a complete native Laravel-based learning and business platform for Fouad Houssien. The system combines a public marketing website, course catalog, and service presentation with a full LMS engine, integrated AI chatbot experience, secure video learning delivery via Bunny, and online payments through Paymob and Fawaterak. Built a complete CMS with role-based control, including admin dashboard and user dashboard for course progress tracking, quiz workflows, assignment handling, grading, and certificate management. The architecture focuses on scalability, clean UX, content control, and conversion-ready learning funnels.",
+      "category": "native",
+      "company": "Fouad Houssien",
+      "featured": true,
+      "brandTheme": "fouad",
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Blade",
+        "JavaScript",
+        "Bunny CDN/Video",
+        "Paymob",
+        "Fawaterak",
+        "REST API",
+        "Responsive Design"
+      ],
+      "liveUrl": "https://www.fouadhoussien.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/fouad-featured.png"
+      ],
+      "features": [
+        "Native Laravel LMS Architecture",
+        "Integrated AI Chatbot Experience",
+        "Course Management with Video Lessons",
+        "Bunny Video Delivery Integration",
+        "Paymob Payment Gateway Integration",
+        "Fawaterak Payment Integration",
+        "Admin Dashboard with Full CMS Controls",
+        "User Dashboard with Progress Tracking",
+        "Quiz, Assignment, and Grading Workflows",
+        "Certificate Generation & Completion Tracking",
+        "Services, Courses, and Conversion-Focused Public Pages"
+      ],
+      "challenges": [
+        "Combining CMS, LMS, and marketing website in one maintainable architecture",
+        "Building smooth user journeys across discovery, enrollment, and course completion",
+        "Handling secure video delivery and playback performance at scale",
+        "Integrating multiple payment gateways with reliable success/failure handling",
+        "Designing robust quiz and assignment tracking with grading logic",
+        "Maintaining clear role separation between admin operations and learner experience"
+      ],
+      "solutions": [
+        "Modular Laravel architecture with clear domain separation",
+        "Structured dashboards for admins and learners with role-based permissions",
+        "Bunny-powered media delivery with optimized loading and playback",
+        "Unified checkout/payment logic supporting Paymob and Fawaterak",
+        "Assessment pipeline for quizzes, assignments, grading, and certificates",
+        "CMS-driven content model for scalable updates without developer dependency"
+      ],
+      "duration": "2 Months",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 2900,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Platform Featured Mockup",
+          "url": "/assets/fouad-featured.png",
+          "description": "Desktop and mobile preview of the Laravel LMS platform"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "title": "O₂Nations – AI Software House Portfolio",
+      "description": "Modern WordPress corporate portfolio for an AI-driven software house — expertise, case studies, solutions, and team showcase aligned with O₂Nations brand identity.",
+      "longDescription": "Designed and implemented the full corporate portfolio website for O₂Nations, a New Cairo–based software house specializing in AI automation, premium web platforms, e-commerce, booking systems, and CRM solutions. The site reflects their cutting-edge positioning with a dark, tech-forward visual language, animated expertise sections, case study showcases, partner logos, and conversion-focused contact flows. Built on WordPress with custom page layouts, modern typography, and responsive sections that communicate complex AI and digital system offerings in a clear, premium way — matching the live brand experience at o2nations.com.",
+      "category": "wordpress",
+      "company": "O₂Nations",
+      "featured": true,
+      "brandTheme": "o2nations",
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "Custom Theme",
+        "JavaScript",
+        "CSS3",
+        "Elementor",
+        "Responsive Design",
+        "RankMath",
+        "Performance"
+      ],
+      "liveUrl": "https://o2nations.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/02-nation-featured.png"
+      ],
+      "features": [
+        "AI-Focused Hero & Brand Storytelling",
+        "Expertise Sections (AI Automation, Websites, E-Commerce, CRM)",
+        "Case Studies & Partner Showcase",
+        "Solutions & Service Portfolio Pages",
+        "Team & Blog Integration",
+        "Contact Forms & Lead Capture",
+        "Dark Modern UI Matching Brand Identity",
+        "Responsive Mobile-First Layouts",
+        "Performance & RankMath Optimization"
+      ],
+      "challenges": [
+        "Translating complex AI/software offerings into clear visual sections",
+        "Maintaining premium dark aesthetic across all breakpoints",
+        "Structuring multi-service content without overwhelming visitors",
+        "Aligning WordPress implementation with custom brand design language",
+        "Optimizing page speed with rich visual sections"
+      ],
+      "solutions": [
+        "Modular section-based page architecture",
+        "Consistent dark theme with cyan-violet accent system",
+        "Step-based expertise cards and animated UI patterns",
+        "Custom WordPress layouts with reusable components",
+        "Image and asset optimization for fast load times"
+      ],
+      "duration": "1 Week",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 3200,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Featured Mockup",
+          "url": "/assets/02-nation-featured.png",
+          "description": "O₂Nations portfolio — desktop and mobile mockup"
+        }
+      ]
+    },
+    {
       "id": 18,
       "title": "Frontier Academy – Landing Page",
       "description": "Comprehensive WordPress landing page for Finance for Business Managers course showcasing all course advantages, pricing, and enrollment features.",

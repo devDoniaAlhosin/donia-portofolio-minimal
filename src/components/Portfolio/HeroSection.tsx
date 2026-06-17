@@ -70,14 +70,14 @@ export const HeroSection = () => {
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-1 h-1 bg-accent/60 rounded-full"></div>
                   <p className="text-base text-muted-foreground font-medium">
-                    Web Developer & UI Specialist
+                    Software Developer
                   </p>
                   <div className="w-1 h-1 bg-accent/60 rounded-full"></div>
                 </div>
                 
                 <p className="text-sm text-foreground/90 max-w-sm mx-auto leading-tight px-4">
-                  Full-Stack Developer specializing in WordPress, React & custom solutions. 
-                  Delivered 50+ projects with 98% client satisfaction across e-commerce, logistics & healthcare.
+                  Software Developer focused on building performant web products with React, WordPress, and clean frontend architecture.
+                  Delivered 50+ projects across e-commerce, logistics, and healthcare.
                 </p>
               </div>
 
@@ -193,13 +193,13 @@ export const HeroSection = () => {
               <div className="flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 lg:gap-3">
                 <Code size={12} className="text-accent/60 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                  Web Developer & UI Specialist
+                  Software Developer
                 </p>
                 <Palette size={12} className="text-accent/60 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               </div>
               
               <p className="text-xs sm:text-sm md:text-base text-foreground/90 max-w-lg mx-auto lg:mx-0 leading-tight px-2 sm:px-0">
-                Creating modern, responsive websites with exceptional user experiences
+                Building modern, scalable digital experiences with a strong focus on performance, usability, and business impact.
               </p>
             </div>
 

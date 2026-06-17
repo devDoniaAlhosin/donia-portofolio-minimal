@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
@@ -12,6 +13,8 @@ const leftNavItems = navItems.slice(0, 2);
 const rightNavItems = navItems.slice(2, 4);
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -25,11 +28,26 @@ export const Navbar = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+    setIsMobileMenuOpen(false);
+
+    if (href.startsWith('/')) {
+      navigate(href);
+      return;
     }
+
+    if (href.startsWith('#')) {
+      if (location.pathname !== '/') {
+        navigate({ pathname: '/', hash: href.slice(1) });
+        return;
+      }
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+
+    navigate(href);
   };
 
   return (

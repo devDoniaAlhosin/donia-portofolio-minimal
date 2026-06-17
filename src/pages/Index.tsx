@@ -15,6 +15,20 @@ import { WhatsAppButton } from '@/components/Portfolio/WhatsAppButton';
 
 const Index = () => {
   useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const timeout = setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
     // Add fade-in animation to elements
     const observeElements = () => {
       const observer = new IntersectionObserver(

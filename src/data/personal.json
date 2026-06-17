@@ -1,8 +1,8 @@
 {
   "name": "Donia Alhosin",
-  "title": "Web Developer",
+  "title": "Software Developer",
   "email": "doniaelhussien@gmail.com",
-  "description": "Passionate Web developer creating modern, responsive websites that deliver exceptional user experiences and drive business success.",
+  "description": "Passionate software developer building modern, responsive web products that deliver exceptional user experiences and measurable business impact.",
   "logo": {
     "initials": "DA",
     "fullName": "DONIA ALHOSIN"
@@ -31,6 +31,6 @@
     { "name": "About", "href": "#about" },
     { "name": "Services", "href": "#services" },
     { "name": "Experience", "href": "#experience" },
-    { "name": "Projects", "href": "#projects" }
+    { "name": "Projects", "href": "/projects" }
   ]
 } 

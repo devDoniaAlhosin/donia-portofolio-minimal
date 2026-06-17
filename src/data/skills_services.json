@@ -42,14 +42,14 @@
     },
     {
       "icon": "Rocket",
-      "title": "Performance & SEO",
-      "description": "Speed optimization and on‑page SEO to improve ranking and user experience.",
-      "subtitle": "Core Web Vitals, On‑Page SEO",
+      "title": "Performance & RankMath",
+      "description": "Speed optimization and RankMath on-page setup to improve ranking and user experience on WordPress sites.",
+      "subtitle": "Core Web Vitals, RankMath",
       "category": "Performance",
       "features": [
         "Core Web Vitals",
         "Image optimization",
-        "On‑page SEO"
+        "RankMath configuration"
       ]
     }
   ],
