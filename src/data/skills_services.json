@@ -57,7 +57,7 @@
     {
       "icon": "Zap",
       "title": "Automation Testing",
-      "description": "End-to-end test automation using Selenium, TestNG, and modern frameworks",
+      "description": "Test automation with Java, OOP, Selenium, and TestNG",
       "level": 90,
       "category": "Quality",
       "tags": [
@@ -84,7 +84,7 @@
     {
       "icon": "Globe",
       "title": "Frontend Development",
-      "description": "Modern web applications using React, Angular, JavaScript, HTML5, CSS3, and SCSS",
+      "description": "React, Angular, JavaScript, HTML5, CSS3, and SCSS",
       "level": 90,
       "category": "Development",
       "tags": [
@@ -112,7 +112,7 @@
     {
       "icon": "Database",
       "title": "Backend Integration",
-      "description": "PHP, Laravel, Node.js, MySQL, MongoDB, and API integrations for dynamic functionality and data management",
+      "description": "Laravel, PHP, Node.js, MySQL, MongoDB, and REST APIs",
       "level": 88,
       "category": "Development",
       "tags": [
@@ -194,15 +194,15 @@
     {
       "icon": "Cpu",
       "title": "Technical Architecture",
-      "description": "Scalable application architecture, MVC patterns, and system design principles",
+      "description": "Scalable application architecture, OOP principles, MVC patterns, and system design",
       "level": 82,
       "category": "Development",
       "tags": [
+        "OOP",
+        "Java",
         "Architecture",
         "MVC",
-        "Scalability",
-        "Design Patterns",
-        "Best Practices"
+        "Design Patterns"
       ]
     },
     {

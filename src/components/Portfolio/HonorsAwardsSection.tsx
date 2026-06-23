@@ -9,6 +9,16 @@ export const HonorsAwardsSection = () => {
   
   const honors = [
     {
+      title: "ISTQB® Certified Tester Foundation Level v4 (CTFL4)",
+      type: "Professional Certification",
+      institution: "International Software Testing Qualifications Board (ISTQB)",
+      period: "2026",
+      description: "Successfully passed the CTFL4 exam — ISTQB Certified Tester Foundation Level v4.",
+      link: null,
+      icon: Award,
+      category: "Professional Certification"
+    },
+    {
       title: "Towards A Novel Prototype for Superpower Glass for Autistic Kids",
       type: "Research Paper",
       journal: "International Journal of Industry and Sustainable Development",
@@ -85,10 +95,10 @@ export const HonorsAwardsSection = () => {
             <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">Honors & Awards</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
-            Academic Excellence & Research
+            Honors, Certifications & Research
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            Recognition of academic achievements, research contributions, and excellence in engineering and technology.
+            Recognition of certifications, academic achievements, research contributions, and excellence in engineering and technology.
           </p>
         </div>
 

@@ -9,14 +9,14 @@ export const AboutSection = () => {
     {
       icon: User,
       title: "Who I Am",
-      content: "Passionate WordPress and web developer creating modern, responsive websites that deliver exceptional user experiences.",
-      stats: ["50+ Projects", "98% Satisfaction"]
+      content: "Full stack developer building modern web apps with React, Angular, Laravel, and PHP.",
+      stats: ["100+ Projects", "React", "Laravel"]
     },
     {
       icon: Code,
       title: "What I Do",
-      content: "WordPress development, custom themes, React applications, and responsive design with focus on performance.",
-      stats: ["WordPress", "React", "PHP"]
+      content: "End-to-end development — React & Angular frontends, Laravel & PHP backends.",
+      stats: ["React", "Angular", "Laravel", "PHP"]
     },
     {
       icon: Heart,
@@ -59,7 +59,7 @@ export const AboutSection = () => {
             The Story Behind the Code
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
-            A passionate developer focused on creating exceptional web experiences.
+            Full stack developer — React, Angular, Laravel, and PHP.
           </p>
         </div>
 

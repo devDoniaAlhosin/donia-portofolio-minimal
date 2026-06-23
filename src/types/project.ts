@@ -96,33 +96,43 @@ export const getServiceCategoryLabel = (category: ServicePortfolioCategory) => {
 };
 
 export const inferServiceCategory = (project: Project): ServicePortfolioCategory => {
-  const text = `${project.title} ${project.description} ${project.features.join(' ')}`.toLowerCase();
+  const primaryText = `${project.title} ${project.description}`.toLowerCase();
+  const fullText = `${primaryText} ${project.features.join(' ')}`.toLowerCase();
 
-  if (text.includes('booking') || text.includes('reservation') || text.includes('appointment')) {
+  if (
+    fullText.includes('booking') ||
+    fullText.includes('reservation') ||
+    fullText.includes('appointment')
+  ) {
     return 'booking';
   }
 
-  if (text.includes('blog') || text.includes('news') || text.includes('article') || text.includes('insight')) {
+  if (
+    primaryText.includes('portfolio') ||
+    primaryText.includes('showcase') ||
+    primaryText.includes('corporate') ||
+    primaryText.includes('consulting')
+  ) {
+    return 'portfolio';
+  }
+
+  if (
+    primaryText.includes('blog') ||
+    primaryText.includes('news') ||
+    primaryText.includes('article') ||
+    primaryText.includes('insight')
+  ) {
     return 'blogging';
   }
 
   if (
-    text.includes('ecommerce') ||
-    text.includes('e-commerce') ||
-    text.includes('woocommerce') ||
-    text.includes('shop') ||
-    text.includes('product')
+    fullText.includes('ecommerce') ||
+    fullText.includes('e-commerce') ||
+    fullText.includes('woocommerce') ||
+    fullText.includes('shop') ||
+    fullText.includes('product')
   ) {
     return 'ecommerce';
-  }
-
-  if (
-    text.includes('portfolio') ||
-    text.includes('showcase') ||
-    text.includes('corporate') ||
-    text.includes('consulting')
-  ) {
-    return 'portfolio';
   }
 
   return 'portfolio';

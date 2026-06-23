@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { CustomCursor } from '@/components/Portfolio/CustomCursor';
-import { Navbar } from '@/components/Portfolio/Navbar';
 import { HeroSection } from '@/components/Portfolio/HeroSection';
 import { AboutSection } from '@/components/Portfolio/AboutSection';
 import { SkillsSection } from '@/components/Portfolio/SkillsSection';
@@ -61,7 +60,6 @@ const Index = () => {
   return (
     <>
       <CustomCursor />
-      <Navbar />
       <main>
         <HeroSection />
         <AboutSection />

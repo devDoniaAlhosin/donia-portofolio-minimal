@@ -3,7 +3,7 @@
     {
       "id": 23,
       "title": "FouadHoussien LMS Platform",
-      "description": "End-to-end native Laravel platform with full LMS, CMS, integrated AI chatbot, Bunny video delivery, and payment flows via Paymob and Fawaterak.",
+      "description": "Online academy for courses, coaching, and digital learning with payments and certificates.",
       "longDescription": "Designed and developed a complete native Laravel-based learning and business platform for Fouad Houssien. The system combines a public marketing website, course catalog, and service presentation with a full LMS engine, integrated AI chatbot experience, secure video learning delivery via Bunny, and online payments through Paymob and Fawaterak. Built a complete CMS with role-based control, including admin dashboard and user dashboard for course progress tracking, quiz workflows, assignment handling, grading, and certificate management. The architecture focuses on scalability, clean UX, content control, and conversion-ready learning funnels.",
       "category": "native",
       "company": "Fouad Houssien",
@@ -71,8 +71,8 @@
     {
       "id": 22,
       "title": "O₂Nations – AI Software House Portfolio",
-      "description": "Modern WordPress corporate portfolio for an AI-driven software house — expertise, case studies, solutions, and team showcase aligned with O₂Nations brand identity.",
-      "longDescription": "Designed and implemented the full corporate portfolio website for O₂Nations, a New Cairo–based software house specializing in AI automation, premium web platforms, e-commerce, booking systems, and CRM solutions. The site reflects their cutting-edge positioning with a dark, tech-forward visual language, animated expertise sections, case study showcases, partner logos, and conversion-focused contact flows. Built on WordPress with custom page layouts, modern typography, and responsive sections that communicate complex AI and digital system offerings in a clear, premium way — matching the live brand experience at o2nations.com.",
+      "description": "Corporate site for an AI software house — services, case studies, and lead generation.",
+      "longDescription": "Designed and implemented the full corporate portfolio website for O₂Nations, a software house specializing in AI automation, premium web platforms, e-commerce, booking systems, and CRM solutions. The site reflects their cutting-edge positioning with a dark, tech-forward visual language, animated expertise sections, case study showcases, partner logos, and conversion-focused contact flows. Built on WordPress with custom page layouts, modern typography, and responsive sections that communicate complex AI and digital system offerings in a clear, premium way — matching the live brand experience at o2nations.com.",
       "category": "wordpress",
       "company": "O₂Nations",
       "featured": true,
@@ -98,7 +98,7 @@
         "Expertise Sections (AI Automation, Websites, E-Commerce, CRM)",
         "Case Studies & Partner Showcase",
         "Solutions & Service Portfolio Pages",
-        "Team & Blog Integration",
+        "Team Showcase & Service Pages",
         "Contact Forms & Lead Capture",
         "Dark Modern UI Matching Brand Identity",
         "Responsive Mobile-First Layouts",
@@ -134,7 +134,7 @@
     {
       "id": 18,
       "title": "Frontier Academy – Landing Page",
-      "description": "Comprehensive WordPress landing page for Finance for Business Managers course showcasing all course advantages, pricing, and enrollment features.",
+      "description": "Landing page to sell a finance course for business managers.",
       "longDescription": "Designed and implemented a complete WordPress landing page for Frontier Academy's Finance for Business Managers course. The landing page comprehensively covers all course advantages, featuring problem-solution sections, instructor profiles, program details, pricing information, and enrollment forms. The page is designed to convert visitors by clearly communicating the value proposition, course benefits, and investment details, with a focus on helping business managers understand financials and make data-driven decisions.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -195,7 +195,7 @@
     {
       "id": 19,
       "title": "Frontier Academy – LMS Website",
-      "description": "Complete WordPress LMS platform with LearnPress integration, referral system, course management, and corporate training features.",
+      "description": "LMS for online courses, referrals, and corporate training.",
       "longDescription": "Developed and implemented a comprehensive WordPress Learning Management System (LMS) for Frontier Academy using LearnPress. The platform features a complete course management system with 5+ programs across multiple learning tracks including Corporate Finance, FP&A, Investment Banking, Private Equity, and more. The website includes a custom referral rewards system, instructor profiles, corporate training modules, 1-on-1 coaching session booking, shopping cart functionality, user accounts, and a responsive design optimized for educational content delivery.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -254,7 +254,7 @@
     {
       "id": 20,
       "title": "ProcessBay – Consulting Portfolio",
-      "description": "Comprehensive WordPress portfolio website for NextGen consulting firm with 7 pages, blog system, and bilingual support (Arabic/English).",
+      "description": "Consulting firm portfolio with services, blog, and bilingual support.",
       "longDescription": "Designed and developed a complete WordPress portfolio website for ProcessBay, a NextGen consulting firm specializing in strategy, transformation, and digital enablement. Created custom designs for all 7 comprehensive pages including Home, About, Expertise, Industries, Contact, Insights (blog), and Consultation pages, then implemented each design into fully functional WordPress pages. The platform showcases the 5E Transformation Model (Envision, Evaluate, Engineer, Execute, Excel) and includes a full blog system for thought leadership content. The site supports bilingual functionality with Arabic and English language switching, modern responsive design, contact forms, and professional presentation of consulting services including Strategy & Transformation, Digital Enablement, Operational Excellence, and Innovation & Venture Building.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -348,7 +348,7 @@
     {
       "id": 21,
       "title": "Travel & Tourism Blogging Website",
-      "description": "WordPress blogging platform for travel and tourism with JNews theme, TranslatePress multilingual support, and custom language tracking plugin.",
+      "description": "Travel and tourism news blog with Arabic and English content.",
       "longDescription": "Developed a comprehensive WordPress blogging website for Syyaha, a travel and tourism news platform. Built using JNews theme with TranslatePress for full Arabic/English bilingual support. Created a custom WordPress plugin that tracks posts by language using custom fields, allowing posts to be marked as Arabic or English. The plugin tracks and displays the count of Arabic and English posts, and enables filtering posts by language. The website features comprehensive travel content including destinations, hotels, airlines, travel technology, medical tourism, restaurants, and travel news, with full RTL support for Arabic content.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -423,8 +423,8 @@
     {
       "id": 1,
       "title": "Bin Momen – E-Commerce Website",
-      "description": "Custom WooCommerce solution with SA States and Cities integration and AC installation services addon.",
-      "longDescription": "A comprehensive e-commerce platform for home devices with custom WooCommerce functionality including Saudi Arabia states and cities integration, and a specialized AC installation services addon for enhanced customer experience. The website features a complete Arabic e-commerce experience with custom plugins for Saudi Arabia location management and AC installation service booking.",
+      "description": "Home appliances e-commerce with installation service booking.",
+      "longDescription": "A comprehensive e-commerce platform for home devices with custom WooCommerce functionality, regional shipping integration, and a specialized AC installation services addon. The website features a complete Arabic e-commerce experience with custom plugins for location management and AC installation service booking.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
       "technologies": [
@@ -471,7 +471,7 @@
     {
       "id": 2,
       "title": "FastFWD –  Logistics Platform",
-      "description": "ACF integration with WooCommerce for advanced shipment data management in logistics platform.",
+      "description": "Logistics platform with advanced shipment data management.",
       "longDescription": "Developed custom ACF (Advanced Custom Fields) integration with WooCommerce for FastFWD's logistics platform to enhance shipment data management. The integration provides advanced custom fields for logistics-specific data, improved shipment tracking, and streamlined workflow management for the global freight forwarding and supply chain solutions platform.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -517,7 +517,7 @@
     {
       "id": 3,
       "title": "Stily – Car Care Booking Platform",
-      "description": "Designed and developed WordPress website with WooCommerce booking system for car care service appointments.",
+      "description": "Car care booking website with online service appointments.",
       "longDescription": "Designed and developed a responsive WordPress website with WooCommerce integration for car care service appointments. The platform features a custom WooCommerce booking system with multi-step booking interface, real-time availability, and service customization, providing customers with a seamless car care service booking experience.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -562,8 +562,8 @@
     {
       "id": 4,
       "title": "Don Digital Tech – Portfolio Website",
-      "description": "WordPress portfolio website showcasing market presence across diverse sectors with international partnerships in US, Europe, and Saudi Arabia.",
-      "longDescription": "A comprehensive WordPress portfolio website showcasing DON Technology's market presence characterized by diverse sectors with keen focus on technology solutions in the Kingdom of Saudi Arabia. The platform highlights international partnerships with US, Europe, and Saudi Arabia, featuring solutions across logistics, oil & gas, security & defense, culture & tourism, and information technology sectors aligned with Vision 2030.",
+      "description": "Tech company portfolio across logistics, energy, security, and IT sectors.",
+      "longDescription": "A WordPress portfolio website showcasing DON Technology's presence across diverse sectors with a focus on technology solutions. The platform highlights international partnerships and solutions across logistics, oil & gas, security & defense, culture & tourism, and information technology.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
       "technologies": [
@@ -606,7 +606,7 @@
     {
       "id": 5,
       "title": "Diamond Cover Egypt – Car Service Booking Plugin",
-      "description": "Developed full website with custom car service booking plugin featuring WhatsApp integration.",
+      "description": "Car service booking site with custom plugin and WhatsApp integration.",
       "longDescription": "Developed the complete Diamond Cover Egypt website with a custom WordPress booking plugin for car services. The plugin features advanced car details management, WhatsApp integration, dynamic booking system with time slots, and comprehensive service management including paint protection, glass protection, thermal insulation, nano ceramic, and polishing services.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -655,7 +655,7 @@
     {
       "id": 6,
       "title": "SealyMe Middle East – Serial Number Verification Plugin",
-      "description": "Developed custom plugin for serial number verification system with warranty registration.",
+      "description": "Warranty verification plugin for mattress products.",
       "longDescription": "Developed a comprehensive WordPress website with a custom plugin for serial number verification and warranty registration system. The plugin provides secure product authentication, warranty card registration, and verification services for SealyMe's mattress products in the Middle East market, featuring advanced admin management and customer verification interfaces.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
@@ -703,7 +703,7 @@
     {
       "id": 7,
       "title": "Restaurant Reservation Platform – ITI Graduation Project",
-      "description": "Full-stack restaurant reservation system with Angular frontend and Laravel backend.",
+      "description": "Online restaurant table reservation system.",
       "longDescription": "A comprehensive restaurant reservation platform developed as an ITI graduation project, featuring a modern Angular frontend and a robust Laravel backend. The system includes table reservation management, menu management, user authentication, and admin dashboard with real-time booking capabilities.",
       "category": "native",
       "technologies": [
@@ -753,7 +753,7 @@
     {
       "id": 8,
       "title": "Goodreads Library – Angular & NodeJS",
-      "description": "Library management system built with Angular frontend and NodeJS backend in 2 weeks.",
+      "description": "Book library with reviews and reading lists.",
       "longDescription": "A comprehensive library management system inspired by Goodreads, featuring book management, user reviews, and reading lists. Built with Angular for the frontend and NodeJS with MongoDB for the backend, completed in 2 weeks with a team of 2 developers.",
       "category": "native",
       "technologies": [
@@ -795,53 +795,9 @@
       "views": 850
     },
     {
-      "id": 10,
-      "title": "Simple Todo App – Angular",
-      "description": "Simple todo application built with Angular featuring task management and user data fetching.",
-      "longDescription": "A clean and simple todo application built with Angular framework, featuring task management functionality, user data fetching, and intuitive task creation and management. The app demonstrates Angular fundamentals with a focus on user experience and data handling.",
-      "category": "native",
-      "technologies": [
-        "Angular",
-        "TypeScript",
-        "CSS3",
-        "JavaScript",
-        "Bootstrap"
-      ],
-      "liveUrl": "https://fetch-data-todo-app.netlify.app/todo-list",
-      "githubUrl": "",
-      "images": [
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop"
-      ],
-      "features": [
-        "Simple Todo Management",
-        "User Data Fetching",
-        "CRUD Operations",
-        "Responsive Design",
-        "Angular Fundamentals"
-      ],
-      "challenges": [
-        "Angular state management",
-        "User data fetching",
-        "Simple task organization",
-        "Clean UI design"
-      ],
-      "solutions": [
-        "Angular services implementation",
-        "User API integration",
-        "Intuitive task management",
-        "Responsive design"
-      ],
-      "duration": "1 Day",
-      "teamSize": "Solo",
-      "rating": 4.5,
-      "views": 620
-    },
-    {
       "id": 11,
       "title": "Simple Portfolio Website – Angular",
-      "description": "Simple personal portfolio website built with Angular framework showcasing skills and projects.",
+      "description": "Personal developer portfolio showcasing skills and projects.",
       "longDescription": "A clean and simple personal portfolio website built with Angular framework, featuring skills showcase, project display, and professional presentation. The portfolio demonstrates Angular fundamentals with a focus on clean design and user experience, showcasing front-end development expertise including React, Angular, Node.js, and WordPress technologies.",
       "category": "native",
       "technologies": [
@@ -886,7 +842,7 @@
     {
       "id": 12,
       "title": "Frontend E-commerce Project – ReactJS",
-      "description": "Modern eCommerce frontend built with ReactJS and modern web technologies.",
+      "description": "E-commerce storefront for browsing and purchasing products.",
       "longDescription": "A modern eCommerce frontend application built with ReactJS, featuring product browsing, shopping cart functionality, and user interface design. The project demonstrates modern React development practices and responsive design.",
       "category": "native",
       "technologies": [
@@ -927,7 +883,7 @@
     {
       "id": 13,
       "title": "Pure Vanilla eCommerce Website",
-      "description": "E-commerce website built with pure vanilla JavaScript, HTML, and CSS.",
+      "description": "E-commerce shop built with vanilla JavaScript.",
       "longDescription": "A complete eCommerce website built using only vanilla JavaScript, HTML, and CSS without any frameworks. The project demonstrates fundamental web development skills and modern JavaScript practices.",
       "category": "native",
       "technologies": [
@@ -967,7 +923,7 @@
     {
       "id": 14,
       "title": "Smart Wearable Glass for Autistic Kids – Graduation Project",
-      "description": "Innovative wearable technology with sensors for real-time health monitoring and educational support.",
+      "description": "Wearable device for autistic children's health monitoring and learning support.",
       "longDescription": "A groundbreaking graduation project featuring smart wearable glasses designed specifically for autistic children. The system includes sensors for real-time health monitoring, educational support features, and companion mobile app and website for comprehensive care management.",
       "category": "native",
       "technologies": [
@@ -1009,7 +965,7 @@
     {
       "id": 15,
       "title": "SealyMe  Website – UI Design",
-      "description": "Complete UI redesign for SealyMe mattresses website including home, shop, and single product pages.",
+      "description": "Mattress shop UI redesign for home, shop, and product pages.",
       "longDescription": "A comprehensive UI design project for SealyMe mattresses website redesign, featuring modern and user-friendly interfaces for home page, shop page, and single product page. The design focuses on enhancing user experience, improving product presentation, and creating an intuitive e-commerce interface for mattress products.",
       "category": "ui",
       "technologies": [
@@ -1051,7 +1007,7 @@
     {
       "id": 16,
       "title": "Sealyme – Product Card Design",
-      "description": "Modern product card design for Sealy Middle East mattress shop with enhanced visual appeal and user experience.",
+      "description": "Product card design for a mattress e-commerce shop.",
       "longDescription": "A comprehensive product card design project for Sealy Middle East mattress shop, featuring modern and attractive product card layouts that enhance product presentation, improve user engagement, and create an intuitive shopping experience. The design focuses on showcasing mattress features, pricing, and call-to-action elements in an aesthetically pleasing and conversion-optimized format.",
       "category": "ui",
       "technologies": [
@@ -1096,7 +1052,7 @@
     {
       "id": 17,
       "title": "Open Cart Testing",
-      "description": "Comprehensive manual (User/Admin) and automation testing for Open Cart with 90% coverage.",
+      "description": "Manual and automated QA for an e-commerce platform.",
       "longDescription": "Executed comprehensive manual testing for both User and Admin sides, covering 90% of Open Cart functionalities. Managed test cases and reporting using Jira to ensure traceability. The automation framework was built using Selenium WebDriver, following ISTQB standards and Agile methodologies.",
       "category": "testing",
       "technologies": [

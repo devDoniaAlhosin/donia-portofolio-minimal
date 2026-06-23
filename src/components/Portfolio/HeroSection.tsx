@@ -1,11 +1,21 @@
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Mail, Linkedin, Github, ArrowDown, Code, Palette } from 'lucide-react';
+import { Phone, Linkedin, Github, ArrowDown, Code, Palette } from 'lucide-react';
+
+const ScrollIndicator = ({ onClick }: { onClick: () => void }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="group relative flex h-11 w-3 items-start justify-center"
+    aria-label="Scroll to about section"
+  >
+    <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 rounded-full bg-accent/15 group-hover:bg-accent/30 transition-colors duration-500" />
+    <span className="absolute left-1/2 top-0 h-1 w-1 -translate-x-1/2 rounded-full bg-accent/60 group-hover:bg-accent animate-scroll-dot-flow" />
+  </button>
+);
 
 export const HeroSection = () => {
   const contactInfo = [
-    { icon: MapPin, text: 'Egypt', href: null },
     { icon: Phone, text: '+20 106 164 2356', href: 'tel:+201061642356' },
-    { icon: Mail, text: 'doniaelhussien', href: 'mailto:doniaelhussien@email.com' },
     { icon: Linkedin, text: 'LinkedIn', href: 'https://www.linkedin.com/in/donia-alhosin-756a3b1ab/' },
     { icon: Github, text: 'GitHub', href: 'https://github.com/devDoniaAlhosin' },
   ];
@@ -25,9 +35,16 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background pt-12 sm:pt-16 md:pt-14">
+    <section id="home" className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-background pt-12 sm:pt-16 md:pt-14">
       {/* Modern background design */}
       <div className="absolute inset-0">
+        <div className="absolute top-[12%] left-[8%] w-56 h-56 rounded-full bg-accent/[0.07] blur-3xl animate-hero-orb pointer-events-none" />
+        <div className="absolute bottom-[18%] right-[6%] w-72 h-72 rounded-full bg-accent/[0.05] blur-3xl animate-hero-orb-delayed pointer-events-none" />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,640px)] h-[min(70vh,480px)] rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, hsl(var(--accent) / 0.04) 0%, transparent 70%)' }}
+        />
+
         {/* Geometric background elements - reduced for mobile */}
         <div className="absolute top-0 left-0 w-48 sm:w-64 md:w-80 h-48 sm:h-64 md:h-80 bg-gradient-to-br from-accent/4 to-transparent rounded-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute top-0 right-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-gradient-to-bl from-accent/3 to-transparent rounded-2xl transform translate-x-1/2 -translate-y-1/2"></div>
@@ -47,7 +64,7 @@ export const HeroSection = () => {
              }}></div>
       </div>
 
-         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                    {/* Mobile-only Hero Section */}
           <div className="block md:hidden">
             <div className="flex flex-col items-center justify-center min-h-[calc(100vh-3rem)] space-y-8 pt-16">
@@ -70,20 +87,30 @@ export const HeroSection = () => {
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-1 h-1 bg-accent/60 rounded-full"></div>
                   <p className="text-base text-muted-foreground font-medium">
-                    Software Developer
+                    Full Stack Developer
                   </p>
                   <div className="w-1 h-1 bg-accent/60 rounded-full"></div>
                 </div>
                 
-                <p className="text-sm text-foreground/90 max-w-sm mx-auto leading-tight px-4">
-                  Software Developer focused on building performant web products with React, WordPress, and clean frontend architecture.
-                  Delivered 50+ projects across e-commerce, logistics, and healthcare.
+                <p className="text-sm text-foreground/90 max-w-sm mx-auto leading-relaxed px-4">
+                  React & Angular frontends, Laravel & PHP backends.
                 </p>
+
+                <div className="flex flex-wrap justify-center gap-2 pt-1">
+                  {['React', 'Laravel', 'PHP'].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/8 text-accent border border-accent/15 backdrop-blur-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
 
                                             {/* Mobile Contact info - modern layout */}
                <div className="grid grid-cols-2 gap-3 w-full max-w-md fade-in-up" style={{animationDelay: '0.5s'}}>
-                 {contactInfo.filter(item => item.text !== 'Egypt').map((item, index) => {
+                 {contactInfo.map((item, index) => {
                   const Icon = item.icon;
                                      const content = (
                      <div className="group flex items-center gap-2.5 px-3 py-3 rounded-xl bg-background/80 backdrop-blur-sm border border-border/60 hover:border-accent/50 hover:bg-background/90 transition-all duration-300 shadow-sm hover:shadow-md">
@@ -141,32 +168,20 @@ export const HeroSection = () => {
                  </Button>
               </div>
 
-              {/* Mobile Scroll indicator */}
-              <div className="fade-in-up" style={{animationDelay: '0.9s'}}>
-                <button 
-                  onClick={scrollToAbout}
-                  className="group"
-                  aria-label="Scroll to about section"
-                >
-                  <div className="flex flex-col items-center gap-2 text-muted-foreground/60 hover:text-accent transition-colors">
-                    <span className="text-xs font-semibold tracking-wider uppercase">Scroll</span>
-                    <div className="w-4 h-6 border-2 border-current rounded-full flex justify-center group-hover:border-accent transition-colors">
-                      <div className="w-0.5 h-1.5 bg-current rounded-full mt-1.5 animate-pulse group-hover:bg-accent transition-colors"></div>
-                    </div>
-                  </div>
-                </button>
+              <div className="fade-in-up pt-6 pb-1" style={{ animationDelay: '0.9s' }}>
+                <ScrollIndicator onClick={scrollToAbout} />
               </div>
             </div>
           </div>
 
          {/* Desktop Hero Section */}
-         <div className="hidden md:grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-h-[calc(100vh-3rem)] sm:min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)]">
+         <div className="hidden md:grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center w-full min-h-[calc(100vh-3rem)] sm:min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)]">
            {/* Left side - Main content */}
            <div className="text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8">
             {/* Status indicator */}
-            <div className="inline-flex items-center gap-2 fade-in-up" style={{animationDelay: '0.2s'}}>
-              <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-              <span className="text-xs sm:text-sm font-medium text-muted-foreground">Available for new projects</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-full fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-accent">Available for new projects</span>
             </div>
 
             {/* Name and title */}
@@ -178,14 +193,12 @@ export const HeroSection = () => {
                 <div className="inline-block">
                   <div className="relative group">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-primary leading-tight">
-                      <span className="font-semibold bg-gradient-to-r from-primary to-accent/80 bg-clip-text text-transparent animate-pulse" style={{animationDuration: '3s'}}>DONIA</span>
-                      <span className="text-muted-foreground/80 ml-1 sm:ml-2 font-medium animate-pulse" style={{animationDuration: '3s', animationDelay: '0.5s'}}>ALHOSIN</span>
+                      <span className="font-semibold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+                        DONIA
+                      </span>
+                      <span className="text-muted-foreground/80 ml-1 sm:ml-2 font-medium">ALHOSIN</span>
                     </h1>
-                    {/* Animated underline accent */}
-                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 sm:h-1 bg-gradient-to-r from-accent/60 via-accent/40 to-transparent rounded-full group-hover:w-full transition-all duration-1000 ease-out"></div>
-                    {/* Floating accent dots */}
-                    <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 w-1.5 sm:w-2 h-1.5 sm:h-2 bg-accent/60 rounded-full animate-bounce" style={{animationDuration: '2s'}}></div>
-                    <div className="absolute -bottom-1 sm:-bottom-2 -left-1 sm:-left-2 w-1 sm:w-1.5 h-1 sm:h-1.5 bg-accent/40 rounded-full animate-bounce" style={{animationDuration: '2.5s', animationDelay: '0.5s'}}></div>
+                    <div className="absolute -bottom-1 left-0 w-16 h-0.5 bg-gradient-to-r from-accent/60 to-transparent rounded-full" />
                   </div>
                 </div>
               </div>
@@ -193,14 +206,25 @@ export const HeroSection = () => {
               <div className="flex items-center justify-center lg:justify-start gap-1.5 sm:gap-2 lg:gap-3">
                 <Code size={12} className="text-accent/60 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium">
-                  Software Developer
+                  Full Stack Developer
                 </p>
                 <Palette size={12} className="text-accent/60 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
               </div>
               
-              <p className="text-xs sm:text-sm md:text-base text-foreground/90 max-w-lg mx-auto lg:mx-0 leading-tight px-2 sm:px-0">
-                Building modern, scalable digital experiences with a strong focus on performance, usability, and business impact.
+              <p className="text-xs sm:text-sm md:text-base text-foreground/85 max-w-lg mx-auto lg:mx-0 leading-relaxed px-2 sm:px-0">
+                React & Angular frontends, Laravel & PHP backends.
               </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+                {['React', 'Angular', 'Laravel', 'PHP'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/8 text-accent border border-accent/15 backdrop-blur-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Contact info - improved mobile layout */}
@@ -263,45 +287,64 @@ export const HeroSection = () => {
           </div>
 
                      {/* Right side - Visual element */}
-           <div className="hidden lg:flex items-center justify-center fade-in-up" style={{animationDelay: '0.5s'}}>
-            <div className="relative">
-              {/* Main visual box */}
-              <div className="w-72 lg:w-80 h-72 lg:h-80 bg-gradient-to-br from-accent/10 to-accent/5 rounded-3xl border border-accent/20 flex items-center justify-center">
-                <div className="text-left sm:text-center space-y-4">
-                  <div className="w-14 lg:w-16 h-14 lg:h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto">
-                    <Code size={28} className="text-accent lg:w-8 lg:h-8" />
+           <div className="hidden lg:flex items-center justify-end w-full fade-in-up" style={{ animationDelay: '0.5s' }}>
+            <div className="relative animate-hero-card-float">
+              <div className="absolute -inset-6 rounded-[2rem] bg-accent/10 blur-3xl -z-10 pointer-events-none" />
+
+              <div className="relative w-[18.5rem] xl:w-[21rem] h-[26rem] xl:h-[30rem] rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/14 via-background/50 to-accent/6 shadow-xl shadow-accent/10 backdrop-blur-sm overflow-hidden flex flex-col">
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/15 via-transparent to-accent/5 pointer-events-none" />
+
+                <div className="flex items-center gap-2 px-6 py-4 border-b border-accent/10 bg-white/25">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
+                  <span className="ml-auto text-[10px] font-medium text-muted-foreground/50 tracking-wide">portfolio.tsx</span>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-center gap-6 px-8 py-8">
+                  <div className="w-16 h-16 bg-accent/15 rounded-2xl flex items-center justify-center border border-accent/20 shadow-sm">
+                    <Code size={30} className="text-accent" />
                   </div>
-                  <div className="space-y-2">
-                    <div className="w-28 lg:w-32 h-1.5 lg:h-2 bg-accent/20 rounded-full"></div>
-                    <div className="w-20 lg:w-24 h-1.5 lg:h-2 bg-accent/15 rounded-full"></div>
-                    <div className="w-24 lg:w-28 h-1.5 lg:h-2 bg-accent/10 rounded-full"></div>
+
+                  <div className="space-y-3">
+                    <div className="w-full h-2.5 bg-accent/20 rounded-full" />
+                    <div className="w-[92%] h-2.5 bg-accent/16 rounded-full" />
+                    <div className="w-[78%] h-2.5 bg-accent/12 rounded-full" />
+                    <div className="w-[65%] h-2.5 bg-accent/10 rounded-full" />
+                  </div>
+
+                  <div className="rounded-xl border border-accent/15 bg-accent/[0.06] p-4 space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent/70" />
+                      <span className="text-[11px] font-medium text-accent/80">Full Stack Developer</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-accent/15 rounded-full" />
+                    <div className="w-4/5 h-1.5 bg-accent/10 rounded-full" />
                   </div>
                 </div>
+
+                <div className="px-8 py-5 border-t border-accent/10 bg-white/10 flex flex-wrap gap-2">
+                  {['React', 'Angular', 'Laravel', 'PHP'].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 text-[10px] rounded-md bg-accent/12 text-accent font-medium border border-accent/15"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-3 lg:-top-4 -right-3 lg:-right-4 w-8 lg:w-12 h-8 lg:h-12 bg-accent/15 rounded-xl transform rotate-12"></div>
-              <div className="absolute -bottom-3 lg:-bottom-4 -left-3 lg:-left-4 w-6 lg:w-10 h-6 lg:h-10 bg-accent/10 rounded-lg transform -rotate-6"></div>
-              <div className="absolute top-1/2 -right-6 lg:-right-8 w-6 lg:w-8 h-6 lg:h-8 bg-accent/8 rounded-lg transform rotate-45"></div>
+
+              <div className="absolute -top-4 -right-4 w-11 h-11 bg-accent/15 rounded-xl rotate-12 border border-accent/10 backdrop-blur-sm" />
+              <div className="absolute -bottom-4 -left-4 w-9 h-9 bg-accent/10 rounded-lg -rotate-6 border border-accent/10" />
+              <div className="absolute top-1/3 -right-7 w-7 h-7 bg-accent/8 rounded-lg rotate-45 border border-accent/10" />
             </div>
                      </div>
          </div>
+      </div>
 
-         {/* Desktop Scroll indicator */}
-         <div className="hidden md:block absolute bottom-3 sm:bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 fade-in-up" style={{animationDelay: '1s'}}>
-           <button 
-             onClick={scrollToAbout}
-             className="group"
-             aria-label="Scroll to about section"
-           >
-             <div className="flex flex-col items-center gap-1 sm:gap-1.5 lg:gap-2 text-muted-foreground/60 hover:text-accent transition-colors">
-               <span className="text-xs font-medium tracking-wider uppercase">Scroll</span>
-               <div className="w-3.5 sm:w-4 lg:w-5 h-5 sm:h-6 lg:h-8 border border-current rounded-full flex justify-center">
-                 <div className="w-0.5 h-1 sm:h-1.5 lg:h-2 bg-current rounded-full mt-1 sm:mt-1.5 lg:mt-2 animate-pulse"></div>
-               </div>
-             </div>
-           </button>
-         </div>
+      <div className="hidden md:block absolute bottom-2 lg:bottom-4 left-1/2 -translate-x-1/2 fade-in-up z-10" style={{ animationDelay: '1s' }}>
+        <ScrollIndicator onClick={scrollToAbout} />
       </div>
     </section>
   );

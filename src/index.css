@@ -248,6 +248,96 @@
     }
   }
 
+  @keyframes scrollDotFlow {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0) scale(0.6);
+    }
+    12% {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+    65% {
+      opacity: 1;
+      transform: translate(-50%, 28px) scale(1);
+    }
+    88% {
+      opacity: 0;
+      transform: translate(-50%, 36px) scale(0.6);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 0) scale(0.6);
+    }
+  }
+
+  @keyframes scrollHintBob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+  }
+
+  @keyframes scrollArrowPulse {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translateY(4px);
+    }
+  }
+
+  @keyframes heroOrbFloat {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(12px, -18px) scale(1.05);
+    }
+  }
+
+  @keyframes heroCardFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-scroll-dot-flow {
+    animation: scrollDotFlow 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .animate-scroll-hint-bob {
+    animation: scrollHintBob 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .animate-scroll-arrow-pulse {
+    animation: scrollArrowPulse 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .animate-hero-orb {
+    animation: heroOrbFloat 14s ease-in-out infinite;
+  }
+
+  .animate-hero-orb-delayed {
+    animation: heroOrbFloat 18s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+
+  .animate-hero-card-float {
+    animation: heroCardFloat 6s ease-in-out infinite;
+  }
+
   /* Modal animations */
   @keyframes modalEntrance {
     0% {
@@ -369,6 +459,39 @@
   /* Mobile menu slide down animation */
   .animate-slideDown {
     animation: slideDown 0.4s ease-out forwards;
+  }
+
+  @keyframes navProgress {
+    0% {
+      width: 0%;
+      opacity: 1;
+    }
+    70% {
+      width: 85%;
+    }
+    100% {
+      width: 100%;
+      opacity: 0.9;
+    }
+  }
+
+  .animate-nav-progress {
+    animation: navProgress 0.42s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes pageEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-page-enter {
+    animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes slideDown {

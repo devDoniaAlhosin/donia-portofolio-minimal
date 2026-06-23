@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Calendar, Users, Star, Eye, ExternalLink, Sparkles } from 'lucide-react';
+import { Calendar, Users, ExternalLink, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Project, getCategoryLabel, getProjectSlug } from '@/types/project';
 
@@ -47,17 +47,6 @@ export const ProjectCard = ({
             While at {project.company}
           </span>
         )}
-      </div>
-
-      <div className="absolute bottom-4 right-4 flex items-center gap-2">
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 rounded-lg">
-          <Eye size={12} className="text-white/70" />
-          <span className="text-white/80 text-xs">{project.views.toLocaleString()}</span>
-        </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 rounded-lg">
-          <Star size={12} className="fill-yellow-400 text-yellow-400" />
-          <span className="text-white/80 text-xs">{project.rating}</span>
-        </div>
       </div>
     </div>
 

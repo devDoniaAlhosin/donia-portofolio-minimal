@@ -37,7 +37,7 @@ export const SkillsSection = () => {
             My Technical Arsenal
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            A comprehensive toolkit for creating exceptional web experiences with modern technologies and best practices.
+            Full stack toolkit — React, Angular, Laravel, and PHP.
           </p>
         </div>
 

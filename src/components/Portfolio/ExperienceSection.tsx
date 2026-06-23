@@ -1,6 +1,6 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { useState } from 'react';
-import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Star, TrendingUp, Users } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Star, TrendingUp, Users, Award, Code, Layers } from 'lucide-react';
 
 export const ExperienceSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
@@ -10,40 +10,40 @@ export const ExperienceSection = () => {
   
   const experiences = [
     {
-      title: "Software Developer",
+      title: "Full Stack Developer",
       company: "BohemianGeeks Marketing Agency",
       period: "January 2025 - Present",
-      location: "New Cairo, Egypt",
+      location: "Remote",
       type: "Full-time",
              achievements: [
-         "Built custom WordPress and React-based websites aligned with client business goals",
-         "Delivered scalable e-commerce solutions with WooCommerce and tailored checkout flows",
+         "Built full stack web products with React, Laravel, and WordPress aligned to client business goals",
+         "Delivered e-commerce and LMS platforms with custom checkout, enrollment, and content workflows",
          "Improved plugin behavior and site performance through targeted optimizations",
-         "Implemented responsive, modern interfaces with accessibility and UX best practices"
+         "Implemented responsive interfaces with accessibility and UX best practices"
        ],
-      skills: ["PHP", "JavaScript", "WordPress", "HTML5", "CSS3", "WooCommerce", "RankMath", "Performance"],
+      skills: ["React", "Laravel", "PHP", "WordPress", "WooCommerce", "JavaScript", "MySQL"],
       icon: Briefcase
     },
     {
-      title: "Software Developer",
+      title: "Full Stack Developer",
       company: "Upwork Freelancer",
       period: "January 2025 - Present",
       location: "Remote",
       type: "Freelance",
       achievements: [
-        "Delivered production-ready web solutions for international clients across multiple industries",
-        "Developed custom WordPress implementations and reusable React UI components",
-        "Maintained a 100% project completion record with clear communication and ownership",
+        "Delivered production-ready full stack solutions for international clients across multiple industries",
+        "Built React & Angular frontends with Laravel/PHP backends and custom WordPress implementations",
+        "Applied ISTQB testing principles to validate features before handoff",
         "Managed end-to-end delivery from scoping and implementation to post-launch support"
       ],
-      skills: ["WordPress", "WooCommerce", "PHP", "JavaScript", "CSS3", "Client Management", "React"],
+      skills: ["React", "Angular", "Laravel", "PHP", "WordPress", "ISTQB", "JavaScript"],
       icon: TrendingUp
     },
     {
       title: "WordPress Instructor",
       company: "ITI (Information Technology Institute)",
       period: "July 2025 - Present",
-      location: "New Capital, Egypt",
+      location: "Remote",
       type: "Part-time",
       achievements: [
         "Taught WordPress development fundamentals through practical, project-based sessions",
@@ -60,28 +60,31 @@ export const ExperienceSection = () => {
     setExpandedCard(expandedCard === index ? null : index);
   };
 
-  const stats = [
+  const highlights = [
     {
-      label: 'Projects Delivered',
-      value: '50+',
-      description: 'Web builds delivered from concept to launch.',
-      progress: 88,
-      icon: Briefcase
+      label: 'Production Projects',
+      value: '100+',
+      headline: 'Real products shipped to production',
+      description: 'E-commerce stores, LMS platforms, corporate sites, and booking systems — scoped, built, and launched for paying clients.',
+      tags: ['React', 'Laravel', 'E-commerce', 'LMS', 'WordPress'],
+      icon: Briefcase,
     },
     {
-      label: 'Client Satisfaction',
-      value: '98%',
-      description: 'Consistently positive client feedback and outcomes.',
-      progress: 98,
-      icon: TrendingUp
+      label: 'ISTQB CTFL4',
+      value: 'Certified',
+      headline: 'ISTQB® Foundation Level v4',
+      description: 'Formal testing knowledge behind structured QA — test cases, defect reporting, and quality checks before every handoff.',
+      tags: ['Manual QA', 'Test Design', 'ISTQB v4'],
+      icon: Award,
     },
     {
-      label: 'Delivery Reliability',
-      value: '100%',
-      description: 'Projects completed with strong ownership and consistency.',
-      progress: 100,
-      icon: Star
-    }
+      label: 'Full Stack Scope',
+      value: 'End-to-End',
+      headline: 'React & Angular → Laravel & PHP',
+      description: 'Owns the full delivery path — UI, APIs, databases, and deployments.',
+      tags: ['React', 'Angular', 'Laravel', 'PHP'],
+      icon: Layers,
+    },
   ];
 
   return (
@@ -111,45 +114,45 @@ export const ExperienceSection = () => {
             Experience That Drives Results
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            A focused timeline of software development work across product delivery, freelance execution, and technical mentoring.
+            Full stack delivery, certified QA, and a track record of shipping products that solve real business problems.
           </p>
         </div>
 
         <div className="mb-8 sm:mb-10">
+          <div className="flex items-center gap-2 mb-3 px-1">
+            <Code size={14} className="text-accent" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Impact at a glance</span>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-            {stats.map((stat, index) => {
-              const StatIcon = stat.icon;
+            {highlights.map((item, index) => {
+              const ItemIcon = item.icon;
               const isActive = activeStat === index;
 
               return (
                 <button
-                  key={stat.label}
+                  key={item.label}
                   type="button"
                   onClick={() => setActiveStat(index)}
                   onMouseEnter={() => setActiveStat(index)}
-                  className={`relative text-left rounded-xl border p-4 transition-all duration-300 overflow-hidden ${
+                  className={`relative text-left rounded-xl border p-4 sm:p-5 transition-all duration-300 overflow-hidden group ${
                     isActive
-                      ? 'border-accent/50 bg-accent/10 shadow-lg shadow-accent/10 -translate-y-0.5'
+                      ? 'border-accent/50 bg-gradient-to-br from-accent/12 to-accent/5 shadow-lg shadow-accent/10 -translate-y-0.5'
                       : 'border-border/60 bg-background/60 backdrop-blur-sm hover:border-accent/30 hover:bg-background/80'
                   }`}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none" />
-                  <div className="relative z-10 flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
-                      <p className="text-2xl font-bold text-primary mt-1">{stat.value}</p>
-                    </div>
-                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${isActive ? 'bg-accent/20' : 'bg-accent/10'}`}>
-                      <StatIcon size={16} className="text-accent" />
-                    </div>
-                  </div>
+                  <div className={`absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-accent/40 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`} />
 
-                  <div className="relative z-10 mt-4">
-                    <div className="h-1.5 rounded-full bg-accent/10 overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-accent to-accent/70 transition-all duration-700 ease-out"
-                        style={{ width: `${isActive ? stat.progress : Math.max(20, stat.progress - 25)}%` }}
-                      />
+                  <div className="relative z-10 flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground font-medium">{item.label}</p>
+                      <p className="text-xl sm:text-2xl font-bold text-primary mt-1 leading-tight">{item.value}</p>
+                      <p className={`text-xs text-accent/80 mt-1.5 font-medium transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 sm:opacity-60'}`}>
+                        {item.headline}
+                      </p>
+                    </div>
+                    <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${isActive ? 'bg-accent/25 scale-105' : 'bg-accent/10 group-hover:bg-accent/15'}`}>
+                      <ItemIcon size={17} className="text-accent" />
                     </div>
                   </div>
                 </button>
@@ -157,8 +160,23 @@ export const ExperienceSection = () => {
             })}
           </div>
 
-          <div className="mt-3 rounded-xl border border-accent/20 bg-accent/5 px-4 py-3 text-sm text-muted-foreground">
-            {stats[activeStat].description}
+          <div className="mt-3 rounded-xl border border-accent/20 bg-gradient-to-br from-accent/8 via-background/80 to-background/60 backdrop-blur-sm px-4 sm:px-5 py-4 transition-all duration-300">
+            <p className="text-sm font-semibold text-primary mb-1.5">
+              {highlights[activeStat].headline}
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+              {highlights[activeStat].description}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {highlights[activeStat].tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/10 text-accent border border-accent/20"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 

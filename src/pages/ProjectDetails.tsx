@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { CustomCursor } from '@/components/Portfolio/CustomCursor';
-import { Navbar } from '@/components/Portfolio/Navbar';
 import { Footer } from '@/components/Portfolio/Footer';
 import { BackToTop } from '@/components/Portfolio/BackToTop';
 import { WhatsAppButton } from '@/components/Portfolio/WhatsAppButton';
@@ -18,7 +17,6 @@ import {
 import {
   Calendar,
   Users,
-  Star,
   Globe,
   Github,
   ArrowLeft,
@@ -36,6 +34,7 @@ import {
   ArrowRight,
   Link2,
   Plus,
+  LayoutList,
   X as CloseIcon,
 } from 'lucide-react';
 
@@ -87,7 +86,6 @@ const ProjectDetails = () => {
     () => (projectsData.projects as Project[]).find((item) => getProjectSlug(item) === slug),
     [slug]
   );
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomedAssetIndex, setZoomedAssetIndex] = useState<number | null>(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [activeSection, setActiveSection] = useState('objective');
@@ -96,7 +94,6 @@ const ProjectDetails = () => {
     return (
       <>
         <CustomCursor />
-        <Navbar />
         <main className="pt-28 pb-16 px-4">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-3xl font-bold text-primary mb-4">Project Not Found</h1>
@@ -116,9 +113,12 @@ const ProjectDetails = () => {
   const isWebsiteProject =
     project.category === 'wordpress' ||
     Boolean(project.liveUrl && project.liveUrl !== '#' && project.liveUrl.trim() !== '');
+  const heroImage = project.images[0];
+  const pageGallery = (project.assets ?? []).filter(
+    (asset) => asset.type === 'image' && asset.url !== heroImage
+  );
+  const hasPageGallery = pageGallery.length > 0;
   const websiteStructure = inferWebsiteStructure(project);
-  const highlightedPages = (project.assets || []).filter((asset) => asset.type === 'image').slice(0, 6);
-  const galleryImages = highlightedPages.length > 0 ? highlightedPages : project.images.map((url, idx) => ({ name: `Preview ${idx + 1}`, url }));
   const processSteps = websiteStructure.map((section, idx) => ({
     id: idx,
     indexLabel: `1.${idx + 1}`,
@@ -131,24 +131,28 @@ const ProjectDetails = () => {
     ],
   }));
   const sectionAnchors = [
-    { id: 'objective', label: 'Objective' },
-    { id: 'challenge', label: 'Challenge' },
-    { id: 'thinking', label: 'Thinking' },
-    { id: 'process', label: 'Process' },
-    { id: 'results', label: 'Results' },
+    { id: 'objective', label: 'Overview', icon: Target },
+    { id: 'features', label: 'Deliverables', icon: BadgeCheck },
+    { id: 'challenge', label: 'Challenge', icon: TriangleAlert },
+    { id: 'solutions', label: 'Solutions', icon: BrainCircuit },
+    ...(isWebsiteProject ? [{ id: 'process', label: 'Process', icon: Workflow }] : []),
+    ...(hasPageGallery ? [{ id: 'gallery', label: 'Screenshots', icon: ZoomIn }] : []),
+    { id: 'results', label: 'Results', icon: Sparkles },
   ];
+  const activeSectionIndex = Math.max(
+    0,
+    sectionAnchors.findIndex((section) => section.id === activeSection)
+  );
+  const sectionProgress = ((activeSectionIndex + 1) / sectionAnchors.length) * 100;
   const serviceCategory = inferServiceCategory(project);
   const relatedProjects = (projectsData.projects as Project[])
     .filter((item) => item.id !== project.id)
     .filter((item) => inferServiceCategory(item) === serviceCategory || item.category === project.category)
     .slice(0, 3);
-  const resultHighlights = [
-    { title: 'Platform Outcome', text: project.solutions[0] || 'Delivered a scalable, conversion-focused digital experience.' },
-    { title: 'Improved Product Discovery', text: project.features[0] || 'Users find relevant options faster with clearer information architecture.' },
-    { title: 'Faster Decision Making', text: project.features[1] || 'Structured flow reduces friction and simplifies user journeys.' },
-    { title: 'Optimized Frontend Performance', text: project.solutions[1] || 'Performance-aware implementation keeps experience smooth.' },
-    { title: 'Analytics-Driven Optimization', text: project.solutions[2] || 'Insights support ongoing UX and conversion improvements.' },
-  ];
+  const resultHighlights = project.solutions.slice(0, 4).map((text, idx) => ({
+    title: ['Primary Outcome', 'Technical Approach', 'User Experience', 'Business Impact'][idx] || 'Outcome',
+    text,
+  }));
 
   useEffect(() => {
     if (zoomedAssetIndex === null) {
@@ -158,8 +162,8 @@ const ProjectDetails = () => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setZoomedAssetIndex(null);
-      if (e.key === 'ArrowRight') setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % galleryImages.length));
-      if (e.key === 'ArrowLeft') setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length));
+      if (e.key === 'ArrowRight') setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % pageGallery.length));
+      if (e.key === 'ArrowLeft') setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + pageGallery.length) % pageGallery.length));
     };
 
     document.body.style.overflow = 'hidden';
@@ -168,7 +172,7 @@ const ProjectDetails = () => {
       document.body.style.overflow = 'unset';
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [zoomedAssetIndex, galleryImages.length]);
+  }, [zoomedAssetIndex, pageGallery.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -189,7 +193,7 @@ const ProjectDetails = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [slug, sectionAnchors.length, hasPageGallery, isWebsiteProject]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -201,7 +205,6 @@ const ProjectDetails = () => {
   return (
     <>
       <CustomCursor />
-      <Navbar />
       <main className="pt-28 pb-16 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-full blur-3xl animate-pulse" />
@@ -215,78 +218,93 @@ const ProjectDetails = () => {
             </Link>
           </Button>
 
-          <div className="relative overflow-hidden bg-gradient-to-r from-accent/10 via-accent/5 to-transparent rounded-3xl p-6 md:p-8 border border-accent/25 mb-8 backdrop-blur-sm shadow-xl shadow-accent/10">
-            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'linear-gradient(hsl(var(--accent)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent)) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-              <div className="lg:col-span-8">
-                <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <span className="px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg">
+          <div className="relative overflow-hidden bg-gradient-to-br from-accent/12 via-background/80 to-accent/5 rounded-3xl border border-accent/20 mb-8 backdrop-blur-sm shadow-xl shadow-accent/10">
+            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(hsl(var(--accent)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent)) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center order-2 lg:order-1">
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="px-3 py-1 bg-accent text-white text-xs font-medium rounded-lg">
                     {getCategoryLabel(project.category)}
                   </span>
-                  {project.company && (
-                    <span className="px-3 py-1.5 bg-black/60 text-white text-xs font-medium rounded-lg">
-                      While at {project.company}
-                    </span>
-                  )}
                   {project.featured && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-medium rounded-lg">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-lg">
                       <Sparkles size={12} />
-                      Featured Case Study
+                      Featured
                     </span>
                   )}
-                  <span className="px-3 py-1.5 bg-background/80 text-primary text-xs font-medium rounded-lg border border-border/40">
-                    {getServiceCategoryLabel(serviceCategory)}
+                  {project.company && (
+                    <span className="px-3 py-1 bg-background/80 text-primary text-xs font-medium rounded-lg border border-border/40">
+                      {project.company}
+                    </span>
+                  )}
+                </div>
+
+                <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary mb-3 leading-tight">
+                  {project.title}
+                </h1>
+
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mb-5">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.technologies.slice(0, 5).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/10 text-accent border border-accent/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 5 && (
+                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-muted/30 text-muted-foreground border border-border/40">
+                      +{project.technologies.length - 5}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar size={14} className="text-accent" />
+                    {project.duration}
                   </span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
+                  <span className="inline-flex items-center gap-1.5">
+                    <Users size={14} className="text-accent" />
+                    {project.teamSize}
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
+                  <span>{getServiceCategoryLabel(serviceCategory)}</span>
                 </div>
-                <h1 className="relative z-10 text-3xl md:text-5xl font-bold text-primary mb-4 leading-tight">{project.title}</h1>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-4xl">{project.longDescription}</p>
-              </div>
 
-              <div className="lg:col-span-4">
-                <div className="rounded-2xl border border-border/50 bg-background/85 backdrop-blur-sm p-4 shadow-lg">
-                  <div className="rounded-xl overflow-hidden border border-border/40 bg-background/70">
-                    <img
-                      src={project.images[0]}
-                      alt={project.title}
-                      className="w-full h-40 object-cover"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <p className="text-sm font-semibold text-primary line-clamp-2">{project.title}</p>
-                    <div className="mt-2 space-y-1.5 text-xs text-muted-foreground">
-                      <p className="flex items-center justify-between"><span>Live URL</span><span className="font-medium text-primary/90">{hasValidLiveUrl ? 'Available' : 'Private'}</span></p>
-                      <p className="flex items-center justify-between"><span>Industry</span><span className="font-medium text-primary/90">{getServiceCategoryLabel(serviceCategory)}</span></p>
-                      <p className="flex items-center justify-between"><span>Scope</span><span className="font-medium text-primary/90">{project.teamSize} Team</span></p>
-                    </div>
-                    {hasValidLiveUrl && (
-                      <Button asChild variant="cta" size="sm" className="w-full mt-3">
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          Visit Live Site
-                          <ExternalLink size={13} className="ml-2" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
+                <div className="flex flex-wrap gap-3">
+                  {hasValidLiveUrl && (
+                    <Button asChild variant="cta" size="sm">
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        Visit Live Site
+                        <ExternalLink size={14} className="ml-2" />
+                      </a>
+                    </Button>
+                  )}
+                  {hasValidGithubUrl && (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github size={14} className="mr-2" />
+                        Source Code
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
-            </div>
 
-            <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="rounded-xl border border-border/40 bg-background/70 px-4 py-3">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Duration</p>
-                <p className="text-sm font-semibold text-primary mt-1">{project.duration}</p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-background/70 px-4 py-3">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Team Size</p>
-                <p className="text-sm font-semibold text-primary mt-1">{project.teamSize}</p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-background/70 px-4 py-3">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Project Rating</p>
-                <p className="text-sm font-semibold text-primary mt-1">{project.rating}</p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-background/70 px-4 py-3">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Views</p>
-                <p className="text-sm font-semibold text-primary mt-1">{project.views.toLocaleString()}</p>
+              <div className="relative order-1 lg:order-2 min-h-[220px] sm:min-h-[280px] lg:min-h-full">
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-background/20 via-transparent to-transparent z-10 pointer-events-none" />
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="w-full h-full min-h-[220px] sm:min-h-[280px] lg:min-h-[360px] object-cover object-top"
+                />
               </div>
             </div>
           </div>
@@ -297,33 +315,28 @@ const ProjectDetails = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-transparent pointer-events-none" />
                 <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
                   <Target size={18} className="text-accent" />
-                  Objective
+                  Overview
                 </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{project.longDescription}</p>
               </section>
 
-              <div className="rounded-2xl overflow-hidden border border-border/30 bg-background/80 backdrop-blur-sm shadow-lg">
-                <img
-                  src={project.images[currentImageIndex]}
-                  alt={`${project.title} - ${currentImageIndex + 1}`}
-                  className="w-full h-full object-contain bg-black/5"
-                />
-              </div>
-              {project.images.length > 1 && (
-                <div className="flex gap-3 flex-wrap">
-                  {project.images.map((img, idx) => (
-                    <button
-                      key={img}
-                      onClick={() => setCurrentImageIndex(idx)}
-                      className={`w-20 h-14 rounded-md overflow-hidden border ${
-                        idx === currentImageIndex ? 'border-accent' : 'border-border/40'
-                      }`}
+              <section id="features" className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
+                <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                  <BadgeCheck size={18} className="text-accent" />
+                  Key Deliverables
+                </h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {project.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-2.5 text-sm text-muted-foreground rounded-lg border border-border/40 bg-background/90 px-3 py-2.5"
                     >
-                      <img src={img} alt={`${project.title} ${idx + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform" />
-                    </button>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span>{feature}</span>
+                    </li>
                   ))}
-                </div>
-              )}
+                </ul>
+              </section>
 
               <section id="challenge" className="relative overflow-hidden bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
@@ -340,28 +353,24 @@ const ProjectDetails = () => {
                 </div>
               </section>
 
-              <section id="thinking" className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md relative overflow-hidden">
+              <section id="solutions" className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
-                <h2 className="text-xl font-bold text-primary mb-5 flex items-center gap-2">
+                <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
                   <BrainCircuit size={18} className="text-accent" />
-                  Thinking
+                  How It Was Solved
                 </h2>
-                <p className="text-sm text-muted-foreground mb-5">
-                  We approach this case with structured UX thinking: clarity first, hierarchy second, conversion always visible.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  <div className="rounded-xl border border-border/50 bg-background/85 p-3 hover:border-accent/30 transition-all">
-                    <p className="text-xs font-semibold text-primary mb-1">Business Goal</p>
-                    <p className="text-xs text-muted-foreground">Position the brand as a trusted technical partner.</p>
-                  </div>
-                  <div className="rounded-xl border border-border/50 bg-background/85 p-3 hover:border-accent/30 transition-all">
-                    <p className="text-xs font-semibold text-primary mb-1">User Need</p>
-                    <p className="text-xs text-muted-foreground">Understand services quickly and find relevant proof.</p>
-                  </div>
-                  <div className="rounded-xl border border-border/50 bg-background/85 p-3 hover:border-accent/30 transition-all">
-                    <p className="text-xs font-semibold text-primary mb-1">Conversion</p>
-                    <p className="text-xs text-muted-foreground">Drive consultation/contact with clear next steps.</p>
-                  </div>
+                <div className="space-y-3">
+                  {project.solutions.map((solution, idx) => (
+                    <div
+                      key={solution}
+                      className="flex gap-3 rounded-xl border border-border/50 bg-background/90 p-4 hover:border-accent/30 transition-colors"
+                    >
+                      <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-accent/15 text-accent text-xs font-bold flex items-center justify-center border border-accent/20">
+                        {idx + 1}
+                      </span>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{solution}</p>
+                    </div>
+                  ))}
                 </div>
               </section>
 
@@ -432,24 +441,52 @@ const ProjectDetails = () => {
                 </section>
               )}
 
+              {hasPageGallery && (
+                <section id="gallery" className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
+                  <h2 className="text-xl font-bold text-primary mb-2 flex items-center gap-2">
+                    <ZoomIn size={18} className="text-accent" />
+                    Page Screenshots
+                  </h2>
+                  <p className="text-xs text-muted-foreground mb-5">Click any screenshot to view fullscreen.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {pageGallery.map((asset, idx) => (
+                      <button
+                        key={`${asset.name}-${idx}`}
+                        type="button"
+                        onClick={() => setZoomedAssetIndex(idx)}
+                        className="group rounded-xl overflow-hidden border border-border/40 bg-background/60 hover:border-accent/40 transition-all text-left"
+                      >
+                        <div className="aspect-[16/10] bg-muted/20 relative overflow-hidden">
+                          <img
+                            src={asset.url}
+                            alt={asset.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ZoomIn size={14} />
+                          </div>
+                        </div>
+                        <div className="p-3 border-t border-border/30">
+                          <p className="text-sm font-medium text-primary">{asset.name}</p>
+                          {asset.description && (
+                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{asset.description}</p>
+                          )}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <section id="results" className="relative overflow-hidden bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-transparent pointer-events-none" />
                 <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
                   <BadgeCheck size={18} className="text-accent" />
-                  Results & Delivery
+                  Outcomes
                 </h2>
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3 leading-tight">
-                  A Scalable Project Experience That Supports Real Growth
-                </h3>
-                <p className="text-sm text-muted-foreground mb-5">
-                  Outcomes focus on usability, speed, and measurable business impact for client-facing goals.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="md:col-span-2 rounded-xl border border-border/50 bg-background/90 p-4">
-                    <p className="text-sm font-semibold text-primary mb-1">{resultHighlights[0].title}</p>
-                    <p className="text-sm text-muted-foreground">{resultHighlights[0].text}</p>
-                  </div>
-                  {resultHighlights.slice(1).map((result) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {resultHighlights.map((result) => (
                     <div key={result.title} className="rounded-xl border border-border/50 bg-background/90 p-4 hover:border-accent/30 transition-colors">
                       <p className="text-sm font-semibold text-primary mb-1">{result.title}</p>
                       <p className="text-sm text-muted-foreground">{result.text}</p>
@@ -483,33 +520,97 @@ const ProjectDetails = () => {
             </div>
 
             <aside className="space-y-6 lg:sticky lg:top-24 h-fit">
-              <section className="bg-background/85 border border-border/40 rounded-2xl p-4 backdrop-blur-sm shadow-md">
-                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Case Sections</h2>
-                <nav className="space-y-1.5">
-                  {sectionAnchors.map((section, idx) => (
-                    <button
-                      key={section.id}
-                      type="button"
-                      onClick={() => scrollToSection(section.id)}
-                      className={`w-full flex items-center justify-between text-sm rounded-lg px-2.5 py-2 border transition-colors ${
-                        activeSection === section.id
-                          ? 'border-accent/40 bg-accent/10'
-                          : 'border-transparent hover:border-accent/30 hover:bg-accent/5'
-                      }`}
-                    >
-                      <span className="text-muted-foreground">0{idx + 1}</span>
-                      <span className="text-primary font-medium">{section.label}</span>
-                    </button>
-                  ))}
-                </nav>
+              <section className="relative overflow-hidden rounded-2xl border border-white/30 dark:border-white/10 bg-white/55 dark:bg-background/40 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_-8px_hsl(var(--accent)/0.15)]">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/15 to-transparent dark:from-white/8 dark:via-white/3 dark:to-transparent pointer-events-none" />
+                <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent pointer-events-none" />
+
+                <div className="relative p-4 sm:p-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      <LayoutList size={14} className="text-accent" />
+                      On this page
+                    </h2>
+                    <span className="text-[10px] font-semibold text-accent bg-accent/10 border border-accent/20 px-2 py-0.5 rounded-full">
+                      {String(activeSectionIndex + 1).padStart(2, '0')} / {String(sectionAnchors.length).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  <div className="h-1 rounded-full bg-accent/10 mb-5 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-accent/70 via-accent to-accent/80 transition-all duration-500 ease-out"
+                      style={{ width: `${sectionProgress}%` }}
+                    />
+                  </div>
+
+                  <nav className="relative space-y-1">
+                    <div className="absolute left-[1.125rem] top-3 bottom-3 w-px bg-gradient-to-b from-accent/30 via-border/60 to-transparent pointer-events-none" />
+
+                    {sectionAnchors.map((section, idx) => {
+                      const Icon = section.icon;
+                      const isActive = activeSection === section.id;
+                      const isPast = idx < activeSectionIndex;
+
+                      return (
+                        <button
+                          key={section.id}
+                          type="button"
+                          onClick={() => scrollToSection(section.id)}
+                          className={`group relative w-full flex items-center gap-3 rounded-xl px-2 py-2.5 text-left transition-all duration-300 ${
+                            isActive
+                              ? 'bg-accent/12 border border-accent/30 shadow-sm shadow-accent/10'
+                              : 'border border-transparent hover:bg-white/50 dark:hover:bg-white/5 hover:border-white/40'
+                          }`}
+                        >
+                          <span
+                            className={`relative z-10 flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-300 ${
+                              isActive
+                                ? 'bg-accent text-white border-accent shadow-md shadow-accent/25 scale-105'
+                                : isPast
+                                  ? 'bg-accent/10 text-accent border-accent/25'
+                                  : 'bg-background/80 text-muted-foreground border-border/40 group-hover:border-accent/30 group-hover:text-accent'
+                            }`}
+                          >
+                            <Icon size={15} />
+                          </span>
+
+                          <span className="flex-1 min-w-0">
+                            <span
+                              className={`block text-[10px] uppercase tracking-wider mb-0.5 ${
+                                isActive ? 'text-accent' : 'text-muted-foreground/70'
+                              }`}
+                            >
+                              Step {String(idx + 1).padStart(2, '0')}
+                            </span>
+                            <span
+                              className={`block text-sm font-semibold truncate ${
+                                isActive ? 'text-primary' : 'text-foreground/80 group-hover:text-primary'
+                              }`}
+                            >
+                              {section.label}
+                            </span>
+                          </span>
+
+                          <ChevronRight
+                            size={14}
+                            className={`flex-shrink-0 transition-all duration-300 ${
+                              isActive
+                                ? 'text-accent opacity-100 translate-x-0'
+                                : 'text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0'
+                            }`}
+                          />
+                        </button>
+                      );
+                    })}
+                  </nav>
+                </div>
               </section>
 
               <section className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
-                <h2 className="text-lg font-bold text-primary mb-4">Project Stats</h2>
+                <h2 className="text-lg font-bold text-primary mb-4">Project Info</h2>
                 <div className="space-y-3 text-sm">
                   <p className="flex items-center gap-2 text-muted-foreground"><Calendar size={14} className="text-accent" /> {project.duration}</p>
                   <p className="flex items-center gap-2 text-muted-foreground"><Users size={14} className="text-accent" /> {project.teamSize}</p>
-                  <p className="flex items-center gap-2 text-muted-foreground"><Star size={14} className="text-yellow-500 fill-yellow-500" /> {project.rating}</p>
+                  <p className="flex items-center gap-2 text-muted-foreground"><Globe size={14} className="text-accent" /> {getServiceCategoryLabel(serviceCategory)}</p>
                 </div>
               </section>
 
@@ -573,35 +674,6 @@ const ProjectDetails = () => {
                 </Button>
               </section>
 
-              {isWebsiteProject && galleryImages.length > 0 && (
-                <section className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
-                  <h2 className="text-lg font-bold text-primary mb-4">Created Pages Gallery</h2>
-                  <p className="text-xs text-muted-foreground mb-4">Click any image to open fullscreen gallery and zoom long page screenshots.</p>
-                  <div className="grid grid-cols-2 gap-3">
-                    {galleryImages.map((asset, idx) => (
-                      <button
-                        key={`${asset.name}-${idx}`}
-                        onClick={() => setZoomedAssetIndex(idx)}
-                        className="group rounded-xl overflow-hidden border border-border/40 bg-background/60 hover:border-accent/40 transition-all text-left"
-                      >
-                        <div className="h-24 bg-muted/20 relative">
-                          <img
-                            src={asset.url}
-                            alt={asset.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <ZoomIn size={13} />
-                          </div>
-                        </div>
-                        <div className="p-2.5">
-                          <p className="text-xs font-medium text-primary truncate">{asset.name}</p>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </section>
-              )}
             </aside>
           </div>
         </div>
@@ -610,7 +682,7 @@ const ProjectDetails = () => {
         <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setZoomedAssetIndex(null)}>
           <div className="relative w-full max-w-6xl h-[85vh] bg-background/10 border border-white/10 rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <div className="absolute top-3 left-3 z-10 px-3 py-1.5 rounded-full bg-black/50 text-white text-xs">
-              {zoomedAssetIndex + 1} / {galleryImages.length}
+              {zoomedAssetIndex + 1} / {pageGallery.length}
             </div>
             <button
               onClick={() => setZoomedAssetIndex(null)}
@@ -618,16 +690,16 @@ const ProjectDetails = () => {
             >
               <X size={16} />
             </button>
-            {galleryImages.length > 1 && (
+            {pageGallery.length > 1 && (
               <>
                 <button
-                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length))}
+                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + pageGallery.length) % pageGallery.length))}
                   className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
                 >
                   <ChevronLeft size={18} />
                 </button>
                 <button
-                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % galleryImages.length))}
+                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % pageGallery.length))}
                   className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
                 >
                   <ChevronRight size={18} />
@@ -636,8 +708,8 @@ const ProjectDetails = () => {
             )}
             <div className="w-full h-full overflow-auto">
               <img
-                src={galleryImages[zoomedAssetIndex].url}
-                alt={galleryImages[zoomedAssetIndex].name}
+                src={pageGallery[zoomedAssetIndex].url}
+                alt={pageGallery[zoomedAssetIndex].name}
                 className="mx-auto max-w-none min-w-full object-contain"
               />
             </div>
