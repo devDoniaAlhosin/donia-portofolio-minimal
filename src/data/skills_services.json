@@ -19,13 +19,13 @@
     {
       "icon": "Globe",
       "title": "WordPress Solutions",
-      "description": "Custom themes, plugins, and CMS setup tailored for easy content management.",
-      "subtitle": "Themes, Plugins, CMS",
+      "description": "Theme & plugin customization first — built natively with React and PHP for flexible, maintainable WordPress products.",
+      "subtitle": "Theme & Plugin Customization · React + PHP",
       "category": "WordPress",
       "features": [
-        "Custom themes",
-        "Plugin integration",
-        "Easy CMS editing"
+        "Custom theme development",
+        "Plugin customization",
+        "Native React + PHP"
       ]
     },
     {
@@ -50,172 +50,6 @@
         "Core Web Vitals",
         "Image optimization",
         "RankMath configuration"
-      ]
-    }
-  ],
-  "skills": [
-    {
-      "icon": "Zap",
-      "title": "Automation Testing",
-      "description": "Test automation with Java, OOP, Selenium, and TestNG",
-      "level": 90,
-      "category": "Quality",
-      "tags": [
-        "Selenium",
-        "TestNG",
-        "Java",
-        "Maven",
-        "ISTQB"
-      ]
-    },
-    {
-      "icon": "Code",
-      "title": "WordPress Development",
-      "description": "Custom themes, plugins, and full website development with advanced customization",
-      "level": 95,
-      "category": "Development",
-      "tags": [
-        "WordPress",
-        "PHP",
-        "Themes",
-        "Plugins"
-      ]
-    },
-    {
-      "icon": "Globe",
-      "title": "Frontend Development",
-      "description": "React, Angular, JavaScript, HTML5, CSS3, and SCSS",
-      "level": 90,
-      "category": "Development",
-      "tags": [
-        "React",
-        "Angular",
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "SCSS"
-      ]
-    },
-    {
-      "icon": "TestTubes",
-      "title": "Testing & QA",
-      "description": "Unit, integration, and E2E testing to ensure stability and confidence in releases",
-      "level": 88,
-      "category": "Quality",
-      "tags": [
-        "Jest",
-        "React Testing Library",
-        "Cypress",
-        "Vitest"
-      ]
-    },
-    {
-      "icon": "Database",
-      "title": "Backend Integration",
-      "description": "Laravel, PHP, Node.js, MySQL, MongoDB, and REST APIs",
-      "level": 88,
-      "category": "Development",
-      "tags": [
-        "PHP",
-        "Laravel",
-        "Node.js",
-        "MySQL",
-        "MongoDB",
-        "APIs",
-        "REST"
-      ]
-    },
-    {
-      "icon": "Layers",
-      "title": "Modern Frameworks",
-      "description": "React, Angular, Tailwind CSS, and modern development tools for scalable applications",
-      "level": 87,
-      "category": "Development",
-      "tags": [
-        "React",
-        "Angular",
-        "Tailwind",
-        "TypeScript",
-        "Vite"
-      ]
-    },
-    {
-      "icon": "GitBranch",
-      "title": "Version Control",
-      "description": "Git workflow, collaborative development, and code management best practices",
-      "level": 89,
-      "category": "Tools",
-      "tags": [
-        "Git",
-        "GitHub",
-        "Collaboration",
-        "Workflow"
-      ]
-    },
-    {
-      "icon": "Figma",
-      "title": "Design Tools",
-      "description": "Professional design tools for wireframing, prototyping, and visual design",
-      "level": 83,
-      "category": "Design",
-      "tags": [
-        "Figma",
-        "Adobe",
-        "Wireframing",
-        "Prototyping"
-      ]
-    },
-    {
-      "icon": "Terminal",
-      "title": "Development Tools",
-      "description": "Modern development environment setup and optimization for productivity",
-      "level": 86,
-      "category": "Tools",
-      "tags": [
-        "VS Code",
-        "Terminal",
-        "NPM",
-        "DevTools"
-      ]
-    },
-    {
-      "icon": "Server",
-      "title": "Performance Optimization",
-      "description": "Website speed optimization, caching strategies, and performance monitoring",
-      "level": 84,
-      "category": "Development",
-      "tags": [
-        "Caching",
-        "CDN",
-        "Optimization",
-        "Monitoring"
-      ]
-    },
-    {
-      "icon": "Cpu",
-      "title": "Technical Architecture",
-      "description": "Scalable application architecture, OOP principles, MVC patterns, and system design",
-      "level": 82,
-      "category": "Development",
-      "tags": [
-        "OOP",
-        "Java",
-        "Architecture",
-        "MVC",
-        "Design Patterns"
-      ]
-    },
-    {
-      "icon": "Shield",
-      "title": "Security Best Practices",
-      "description": "OWASP-minded development, secure data handling, and dependency hygiene",
-      "level": 82,
-      "category": "Development",
-      "tags": [
-        "OWASP",
-        "Encryption",
-        "Auth",
-        "Dependency Audits"
       ]
     }
   ]

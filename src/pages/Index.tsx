@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
-import { CustomCursor } from '@/components/Portfolio/CustomCursor';
 import { HeroSection } from '@/components/Portfolio/HeroSection';
 import { AboutSection } from '@/components/Portfolio/AboutSection';
-import { SkillsSection } from '@/components/Portfolio/SkillsSection';
 import { ExperienceSection } from '@/components/Portfolio/ExperienceSection';
 import { CoursesSection } from '@/components/Portfolio/CoursesSection';
 import { HonorsAwardsSection } from '@/components/Portfolio/HonorsAwardsSection';
@@ -18,53 +16,18 @@ const Index = () => {
     if (!hash) return;
 
     const timeout = setTimeout(() => {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
     }, 150);
 
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    // Add fade-in animation to elements
-    const observeElements = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate-fade-in');
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      // Observe fade-in-up elements
-      document.querySelectorAll('.fade-in-up').forEach((el) => {
-        observer.observe(el);
-      });
-
-      return () => observer.disconnect();
-    };
-
-    // Set a timeout to ensure DOM is ready
-    const timeout = setTimeout(observeElements, 100);
-    
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
   return (
     <>
-      <CustomCursor />
       <main>
         <HeroSection />
         <AboutSection />
         <ServicesSection />
-        <SkillsSection />
         <ExperienceSection />
         <CoursesSection />
         <HonorsAwardsSection />

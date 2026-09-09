@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { CustomCursor } from '@/components/Portfolio/CustomCursor';
 import { Footer } from '@/components/Portfolio/Footer';
 import { BackToTop } from '@/components/Portfolio/BackToTop';
 import { WhatsAppButton } from '@/components/Portfolio/WhatsAppButton';
@@ -93,7 +92,6 @@ const ProjectDetails = () => {
   if (!project) {
     return (
       <>
-        <CustomCursor />
         <main className="pt-28 pb-16 px-4">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-3xl font-bold text-primary mb-4">Project Not Found</h1>
@@ -204,7 +202,6 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <CustomCursor />
       <main className="pt-28 pb-16 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-full blur-3xl animate-pulse" />

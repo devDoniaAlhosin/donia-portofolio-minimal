@@ -3,6 +3,7 @@
   "title": "Full Stack Developer",
   "email": "doniaelhussien@gmail.com",
   "description": "Full stack developer — 100+ projects with React & Angular frontends, Laravel & PHP backends.",
+  "resumeUrl": "/assets/DoniaAlhosin_resume.pdf",
   "logo": {
     "initials": "DA",
     "fullName": "DONIA ALHOSIN"
@@ -29,8 +30,8 @@
   ],
   "navigation": [
     { "name": "About", "href": "#about" },
-    { "name": "Services", "href": "#services" },
     { "name": "Experience", "href": "#experience" },
-    { "name": "Projects", "href": "/projects" }
+    { "name": "Projects", "href": "/projects" },
+    { "name": "Contact", "href": "#contact" }
   ]
-} 
+}

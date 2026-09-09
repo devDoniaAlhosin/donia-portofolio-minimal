@@ -19,7 +19,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				poppins: ['Poppins', 'sans-serif'],
+				sans: ['ClashDisplay', 'ClashDisplay Fallback', 'sans-serif'],
+				display: ['ClashDisplay', 'ClashDisplay Fallback', 'sans-serif'],
+				poppins: ['ClashDisplay', 'ClashDisplay Fallback', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -77,9 +79,14 @@ export default {
 				}
 			},
 			borderRadius: {
+				none: '0',
+				sm: 'var(--radius)',
+				DEFAULT: 'var(--radius)',
+				md: 'var(--radius)',
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				xl: 'var(--radius)',
+				'2xl': 'var(--radius)',
+				'3xl': 'var(--radius)',
 			},
 			keyframes: {
 				'accordion-down': {

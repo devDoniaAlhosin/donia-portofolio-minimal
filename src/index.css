@@ -1,3 +1,5 @@
+@import "./fonts/clash-display.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,32 +49,19 @@
     --input: 220 20% 92%;
     --ring: 280 85% 45%;
 
-    /* Custom portfolio colors */
-    --hero-gradient-start: 220 25% 98%;
-    --hero-gradient-end: 210 30% 96%;
-    --section-background: 0 0% 99%;
-    --card-shadow: 225 15% 85%;
-    
     /* Success for WhatsApp */
     --success: 140 85% 45%;
     --success-foreground: 0 0% 100%;
 
-    --radius: 0.75rem;
+    --radius: 12px;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -121,25 +110,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-poppins;
-    cursor: none; /* Custom cursor */
-  }
-
-  /* Hide cursor on mobile devices */
-  @media (max-width: 768px) {
-    body {
-      cursor: none !important;
-    }
-    
-    * {
-      cursor: none !important;
-    }
-    
-    /* Hide custom cursor elements on mobile */
-    .cursor-dot,
-    .cursor-outline {
-      display: none !important;
-    }
+    @apply bg-background text-foreground font-sans;
   }
 
   /* Custom scrollbar */
@@ -162,301 +133,19 @@
 }
 
 @layer components {
-  /* Custom cursor styles */
-  .cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    background: hsl(var(--accent));
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-  }
-
-  .cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 32px;
-    height: 32px;
-    border: 2px solid hsl(var(--accent) / 0.3);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.15s ease;
-  }
-
-  .cursor-outline.hover {
-    transform: scale(1.5);
-    border-color: hsl(var(--accent) / 0.6);
-  }
-
-  /* Smooth link underline animation */
-  .nav-link {
-    position: relative;
-    transition: color 0.3s ease;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: hsl(var(--accent));
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  /* Card hover effects */
-  .portfolio-card {
-    transition: all 0.3s ease;
-  }
-
-  .portfolio-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px hsl(var(--card-shadow) / 0.15);
-  }
-
-  /* Gradient backgrounds */
-  .hero-gradient {
-    background: linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-end)));
-  }
-
-  /* Animation utilities */
-  .fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .fade-in-up.delay-1 { animation-delay: 0.2s; }
-  .fade-in-up.delay-2 { animation-delay: 0.4s; }
-  .fade-in-up.delay-3 { animation-delay: 0.6s; }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scrollDotFlow {
+  @keyframes techMarquee {
     0% {
-      opacity: 0;
-      transform: translate(-50%, 0) scale(0.6);
-    }
-    12% {
-      opacity: 1;
-      transform: translate(-50%, 0) scale(1);
-    }
-    65% {
-      opacity: 1;
-      transform: translate(-50%, 28px) scale(1);
-    }
-    88% {
-      opacity: 0;
-      transform: translate(-50%, 36px) scale(0.6);
+      transform: translateX(0);
     }
     100% {
-      opacity: 0;
-      transform: translate(-50%, 0) scale(0.6);
+      transform: translateX(-50%);
     }
   }
 
-  @keyframes scrollHintBob {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(5px);
-    }
+  .animate-tech-marquee {
+    animation: techMarquee 38s linear infinite;
   }
 
-  @keyframes scrollArrowPulse {
-    0%,
-    100% {
-      opacity: 0.35;
-      transform: translateY(0);
-    }
-    50% {
-      opacity: 0.9;
-      transform: translateY(4px);
-    }
-  }
-
-  @keyframes heroOrbFloat {
-    0%,
-    100% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(12px, -18px) scale(1.05);
-    }
-  }
-
-  @keyframes heroCardFloat {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .animate-scroll-dot-flow {
-    animation: scrollDotFlow 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-
-  .animate-scroll-hint-bob {
-    animation: scrollHintBob 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  }
-
-  .animate-scroll-arrow-pulse {
-    animation: scrollArrowPulse 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  }
-
-  .animate-hero-orb {
-    animation: heroOrbFloat 14s ease-in-out infinite;
-  }
-
-  .animate-hero-orb-delayed {
-    animation: heroOrbFloat 18s ease-in-out infinite;
-    animation-delay: -4s;
-  }
-
-  .animate-hero-card-float {
-    animation: heroCardFloat 6s ease-in-out infinite;
-  }
-
-  /* Modal animations */
-  @keyframes modalEntrance {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-
-  @keyframes modalExit {
-    0% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.8) translateY(20px);
-    }
-  }
-
-  @keyframes backdropFadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes backdropFadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .modal-entrance {
-    animation: modalEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .backdrop-entrance {
-    animation: backdropFadeIn 0.4s ease-out forwards;
-  }
-  .modal-element {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .modal-element:hover {
-    transform: translateY(-2px);
-  }
-
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;  
-    scrollbar-width: none; 
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
-  }
-
-  /* Smooth scrolling for mobile tabs */
-  .scroll-smooth {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-
-     /* Enhanced glassy effect for mobile tabs */
-   .backdrop-blur-xl {
-     backdrop-filter: blur(24px);
-     -webkit-backdrop-filter: blur(24px);
-   }
-
-   /* Smooth scale utilities for filter tabs */
-   .scale-102 {
-     transform: scale(1.02);
-   }
-
-   .scale-105 {
-     transform: scale(1.05);
-   }
-
-   /* Smooth filter toggle animations */
-   .filter-toggle-enter {
-     animation: filterToggleEnter 0.5s ease-out forwards;
-   }
-
-   .filter-toggle-exit {
-     animation: filterToggleExit 0.3s ease-out forwards;
-   }
-
-   @keyframes filterToggleEnter {
-     0% {
-       opacity: 0;
-       transform: scale(0.95) translateY(5px);
-     }
-     100% {
-       opacity: 1;
-       transform: scale(1) translateY(0);
-     }
-   }
-
-   @keyframes filterToggleExit {
-     0% {
-       opacity: 1;
-       transform: scale(1) translateY(0);
-     }
-     100% {
-       opacity: 0;
-       transform: scale(0.95) translateY(5px);
-     }
-   }
-
-  /* Mobile menu slide down animation */
   .animate-slideDown {
     animation: slideDown 0.4s ease-out forwards;
   }
@@ -505,7 +194,6 @@
     }
   }
 
-  /* Line clamp utilities for text truncation */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

@@ -4,10 +4,15 @@
       "name": "Software Testing Track",
       "provider": "Digital Egypt Pioneers Initiative",
       "period": "July 2025 - Dec 2025",
-      "duration": "Ongoing",
+      "year": "2025",
+      "duration": "6 months",
       "certificate": "Training Diploma",
       "certificateLink": "https://drive.google.com/file/d/1cusazHJ_GonhJZP42qmSDlGp2sqeaaAZ/view?usp=sharing",
-      "progress": 100,
+      "category": "Diploma",
+      "focus": "Manual QA · Selenium · ISTQB CTFL4",
+      "outcome": "ISTQB CTFL4 certified with hands-on Selenium automation.",
+      "featured": true,
+      "tags": ["ISTQB", "Selenium", "Manual QA", "Java"],
       "skillsGained": [
         "Manual testing across web applications (functional, regression, smoke, usability)",
         "Designing and executing detailed test cases, test scenarios, and checklists",
@@ -17,16 +22,21 @@
       ],
       "icon": "book",
       "level": "Advanced",
-      "rating": 4.9
+      "logo": "/assets/logo-depi.png"
     },
     {
       "name": "Full-Stack Development Diploma using PHP",
       "provider": "Information Technology Institute (ITI)",
       "period": "May 2024 - Oct 2024",
+      "year": "2024",
       "duration": "6 months",
       "certificate": "Professional Diploma",
       "certificateLink": "https://drive.google.com/file/d/1vID9Vekukh26y2iCIKOvq46e1my6fGiR/view?usp=sharing",
-      "progress": 100,
+      "category": "Diploma",
+      "focus": "Laravel · Angular · Node.js · SQL",
+      "outcome": "End-to-end full stack delivery with Laravel and Angular.",
+      "featured": false,
+      "tags": ["Laravel", "Angular", "PHP", "Node.js", "SQL"],
       "skillsGained": [
         "PHP backend development with Laravel framework",
         "Modern JavaScript for dynamic, interactive frontends",
@@ -37,15 +47,20 @@
       ],
       "icon": "zap",
       "level": "Advanced",
-      "rating": 4.8
+      "logo": "/assets/logo-iti.png"
     },
     {
       "name": "Maharath Courses",
       "provider": "Maharath Training Institute",
       "period": "May 2024",
+      "year": "2024",
       "duration": "1 month",
       "certificate": "Multiple Certifications",
-      "progress": 100,
+      "category": "Certification",
+      "focus": "Linux · SQL · Networking",
+      "outcome": "Foundational systems, database, and networking fluency.",
+      "featured": false,
+      "tags": ["Linux", "SQL", "Networking"],
       "skillsGained": [
         "Ubuntu Linux Essentials and system administration",
         "Database fundamentals and SQL",
@@ -53,17 +68,21 @@
         "System architecture and infrastructure"
       ],
       "icon": "award",
-      "level": "Intermediate",
-      "rating": 4.7
+      "level": "Intermediate"
     },
     {
       "name": "Front-End Web Development Diploma",
       "provider": "AMIT Learning",
       "period": "Oct 2023 - April 2024",
+      "year": "2023",
       "duration": "7 months",
       "certificate": "Professional Diploma",
       "certificateLink": "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
-      "progress": 100,
+      "category": "Diploma",
+      "focus": "HTML/CSS/JS · React · Responsive UI",
+      "outcome": "React-ready front-end with a 100% graded eCommerce project.",
+      "featured": false,
+      "tags": ["React", "JavaScript", "HTML5", "CSS3"],
       "skillsGained": [
         "HTML5, CSS3, and JavaScript fundamentals",
         "Responsive web design and modern front-end frameworks (including React)",
@@ -72,17 +91,21 @@
         "Front-end optimization and performance"
       ],
       "icon": "graduation",
-      "level": "Intermediate",
-      "rating": 4.9
+      "level": "Intermediate"
     },
     {
       "name": "CCNAv7",
       "provider": "National Telecommunication Institute (NTI)",
       "period": "Nov 2023 - Dec 2023",
+      "year": "2023",
       "duration": "2 months",
       "certificate": "Cisco Certification",
       "certificateLink": "https://drive.google.com/file/d/1nOD9uX_i044vqeh0L2TvxG6IMntBp001/view?usp=sharing",
-      "progress": 100,
+      "category": "Certification",
+      "focus": "Networking · Routing · Switching",
+      "outcome": "Cisco networking fundamentals for reliable infrastructure work.",
+      "featured": false,
+      "tags": ["Cisco", "Networking", "Routing"],
       "skillsGained": [
         "Cisco networking fundamentals and protocols",
         "Network configuration and troubleshooting",
@@ -91,15 +114,20 @@
       ],
       "icon": "star",
       "level": "Advanced",
-      "rating": 4.6
+      "logo": "/assets/logo-nti.png"
     },
     {
       "name": "Bachelor of Engineering (BSc)",
       "provider": "Egyptian Academy for Engineering and Advanced Technology",
       "period": "Oct 2018 - Jun 2023",
+      "year": "2018",
       "duration": "5 years",
       "certificate": "Bachelor's Degree",
-      "progress": 100,
+      "category": "Degree",
+      "focus": "Communications & Electronics · GPA 3.41",
+      "outcome": "Very Good with honor · Graduation project Excellent A+.",
+      "featured": true,
+      "tags": ["Engineering", "GPA 3.41", "Honors"],
       "skillsGained": [
         "Communications and Electronics Engineering",
         "Cumulative GPA: 3.4146 (Very Good with honor)",
@@ -107,8 +135,7 @@
         "Research methodology and technical writing"
       ],
       "icon": "graduation",
-      "level": "University Degree",
-      "rating": 4.8
+      "level": "University Degree"
     }
   ]
 }

@@ -2,70 +2,102 @@
   "experiences": [
     {
       "id": 1,
-      "title": "Web Developer",
-      "company": "BohemianGeeks Marketing Agency",
+      "title": "Full Stack Developer",
+      "company": "O2Nations",
       "period": "January 2025 - Present",
+      "start": "2025-01",
       "location": "Remote",
-      "type": "Full Time",
+      "type": "Full-time",
+      "summary": "Software house focused on AI solutions and end-to-end software products.",
+      "focus": "AI products · Full stack delivery",
       "achievements": [
-        "Developing custom WordPress websites and portfolios for diverse clients",
-        "Building and customizing e-commerce solutions using WooCommerce",
-        "Optimizing and customizing WordPress plugins for enhanced functionality",
-        "Creating responsive designs and implementing modern web technologies"
+        "Building AI-driven and software solutions across web platforms, automation, and client products",
+        "Shipping full stack features with React / Angular frontends and Laravel / PHP backends",
+        "Delivering premium product experiences for e-commerce, booking, CRM, and corporate platforms",
+        "Collaborating with product and design to turn briefs into production-ready systems"
       ],
-      "skills": [
-        "WordPress",
-        "WooCommerce",
-        "PHP",
-        "CSS3",
-        "JavaScript",
-        "Responsive Design"
-      ],
-      "icon": "Briefcase"
+      "skills": ["React", "Angular", "Laravel", "PHP", "MySQL", "AI Solutions"],
+      "icon": "Cpu",
+      "logo": "/assets/logo-o2nations.webp"
     },
     {
       "id": 2,
-      "title": "Web Developer",
-      "company": "Upwork Freelancer",
-      "period": "January 2025 - Present",
+      "title": "Full Stack Developer",
+      "company": "BohemianGeeks Marketing Agency",
+      "period": "January 2024 - January 2025",
+      "start": "2024-01",
+      "end": "2025-01",
       "location": "Remote",
-      "type": "Freelance",
+      "type": "Full-time",
+      "summary": "Agency delivery across marketing sites, e-commerce, and LMS products.",
+      "focus": "Client delivery · E-commerce & LMS",
       "achievements": [
-        "Delivering high-quality web development solutions to international clients",
-        "Managing multiple projects simultaneously with strict deadlines",
-        "Providing technical consultation and project planning services",
-        "Building long-term client relationships through excellent communication"
+        "Built full stack web products with React, Laravel, and WordPress aligned to client business goals",
+        "Delivered e-commerce and LMS platforms with custom checkout, enrollment, and content workflows",
+        "Improved plugin behavior and site performance through targeted optimizations",
+        "Implemented responsive interfaces with accessibility and UX best practices"
       ],
-      "skills": [
-        "WordPress",
-        "React",
-        "JavaScript",
-        "CSS3",
-        "HTML5",
-        "Git"
-      ],
-      "icon": "Globe"
+      "skills": ["React", "Laravel", "PHP", "WordPress", "WooCommerce", "MySQL"],
+      "icon": "Briefcase",
+      "logo": "/assets/bohemiangeeks.webp"
     },
     {
       "id": 3,
-      "title": "WordPress External Instructor",
-      "company": "ITI (Information Technology Institute)",
-      "period": "July 2025",
-      "location": "Egypt",
-      "type": "Part Time",
+      "title": "Laravel Developer",
+      "company": "Soliman Group",
+      "period": "2025 - Present",
+      "start": "2025-01",
+      "location": "Remote",
+      "type": "Part-time",
+      "summary": "Part-time Laravel development for software solutions and product features.",
+      "focus": "Backend · APIs · Software solutions",
       "achievements": [
-        "Teaching WordPress development fundamentals to students",
-        "Creating comprehensive course materials and practical exercises",
-        "Mentoring students in web development best practices",
-        "Conducting hands-on workshops and project-based learning"
+        "Developing and maintaining Laravel-based software solutions for business workflows",
+        "Building APIs, models, and backend features with clean, maintainable PHP",
+        "Supporting delivery of reliable software products alongside the core engineering team",
+        "Improving backend structure, performance, and feature completeness over iterative releases"
       ],
-      "skills": [
-        "WordPress",
-        "Teaching",
-        "Curriculum Development",
-        "Mentoring"
+      "skills": ["Laravel", "PHP", "MySQL", "REST APIs"],
+      "icon": "Code"
+    },
+    {
+      "id": 4,
+      "title": "Full Stack Developer",
+      "company": "Upwork Freelancer",
+      "period": "January 2025 - Present",
+      "start": "2025-01",
+      "location": "Remote",
+      "type": "Freelance",
+      "summary": "Independent full stack delivery for international clients.",
+      "focus": "Client projects · End-to-end ownership",
+      "achievements": [
+        "Delivered production-ready full stack solutions for international clients across multiple industries",
+        "Built React & Angular frontends with Laravel/PHP backends and custom WordPress implementations",
+        "Applied ISTQB testing principles to validate features before handoff",
+        "Managed end-to-end delivery from scoping and implementation to post-launch support"
       ],
-      "icon": "GraduationCap"
+      "skills": ["React", "Angular", "Laravel", "PHP", "WordPress", "ISTQB"],
+      "icon": "TrendingUp"
+    },
+    {
+      "id": 5,
+      "title": "WordPress Instructor",
+      "company": "ITI (Information Technology Institute)",
+      "period": "July 2025 - Present",
+      "start": "2025-07",
+      "location": "Remote",
+      "type": "Part-time",
+      "summary": "Teaching WordPress development through practical, project-based sessions.",
+      "focus": "Training · Mentoring · WordPress",
+      "achievements": [
+        "Taught WordPress development fundamentals through practical, project-based sessions",
+        "Designed structured learning materials and hands-on technical labs",
+        "Mentored students on coding standards, debugging, and real-world workflows",
+        "Guided learners to ship complete portfolio-ready WordPress projects"
+      ],
+      "skills": ["WordPress", "Teaching", "Mentoring"],
+      "icon": "Users",
+      "logo": "/assets/logo-iti.png"
     }
   ]
 }

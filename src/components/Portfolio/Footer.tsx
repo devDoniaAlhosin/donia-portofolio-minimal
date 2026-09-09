@@ -65,7 +65,7 @@ export const Footer = () => {
               <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-accent to-transparent"></div>
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              {['Home', 'About', 'Skills', 'Experience', 'Courses', 'Projects'].map((item) => (
+              {['Home', 'About', 'Experience', 'Courses', 'Projects'].map((item) => (
                 <button
                   key={item}
                   onClick={() => {
