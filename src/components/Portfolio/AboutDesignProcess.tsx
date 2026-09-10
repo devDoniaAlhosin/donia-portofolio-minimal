@@ -110,6 +110,18 @@ export const AboutDesignProcess = () => {
         </div>
 
         <div className="relative mb-8 sm:mb-10">
+          {/* Mobile progress track between the 2×2 steps */}
+          <div className="sm:hidden mb-4 h-1 rounded-full bg-border/70 overflow-hidden" aria-hidden>
+            <div
+              className="h-full rounded-full bg-accent"
+              style={{
+                width: reduceMotion
+                  ? '100%'
+                  : `${((active + progress) / STEPS.length) * 100}%`,
+              }}
+            />
+          </div>
+
           <div
             className="absolute left-0 right-0 top-5 h-px bg-border/70 hidden sm:block"
             aria-hidden

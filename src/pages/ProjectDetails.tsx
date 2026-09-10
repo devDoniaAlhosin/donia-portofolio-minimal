@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Footer } from '@/components/Portfolio/Footer';
@@ -38,7 +39,74 @@ import {
   Home,
 } from 'lucide-react';
 
-const inferWebsiteStructure = (project: Project) => {
+type ProcessSection = {
+  title: string;
+  desc: string;
+  points?: string[];
+};
+
+const LMS_PROCESS: ProcessSection[] = [
+  {
+    title: 'Public Site & Course Catalog',
+    desc: 'Marketing homepage, mastery programs, and course discovery that convert visitors into learners.',
+    points: [
+      'Built conversion-focused public pages for programs, courses, and brand positioning.',
+      'Structured catalog browsing so learners can find and enroll in the right track.',
+      'Connected public CTAs to enrollment and payment flows.',
+    ],
+  },
+  {
+    title: 'Course & Lesson Engine',
+    desc: 'Full LMS content model for courses, lessons, and learning paths with controlled delivery.',
+    points: [
+      'Modeled courses, modules, and lessons for flexible curriculum updates.',
+      'Delivered sequential learning with clear progress through each lesson.',
+      'Kept content editable through CMS without code changes.',
+    ],
+  },
+  {
+    title: 'Student Management',
+    desc: 'Enrollment, profiles, and role-based access for learners across the platform.',
+    points: [
+      'Managed student accounts, enrollments, and access rules by role.',
+      'Separated learner experience from admin operations cleanly.',
+      'Tracked who is enrolled in which program or course at any time.',
+    ],
+  },
+  {
+    title: 'Tasks, Quizzes & Progress',
+    desc: 'Assignments, assessments, and progress tracking that keep learning measurable.',
+    points: [
+      'Built task and assignment workflows for practical coursework.',
+      'Added quizzes and assessment tracking with clear completion states.',
+      'Exposed progress on the learner dashboard so students know what’s next.',
+    ],
+  },
+  {
+    title: 'Payments & Checkout',
+    desc: 'Fawaterak-powered payments with reliable status handling for course purchases.',
+    points: [
+      'Integrated Fawaterak for course and program checkout.',
+      'Handled success, failure, and pending payment states safely.',
+      'Unlocked course access only after confirmed payment.',
+    ],
+  },
+  {
+    title: 'Admin CMS & Dashboards',
+    desc: 'Admin control panel for content, students, assessments, and platform operations.',
+    points: [
+      'Delivered admin dashboard for courses, lessons, users, and enrollments.',
+      'Enabled CMS-driven updates for pages and learning content.',
+      'Gave operators full visibility into learning activity and payment status.',
+    ],
+  },
+];
+
+const inferWebsiteStructure = (project: Project): ProcessSection[] => {
+  if (project.brandTheme === 'abdelrahman' || project.brandTheme === 'fouad') {
+    return LMS_PROCESS;
+  }
+
   if (project.brandTheme === 'o2nations') {
     return [
       {
@@ -70,7 +138,9 @@ const inferWebsiteStructure = (project: Project) => {
     { title: 'Team / Social Proof', match: ['team', 'testimonial', 'instructor', 'partner'], desc: 'Adds credibility with people and proof.' },
   ].filter((item) => item.match.some((token) => featureText.includes(token)));
 
-  if (sections.length >= 3) return sections;
+  if (sections.length >= 3) {
+    return sections.map(({ title, desc }) => ({ title, desc }));
+  }
 
   return [
     { title: 'Hero Section', desc: 'Communicate the offer and product positioning quickly.' },
@@ -89,6 +159,98 @@ const ProjectDetails = () => {
   const [zoomedAssetIndex, setZoomedAssetIndex] = useState<number | null>(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [activeSection, setActiveSection] = useState('objective');
+  const touchStartX = useRef<number | null>(null);
+
+  const pageGallery = useMemo(() => {
+    if (!project) return [];
+    const heroImage = project.images[0];
+    return (project.assets ?? []).filter(
+      (asset) => asset.type === 'image' && asset.url !== heroImage
+    );
+  }, [project]);
+  const hasPageGallery = pageGallery.length > 0;
+
+  const goGallery = (dir: 1 | -1) => {
+    setZoomedAssetIndex((prev) => {
+      if (prev === null || pageGallery.length === 0) return prev;
+      return (prev + dir + pageGallery.length) % pageGallery.length;
+    });
+  };
+
+  useEffect(() => {
+    if (zoomedAssetIndex === null) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setZoomedAssetIndex(null);
+      if (e.key === 'ArrowRight') {
+        setZoomedAssetIndex((prev) =>
+          prev === null || pageGallery.length === 0
+            ? prev
+            : (prev + 1) % pageGallery.length
+        );
+      }
+      if (e.key === 'ArrowLeft') {
+        setZoomedAssetIndex((prev) =>
+          prev === null || pageGallery.length === 0
+            ? prev
+            : (prev - 1 + pageGallery.length) % pageGallery.length
+        );
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [zoomedAssetIndex, pageGallery.length]);
+
+  useEffect(() => {
+    if (!project) return;
+
+    const isWebsite =
+      project.category === 'wordpress' ||
+      Boolean(project.liveUrl && project.liveUrl !== '#' && project.liveUrl.trim() !== '');
+    const ids = [
+      'objective',
+      'features',
+      'challenge',
+      'solutions',
+      ...(isWebsite ? ['process'] : []),
+      ...(hasPageGallery ? ['gallery'] : []),
+      'results',
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-25% 0px -55% 0px', threshold: [0.2, 0.4, 0.6] }
+    );
+
+    ids.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [slug, project, hasPageGallery]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const y = element.getBoundingClientRect().top + window.scrollY - 110;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
 
   if (!project) {
     return (
@@ -112,18 +274,15 @@ const ProjectDetails = () => {
   const isWebsiteProject =
     project.category === 'wordpress' ||
     Boolean(project.liveUrl && project.liveUrl !== '#' && project.liveUrl.trim() !== '');
-  const heroImage = project.images[0];
-  const pageGallery = (project.assets ?? []).filter(
-    (asset) => asset.type === 'image' && asset.url !== heroImage
-  );
-  const hasPageGallery = pageGallery.length > 0;
   const websiteStructure = inferWebsiteStructure(project);
+  const isLmsProcess =
+    project.brandTheme === 'abdelrahman' || project.brandTheme === 'fouad';
   const processSteps = websiteStructure.map((section, idx) => ({
     id: idx,
     indexLabel: `1.${idx + 1}`,
     title: section.title,
     summary: section.desc,
-    points: [
+    points: section.points ?? [
       `Defined clear scope and section priorities for ${section.title.toLowerCase()}.`,
       'Aligned UX decisions with business goals and conversion intent.',
       'Implemented reusable components to keep delivery scalable and maintainable.',
@@ -153,204 +312,242 @@ const ProjectDetails = () => {
     text,
   }));
 
-  useEffect(() => {
-    if (zoomedAssetIndex === null) {
-      document.body.style.overflow = 'unset';
-      return;
-    }
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setZoomedAssetIndex(null);
-      if (e.key === 'ArrowRight') setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % pageGallery.length));
-      if (e.key === 'ArrowLeft') setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + pageGallery.length) % pageGallery.length));
-    };
-
-    document.body.style.overflow = 'hidden';
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [zoomedAssetIndex, pageGallery.length]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target?.id) {
-          setActiveSection(visible[0].target.id);
-        }
-      },
-      { rootMargin: '-25% 0px -55% 0px', threshold: [0.2, 0.4, 0.6] }
-    );
-
-    sectionAnchors.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [slug, sectionAnchors.length, hasPageGallery, isWebsiteProject]);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-    const y = element.getBoundingClientRect().top + window.scrollY - 110;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  };
-
   return (
     <>
       <main className="pb-16 relative overflow-hidden">
-        {/* Full-bleed hero under navbar */}
-        <section className="relative w-full overflow-hidden">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'linear-gradient(120deg, hsl(var(--background)) 0%, hsl(var(--accent) / 0.06) 48%, hsl(var(--secondary)) 100%)',
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 opacity-[0.35] pointer-events-none"
-            style={{
-              backgroundImage:
-                'linear-gradient(hsl(var(--border) / 0.7) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border) / 0.7) 1px, transparent 1px)',
-              backgroundSize: '32px 32px',
-              maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
-            }}
-            aria-hidden
-          />
+        {/* Hero — shorter on mobile, full viewport height on desktop */}
+        <section className="relative w-full h-[58dvh] min-h-[280px] max-h-[420px] sm:h-[64dvh] sm:max-h-[520px] lg:h-[100dvh] lg:min-h-0 lg:max-h-none overflow-hidden">
+          {/* Image plane: full bleed (mobile) / right half (desktop), edge-to-edge from top */}
+          <div className="absolute inset-0 lg:left-1/2 lg:right-0 bg-[#e8e4d8]">
+            <img
+              src={project.images[0]}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/10 lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-background/30 pointer-events-none"
+              aria-hidden
+            />
+          </div>
 
-          <div className="relative z-10 pt-24 sm:pt-28">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-2">
-              {/* Breadcrumb */}
-              <nav aria-label="Breadcrumb" className="mb-5 sm:mb-6">
-                <ol className="flex flex-wrap items-center gap-1.5 text-[12px] sm:text-[13px] text-muted-foreground">
-                  <li>
-                    <Link
-                      to="/"
-                      className="inline-flex items-center gap-1 hover:text-accent transition-colors"
-                      aria-label="Home"
-                    >
-                      <Home size={14} />
-                    </Link>
-                  </li>
-                  <li aria-hidden className="text-muted-foreground/50">
-                    <ChevronRight size={13} />
-                  </li>
-                  <li>
-                    <Link to="/projects" className="hover:text-accent transition-colors font-medium">
-                      Projects
-                    </Link>
-                  </li>
-                  <li aria-hidden className="text-muted-foreground/50">
-                    <ChevronRight size={13} />
-                  </li>
-                  <li className="text-primary font-semibold truncate max-w-[14rem] sm:max-w-md">
-                    {project.title}
-                  </li>
-                </ol>
-              </nav>
+          {/* Desktop left copy panel */}
+          <div className="hidden lg:flex absolute inset-y-0 left-0 w-1/2 flex-col justify-center bg-background z-[1] pl-[max(2rem,calc((100vw-72rem)/2+1.5rem))] pr-10 xl:pr-14 pt-28 pb-10">
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
+                <li>
+                  <Link to="/" className="inline-flex items-center gap-1 hover:text-accent transition-colors" aria-label="Home">
+                    <Home size={14} />
+                  </Link>
+                </li>
+                <li aria-hidden className="text-muted-foreground/50">
+                  <ChevronRight size={13} />
+                </li>
+                <li>
+                  <Link to="/projects" className="hover:text-accent transition-colors font-medium">
+                    Projects
+                  </Link>
+                </li>
+                <li aria-hidden className="text-muted-foreground/50">
+                  <ChevronRight size={13} />
+                </li>
+                <li className="text-primary font-semibold truncate max-w-md">{project.title}</li>
+              </ol>
+            </nav>
+
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="px-2.5 py-1 bg-accent text-white text-[11px] font-semibold rounded-lg">
+                {getCategoryLabel(project.category)}
+              </span>
+              {project.featured && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-primary-foreground text-[11px] font-semibold rounded-lg">
+                  <Sparkles size={11} />
+                  Featured
+                </span>
+              )}
+              {project.company && (
+                <span className="px-2.5 py-1 bg-background text-primary text-[11px] font-medium rounded-lg border border-border/50">
+                  {project.company}
+                </span>
+              )}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[min(72vh,640px)]">
-              <div className="order-2 lg:order-1 flex flex-col justify-center px-5 sm:px-8 lg:pl-[max(2rem,calc((100vw-72rem)/2+1.5rem))] lg:pr-10 xl:pr-14 py-8 sm:py-10 lg:py-14">
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="px-2.5 py-1 bg-accent text-white text-[11px] font-semibold rounded-lg">
-                    {getCategoryLabel(project.category)}
-                  </span>
-                  {project.featured && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-primary-foreground text-[11px] font-semibold rounded-lg">
-                      <Sparkles size={11} />
-                      Featured
-                    </span>
-                  )}
-                  {project.company && (
-                    <span className="px-2.5 py-1 bg-background/80 text-primary text-[11px] font-medium rounded-lg border border-border/50">
-                      {project.company}
-                    </span>
-                  )}
-                </div>
+            <h1 className="font-display text-4xl xl:text-[2.75rem] font-bold text-primary tracking-[-0.03em] leading-[1.12] mb-4 max-w-xl">
+              {project.title}
+            </h1>
 
-                <h1 className="font-display text-[1.85rem] sm:text-4xl xl:text-[2.75rem] font-bold text-primary tracking-[-0.03em] leading-[1.12] mb-3 sm:mb-4 max-w-xl">
-                  {project.title}
-                </h1>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-lg mb-5">
+              {project.description}
+            </p>
 
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mb-5">
-                  {project.description}
-                </p>
+            <div className="flex flex-wrap gap-1.5 mb-5">
+              {project.technologies.slice(0, 6).map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 6 && (
+                <span className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-muted/40 text-muted-foreground border border-border/50">
+                  +{project.technologies.length - 6}
+                </span>
+              )}
+            </div>
 
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.technologies.slice(0, 6).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 6 && (
-                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-muted/40 text-muted-foreground border border-border/50">
-                      +{project.technologies.length - 6}
-                    </span>
-                  )}
-                </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted-foreground mb-7">
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar size={14} className="text-accent" />
+                {project.duration}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <span className="inline-flex items-center gap-1.5">
+                <Users size={14} className="text-accent" />
+                {project.teamSize}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <span>{getServiceCategoryLabel(serviceCategory)}</span>
+            </div>
 
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted-foreground mb-7">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Calendar size={14} className="text-accent" />
-                    {project.duration}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span className="inline-flex items-center gap-1.5">
-                    <Users size={14} className="text-accent" />
-                    {project.teamSize}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span>{getServiceCategoryLabel(serviceCategory)}</span>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  {hasValidLiveUrl && (
-                    <Button asChild variant="cta" size="lg" className="rounded-lg h-11 px-5">
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        Visit Live Site
-                        <ExternalLink size={15} className="ml-2" />
-                      </a>
-                    </Button>
-                  )}
-                  {hasValidGithubUrl && (
-                    <Button asChild variant="outline" size="lg" className="rounded-lg h-11 px-5">
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github size={15} className="mr-2" />
-                        Source Code
-                      </a>
-                    </Button>
-                  )}
-                  <Button asChild variant="ghost" size="lg" className="rounded-lg h-11 px-3 text-muted-foreground">
-                    <Link to="/projects">
-                      <ArrowLeft size={15} className="mr-1.5" />
-                      All projects
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-
-              <div className="relative order-1 lg:order-2 min-h-[240px] sm:min-h-[320px] lg:min-h-full bg-[#e8e4d8]">
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-background/15 via-transparent to-transparent z-10 pointer-events-none" />
-                <img
-                  src={project.images[0]}
-                  alt={project.title}
-                  className="w-full h-full min-h-[240px] sm:min-h-[320px] lg:absolute lg:inset-0 object-cover object-top"
-                />
-              </div>
+            <div className="flex flex-wrap gap-3">
+              {hasValidLiveUrl && (
+                <Button asChild variant="cta" size="lg" className="rounded-lg h-11 px-5">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    Visit Live Site
+                    <ExternalLink size={15} className="ml-2" />
+                  </a>
+                </Button>
+              )}
+              {hasValidGithubUrl && (
+                <Button asChild variant="outline" size="lg" className="rounded-lg h-11 px-5">
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <Github size={15} className="mr-2" />
+                    Source Code
+                  </a>
+                </Button>
+              )}
+              <Button asChild variant="ghost" size="lg" className="rounded-lg h-11 px-3 text-muted-foreground">
+                <Link to="/projects">
+                  <ArrowLeft size={15} className="mr-1.5" />
+                  All projects
+                </Link>
+              </Button>
             </div>
           </div>
+
+          {/* Mobile breadcrumb over image */}
+          <div className="lg:hidden absolute top-[5.5rem] sm:top-28 inset-x-0 z-20 px-4 sm:px-6">
+            <nav
+              aria-label="Breadcrumb"
+              className="inline-flex max-w-full rounded-full bg-white/80 backdrop-blur-md border border-white/50 px-3 py-1.5 shadow-sm"
+            >
+              <ol className="flex flex-wrap items-center gap-1.5 text-[12px] text-muted-foreground">
+                <li>
+                  <Link to="/" className="inline-flex items-center gap-1 hover:text-accent transition-colors" aria-label="Home">
+                    <Home size={14} />
+                  </Link>
+                </li>
+                <li aria-hidden className="text-muted-foreground/50">
+                  <ChevronRight size={13} />
+                </li>
+                <li>
+                  <Link to="/projects" className="hover:text-accent transition-colors font-medium">
+                    Projects
+                  </Link>
+                </li>
+                <li aria-hidden className="text-muted-foreground/50">
+                  <ChevronRight size={13} />
+                </li>
+                <li className="text-primary font-semibold truncate max-w-[10rem] sm:max-w-[14rem]">
+                  {project.title}
+                </li>
+              </ol>
+            </nav>
+          </div>
         </section>
+
+        {/* Mobile project info — below full-height image */}
+        <div className="lg:hidden px-5 sm:px-8 py-8 sm:py-10 bg-background">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="px-2.5 py-1 bg-accent text-white text-[11px] font-semibold rounded-lg">
+              {getCategoryLabel(project.category)}
+            </span>
+            {project.featured && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-primary-foreground text-[11px] font-semibold rounded-lg">
+                <Sparkles size={11} />
+                Featured
+              </span>
+            )}
+            {project.company && (
+              <span className="px-2.5 py-1 bg-background text-primary text-[11px] font-medium rounded-lg border border-border/50">
+                {project.company}
+              </span>
+            )}
+          </div>
+
+          <h1 className="font-display text-[1.85rem] sm:text-4xl font-bold text-primary tracking-[-0.03em] leading-[1.12] mb-3 sm:mb-4 max-w-xl">
+            {project.title}
+          </h1>
+
+          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mb-5">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {project.technologies.slice(0, 6).map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 6 && (
+              <span className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-muted/40 text-muted-foreground border border-border/50">
+                +{project.technologies.length - 6}
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted-foreground mb-7">
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar size={14} className="text-accent" />
+              {project.duration}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span className="inline-flex items-center gap-1.5">
+              <Users size={14} className="text-accent" />
+              {project.teamSize}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span>{getServiceCategoryLabel(serviceCategory)}</span>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {hasValidLiveUrl && (
+              <Button asChild variant="cta" size="lg" className="rounded-lg h-11 px-5">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  Visit Live Site
+                  <ExternalLink size={15} className="ml-2" />
+                </a>
+              </Button>
+            )}
+            {hasValidGithubUrl && (
+              <Button asChild variant="outline" size="lg" className="rounded-lg h-11 px-5">
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  <Github size={15} className="mr-2" />
+                  Source Code
+                </a>
+              </Button>
+            )}
+            <Button asChild variant="ghost" size="lg" className="rounded-lg h-11 px-3 text-muted-foreground">
+              <Link to="/projects">
+                <ArrowLeft size={15} className="mr-1.5" />
+                All projects
+              </Link>
+            </Button>
+          </div>
+        </div>
 
         <div className="absolute inset-x-0 top-[70%] pointer-events-none">
           <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl" />
@@ -427,10 +624,12 @@ const ProjectDetails = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
                   <h2 className="text-xl font-bold text-primary mb-5 flex items-center gap-2">
                     <Workflow size={18} className="text-accent" />
-                    Process
+                    {isLmsProcess ? 'LMS Build Process' : 'Process'}
                   </h2>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Structured implementation flow from analysis to delivery, tailored for client-facing outcomes.
+                    {isLmsProcess
+                      ? 'End-to-end Laravel LMS delivery — from public catalog and lessons to students, quizzes, payments, and admin CMS.'
+                      : 'Structured implementation flow from analysis to delivery, tailored for client-facing outcomes.'}
                   </p>
 
                   <div className="space-y-3">
@@ -490,19 +689,21 @@ const ProjectDetails = () => {
               )}
 
               {hasPageGallery && (
-                <section id="gallery" className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
+                <section id="gallery" className="bg-background/85 border border-border/40 rounded-2xl p-4 sm:p-6 backdrop-blur-sm shadow-md">
                   <h2 className="text-xl font-bold text-primary mb-2 flex items-center gap-2">
                     <ZoomIn size={18} className="text-accent" />
                     Page Screenshots
                   </h2>
-                  <p className="text-xs text-muted-foreground mb-5">Click any screenshot to view fullscreen.</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <p className="text-xs text-muted-foreground mb-4 sm:mb-5">
+                    Tap any screenshot to view fullscreen. Swipe to browse.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     {pageGallery.map((asset, idx) => (
                       <button
                         key={`${asset.name}-${idx}`}
                         type="button"
                         onClick={() => setZoomedAssetIndex(idx)}
-                        className="group rounded-xl overflow-hidden border border-border/40 bg-background/60 hover:border-accent/40 transition-all text-left"
+                        className="group rounded-xl overflow-hidden border border-border/40 bg-background/60 hover:border-accent/40 active:scale-[0.99] transition-all text-left"
                       >
                         <div className="aspect-[16/10] bg-muted/20 relative overflow-hidden">
                           <img
@@ -510,9 +711,9 @@ const ProjectDetails = () => {
                             alt={asset.name}
                             className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <ZoomIn size={14} />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-60 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/55 text-white flex items-center justify-center sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                            <ZoomIn size={15} />
                           </div>
                         </div>
                         <div className="p-3 border-t border-border/30">
@@ -726,44 +927,106 @@ const ProjectDetails = () => {
           </div>
         </div>
       </main>
-      {zoomedAssetIndex !== null && (
-        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setZoomedAssetIndex(null)}>
-          <div className="relative w-full max-w-6xl h-[85vh] bg-background/10 border border-white/10 rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <div className="absolute top-3 left-3 z-10 px-3 py-1.5 rounded-full bg-black/50 text-white text-xs">
-              {zoomedAssetIndex + 1} / {pageGallery.length}
-            </div>
-            <button
-              onClick={() => setZoomedAssetIndex(null)}
-              className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+      {zoomedAssetIndex !== null &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[200] bg-black/95 flex flex-col"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Screenshot gallery"
+            onClick={() => setZoomedAssetIndex(null)}
+          >
+            <div
+              className="flex items-center justify-between gap-3 px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X size={16} />
-            </button>
-            {pageGallery.length > 1 && (
-              <>
-                <button
-                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev - 1 + pageGallery.length) % pageGallery.length))}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-                <button
-                  onClick={() => setZoomedAssetIndex((prev) => (prev === null ? null : (prev + 1) % pageGallery.length))}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
-                >
-                  <ChevronRight size={18} />
-                </button>
-              </>
-            )}
-            <div className="w-full h-full overflow-auto">
-              <img
-                src={pageGallery[zoomedAssetIndex].url}
-                alt={pageGallery[zoomedAssetIndex].name}
-                className="mx-auto max-w-none min-w-full object-contain"
-              />
+              <div className="px-3 py-1.5 rounded-full bg-white/10 text-white text-xs tabular-nums">
+                {zoomedAssetIndex + 1} / {pageGallery.length}
+              </div>
+              <p className="min-w-0 flex-1 text-center text-xs text-white/70 truncate px-2 hidden sm:block">
+                {pageGallery[zoomedAssetIndex]?.name}
+              </p>
+              <button
+                type="button"
+                onClick={() => setZoomedAssetIndex(null)}
+                className="w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                aria-label="Close gallery"
+              >
+                <X size={18} />
+              </button>
             </div>
-          </div>
-        </div>
-      )}
+
+            <div
+              className="relative flex-1 min-h-0 flex items-center justify-center px-2 sm:px-12 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+              onClick={(e) => e.stopPropagation()}
+              onTouchStart={(e) => {
+                touchStartX.current = e.changedTouches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(e) => {
+                if (touchStartX.current === null || pageGallery.length < 2) return;
+                const delta = (e.changedTouches[0]?.clientX ?? 0) - touchStartX.current;
+                touchStartX.current = null;
+                if (Math.abs(delta) < 48) return;
+                goGallery(delta < 0 ? 1 : -1);
+              }}
+            >
+              {pageGallery.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => goGallery(-1)}
+                    className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 text-white items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="Previous screenshot"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goGallery(1)}
+                    className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/10 text-white items-center justify-center hover:bg-white/20 transition-colors"
+                    aria-label="Next screenshot"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </>
+              )}
+
+              <div className="w-full h-full max-h-[calc(100dvh-5.5rem)] overflow-auto overscroll-contain flex items-start justify-center">
+                <img
+                  src={pageGallery[zoomedAssetIndex].url}
+                  alt={pageGallery[zoomedAssetIndex].name}
+                  className="w-full max-w-5xl h-auto object-contain select-none"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            {pageGallery.length > 1 && (
+              <div
+                className="sm:hidden flex items-center justify-center gap-3 pb-[max(1rem,env(safe-area-inset-bottom))] pt-1 shrink-0"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => goGallery(-1)}
+                  className="w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center"
+                  aria-label="Previous screenshot"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goGallery(1)}
+                  className="w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center"
+                  aria-label="Next screenshot"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            )}
+          </div>,
+          document.body
+        )}
       <Footer />
       <BackToTop />
       <WhatsAppButton />

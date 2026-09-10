@@ -12,6 +12,7 @@ export const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [inView, setInView] = useState(false);
+  const [isNarrow, setIsNarrow] = useState(false);
 
   const bodyWords = useMemo(() => BODY.split(' '), []);
 
@@ -22,11 +23,14 @@ export const AboutSection = () => {
     const onScroll = () => {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight;
-      const start = viewH * 0.88;
-      const end = viewH * 0.28;
+      const narrow = window.innerWidth < 640;
+      setIsNarrow(narrow);
+      // Mobile viewports are short — start reveal earlier so copy isn't washed out
+      const start = viewH * (narrow ? 0.96 : 0.88);
+      const end = viewH * (narrow ? 0.42 : 0.28);
       const raw = (start - rect.top) / (start - end);
       setProgress(Math.min(1, Math.max(0, raw)));
-      setInView(rect.top < viewH * 0.92 && rect.bottom > viewH * 0.08);
+      setInView(rect.top < viewH * 0.95 && rect.bottom > viewH * 0.06);
     };
 
     onScroll();
@@ -42,7 +46,7 @@ export const AboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden bg-background py-20 sm:py-28 md:py-32"
+      className="relative overflow-hidden bg-background py-16 sm:py-28 md:py-32"
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(90vw,36rem)] h-[min(50vh,22rem)] rounded-full bg-accent/[0.04] blur-3xl" />
@@ -50,7 +54,7 @@ export const AboutSection = () => {
 
       <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
         <div
-          className={`inline-flex items-center justify-center gap-2 mb-7 sm:mb-9 transition-all duration-700 ease-out ${
+          className={`inline-flex items-center justify-center gap-2 mb-6 sm:mb-9 transition-all duration-700 ease-out ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
@@ -61,7 +65,7 @@ export const AboutSection = () => {
         </div>
 
         <h2
-          className={`font-display text-[1.45rem] sm:text-2xl md:text-[1.85rem] lg:text-[2.1rem] font-medium leading-[1.35] tracking-[-0.02em] text-primary text-balance transition-all duration-700 ease-out ${
+          className={`font-display text-[1.35rem] sm:text-2xl md:text-[1.85rem] lg:text-[2.1rem] font-medium leading-[1.4] tracking-[-0.02em] text-primary text-balance transition-all duration-700 ease-out ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
           style={{ transitionDelay: '80ms' }}
@@ -69,14 +73,13 @@ export const AboutSection = () => {
           {HEADLINE}
         </h2>
 
-        <p
-          className={`mt-7 sm:mt-8 font-display text-base sm:text-lg md:text-xl font-normal leading-[1.65] tracking-[-0.01em] text-balance max-w-2xl mx-auto`}
-        >
+        <p className="mt-6 sm:mt-8 font-display text-[0.95rem] sm:text-lg md:text-xl font-normal leading-[1.7] tracking-[-0.01em] text-balance max-w-2xl mx-auto">
           {bodyWords.map((word, index) => {
             const start = index / bodyWords.length;
             const end = (index + 1) / bodyWords.length;
             const local = Math.min(1, Math.max(0, (progress - start) / (end - start || 1)));
-            const opacity = 0.18 + local * 0.82;
+            const base = isNarrow ? 0.38 : 0.18;
+            const opacity = base + local * (1 - base);
 
             return (
               <span
@@ -89,7 +92,7 @@ export const AboutSection = () => {
                       ? 'hsl(var(--primary) / 0.88)'
                       : local > 0.35
                         ? 'hsl(var(--primary) / 0.55)'
-                        : 'hsl(var(--muted-foreground) / 0.35)',
+                        : 'hsl(var(--muted-foreground) / 0.45)',
                 }}
               >
                 {word}
@@ -100,8 +103,10 @@ export const AboutSection = () => {
         </p>
 
         <div
-          className={`mt-9 sm:mt-10 flex flex-wrap items-center justify-center gap-2 transition-all duration-700 ease-out ${
-            progress > 0.55 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-2 transition-all duration-700 ease-out ${
+            progress > (isNarrow ? 0.35 : 0.55)
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-4'
           }`}
         >
           {KEYWORDS.map((tag) => (

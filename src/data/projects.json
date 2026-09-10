@@ -1,6 +1,72 @@
 {
   "projects": [
     {
+      "id": 24,
+      "title": "Abdelrahman Sleem – LMS Platform",
+      "description": "Laravel LMS for mastery programs, courses, student management, quizzes, and Fawaterak payments.",
+      "longDescription": "Designed and developed a complete native Laravel-based learning and business platform for Abdelrahman Sleem (abdelrahmansleem.com). The system combines a public marketing website, mastery programs, and course catalog with a full LMS engine — lesson delivery, student management, tasks, quizzes, and progress tracking. Integrated online payments through Fawaterak, plus admin dashboard and CMS controls for content management, enrollments, and platform operations. Built learner and admin experiences with role-based access so students can learn and track progress while admins manage courses, assessments, and payments at scale.",
+      "category": "native",
+      "company": "Abdelrahman Sleem",
+      "featured": true,
+      "brandTheme": "abdelrahman",
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Blade",
+        "JavaScript",
+        "Fawaterak",
+        "REST API",
+        "Responsive Design"
+      ],
+      "liveUrl": "https://abdelrahmansleem.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/as-lms.png"
+      ],
+      "features": [
+        "Native Laravel LMS Architecture",
+        "Lesson & Course Content Management",
+        "Student Enrollment & Management",
+        "Tasks & Assignment Workflows",
+        "Quizzes & Assessment Tracking",
+        "Fawaterak Payment Gateway Integration",
+        "Admin Dashboard with Full CMS Controls",
+        "Learner Dashboard with Progress Tracking",
+        "Mastery Programs & Course Catalog",
+        "Role-Based Access (Admin / Student)",
+        "Content Management System for Courses & Pages"
+      ],
+      "challenges": [
+        "Combining CMS, LMS, and marketing website in one maintainable architecture",
+        "Building smooth journeys across discovery, enrollment, lessons, and completion",
+        "Managing students, tasks, and quizzes with clear admin/learner separation",
+        "Integrating Fawaterak payments with reliable success/failure handling",
+        "Designing robust quiz and task tracking with grading logic",
+        "Keeping content updates scalable without developer dependency"
+      ],
+      "solutions": [
+        "Modular Laravel architecture with clear domain separation",
+        "Structured dashboards for admins and learners with role-based permissions",
+        "Unified enrollment and lesson progress tracking",
+        "Fawaterak checkout/payment flows with status handling",
+        "Assessment pipeline for quizzes, tasks, and progress reporting",
+        "CMS-driven content model for courses, programs, and site pages"
+      ],
+      "duration": "2 Months",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 2600,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Homepage",
+          "url": "/assets/as-home.png",
+          "description": "Marketing homepage — hero, programs, courses, and conversion sections"
+        }
+      ]
+    },
+    {
       "id": 23,
       "title": "FouadHoussien LMS Platform",
       "description": "Online academy for courses, coaching, and digital learning with payments and certificates.",

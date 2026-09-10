@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const SELECTOR = 'main section, main > .relative, footer';
+const SELECTOR = 'main section:not([data-no-reveal]), main > .relative, footer';
 
 /**
  * Adds a premium fade/slide reveal to top-level sections sitewide.

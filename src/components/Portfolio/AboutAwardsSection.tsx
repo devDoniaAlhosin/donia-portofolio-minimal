@@ -45,7 +45,7 @@ export const AboutAwardsSection = () => (
           {awards.map((item) => (
             <li
               key={item.title}
-              className="flex items-baseline justify-between gap-4 border-b border-border/70 py-3 sm:py-3.5"
+              className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 border-b border-border/70 py-3 sm:py-3.5"
             >
               <span className="text-[14px] sm:text-[15px] font-medium text-primary leading-snug min-w-0">
                 {item.title}
