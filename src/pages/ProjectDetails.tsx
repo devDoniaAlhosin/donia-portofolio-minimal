@@ -35,6 +35,7 @@ import {
   Plus,
   LayoutList,
   X as CloseIcon,
+  Home,
 } from 'lucide-react';
 
 const inferWebsiteStructure = (project: Project) => {
@@ -202,66 +203,104 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <main className="pt-28 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-tl from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl animate-pulse" />
-        </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-          <Button asChild variant="outline" className="mb-6 border-border/60 bg-background/70 hover:bg-primary hover:text-primary-foreground">
-            <Link to="/projects">
-              <ArrowLeft size={16} className="mr-2" />
-              Back to Projects
-            </Link>
-          </Button>
+      <main className="pb-16 relative overflow-hidden">
+        {/* Full-bleed hero under navbar */}
+        <section className="relative w-full overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(120deg, hsl(var(--background)) 0%, hsl(var(--accent) / 0.06) 48%, hsl(var(--secondary)) 100%)',
+            }}
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 opacity-[0.35] pointer-events-none"
+            style={{
+              backgroundImage:
+                'linear-gradient(hsl(var(--border) / 0.7) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border) / 0.7) 1px, transparent 1px)',
+              backgroundSize: '32px 32px',
+              maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+            }}
+            aria-hidden
+          />
 
-          <div className="relative overflow-hidden bg-gradient-to-br from-accent/12 via-background/80 to-accent/5 rounded-3xl border border-accent/20 mb-8 backdrop-blur-sm shadow-xl shadow-accent/10">
-            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(hsl(var(--accent)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent)) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+          <div className="relative z-10 pt-24 sm:pt-28">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-2">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="mb-5 sm:mb-6">
+                <ol className="flex flex-wrap items-center gap-1.5 text-[12px] sm:text-[13px] text-muted-foreground">
+                  <li>
+                    <Link
+                      to="/"
+                      className="inline-flex items-center gap-1 hover:text-accent transition-colors"
+                      aria-label="Home"
+                    >
+                      <Home size={14} />
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-muted-foreground/50">
+                    <ChevronRight size={13} />
+                  </li>
+                  <li>
+                    <Link to="/projects" className="hover:text-accent transition-colors font-medium">
+                      Projects
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-muted-foreground/50">
+                    <ChevronRight size={13} />
+                  </li>
+                  <li className="text-primary font-semibold truncate max-w-[14rem] sm:max-w-md">
+                    {project.title}
+                  </li>
+                </ol>
+              </nav>
+            </div>
 
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
-              <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center order-2 lg:order-1">
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[min(72vh,640px)]">
+              <div className="order-2 lg:order-1 flex flex-col justify-center px-5 sm:px-8 lg:pl-[max(2rem,calc((100vw-72rem)/2+1.5rem))] lg:pr-10 xl:pr-14 py-8 sm:py-10 lg:py-14">
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="px-3 py-1 bg-accent text-white text-xs font-medium rounded-lg">
+                  <span className="px-2.5 py-1 bg-accent text-white text-[11px] font-semibold rounded-lg">
                     {getCategoryLabel(project.category)}
                   </span>
                   {project.featured && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-lg">
-                      <Sparkles size={12} />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary text-primary-foreground text-[11px] font-semibold rounded-lg">
+                      <Sparkles size={11} />
                       Featured
                     </span>
                   )}
                   {project.company && (
-                    <span className="px-3 py-1 bg-background/80 text-primary text-xs font-medium rounded-lg border border-border/40">
+                    <span className="px-2.5 py-1 bg-background/80 text-primary text-[11px] font-medium rounded-lg border border-border/50">
                       {project.company}
                     </span>
                   )}
                 </div>
 
-                <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold text-primary mb-3 leading-tight">
+                <h1 className="font-display text-[1.85rem] sm:text-4xl xl:text-[2.75rem] font-bold text-primary tracking-[-0.03em] leading-[1.12] mb-3 sm:mb-4 max-w-xl">
                   {project.title}
                 </h1>
 
-                <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mb-5">
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mb-5">
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.technologies.slice(0, 5).map((tech) => (
+                  {project.technologies.slice(0, 6).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-accent/10 text-accent border border-accent/20"
+                      className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 5 && (
-                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-muted/30 text-muted-foreground border border-border/40">
-                      +{project.technologies.length - 5}
+                  {project.technologies.length > 6 && (
+                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-muted/40 text-muted-foreground border border-border/50">
+                      +{project.technologies.length - 6}
                     </span>
                   )}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted-foreground mb-7">
                   <span className="inline-flex items-center gap-1.5">
                     <Calendar size={14} className="text-accent" />
                     {project.duration}
@@ -277,35 +316,47 @@ const ProjectDetails = () => {
 
                 <div className="flex flex-wrap gap-3">
                   {hasValidLiveUrl && (
-                    <Button asChild variant="cta" size="sm">
+                    <Button asChild variant="cta" size="lg" className="rounded-lg h-11 px-5">
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                         Visit Live Site
-                        <ExternalLink size={14} className="ml-2" />
+                        <ExternalLink size={15} className="ml-2" />
                       </a>
                     </Button>
                   )}
                   {hasValidGithubUrl && (
-                    <Button asChild variant="outline" size="sm">
+                    <Button asChild variant="outline" size="lg" className="rounded-lg h-11 px-5">
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github size={14} className="mr-2" />
+                        <Github size={15} className="mr-2" />
                         Source Code
                       </a>
                     </Button>
                   )}
+                  <Button asChild variant="ghost" size="lg" className="rounded-lg h-11 px-3 text-muted-foreground">
+                    <Link to="/projects">
+                      <ArrowLeft size={15} className="mr-1.5" />
+                      All projects
+                    </Link>
+                  </Button>
                 </div>
               </div>
 
-              <div className="relative order-1 lg:order-2 min-h-[220px] sm:min-h-[280px] lg:min-h-full">
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-background/20 via-transparent to-transparent z-10 pointer-events-none" />
+              <div className="relative order-1 lg:order-2 min-h-[240px] sm:min-h-[320px] lg:min-h-full bg-[#e8e4d8]">
+                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-background/15 via-transparent to-transparent z-10 pointer-events-none" />
                 <img
                   src={project.images[0]}
                   alt={project.title}
-                  className="w-full h-full min-h-[220px] sm:min-h-[280px] lg:min-h-[360px] object-cover object-top"
+                  className="w-full h-full min-h-[240px] sm:min-h-[320px] lg:absolute lg:inset-0 object-cover object-top"
                 />
               </div>
             </div>
           </div>
+        </section>
 
+        <div className="absolute inset-x-0 top-[70%] pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 mt-10 sm:mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
               <section id="objective" className="relative overflow-hidden bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">

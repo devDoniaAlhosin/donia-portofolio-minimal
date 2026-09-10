@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, Routes, Route } from 'react-router-dom';
 import { NavigationLoader } from '@/components/NavigationLoader';
 import { Navbar } from '@/components/Portfolio/Navbar';
+import { PremiumScrollExperience } from '@/components/PremiumScrollExperience';
 import Index from '@/pages/Index';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
 import Projects from '@/pages/Projects';
 import ProjectDetails from '@/pages/ProjectDetails';
 import NotFound from '@/pages/NotFound';
@@ -37,10 +40,13 @@ export const PageTransition = () => {
       >
         <Routes location={location}>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <PremiumScrollExperience />
       </div>
     </>
   );

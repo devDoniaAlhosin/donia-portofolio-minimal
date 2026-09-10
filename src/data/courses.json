@@ -1,6 +1,28 @@
 {
   "courses": [
     {
+      "name": "Flutter Cross-Platform Diploma",
+      "provider": "Digital Egypt Pioneers Initiative",
+      "period": "July 2026 - Present",
+      "year": "2026",
+      "duration": "In progress",
+      "certificate": "Training Diploma (in progress)",
+      "category": "Diploma",
+      "focus": "Flutter · Fundamentals · Advanced · APIs",
+      "outcome": "Building cross-platform apps with Flutter — fundamentals through advanced API integration.",
+      "featured": true,
+      "tags": ["Flutter", "Dart", "Cross-Platform", "APIs"],
+      "skillsGained": [
+        "Flutter fundamentals — widgets, layout, navigation, and state basics",
+        "Advanced Flutter patterns for scalable cross-platform apps",
+        "Dealing with APIs — REST integration, data fetching, and handling responses",
+        "Cross-platform mobile development for iOS and Android from a single codebase"
+      ],
+      "icon": "zap",
+      "level": "Advanced",
+      "logo": "/assets/logo-depi.png"
+    },
+    {
       "name": "Software Testing Track",
       "provider": "Digital Egypt Pioneers Initiative",
       "period": "July 2025 - Dec 2025",

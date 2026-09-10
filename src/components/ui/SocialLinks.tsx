@@ -1,4 +1,4 @@
-import { Mail, Linkedin, ExternalLink } from 'lucide-react';
+import { Mail, Linkedin, ExternalLink, Github } from 'lucide-react';
 
 interface SocialLink {
   platform: string;
@@ -17,7 +17,8 @@ interface SocialLinksProps {
 const iconMap = {
   Mail,
   Linkedin,
-  ExternalLink
+  ExternalLink,
+  Github,
 };
 
 export const SocialLinks = ({ links, size = 'md', showTooltips = true, className = '' }: SocialLinksProps) => {

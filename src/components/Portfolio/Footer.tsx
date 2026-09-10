@@ -1,127 +1,84 @@
-import { Heart, ArrowUp, Sparkles } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/use-scroll-animation';
-import { Logo } from '@/components/ui/Logo';
-import { SocialLinks } from '@/components/ui/SocialLinks';
+import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import personalData from '@/data/personal.json';
 
-export const Footer = () => {
-  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-  const { elementRef: bottomRef, isVisible: bottomVisible } = useScrollAnimation();
+const navLinks = [
+  { label: 'About', to: '/about' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Contact', to: '/contact' },
+] as const;
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+const iconMap = {
+  Linkedin,
+  Github,
+  Mail,
+  ExternalLink,
+} as const;
+
+export const Footer = () => {
+  const navigate = useNavigate();
 
   return (
-    <footer id="contact" className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground overflow-hidden">
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }}></div>
-      </div>
-      
-      <div className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
-      
-      <div className="relative max-w-6xl mx-auto px-6 py-20">
-        <div 
-          ref={contentRef}
-          className={`grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12 transition-all duration-1000 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className={`lg:col-span-1 transition-all duration-700 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`} style={{transitionDelay: '0.2s'}}>
-            <div className="flex items-center mb-6">
-              <Logo size="lg" className="mr-4" />
-              <div>
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
-                  {personalData.name}
-                </h3>
-                <p className="text-primary-foreground/60 text-sm font-medium">{personalData.title}</p>
-              </div>
-            </div>
-            <p className="text-primary-foreground/80 leading-relaxed text-md">
-              {personalData.description}
+    <footer className="relative border-t border-border/60 bg-background">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-12">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <button
+            type="button"
+            onClick={() => {
+              navigate('/');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="text-left group"
+          >
+            <p className="font-display text-base font-bold text-primary tracking-tight group-hover:text-accent transition-colors">
+              {personalData.name}
             </p>
-            <div className="mt-6 flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-sm text-primary-foreground/60">Available for new projects</span>
-            </div>
-          </div>
+            <p className="text-[12px] text-muted-foreground mt-0.5">{personalData.title}</p>
+          </button>
 
-          <div className={`lg:col-span-1 transition-all duration-700 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`} style={{transitionDelay: '0.4s'}}>
-            <h3 className="text-xl font-semibold mb-6 relative">
-              Quick Links
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-accent to-transparent"></div>
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {['Home', 'About', 'Experience', 'Courses', 'Projects'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => {
-                    const element = document.querySelector(`#${item.toLowerCase()}`);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="group text-left text-primary-foreground/70 hover:text-accent transition-all duration-300 hover:translate-x-1 flex items-center"
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {navLinks.map((item) => (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => navigate(item.to)}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+            <a
+              href={`mailto:${personalData.email}`}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Email
+            </a>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            {personalData.social.map((link) => {
+              const Icon = iconMap[link.icon as keyof typeof iconMap] ?? ExternalLink;
+              return (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.platform}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/5 transition-colors"
                 >
-                  <span className="w-2 h-2 bg-accent/50 rounded-full mr-3 group-hover:bg-accent transition-colors group-hover:scale-125"></span>
-                  <span className="font-medium">{item}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={`lg:col-span-1 transition-all duration-700 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`} style={{transitionDelay: '0.6s'}}>
-            <h3 className="text-xl font-semibold mb-6 relative">
-              Connect With Me
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-accent to-transparent"></div>
-            </h3>
-            <p className="text-primary-foreground/70 mb-6 leading-relaxed">
-              Let's work together to bring your ideas to life. 
-              I'm always excited to collaborate on new projects.
-            </p>
-            <SocialLinks links={personalData.social} size="md" />
+                  <Icon size={16} strokeWidth={1.75} />
+                </a>
+              );
+            })}
           </div>
         </div>
 
-        <div 
-          ref={bottomRef}
-          className={`border-t border-primary-foreground/10 pt-8 transition-all duration-1000 ease-out ${
-            bottomVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
-          style={{transitionDelay: '0.8s'}}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center text-primary-foreground/60">
-              <span className="font-medium">© {new Date().getFullYear()} {personalData.name} Mohamed. All rights reserved.</span>
-            </div>
-
-            <button
-              onClick={scrollToTop}
-              className="group flex items-center space-x-2 bg-accent/20 hover:bg-accent/30 text-accent px-6 py-3 rounded-2xl transition-all duration-300 hover:scale-105 border border-accent/30 hover:shadow-lg hover:shadow-accent/20"
-            >
-              <span className="text-sm font-semibold">Back to Top</span>
-              <ArrowUp size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          </div>
+        <div className="mt-8 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-[11px] text-muted-foreground">
+            © {new Date().getFullYear()} {personalData.name}
+          </p>
+          <p className="text-[11px] text-muted-foreground/80">Full stack · Products · Platforms</p>
         </div>
       </div>
     </footer>

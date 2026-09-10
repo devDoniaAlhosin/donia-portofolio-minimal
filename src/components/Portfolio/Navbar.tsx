@@ -10,7 +10,7 @@ const socialLinks = personalData.social;
 const resumeUrl = personalData.resumeUrl;
 const { name, title, logo } = personalData;
 
-const SECTION_IDS = ['about', 'experience', 'projects', 'contact'] as const;
+const SECTION_IDS = ['about', 'experience', 'projects'] as const;
 
 type PillRect = { left: number; width: number; opacity: number };
 
@@ -42,7 +42,15 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (location.pathname !== '/') {
-      setActiveSection(location.pathname.startsWith('/projects') ? 'projects' : '');
+      if (location.pathname.startsWith('/projects')) {
+        setActiveSection('projects');
+      } else if (location.pathname.startsWith('/about')) {
+        setActiveSection('about');
+      } else if (location.pathname.startsWith('/contact')) {
+        setActiveSection('contact');
+      } else {
+        setActiveSection('');
+      }
       return;
     }
 
@@ -74,6 +82,12 @@ export const Navbar = () => {
 
   const isNavActive = useCallback(
     (href: string) => {
+      if (href.startsWith('/about')) {
+        return location.pathname === '/about' || location.pathname.startsWith('/about/');
+      }
+      if (href.startsWith('/contact')) {
+        return location.pathname === '/contact' || location.pathname.startsWith('/contact/');
+      }
       if (href.startsWith('/projects')) {
         if (location.pathname === '/projects' || location.pathname.startsWith('/projects/')) {
           return true;
@@ -166,27 +180,38 @@ export const Navbar = () => {
     document.body.removeChild(link);
   };
 
-  const overHero = !isScrolled;
+  const overHomeHero = location.pathname === '/' && !isScrolled;
+  const overProjectHero =
+    /^\/projects\/[^/]+/.test(location.pathname) && !isScrolled;
+  const overHero = overHomeHero;
 
   const desktopShellClass = [
     'relative overflow-hidden pointer-events-auto w-full rounded-lg',
     'transition-[max-width,box-shadow,background-color,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
-    overHero
+    overHomeHero
       ? 'max-w-6xl border-0 bg-transparent shadow-none backdrop-blur-none'
-      : [
-          'max-w-5xl border border-accent/15',
-          'bg-white/85 backdrop-blur-xl backdrop-saturate-150',
-          'shadow-[0_8px_28px_-10px_rgba(15,23,42,0.16),0_0_0_1px_hsl(var(--accent)/0.06)]',
-        ].join(' '),
+      : overProjectHero
+        ? [
+            'max-w-5xl border border-white/40',
+            'bg-white/70 backdrop-blur-xl backdrop-saturate-150',
+            'shadow-[0_8px_28px_-10px_rgba(15,23,42,0.12)]',
+          ].join(' ')
+        : [
+            'max-w-5xl border border-accent/15',
+            'bg-white/85 backdrop-blur-xl backdrop-saturate-150',
+            'shadow-[0_8px_28px_-10px_rgba(15,23,42,0.16),0_0_0_1px_hsl(var(--accent)/0.06)]',
+          ].join(' '),
   ].join(' ');
 
   const mobileShellClass = [
     'relative overflow-hidden pointer-events-auto w-full max-w-md rounded-lg',
     'border backdrop-blur-xl backdrop-saturate-150',
     'transition-[max-width,box-shadow,background-color,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
-    overHero
+    overHomeHero
       ? 'bg-white/[0.06] border-white/15 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.45)]'
-      : 'bg-white/85 border-accent/15 shadow-[0_8px_28px_-10px_rgba(15,23,42,0.16)]',
+      : overProjectHero
+        ? 'bg-white/75 border-white/50 shadow-[0_8px_28px_-10px_rgba(15,23,42,0.12)]'
+        : 'bg-white/85 border-accent/15 shadow-[0_8px_28px_-10px_rgba(15,23,42,0.16)]',
   ].join(' ');
 
   const IdentityBlock = ({ compact = false }: { compact?: boolean }) => (
@@ -437,7 +462,12 @@ export const Navbar = () => {
                     Connect
                   </p>
                   <SocialLinks
-                    links={socialLinks.filter((l) => l.platform === 'LinkedIn' || l.platform === 'Email')}
+                    links={socialLinks.filter(
+                      (l) =>
+                        l.platform === 'LinkedIn' ||
+                        l.platform === 'GitHub' ||
+                        l.platform === 'Email'
+                    )}
                     size="md"
                   />
                 </div>

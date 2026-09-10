@@ -91,7 +91,7 @@ export const HeroSection = () => {
     <section id="home" className="relative w-full bg-background px-2 pt-2 sm:px-2.5 sm:pt-2.5 md:px-3 md:pt-3 pb-2 sm:pb-2.5 md:pb-3">
       <div
         ref={panelRef}
-        className="group/hero relative min-h-[calc(100vh-1rem)] sm:min-h-[calc(100vh-1.25rem)] md:min-h-[calc(100vh-1.5rem)] w-full overflow-hidden flex items-center rounded-lg bg-[#0b0c10] border border-white/15 shadow-none"
+        className="group/hero relative min-h-0 sm:min-h-[calc(100vh-1.25rem)] md:min-h-[calc(100vh-1.5rem)] w-full overflow-hidden flex items-start sm:items-center rounded-lg bg-[#0b0c10] border border-white/15 shadow-none"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => {
           setHovered(false);
@@ -184,7 +184,7 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-14">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-6 sm:pt-28 sm:pb-14">
           <div className={enter('delay-0')}>
             <div className="inline-flex flex-wrap items-center gap-x-3 gap-y-2">
               <span className="relative flex h-2 w-2 shrink-0">
@@ -239,7 +239,7 @@ export const HeroSection = () => {
             ))}
           </div>
 
-          <div className={`mt-8 sm:mt-10 md:mt-12 ${enter('delay-200')}`}>
+          <div className={`mt-5 sm:mt-10 md:mt-12 ${enter('delay-200')}`}>
             <p className="text-sm sm:text-[15px] leading-relaxed text-white/55 max-w-md md:ml-auto md:text-right">
               From first impression to final conversion — React &amp; Angular fronts, Laravel &amp; PHP backends,
               built to grow brands.
@@ -247,7 +247,7 @@ export const HeroSection = () => {
           </div>
 
           <div
-            className={`mt-10 sm:mt-12 md:mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 ${enter('delay-300')}`}
+            className={`mt-7 sm:mt-10 md:mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-8 ${enter('delay-300')}`}
           >
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-3 sm:gap-x-7">
               {socialLinks.map((link) => (

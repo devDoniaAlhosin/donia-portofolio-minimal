@@ -16,6 +16,12 @@
       "color": "hover:text-blue-400"
     },
     {
+      "platform": "GitHub",
+      "url": "https://github.com/devDoniaAlhosin",
+      "icon": "Github",
+      "color": "hover:text-foreground"
+    },
+    {
       "platform": "Upwork",
       "url": "https://www.upwork.com/freelancers/~01d0770e3b5c34bb70?mp_source=share",
       "icon": "ExternalLink",
@@ -29,9 +35,9 @@
     }
   ],
   "navigation": [
-    { "name": "About", "href": "#about" },
+    { "name": "About", "href": "/about" },
     { "name": "Experience", "href": "#experience" },
     { "name": "Projects", "href": "/projects" },
-    { "name": "Contact", "href": "#contact" }
+    { "name": "Contact", "href": "/contact" }
   ]
 }

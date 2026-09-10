@@ -1,5 +1,3 @@
-import { Button } from '@/components/ui/button';
-import { Calendar, Users, ExternalLink, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Project, getCategoryLabel, getProjectSlug } from '@/types/project';
 
@@ -9,91 +7,99 @@ interface ProjectCardProps {
   isVisible: boolean;
 }
 
-export const ProjectCard = ({
-  project,
-  index,
-  isVisible,
-}: ProjectCardProps) => (
-  <div
-    className={`group relative bg-background/80 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-accent/40 transition-all duration-300 ease-out overflow-hidden hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1 ${
-      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-    }`}
-    style={{ transitionDelay: `${Math.min(index * 0.03, 0.2)}s` }}
-  >
-    <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+const PASTELS = [
+  'bg-[#f6e8ea]',
+  'bg-[#e8eef4]',
+  'bg-[#f3edd8]',
+  'bg-[#e4f0ee]',
+  'bg-[#f0ebe3]',
+  'bg-[#e8f1e6]',
+];
 
-    <div className="relative h-52 sm:h-56 overflow-hidden">
-      <img
-        src={project.images[0]}
-        alt={project.title}
-        loading="lazy"
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
+/** Varying frame heights for masonry rhythm */
+const ASPECTS = [
+  'aspect-[4/3]',
+  'aspect-[3/4]',
+  'aspect-[5/4]',
+  'aspect-[4/5]',
+  'aspect-[3/2]',
+  'aspect-square',
+];
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+const getTagLabel = (category: Project['category']) => {
+  switch (category) {
+    case 'wordpress':
+      return 'WordPress';
+    case 'native':
+      return 'Development';
+    case 'testing':
+      return 'Testing';
+    case 'ui':
+      return 'Design';
+    default:
+      return getCategoryLabel(category);
+  }
+};
 
-      <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-        {project.featured && (
-          <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg shadow-lg shadow-accent/25">
-            <Sparkles size={11} />
-            Featured
-          </span>
-        )}
-        <span className="px-3 py-1.5 bg-accent text-white text-xs font-medium rounded-lg shadow-lg shadow-accent/25">
-          {getCategoryLabel(project.category)}
-        </span>
-        {project.company && (
-          <span className="px-3 py-1.5 bg-black/60 text-white text-xs font-medium rounded-lg border border-white/10 backdrop-blur-sm">
-            While at {project.company}
-          </span>
-        )}
-      </div>
-    </div>
+export const ProjectCard = ({ project, index, isVisible }: ProjectCardProps) => {
+  const pastel = PASTELS[index % PASTELS.length];
+  const aspect = ASPECTS[index % ASPECTS.length];
+  const secondaryTag =
+    project.category === 'native'
+      ? 'Full Stack'
+      : project.category === 'wordpress'
+        ? 'CMS'
+        : project.category === 'ui'
+          ? 'UI/UX'
+          : null;
 
-    <div className="p-5 space-y-4">
-      <div className="space-y-3">
-        <h3 className="text-lg font-bold text-primary leading-tight">{project.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{project.description}</p>
-      </div>
-
-      <div className="flex flex-wrap gap-1.5">
-        {project.technologies.slice(0, 2).map((tech, techIndex) => (
-          <span
-            key={techIndex}
-            className="px-2.5 py-1 bg-accent/8 text-accent text-xs font-medium rounded-md border border-accent/20"
-          >
-            {tech}
-          </span>
-        ))}
-        {project.technologies.length > 2 && (
-          <span className="px-2.5 py-1 bg-muted/20 text-muted-foreground text-xs font-medium rounded-md border border-border/30">
-            +{project.technologies.length - 2}
-          </span>
-        )}
-      </div>
-
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <div className="flex items-center gap-1.5">
-          <Calendar size={14} className="text-accent/60" />
-          <span>{project.duration}</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Users size={14} className="text-accent/60" />
-          <span>{project.teamSize}</span>
-        </div>
-      </div>
-
-      <Button
-        variant="outline"
-        size="sm"
-        asChild
-        className="w-full h-10 bg-background border-border/60 hover:bg-primary hover:text-primary-foreground hover:border-primary font-medium"
+  return (
+    <Link
+      to={`/projects/${getProjectSlug(project)}`}
+      className={`group mb-6 md:mb-8 break-inside-avoid block transition-all duration-500 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      }`}
+      style={{ transitionDelay: `${Math.min(index * 50, 200)}ms` }}
+    >
+      <div
+        className={`relative ${aspect} rounded-lg ${pastel} overflow-hidden mb-3 transition-transform duration-500 group-hover:-translate-y-0.5`}
       >
-        <Link to={`/projects/${getProjectSlug(project)}`}>
-          <span className="text-sm">View Details</span>
-          <ExternalLink size={14} className="ml-1.5" />
-        </Link>
-      </Button>
-    </div>
-  </div>
-);
+        <div className="absolute inset-0 p-3 sm:p-4 md:p-5 flex items-center justify-center">
+          <div className="relative w-full h-full rounded-lg overflow-hidden shadow-[0_18px_40px_-18px_rgba(0,0,0,0.35)] bg-background/40 ring-1 ring-black/5">
+            <img
+              src={project.images[0]}
+              alt={project.title}
+              loading="lazy"
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <h3 className="text-[15px] sm:text-base font-bold text-primary tracking-tight leading-snug group-hover:text-accent transition-colors">
+        {project.title}
+      </h3>
+
+      <div className="mt-2 flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+          <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">
+            {getTagLabel(project.category)}
+          </span>
+          {secondaryTag && (
+            <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">
+              {secondaryTag}
+            </span>
+          )}
+          {project.featured && (
+            <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-accent rounded-lg border border-accent/25 bg-accent/10">
+              Featured
+            </span>
+          )}
+        </div>
+        <span className="text-[11px] sm:text-xs font-medium text-muted-foreground tabular-nums shrink-0">
+          {project.duration}
+        </span>
+      </div>
+    </Link>
+  );
+};

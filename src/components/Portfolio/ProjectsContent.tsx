@@ -12,6 +12,7 @@ import {
   getServiceCategoryLabel,
 } from '@/types/project';
 import { ProjectCard } from '@/components/Portfolio/ProjectCard';
+import { ProjectsSearch } from '@/components/Portfolio/ProjectsSearch';
 
 interface ProjectsContentProps {
   limit?: number;
@@ -212,7 +213,7 @@ export const ProjectsContent = ({
     <div
       ref={contentRef}
       key={filterKey}
-      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 animate-page-enter"
+      className="columns-1 md:columns-2 xl:columns-3 gap-6 md:gap-8 animate-page-enter"
     >
       {filteredProjects.length > 0 ? (
         filteredProjects.map((project, index) => (
@@ -224,7 +225,7 @@ export const ProjectsContent = ({
           />
         ))
       ) : (
-        <div className="col-span-full rounded-2xl border border-dashed border-border/60 bg-background/40 py-14 px-6 text-center">
+        <div className="break-inside-avoid w-full rounded-2xl border border-dashed border-border/60 bg-background/40 py-14 px-6 text-center">
           <p className="text-base font-semibold text-primary mb-1">No matches</p>
           <p className="text-sm text-muted-foreground mb-4">
             Try a different filter combination.
@@ -243,9 +244,9 @@ export const ProjectsContent = ({
   return (
     <Wrapper
       {...wrapperProps}
-      className={`${isPage ? 'pt-24 sm:pt-28 pb-16' : 'py-16 sm:py-20'} relative overflow-hidden`}
+      className={`${isPage ? 'pt-24 sm:pt-28 pb-16' : 'py-16 sm:py-20'} relative ${isPage ? '' : 'overflow-hidden'}`}
     >
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/6 via-accent/3 to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-tl from-accent/4 to-transparent rounded-full blur-3xl" />
       </div>
@@ -258,34 +259,34 @@ export const ProjectsContent = ({
           }`}
         >
           {isPage ? (
-            <div className="max-w-2xl">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <Globe size={14} className="text-accent" />
+                  <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                    Portfolio
+                  </span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">All Projects</h1>
+                <p className="text-sm text-muted-foreground">
+                  {projects.length} projects across Laravel, React, Angular, and WordPress.
+                </p>
+              </div>
+              <ProjectsSearch />
+            </div>
+          ) : (
+            <div className="max-w-2xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 mb-3">
                 <Globe size={14} className="text-accent" />
                 <span className="text-xs font-semibold text-accent uppercase tracking-wider">
-                  Portfolio
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">All Projects</h1>
-              <p className="text-sm text-muted-foreground">
-                {projects.length} projects across Laravel, React, Angular, and WordPress.
-              </p>
-            </div>
-          ) : (
-            <div className="text-left sm:text-center">
-              <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
-                  <Globe size={14} className="sm:w-4 sm:h-4 text-white" />
-                </div>
-                <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">
                   Projects
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
-                Selected Work & Case Studies
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary tracking-tight mb-3">
+                Selected work
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-                Modern WordPress platforms, software house portfolios, and product-focused web
-                experiences built for real business impact.
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                Here&apos;s a curated selection showcasing my expertise and the achieved results.
               </p>
             </div>
           )}
@@ -322,8 +323,8 @@ export const ProjectsContent = ({
             </div>
 
             {/* Desktop sidebar */}
-            <aside className="hidden lg:block w-52 shrink-0">
-              <div className="sticky top-28 p-4 rounded-2xl border border-border/40 bg-background/60 backdrop-blur-sm">
+            <aside className="hidden lg:block w-52 shrink-0 self-start sticky top-28 z-20">
+              <div className="p-4 rounded-2xl border border-border/40 bg-background/80 backdrop-blur-sm shadow-sm">
                 <p className="text-xs font-semibold text-primary mb-4 flex items-center gap-2">
                   <SlidersHorizontal size={14} className="text-accent" />
                   Filters
@@ -367,64 +368,32 @@ export const ProjectsContent = ({
         ) : (
           <>
             <div
-              className={`mb-10 sm:mb-12 transition-all duration-500 ease-out ${
+              className={`mb-8 sm:mb-10 transition-all duration-500 ease-out ${
                 headerShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              <div className="hidden sm:flex items-center justify-center">
-                <div className="bg-background/60 backdrop-blur-sm rounded-2xl border border-border/50 p-2 shadow-lg relative overflow-hidden">
-                  <div
-                    className="absolute top-2 bottom-2 bg-gradient-to-r from-accent to-accent/80 rounded-xl shadow-lg shadow-accent/25 transition-all duration-500 ease-out"
-                    style={{
-                      left: `${filters.findIndex((f) => f.key === activeFilter) * (100 / filters.length)}%`,
-                      width: `${100 / filters.length}%`,
-                    }}
-                  />
-                  <div
-                    className="grid relative z-10"
-                    style={{ gridTemplateColumns: `repeat(${filters.length}, 1fr)` }}
+              <div className="flex gap-2 overflow-x-auto pb-1 justify-start sm:justify-center scrollbar-none">
+                {filters.map((filter) => (
+                  <button
+                    key={filter.key}
+                    type="button"
+                    onClick={() => applyTypeFilter(filter.key as ProjectFilter)}
+                    className={`flex-shrink-0 px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg border transition-all duration-200 ${
+                      activeFilter === filter.key
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-background text-muted-foreground border-border/70 hover:text-primary hover:border-border'
+                    }`}
                   >
-                    {filters.map((filter) => (
-                      <button
-                        key={filter.key}
-                        type="button"
-                        onClick={() => applyTypeFilter(filter.key as ProjectFilter)}
-                        className={`relative px-3 py-3 rounded-xl text-sm font-medium transition-all duration-500 whitespace-nowrap ${
-                          activeFilter === filter.key
-                            ? 'text-white'
-                            : 'text-muted-foreground hover:text-primary hover:bg-accent/10'
-                        }`}
-                      >
-                        <span className="relative z-10">{filter.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="sm:hidden">
-                <div className="flex gap-2 overflow-x-auto pb-1">
-                  {filters.map((filter) => (
-                    <button
-                      key={filter.key}
-                      type="button"
-                      onClick={() => applyTypeFilter(filter.key as ProjectFilter)}
-                      className={`flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
-                        activeFilter === filter.key
-                          ? 'bg-accent text-white shadow-sm'
-                          : 'bg-background/60 text-muted-foreground hover:text-primary'
-                      }`}
-                    >
-                      {filter.label}
-                    </button>
-                  ))}
-                </div>
+                    {filter.label}
+                  </button>
+                ))}
               </div>
             </div>
 
             <div
               ref={contentRef}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              key={filterKey}
+              className="columns-1 md:columns-2 xl:columns-3 gap-6 md:gap-8"
             >
               {filteredProjects.map((project, index) => (
                 <ProjectCard
@@ -439,16 +408,11 @@ export const ProjectsContent = ({
         )}
 
         {showExploreMore && (
-          <div className="mt-12 sm:mt-16 flex justify-center">
-            <Button
-              variant="cta"
-              size="lg"
-              asChild
-              className="shadow-lg shadow-accent/25 hover:scale-105 transition-all"
-            >
+          <div className="mt-12 sm:mt-14 flex justify-center">
+            <Button variant="outline" size="lg" asChild className="rounded-lg">
               <Link to="/projects">
-                Explore More
-                <ArrowRight size={18} className="ml-2" />
+                View all projects
+                <ArrowRight size={16} className="ml-2" />
               </Link>
             </Button>
           </div>

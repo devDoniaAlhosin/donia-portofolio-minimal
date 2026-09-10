@@ -180,7 +180,56 @@
   }
 
   .animate-page-enter {
-    animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Premium section reveal — sitewide fade + soft rise */
+  .premium-reveal {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+    filter: blur(6px);
+    transition:
+      opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+
+  .premium-reveal.is-inview {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+
+  .premium-reveal--hero {
+    transform: translate3d(0, 18px, 0);
+    filter: blur(4px);
+    transition-duration: 0.75s;
+    transition-delay: 60ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .premium-reveal,
+    .premium-reveal--hero {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 14s linear infinite;
   }
 
   @keyframes slideDown {

@@ -1,237 +1,287 @@
-import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { useState } from 'react';
-import { Trophy, Award, Star, GraduationCap, FileText, ExternalLink, Sparkles, Medal } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import {
+  Trophy,
+  Award,
+  GraduationCap,
+  FileText,
+  ExternalLink,
+  Medal,
+} from 'lucide-react';
+
+type HonorKind = 'certification' | 'research' | 'academic';
+
+type HonorItem = {
+  id: string;
+  title: string;
+  kind: HonorKind;
+  org: string;
+  period: string;
+  description: string;
+  link?: string | null;
+  badge: string;
+  meta?: string;
+  /** Detail panel surface */
+  panel: string;
+  accentDot: string;
+  label: string;
+};
+
+const honors: HonorItem[] = [
+  {
+    id: 'istqb',
+    title: 'ISTQB® Certified Tester Foundation Level v4',
+    kind: 'certification',
+    org: 'International Software Testing Qualifications Board',
+    period: '2026',
+    description:
+      'Passed CTFL4 — structured test design, execution, and defect reporting for professional QA practice.',
+    badge: 'CTFL4',
+    meta: 'Professional certification',
+    panel: 'bg-[#1a3a4a]',
+    accentDot: 'bg-[#5ec4d8]',
+    label: 'Certification',
+  },
+  {
+    id: 'paper-1',
+    title: 'Towards A Novel Prototype for Superpower Glass for Autistic Kids',
+    kind: 'research',
+    org: 'International Journal of Industry and Sustainable Development',
+    period: '2023',
+    description:
+      'Wearable assistive technology research for autistic children — accepted for journal publication.',
+    link: 'https://ijisd.journals.ekb.eg/article_308232.html',
+    badge: 'Journal',
+    meta: 'IJISD-2306-1032 (R1)',
+    panel: 'bg-[#2f4a38]',
+    accentDot: 'bg-[#8fbf7a]',
+    label: 'Research',
+  },
+  {
+    id: 'paper-2',
+    title: 'Enhancing Autism Knowledge with GUI Solution',
+    kind: 'research',
+    org: 'Seventh International Undergraduate Research Conference',
+    period: '2023',
+    description:
+      'Presented at Military Technical College — accepted for publication under ID_1041-IUGRC.',
+    badge: 'Conference',
+    meta: 'ID_1041-IUGRC (R2)',
+    panel: 'bg-[#3a3f5c]',
+    accentDot: 'bg-[#a8b4ff]',
+    label: 'Research',
+  },
+  {
+    id: 'bsc',
+    title: 'BSc — Communications & Electronics Engineering',
+    kind: 'academic',
+    org: 'Egyptian Academy for Engineering and Advanced Technology',
+    period: '2018 – 2023',
+    description:
+      'Very Good with Honor · GPA 3.41 · Graduation project Excellent A+ (Smart Wearable Glasses for Autistic Kids).',
+    badge: 'Honors',
+    meta: 'GPA 3.41',
+    panel: 'bg-[#4a3728]',
+    accentDot: 'bg-[#e0b37a]',
+    label: 'Academic',
+  },
+  {
+    id: 'ecommerce',
+    title: 'eCommerce Project Excellence',
+    kind: 'academic',
+    org: 'AMIT Learning',
+    period: '2023 – 2024',
+    description: 'Perfect score in Front-End Web Development Diploma eCommerce project.',
+    badge: '100%',
+    meta: 'Diploma project',
+    panel: 'bg-[#3d2a3a]',
+    accentDot: 'bg-[#e09aba]',
+    label: 'Academic',
+  },
+];
+
+const kindIcon = {
+  certification: Award,
+  research: FileText,
+  academic: GraduationCap,
+} as const;
 
 export const HonorsAwardsSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-  const [expandedCard, setExpandedCard] = useState<number | null>(null);
-  
-  const honors = [
-    {
-      title: "ISTQB® Certified Tester Foundation Level v4 (CTFL4)",
-      type: "Professional Certification",
-      institution: "International Software Testing Qualifications Board (ISTQB)",
-      period: "2026",
-      description: "Successfully passed the CTFL4 exam — ISTQB Certified Tester Foundation Level v4.",
-      link: null,
-      icon: Award,
-      category: "Professional Certification"
-    },
-    {
-      title: "Towards A Novel Prototype for Superpower Glass for Autistic Kids",
-      type: "Research Paper",
-      journal: "International Journal of Industry and Sustainable Development",
-      period: "2023",
-      id: "IJISD-2306-1032 (R1)",
-      status: "Accepted for Publication",
-      description: "Research paper on innovative wearable technology for autistic children",
-      link: "https://ijisd.journals.ekb.eg/article_308232.html",
-      icon: FileText,
-      category: "Research Publication"
-    },
-    {
-      title: "Enhancing Autism Knowledge with GUI Solution",
-      type: "Research Paper",
-      journal: "Seventh International Undergraduate Research Conference",
-      period: "2023",
-      id: "ID_1041-IUGRC (R2)",
-      status: "Accepted for Publication",
-      description: "Research presented at Military Technical College conference",
-      link: "#",
-      icon: FileText,
-      category: "Conference Paper"
-    },
-    {
-      title: "Bachelor of Engineering (BSc) - Communications and Electronics",
-      type: "Academic Achievement",
-      institution: "Egyptian Academy for Engineering and Advanced Technology",
-      period: "Oct 2018 - Jun 2023",
-      gpa: "3.4146",
-      grade: "Very Good with Honor",
-      description: "Graduation Project: Smart Wearable Glasses for Autistic Kids (Excellent A+)",
-      link: null,
-      icon: GraduationCap,
-      category: "Academic Excellence"
-    },
-    {
-      title: "eCommerce Project Excellence",
-      type: "Academic Achievement",
-      institution: "AMIT Learning",
-      period: "Oct 2023 - April 2024",
-      grade: "100%",
-      description: "Perfect score in Front-End Web Development Diploma project",
-      link: null,
-      icon: Trophy,
-      category: "Project Excellence"
-    }
-  ];
+  const [focusedId, setFocusedId] = useState(honors[0].id);
 
-  const toggleCard = (index: number) => {
-    setExpandedCard(expandedCard === index ? null : index);
-  };
+  const selected = honors.find((h) => h.id === focusedId) ?? honors[0];
+  const SelectedIcon = kindIcon[selected.kind];
 
   return (
-    <section id="honors-awards" className="py-16 sm:py-20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-56 sm:w-80 h-56 sm:h-80 bg-gradient-to-tl from-accent/3 to-transparent rounded-full blur-3xl"></div>
+    <section id="honors-awards" className="py-14 sm:py-16 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute top-0 right-1/4 w-56 h-56 bg-accent/[0.04] rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-        <div 
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div
           ref={headerRef}
-          className={`text-left sm:text-center mb-12 sm:mb-20 transition-all duration-1000 ease-out ${
-            headerVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
+          className={`mb-8 sm:mb-10 transition-all duration-700 ease-out ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
-          <div className="inline-flex items-center gap-2 mb-4 sm:mb-6">
-            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent to-accent/80 rounded-lg flex items-center justify-center">
-              <Trophy size={14} className="sm:w-4 sm:h-4 text-white" />
-            </div>
-            <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">Honors & Awards</span>
+          <div className="inline-flex items-center gap-2 mb-2.5">
+            <Medal size={13} className="text-accent" />
+            <span className="text-[11px] font-semibold text-accent tracking-[0.16em] uppercase">
+              Recognition
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary tracking-[-0.02em]">
             Honors, Certifications & Research
           </h2>
-          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-            Recognition of certifications, academic achievements, research contributions, and excellence in engineering and technology.
+          <p className="mt-2 text-sm text-muted-foreground max-w-xl leading-relaxed">
+            Select an item to preview details — each honor has its own color story.
           </p>
         </div>
 
-        <div 
+        <div
           ref={contentRef}
-          className={`grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 transition-all duration-1000 ease-out ${
-            contentVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
+          className={`grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(300px,420px)] gap-5 lg:gap-6 items-stretch transition-all duration-700 ease-out ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          {honors.map((honor, index) => {
-            const Icon = honor.icon;
-            const isExpanded = expandedCard === index;
-            
-            return (
-              <div 
-                key={index} 
-                className={`group relative transition-all duration-700 ease-out ${
-                  contentVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
-                }`}
-                style={{transitionDelay: `${index * 0.15}s`}}
-              >
-                <div 
-                  className={`relative bg-background/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg sm:rounded-xl border border-border/50 hover:border-accent/30 transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-lg sm:hover:shadow-xl hover:shadow-accent/10 cursor-pointer ${
-                    isExpanded ? 'ring-2 ring-accent/20 shadow-lg' : ''
-                  }`}
-                  onClick={() => toggleCard(index)}
-                >
-                  {/* Header */}
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-accent/15 to-accent/10 rounded-xl flex items-center justify-center shadow-sm border border-accent/20">
-                      <Icon size={18} className="sm:w-5 sm:h-5 text-accent" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-base sm:text-lg font-bold text-primary group-hover:text-accent transition-colors duration-300 line-clamp-2">
-                        {honor.title}
-                      </h3>
-                      <p className="text-accent font-medium text-sm sm:text-base">
-                        {honor.type}
-                      </p>
-                    </div>
-                  </div>
+          {/* Left — honors list */}
+          <div className="rounded-lg border border-border/70 bg-background overflow-hidden flex flex-col min-h-[320px]">
+            <div className="px-4 py-3 border-b border-border/60 bg-secondary/40 flex items-center justify-between gap-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                All honors
+              </p>
+              <span className="text-[11px] tabular-nums text-muted-foreground">
+                {honors.length} items
+              </span>
+            </div>
 
-                  {/* Details */}
-                  <div className="space-y-2 mb-4">
-                    {honor.journal && (
-                      <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <FileText size={12} className="text-accent/60" />
-                        <span className="font-medium">{honor.journal}</span>
-                      </div>
-                    )}
-                    {honor.institution && (
-                      <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <GraduationCap size={12} className="text-accent/60" />
-                        <span className="font-medium">{honor.institution}</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <Star size={12} className="text-accent/60" />
-                      <span className="font-medium">{honor.period}</span>
-                    </div>
-                    {honor.id && (
-                      <div className="flex items-center gap-2 text-muted-foreground text-xs">
-                        <span className="bg-accent/10 text-accent px-2 py-1 rounded-full font-mono">
-                          {honor.id}
-                        </span>
-                      </div>
-                    )}
-                    {(honor.gpa || honor.grade) && (
-                      <div className="flex items-center gap-2">
-                        <span className="bg-gradient-to-r from-accent/20 to-accent/10 text-accent px-3 py-1 rounded-full text-sm font-bold">
-                          {honor.gpa ? `GPA: ${honor.gpa}` : honor.grade}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+            <ul className="divide-y divide-border/50 flex-1">
+              {honors.map((item) => {
+                const isActive = focusedId === item.id;
+                const Icon = kindIcon[item.kind];
 
-                  {/* Expandable content */}
-                  <div className={`overflow-hidden transition-all duration-500 ease-out ${
-                    isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}>
-                    <div className="space-y-3 pt-4 border-t border-border/30">
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {honor.description}
-                      </p>
-                      {honor.link && (
-                        <a 
-                          href={honor.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors text-sm font-medium"
-                          onClick={(e) => e.stopPropagation()}
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => setFocusedId(item.id)}
+                      onMouseEnter={() => setFocusedId(item.id)}
+                      className={`w-full text-left px-4 py-3.5 flex gap-3 transition-colors ${
+                        isActive ? 'bg-secondary/50' : 'hover:bg-secondary/30'
+                      }`}
+                    >
+                      <span
+                        className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${item.accentDot}`}
+                        aria-hidden
+                      />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                            <Icon size={11} />
+                            {item.label}
+                          </span>
+                          <span className="text-[10px] tabular-nums text-muted-foreground">
+                            {item.period}
+                          </span>
+                          <span
+                            className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                              isActive
+                                ? 'bg-primary text-primary-foreground'
+                                : 'bg-secondary text-primary/70'
+                            }`}
+                          >
+                            {item.badge}
+                          </span>
+                        </div>
+                        <p
+                          className={`text-[13px] sm:text-[14px] font-semibold leading-snug ${
+                            isActive ? 'text-primary' : 'text-primary/85'
+                          }`}
                         >
-                          <ExternalLink size={14} />
-                          View Publication
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Expand button */}
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="text-xs text-muted-foreground font-medium">
-                      {honor.category}
-                    </span>
-                    <button className="p-1.5 rounded-md bg-accent/10 hover:bg-accent/20 transition-colors">
-                      {isExpanded ? 
-                        <Sparkles size={12} className="text-accent" /> : 
-                        <Medal size={12} className="text-accent" />
-                      }
+                          {item.title}
+                        </p>
+                        <p className="mt-1 text-[11px] text-muted-foreground line-clamp-1">
+                          {item.org}
+                        </p>
+                      </div>
                     </button>
-                  </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/2 to-transparent rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Right — colored details panel */}
+          <aside
+            key={selected.id}
+            className={`relative overflow-hidden rounded-lg text-white min-h-[320px] lg:min-h-full flex flex-col ${selected.panel} shadow-[0_24px_60px_-28px_rgba(0,0,0,0.4)] animate-page-enter`}
+          >
+            <div
+              className="absolute inset-0 opacity-25 pointer-events-none"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 45%), linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%)',
+              }}
+              aria-hidden
+            />
+
+            <div className="relative flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
+              <div className="flex items-start justify-between gap-3 mb-6">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-md bg-white/15 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider">
+                    <SelectedIcon size={12} />
+                    {selected.label}
+                  </span>
+                  <span className="rounded-md bg-white/20 px-2 py-1 text-[10px] font-bold">
+                    {selected.badge}
+                  </span>
+                </div>
+                <span className="text-[12px] tabular-nums text-white/65 shrink-0">
+                  {selected.period}
+                </span>
+              </div>
+
+              <h3 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight">
+                {selected.title}
+              </h3>
+
+              <p className="mt-4 text-sm text-white/75 leading-relaxed flex-1">
+                {selected.description}
+              </p>
+
+              <div className="mt-6 pt-5 border-t border-white/15 space-y-3">
+                <p className="text-[12px] text-white/55 leading-snug">{selected.org}</p>
+                {selected.meta && (
+                  <p className="font-mono text-[11px] text-white/50">{selected.meta}</p>
+                )}
+
+                <div className="flex items-center justify-between gap-3 pt-1">
+                  {selected.link ? (
+                    <a
+                      href={selected.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-white text-primary px-3.5 py-2 text-[12px] font-semibold hover:bg-white/90 transition-colors"
+                    >
+                      <ExternalLink size={13} />
+                      View publication
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 text-[12px] text-white/55">
+                      <Trophy size={14} />
+                      Recognition highlight
+                    </span>
+                  )}
+                  <span className={`w-3 h-3 rounded-full ${selected.accentDot}`} aria-hidden />
                 </div>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom call-to-action */}
-        <div className="mt-12 sm:mt-16 text-left sm:text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-            <span className="text-sm font-semibold text-accent">Committed to excellence in research and development</span>
-            <Trophy size={14} className="text-accent" />
-          </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
   );
-}; 
+};
