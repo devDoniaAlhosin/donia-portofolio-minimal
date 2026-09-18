@@ -314,9 +314,12 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <main className="pb-16 relative overflow-hidden">
+      <main className="pb-16 relative overflow-x-clip">
         {/* Hero — shorter on mobile, full viewport height on desktop */}
-        <section className="relative w-full h-[58dvh] min-h-[280px] max-h-[420px] sm:h-[64dvh] sm:max-h-[520px] lg:h-[100dvh] lg:min-h-0 lg:max-h-none overflow-hidden">
+        <section
+          data-no-reveal
+          className="relative w-full h-[52dvh] min-h-[240px] max-h-[380px] sm:h-[60dvh] sm:max-h-[480px] lg:h-[100dvh] lg:min-h-0 lg:max-h-none overflow-hidden"
+        >
           {/* Image plane: full bleed (mobile) / right half (desktop), edge-to-edge from top */}
           <div className="absolute inset-0 lg:left-1/2 lg:right-0 bg-[#e8e4d8]">
             <img
@@ -466,8 +469,8 @@ const ProjectDetails = () => {
           </div>
         </section>
 
-        {/* Mobile project info — below full-height image */}
-        <div className="lg:hidden px-5 sm:px-8 py-8 sm:py-10 bg-background">
+        {/* Mobile project info — below hero */}
+        <div className="lg:hidden px-5 sm:px-8 py-7 sm:py-10 bg-background relative z-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-2.5 py-1 bg-accent text-white text-[11px] font-semibold rounded-lg">
               {getCategoryLabel(project.category)}
@@ -553,7 +556,7 @@ const ProjectDetails = () => {
           <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/8 via-accent/4 to-transparent rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 mt-10 sm:mt-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 mt-6 sm:mt-10 lg:mt-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
               <section id="objective" className="relative overflow-hidden bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">

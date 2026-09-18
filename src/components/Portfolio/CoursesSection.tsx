@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import coursesData from '@/data/courses.json';
 import {
@@ -10,6 +11,7 @@ import {
   ExternalLink,
   BadgeCheck,
   ArrowRight,
+  X,
 } from 'lucide-react';
 
 type CourseCategory = 'All' | 'Diploma' | 'Certification' | 'Degree';
@@ -32,6 +34,7 @@ export const CoursesSection = () => {
 
   const [tab, setTab] = useState<CourseCategory>('All');
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const courses = useMemo(
     () =>
@@ -61,8 +64,113 @@ export const CoursesSection = () => {
     return counts;
   }, [courses]);
 
-  const active = filtered.find((c) => c.id === activeId) ?? filtered[0] ?? null;
+  const active = useMemo(() => {
+    if (activeId) {
+      return filtered.find((c) => c.id === activeId) ?? filtered[0] ?? null;
+    }
+    return filtered[0] ?? null;
+  }, [activeId, filtered]);
+
   const certifiedCount = courses.filter((c) => Boolean(c.certificateLink)).length;
+
+  const openCredential = (id: string) => {
+    setActiveId(id);
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches) {
+      setDrawerOpen(true);
+    }
+  };
+
+  const closeDrawer = () => setDrawerOpen(false);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeDrawer();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [drawerOpen]);
+
+  useEffect(() => {
+    if (!drawerOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [drawerOpen]);
+
+  useEffect(() => {
+    if (activeId != null && !filtered.some((c) => c.id === activeId)) {
+      setActiveId(null);
+      setDrawerOpen(false);
+    }
+  }, [filtered, activeId]);
+
+  const detailBody = active ? (
+    <>
+      <div className="flex flex-wrap gap-2 text-[11px] mb-4">
+        <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
+          {active.period}
+        </span>
+        <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
+          {active.duration}
+        </span>
+        <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
+          {active.level}
+        </span>
+        <span className="rounded-lg border border-accent/25 bg-accent/10 px-2 py-1 font-semibold text-accent">
+          {active.category}
+        </span>
+      </div>
+
+      {active.outcome && (
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">{active.outcome}</p>
+      )}
+
+      <div className="mb-4">
+        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+          Skills gained
+        </p>
+        <ul className="space-y-1.5">
+          {active.skillsGained.slice(0, 6).map((skill) => (
+            <li key={skill} className="text-[12px] text-primary/80 leading-snug flex gap-2">
+              <span className="mt-1.5 w-1 h-1 rounded-full bg-accent shrink-0" />
+              <span>{skill}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {active.tags?.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {active.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-0.5 text-[10px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {active.certificateLink && (
+        <a
+          href={active.certificateLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full border border-primary/80 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+        >
+          <Award size={13} />
+          View certificate
+          <ExternalLink size={12} />
+        </a>
+      )}
+    </>
+  ) : null;
 
   return (
     <section id="courses" className="py-14 sm:py-16 relative overflow-hidden">
@@ -157,6 +265,7 @@ export const CoursesSection = () => {
                   onClick={() => {
                     setTab(item);
                     setActiveId(null);
+                    setDrawerOpen(false);
                   }}
                   className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold border transition-colors ${
                     selected
@@ -174,7 +283,6 @@ export const CoursesSection = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] gap-8 lg:gap-10 items-start">
-            {/* Journey timeline */}
             <ol className="relative space-y-0">
               <div
                 className="absolute left-[15px] sm:left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-accent/50 via-border to-transparent"
@@ -183,14 +291,14 @@ export const CoursesSection = () => {
 
               {filtered.map((course, index) => {
                 const Icon = course.Icon;
-                const isActive = (active?.id ?? filtered[0]?.id) === course.id;
+                const listActive = (activeId ?? filtered[0]?.id) === course.id;
                 const isLast = index === filtered.length - 1;
 
                 return (
                   <li key={course.id} className={`relative pl-12 sm:pl-14 ${isLast ? '' : 'pb-6'}`}>
                     <span
                       className={`absolute left-1.5 sm:left-2.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full border-2 bg-background transition-colors ${
-                        isActive
+                        listActive
                           ? 'border-accent text-accent'
                           : 'border-border text-muted-foreground'
                       }`}
@@ -200,9 +308,9 @@ export const CoursesSection = () => {
 
                     <button
                       type="button"
-                      onClick={() => setActiveId(course.id)}
+                      onClick={() => openCredential(course.id)}
                       className={`w-full text-left rounded-lg border px-4 py-3.5 transition-all duration-300 ${
-                        isActive
+                        listActive
                           ? 'border-accent/35 bg-white shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)]'
                           : 'border-border/60 bg-background/70 hover:border-border hover:bg-white/80'
                       }`}
@@ -257,9 +365,9 @@ export const CoursesSection = () => {
               )}
             </ol>
 
-            {/* Detail panel — not a “glance” sidebar clone */}
+            {/* Desktop detail panel */}
             {active && (
-              <aside className="lg:sticky lg:top-24 rounded-lg border border-border/70 bg-white overflow-hidden shadow-[0_20px_50px_-30px_rgba(15,23,42,0.35)]">
+              <aside className="hidden lg:block lg:sticky lg:top-24 rounded-lg border border-border/70 bg-white overflow-hidden shadow-[0_20px_50px_-30px_rgba(15,23,42,0.35)]">
                 <div className="px-5 py-4 border-b border-border/60 bg-gradient-to-r from-accent/[0.08] to-transparent">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-1">
                     Selected credential
@@ -269,72 +377,85 @@ export const CoursesSection = () => {
                   </h3>
                   <p className="mt-1 text-[13px] font-semibold text-accent">{active.provider}</p>
                 </div>
-
-                <div className="p-5 space-y-4">
-                  <div className="flex flex-wrap gap-2 text-[11px]">
-                    <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
-                      {active.period}
-                    </span>
-                    <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
-                      {active.duration}
-                    </span>
-                    <span className="rounded-lg border border-border/70 px-2 py-1 text-muted-foreground">
-                      {active.level}
-                    </span>
-                  </div>
-
-                  {active.outcome && (
-                    <p className="text-sm text-muted-foreground leading-relaxed">{active.outcome}</p>
-                  )}
-
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                      Skills gained
-                    </p>
-                    <ul className="space-y-1.5">
-                      {active.skillsGained.slice(0, 4).map((skill) => (
-                        <li
-                          key={skill}
-                          className="text-[12px] text-primary/80 leading-snug flex gap-2"
-                        >
-                          <span className="mt-1.5 w-1 h-1 rounded-full bg-accent shrink-0" />
-                          <span>{skill}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {active.tags?.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {active.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 text-[10px] font-medium rounded-lg bg-accent/10 text-accent border border-accent/20"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {active.certificateLink && (
-                    <a
-                      href={active.certificateLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border border-primary/80 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <Award size={13} />
-                      View certificate
-                      <ExternalLink size={12} />
-                    </a>
-                  )}
-                </div>
+                <div className="p-5 space-y-4">{detailBody}</div>
               </aside>
             )}
           </div>
         </div>
       </div>
+
+      {/* Mobile bottom sheet — same pattern as Experience */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-300 ${
+              drawerOpen && active
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-hidden={!drawerOpen || !active}
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-black/45 backdrop-blur-[2px]"
+              onClick={closeDrawer}
+              aria-label="Close overlay"
+            />
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Credential details"
+              className={`absolute inset-x-0 bottom-0 max-h-[min(88dvh,640px)] rounded-t-xl border border-border/70 bg-background shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pb-[env(safe-area-inset-bottom)] ${
+                drawerOpen && active ? 'translate-y-0' : 'translate-y-full'
+              }`}
+            >
+              {active && (
+                <>
+                  <div className="relative flex items-center justify-between gap-2 px-4 pt-4 pb-3 border-b border-border/60">
+                    <div
+                      className="h-1 w-10 rounded-full bg-border absolute left-1/2 -translate-x-1/2 top-2"
+                      aria-hidden
+                    />
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      Credential details
+                    </p>
+                    <button
+                      type="button"
+                      onClick={closeDrawer}
+                      className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-secondary"
+                      aria-label="Close"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                  <div className="p-4 overflow-y-auto overscroll-contain max-h-[calc(min(88dvh,640px)-3.5rem)]">
+                    <div className="flex items-start gap-3 mb-3">
+                      {'logo' in active && active.logo ? (
+                        <div className="w-12 h-12 rounded-lg border border-border/60 bg-secondary/40 flex items-center justify-center shrink-0 overflow-hidden p-1.5">
+                          <img
+                            src={active.logo as string}
+                            alt=""
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-12 h-12 rounded-lg border border-border/60 bg-accent/10 flex items-center justify-center shrink-0 text-accent">
+                          <active.Icon size={20} />
+                        </div>
+                      )}
+                      <div className="min-w-0">
+                        <h3 className="text-base font-bold text-primary leading-tight">{active.name}</h3>
+                        <p className="text-sm font-semibold text-accent mt-0.5">{active.provider}</p>
+                      </div>
+                    </div>
+                    {detailBody}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 };

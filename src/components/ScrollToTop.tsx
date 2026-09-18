@@ -7,7 +7,8 @@ export const ScrollToTop = () => {
   useEffect(() => {
     if (hash) return;
 
-    window.scrollTo(0, 0);
+    // Instant reset helps mobile after route changes (avoids stuck mid-scroll)
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [pathname, hash]);
 
   return null;

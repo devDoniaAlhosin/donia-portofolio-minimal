@@ -11,11 +11,12 @@ import ProjectDetails from '@/pages/ProjectDetails';
 import NotFound from '@/pages/NotFound';
 
 const TRANSITION_MS = 420;
+const ENTER_MS = 560;
 
 export const PageTransition = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
-  const [hasNavigated, setHasNavigated] = useState(false);
+  const [enterAnim, setEnterAnim] = useState(false);
   const isFirstMount = useRef(true);
 
   useEffect(() => {
@@ -24,20 +25,22 @@ export const PageTransition = () => {
       return;
     }
 
-    setHasNavigated(true);
+    setEnterAnim(true);
     setIsLoading(true);
-    const timer = window.setTimeout(() => setIsLoading(false), TRANSITION_MS);
-    return () => window.clearTimeout(timer);
+    const loadTimer = window.setTimeout(() => setIsLoading(false), TRANSITION_MS);
+    // Drop the enter class after the animation so no transform remains on mobile
+    const enterTimer = window.setTimeout(() => setEnterAnim(false), ENTER_MS);
+    return () => {
+      window.clearTimeout(loadTimer);
+      window.clearTimeout(enterTimer);
+    };
   }, [location.pathname]);
 
   return (
     <>
       <Navbar />
       <NavigationLoader isLoading={isLoading} />
-      <div
-        key={location.pathname}
-        className={hasNavigated ? 'animate-page-enter' : undefined}
-      >
+      <div key={location.pathname} className={enterAnim ? 'animate-page-enter' : undefined}>
         <Routes location={location}>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import {
   Trophy,
@@ -7,6 +8,7 @@ import {
   FileText,
   ExternalLink,
   Medal,
+  X,
 } from 'lucide-react';
 
 type HonorKind = 'certification' | 'research' | 'academic';
@@ -21,7 +23,6 @@ type HonorItem = {
   link?: string | null;
   badge: string;
   meta?: string;
-  /** Detail panel surface */
   panel: string;
   accentDot: string;
   label: string;
@@ -110,9 +111,89 @@ export const HonorsAwardsSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
   const [focusedId, setFocusedId] = useState(honors[0].id);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const selected = honors.find((h) => h.id === focusedId) ?? honors[0];
   const SelectedIcon = kindIcon[selected.kind];
+
+  const openHonor = (id: string) => {
+    setFocusedId(id);
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches) {
+      setDrawerOpen(true);
+    }
+  };
+
+  const closeDrawer = () => setDrawerOpen(false);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeDrawer();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [drawerOpen]);
+
+  useEffect(() => {
+    if (!drawerOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [drawerOpen]);
+
+  const detailInner = (
+    <div className="relative flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
+      <div className="flex items-start justify-between gap-3 mb-6">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-white/15 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider">
+            <SelectedIcon size={12} />
+            {selected.label}
+          </span>
+          <span className="rounded-md bg-white/20 px-2 py-1 text-[10px] font-bold">
+            {selected.badge}
+          </span>
+        </div>
+        <span className="text-[12px] tabular-nums text-white/65 shrink-0">{selected.period}</span>
+      </div>
+
+      <h3 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight">
+        {selected.title}
+      </h3>
+
+      <p className="mt-4 text-sm text-white/75 leading-relaxed flex-1">{selected.description}</p>
+
+      <div className="mt-6 pt-5 border-t border-white/15 space-y-3">
+        <p className="text-[12px] text-white/55 leading-snug">{selected.org}</p>
+        {selected.meta && (
+          <p className="font-mono text-[11px] text-white/50">{selected.meta}</p>
+        )}
+
+        <div className="flex items-center justify-between gap-3 pt-1">
+          {selected.link ? (
+            <a
+              href={selected.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-white text-primary px-3.5 py-2 text-[12px] font-semibold hover:bg-white/90 transition-colors"
+            >
+              <ExternalLink size={13} />
+              View publication
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 text-[12px] text-white/55">
+              <Trophy size={14} />
+              Recognition highlight
+            </span>
+          )}
+          <span className={`w-3 h-3 rounded-full ${selected.accentDot}`} aria-hidden />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="honors-awards" className="py-14 sm:py-16 relative overflow-hidden bg-background">
@@ -147,7 +228,6 @@ export const HonorsAwardsSection = () => {
             contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          {/* Left — honors list */}
           <div className="rounded-lg border border-border/70 bg-background overflow-hidden flex flex-col min-h-[320px]">
             <div className="px-4 py-3 border-b border-border/60 bg-secondary/40 flex items-center justify-between gap-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -167,8 +247,12 @@ export const HonorsAwardsSection = () => {
                   <li key={item.id}>
                     <button
                       type="button"
-                      onClick={() => setFocusedId(item.id)}
-                      onMouseEnter={() => setFocusedId(item.id)}
+                      onClick={() => openHonor(item.id)}
+                      onMouseEnter={() => {
+                        if (window.matchMedia('(min-width: 1024px)').matches) {
+                          setFocusedId(item.id);
+                        }
+                      }}
                       className={`w-full text-left px-4 py-3.5 flex gap-3 transition-colors ${
                         isActive ? 'bg-secondary/50' : 'hover:bg-secondary/30'
                       }`}
@@ -214,10 +298,10 @@ export const HonorsAwardsSection = () => {
             </ul>
           </div>
 
-          {/* Right — colored details panel */}
+          {/* Desktop colored details panel */}
           <aside
             key={selected.id}
-            className={`relative overflow-hidden rounded-lg text-white min-h-[320px] lg:min-h-full flex flex-col ${selected.panel} shadow-[0_24px_60px_-28px_rgba(0,0,0,0.4)] animate-page-enter`}
+            className={`hidden lg:flex relative overflow-hidden rounded-lg text-white min-h-[320px] lg:min-h-full flex-col ${selected.panel} shadow-[0_24px_60px_-28px_rgba(0,0,0,0.4)] animate-page-enter`}
           >
             <div
               className="absolute inset-0 opacity-25 pointer-events-none"
@@ -227,61 +311,68 @@ export const HonorsAwardsSection = () => {
               }}
               aria-hidden
             />
-
-            <div className="relative flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
-              <div className="flex items-start justify-between gap-3 mb-6">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md bg-white/15 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider">
-                    <SelectedIcon size={12} />
-                    {selected.label}
-                  </span>
-                  <span className="rounded-md bg-white/20 px-2 py-1 text-[10px] font-bold">
-                    {selected.badge}
-                  </span>
-                </div>
-                <span className="text-[12px] tabular-nums text-white/65 shrink-0">
-                  {selected.period}
-                </span>
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight">
-                {selected.title}
-              </h3>
-
-              <p className="mt-4 text-sm text-white/75 leading-relaxed flex-1">
-                {selected.description}
-              </p>
-
-              <div className="mt-6 pt-5 border-t border-white/15 space-y-3">
-                <p className="text-[12px] text-white/55 leading-snug">{selected.org}</p>
-                {selected.meta && (
-                  <p className="font-mono text-[11px] text-white/50">{selected.meta}</p>
-                )}
-
-                <div className="flex items-center justify-between gap-3 pt-1">
-                  {selected.link ? (
-                    <a
-                      href={selected.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-white text-primary px-3.5 py-2 text-[12px] font-semibold hover:bg-white/90 transition-colors"
-                    >
-                      <ExternalLink size={13} />
-                      View publication
-                    </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 text-[12px] text-white/55">
-                      <Trophy size={14} />
-                      Recognition highlight
-                    </span>
-                  )}
-                  <span className={`w-3 h-3 rounded-full ${selected.accentDot}`} aria-hidden />
-                </div>
-              </div>
-            </div>
+            {detailInner}
           </aside>
         </div>
       </div>
+
+      {/* Mobile bottom sheet */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-300 ${
+              drawerOpen
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-hidden={!drawerOpen}
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-black/45 backdrop-blur-[2px]"
+              onClick={closeDrawer}
+              aria-label="Close overlay"
+            />
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Honor details"
+              className={`absolute inset-x-0 bottom-0 max-h-[min(88dvh,640px)] rounded-t-xl overflow-hidden shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pb-[env(safe-area-inset-bottom)] ${
+                selected.panel
+              } text-white ${drawerOpen ? 'translate-y-0' : 'translate-y-full'}`}
+            >
+              <div className="relative flex items-center justify-between gap-2 px-4 pt-4 pb-2">
+                <div
+                  className="h-1 w-10 rounded-full bg-white/35 absolute left-1/2 -translate-x-1/2 top-2"
+                  aria-hidden
+                />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70">
+                  Honor details
+                </p>
+                <button
+                  type="button"
+                  onClick={closeDrawer}
+                  className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10"
+                  aria-label="Close"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="relative overflow-y-auto overscroll-contain max-h-[calc(min(88dvh,640px)-3rem)]">
+                <div
+                  className="absolute inset-0 opacity-25 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 45%), linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%)',
+                  }}
+                  aria-hidden
+                />
+                {detailInner}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 };

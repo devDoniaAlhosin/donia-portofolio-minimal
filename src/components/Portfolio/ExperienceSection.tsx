@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import experienceData from '@/data/experience.json';
 import {
@@ -106,6 +107,17 @@ export const ExperienceSection = () => {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [panelOpen]);
+
+  useEffect(() => {
+    if (!(panelOpen && selectedId != null)) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [panelOpen, selectedId]);
 
   useEffect(() => {
     if (selectedId != null && !filtered.some((e) => e.id === selectedId)) {
@@ -365,107 +377,126 @@ export const ExperienceSection = () => {
         </div>
       </div>
 
-      {/* Mobile / tablet detail drawer */}
-      <div
-        className={`lg:hidden fixed inset-0 z-50 transition-opacity duration-300 ${
-          panelOpen && selected ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        aria-hidden={!panelOpen || !selected}
-      >
-        <button
-          type="button"
-          className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
-          onClick={closePanel}
-          aria-label="Close overlay"
-        />
-        <div
-          className={`absolute inset-x-0 bottom-0 max-h-[85vh] rounded-t-xl border border-border/70 bg-background shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            panelOpen && selected ? 'translate-y-0' : 'translate-y-full'
-          }`}
-        >
-          {selected && (
-            <>
-              <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-border/60">
-                <div className="h-1 w-10 rounded-full bg-border mx-auto absolute left-1/2 -translate-x-1/2 top-2" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  Role details
-                </p>
-                <button
-                  type="button"
-                  onClick={closePanel}
-                  className="p-1.5 rounded-lg text-muted-foreground hover:text-primary hover:bg-secondary"
-                  aria-label="Close"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <div className="p-4 overflow-y-auto max-h-[calc(85vh-52px)]">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-lg bg-secondary/70 border border-border/60 flex items-center justify-center shrink-0 overflow-hidden p-1.5">
-                    {selected.logo ? (
-                      <img
-                        src={selected.logo}
-                        alt={`${selected.company} logo`}
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    ) : (
-                      <selected.Icon className="w-5 h-5 text-accent" />
-                    )}
+      {/* Mobile / tablet detail drawer — portaled so fixed isn't trapped by section transforms */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <div
+            className={`lg:hidden fixed inset-0 z-[110] transition-opacity duration-300 ${
+              panelOpen && selected
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
+            }`}
+            aria-hidden={!panelOpen || !selected}
+          >
+            <button
+              type="button"
+              className="absolute inset-0 bg-black/45 backdrop-blur-[2px]"
+              onClick={closePanel}
+              aria-label="Close overlay"
+            />
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Role details"
+              className={`absolute inset-x-0 bottom-0 max-h-[min(88dvh,640px)] rounded-t-xl border border-border/70 bg-background shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pb-[env(safe-area-inset-bottom)] ${
+                panelOpen && selected ? 'translate-y-0' : 'translate-y-full'
+              }`}
+            >
+              {selected && (
+                <>
+                  <div className="relative flex items-center justify-between gap-2 px-4 pt-4 pb-3 border-b border-border/60">
+                    <div
+                      className="h-1 w-10 rounded-full bg-border absolute left-1/2 -translate-x-1/2 top-2"
+                      aria-hidden
+                    />
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      Role details
+                    </p>
+                    <button
+                      type="button"
+                      onClick={closePanel}
+                      className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-secondary"
+                      aria-label="Close"
+                    >
+                      <X size={16} />
+                    </button>
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="text-base font-bold text-primary leading-tight">{selected.title}</h3>
-                    <p className="text-sm font-semibold text-accent mt-0.5">{selected.company}</p>
-                  </div>
-                </div>
+                  <div className="p-4 overflow-y-auto overscroll-contain max-h-[calc(min(88dvh,640px)-3.5rem)]">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-12 h-12 rounded-lg bg-secondary/70 border border-border/60 flex items-center justify-center shrink-0 overflow-hidden p-1.5">
+                        {selected.logo ? (
+                          <img
+                            src={selected.logo}
+                            alt={`${selected.company} logo`}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        ) : (
+                          <selected.Icon className="w-5 h-5 text-accent" />
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-base font-bold text-primary leading-tight">
+                          {selected.title}
+                        </h3>
+                        <p className="text-sm font-semibold text-accent mt-0.5">{selected.company}</p>
+                      </div>
+                    </div>
 
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  <span className="rounded-lg border border-accent/25 bg-accent/10 px-1.5 py-0.5 text-[10px] font-semibold text-accent">
-                    {selected.type}
-                  </span>
-                  <span className="rounded-lg border border-border/60 px-1.5 py-0.5 text-[10px] text-muted-foreground">
-                    {selected.period}
-                  </span>
-                </div>
-
-                {selected.summary && (
-                  <p className="text-[13px] text-muted-foreground leading-snug mb-3">{selected.summary}</p>
-                )}
-
-                <div className="mb-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
-                    Stack
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {selected.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-1.5 py-0.5 bg-secondary/70 text-primary/80 text-[10px] font-medium rounded-lg border border-border/50"
-                      >
-                        {skill}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      <span className="rounded-lg border border-accent/25 bg-accent/10 px-1.5 py-0.5 text-[10px] font-semibold text-accent">
+                        {selected.type}
                       </span>
-                    ))}
-                  </div>
-                </div>
+                      <span className="rounded-lg border border-border/60 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                        {selected.period}
+                      </span>
+                    </div>
 
-                <div>
-                  <h4 className="font-semibold text-primary flex items-center gap-1.5 text-[12px] mb-1.5">
-                    <Star size={12} className="text-accent" />
-                    Impact
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {selected.achievements.map((item) => (
-                      <li key={item} className="text-muted-foreground flex items-start gap-2 text-[13px]">
-                        <CheckCircle2 className="mt-0.5 h-3 w-3 text-accent shrink-0" />
-                        <span className="leading-snug">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+                    {selected.summary && (
+                      <p className="text-[13px] text-muted-foreground leading-snug mb-3">
+                        {selected.summary}
+                      </p>
+                    )}
+
+                    <div className="mb-3">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                        Stack
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        {selected.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="px-1.5 py-0.5 bg-secondary/70 text-primary/80 text-[10px] font-medium rounded-lg border border-border/50"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-primary flex items-center gap-1.5 text-[12px] mb-1.5">
+                        <Star size={12} className="text-accent" />
+                        Impact
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {selected.achievements.map((item) => (
+                          <li
+                            key={item}
+                            className="text-muted-foreground flex items-start gap-2 text-[13px]"
+                          >
+                            <CheckCircle2 className="mt-0.5 h-3 w-3 text-accent shrink-0" />
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 };

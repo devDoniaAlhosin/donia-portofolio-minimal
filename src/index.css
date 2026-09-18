@@ -171,16 +171,16 @@
   @keyframes pageEnter {
     0% {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(10px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
   }
 
   .animate-page-enter {
-    animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   /* Premium section reveal — sitewide fade + soft rise */
@@ -193,13 +193,13 @@
       transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
       filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform, filter;
   }
 
   .premium-reveal.is-inview {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
+    /* `none` avoids a lasting containing block that breaks fixed mobile drawers/overlays */
+    transform: none;
+    filter: none;
   }
 
   .premium-reveal--hero {
@@ -207,6 +207,11 @@
     filter: blur(4px);
     transition-duration: 0.75s;
     transition-delay: 60ms;
+  }
+
+  .premium-reveal--hero.is-inview {
+    transform: none;
+    filter: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
