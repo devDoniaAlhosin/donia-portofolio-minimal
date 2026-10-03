@@ -56,7 +56,7 @@ export const ProjectCard = ({ project, index, isVisible }: ProjectCardProps) => 
   return (
     <Link
       to={`/projects/${getProjectSlug(project)}`}
-      className={`group mb-6 md:mb-8 break-inside-avoid block transition-all duration-500 ease-out ${
+      className={`group block transition-all duration-500 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
       }`}
       style={{ transitionDelay: `${Math.min(index * 50, 200)}ms` }}

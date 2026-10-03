@@ -213,7 +213,7 @@ export const ProjectsContent = ({
     <div
       ref={contentRef}
       key={filterKey}
-      className="columns-1 md:columns-2 xl:columns-3 gap-6 md:gap-8 animate-page-enter"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 items-start"
     >
       {filteredProjects.length > 0 ? (
         filteredProjects.map((project, index) => (
@@ -244,7 +244,7 @@ export const ProjectsContent = ({
   return (
     <Wrapper
       {...wrapperProps}
-      className={`${isPage ? 'pt-24 sm:pt-28 pb-16' : 'py-16 sm:py-20'} relative ${isPage ? '' : 'overflow-hidden'}`}
+      className={`${isPage ? 'pt-24 sm:pt-28 pb-16' : 'py-16 sm:py-20'} relative`}
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-br from-accent/6 via-accent/3 to-transparent rounded-full blur-3xl" />
@@ -372,7 +372,7 @@ export const ProjectsContent = ({
                 headerShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              <div className="flex gap-2 overflow-x-auto pb-1 justify-start sm:justify-center scrollbar-none">
+              <div className="flex gap-2 overflow-x-auto overflow-y-hidden md:overflow-visible pb-1 justify-start sm:justify-center scrollbar-none">
                 {filters.map((filter) => (
                   <button
                     key={filter.key}
@@ -393,7 +393,7 @@ export const ProjectsContent = ({
             <div
               ref={contentRef}
               key={filterKey}
-              className="columns-1 md:columns-2 xl:columns-3 gap-6 md:gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 items-start"
             >
               {filteredProjects.map((project, index) => (
                 <ProjectCard

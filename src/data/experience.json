@@ -6,7 +6,7 @@
       "company": "O2Nations",
       "period": "January 2025 - Present",
       "start": "2025-01",
-      "location": "Remote",
+      "location": "On-site",
       "type": "Full-time",
       "summary": "Software house focused on AI solutions and end-to-end software products.",
       "focus": "AI products · Full stack delivery",
@@ -18,7 +18,7 @@
       ],
       "skills": ["React", "Angular", "Laravel", "PHP", "MySQL", "AI Solutions"],
       "icon": "Cpu",
-      "logo": "/assets/logo-o2nations.webp"
+      "logo": "/assets/logos/logo-o2nations.webp"
     },
     {
       "id": 2,
@@ -27,7 +27,7 @@
       "period": "January 2024 - January 2025",
       "start": "2024-01",
       "end": "2025-01",
-      "location": "Remote",
+      "location": "On-site",
       "type": "Full-time",
       "summary": "Agency delivery across marketing sites, e-commerce, and LMS products.",
       "focus": "Client delivery · E-commerce & LMS",
@@ -39,7 +39,7 @@
       ],
       "skills": ["React", "Laravel", "PHP", "WordPress", "WooCommerce", "MySQL"],
       "icon": "Briefcase",
-      "logo": "/assets/bohemiangeeks.webp"
+      "logo": "/assets/logos/bohemiangeeks.webp"
     },
     {
       "id": 3,
@@ -97,7 +97,7 @@
       ],
       "skills": ["WordPress", "Teaching", "Mentoring"],
       "icon": "Users",
-      "logo": "/assets/logo-iti.png"
+      "logo": "/assets/logos/logo-iti.png"
     }
   ]
 }

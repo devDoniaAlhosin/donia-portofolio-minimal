@@ -22,7 +22,7 @@
       "liveUrl": "https://abdelrahmansleem.com/",
       "githubUrl": "",
       "images": [
-        "/assets/as-lms.png"
+        "/assets/projects/abdelrahman-sleem/as-lms.png"
       ],
       "features": [
         "Native Laravel LMS Architecture",
@@ -61,7 +61,7 @@
         {
           "type": "image",
           "name": "Homepage",
-          "url": "/assets/as-home.png",
+          "url": "/assets/projects/abdelrahman-sleem/as-home.png",
           "description": "Marketing homepage — hero, programs, courses, and conversion sections"
         }
       ]
@@ -90,7 +90,7 @@
       "liveUrl": "https://www.fouadhoussien.com/",
       "githubUrl": "",
       "images": [
-        "/assets/fouad-featured.png"
+        "/assets/projects/fouad-houssien/fouad-featured.png"
       ],
       "features": [
         "Native Laravel LMS Architecture",
@@ -129,7 +129,7 @@
         {
           "type": "image",
           "name": "Platform Featured Mockup",
-          "url": "/assets/fouad-featured.png",
+          "url": "/assets/projects/fouad-houssien/fouad-featured.png",
           "description": "Desktop and mobile preview of the Laravel LMS platform"
         }
       ]
@@ -157,7 +157,7 @@
       "liveUrl": "https://o2nations.com/",
       "githubUrl": "",
       "images": [
-        "/assets/02-nation-featured.png"
+        "/assets/projects/o2nations/02-nation-featured.png"
       ],
       "features": [
         "AI-Focused Hero & Brand Storytelling",
@@ -192,7 +192,7 @@
         {
           "type": "image",
           "name": "Featured Mockup",
-          "url": "/assets/02-nation-featured.png",
+          "url": "/assets/projects/o2nations/02-nation-featured.png",
           "description": "O₂Nations portfolio — desktop and mobile mockup"
         }
       ]
@@ -215,7 +215,7 @@
       "liveUrl": "https://www.frontier-me.com/finance-for-business-managers/",
       "githubUrl": "#",
       "images": [
-        "/assets/frontier-academy-finance.png"
+        "/assets/projects/frontier-academy/frontier-academy-finance.png"
       ],
       "features": [
         "Comprehensive Course Information Sections",
@@ -253,7 +253,7 @@
         {
           "type": "image",
           "name": "Frontier Academy Landing Page",
-          "url": "/assets/frontier-landing-page.png",
+          "url": "/assets/projects/frontier-academy/frontier-landing-page.png",
           "description": "Complete landing page design and implementation"
         }
       ]
@@ -280,7 +280,7 @@
       "liveUrl": "https://frontier-me.com/",
    
       "images": [
-        "/assets/frontier-academy-website.png"
+        "/assets/projects/frontier-academy/frontier-academy-website.png"
       ],
       "features": [
         "LearnPress LMS Integration",
@@ -337,43 +337,43 @@
       "liveUrl": "",
       "githubUrl": "",
       "images": [
-        "/assets/processbay-portfolio.png"
+        "/assets/projects/processbay/processbay-portfolio.png"
       ],
       "assets": [
         {
           "type": "image",
           "name": "Home Page",
-          "url": "/assets/processbay-home.png",
+          "url": "/assets/projects/processbay/processbay-home.png",
           "description": "Home page design and implementation"
         },
         {
           "type": "image",
           "name": "About Page",
-          "url": "/assets/processbay-about.png",
+          "url": "/assets/projects/processbay/processbay-about.png",
           "description": "About page design and implementation"
         },
         {
           "type": "image",
           "name": "Expertise Page",
-          "url": "/assets/processbay-expertise.png",
+          "url": "/assets/projects/processbay/processbay-expertise.png",
           "description": "Expertise page design and implementation"
         },
         {
           "type": "image",
           "name": "Industries Page",
-          "url": "/assets/processbay-indsutries.png",
+          "url": "/assets/projects/processbay/processbay-indsutries.png",
           "description": "Industries page design and implementation"
         },
         {
           "type": "image",
           "name": "Contact Page",
-          "url": "/assets/processbay-contact.png",
+          "url": "/assets/projects/processbay/processbay-contact.png",
           "description": "Contact page design and implementation"
         },
         {
           "type": "image",
           "name": "Insights Page",
-          "url": "/assets/processbay-insights.png",
+          "url": "/assets/projects/processbay/processbay-insights.png",
           "description": "Insights/Blog page design and implementation"
         }
       ],
@@ -434,19 +434,19 @@
       "liveUrl": "https://syyaha.com/",
       "githubUrl": "",
       "images": [
-        "/assets/syyaha-blog.png"
+        "/assets/projects/syyaha/syyaha-blog.png"
       ],
       "assets": [
         {
           "type": "image",
           "name": "Home Page",
-          "url": "/assets/syyaha-home.png",
+          "url": "/assets/projects/syyaha/syyaha-home.png",
           "description": "Home page design and layout"
         },
         {
           "type": "image",
           "name": "Categories Layout",
-          "url": "/assets/syyaha-categories-layout.png",
+          "url": "/assets/projects/syyaha/syyaha-categories-layout.png",
           "description": "Categories page layout and design"
         }
       ],
@@ -507,7 +507,7 @@
       "githubUrl": "https://github.com/devDoniaAlhosin/woocommerce-custom-sa-states-cites.git",
       "githubUrl2": "https://github.com/devDoniaAlhosin/woocommerce-ac-installation-service",
       "images": [
-        "/assets/bin-moamen.png"
+        "/assets/projects/bin-momen/bin-moamen.png"
       ],
       "features": [
         "Custom SA States and Cities Plugin",
@@ -553,7 +553,7 @@
       "liveUrl": "https://fastfwd.xyz/",
       "githubUrl": "#",
       "images": [
-        "/assets/fast-fwd.png"
+        "/assets/projects/fastfwd/fast-fwd.png"
       ],
       "features": [
         "ACF-WooCommerce Integration",
@@ -598,7 +598,7 @@
       "liveUrl": "https://stily.com.sa/",
       "githubUrl": "#",
       "images": [
-        "/assets/stily-image.png"
+        "/assets/projects/stily/stily-image.png"
       ],
       "features": [
         "WooCommerce Booking System",
@@ -642,7 +642,7 @@
       "liveUrl": "https://dondigitaltech.com/",
       "githubUrl": "#",
       "images": [
-        "/assets/don-mockup.png"
+        "/assets/projects/don-digital-tech/don-mockup.png"
       ],
       "features": [
         "WordPress Portfolio Website",
@@ -689,7 +689,7 @@
       "liveUrl": "https://diamondcovereg.com/",
       "githubUrl": "https://github.com/devDoniaAlhosin/car-service-plugin",
       "images": [
-        "/assets/diamond-cover.png"
+        "/assets/projects/diamond-cover/diamond-cover.png"
       ],
       "features": [
         "WhatsApp Integration",
@@ -737,7 +737,7 @@
       "liveUrl": "https://sealyme.com/warranty",
       "githubUrl": "https://github.com/devDoniaAlhosin/serial-number-verfier",
       "images": [
-        "/assets/sealyme.png"
+        "/assets/projects/sealyme/sealyme.png"
       ],
       "features": [
         "Warranty Registration System",
@@ -786,7 +786,7 @@
       "githubUrl2": "https://github.com/devDoniaAlhosin/Restaurant-Reservation-Client",
       "images": [
         "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
-        "/assets/resturant-reservation.png"
+        "/assets/projects/restaurant-reservation/resturant-reservation.png"
       ],
       "features": [
         "Angular Frontend",
@@ -834,7 +834,7 @@
       "liveUrl": "https://goodreadslib.netlify.app/",
       "githubUrl": "https://github.com/devDoniaAlhosin/Angular-NodeJS-Project.git",
       "images": [
-        "/assets/goodreads.png"
+        "/assets/projects/goodreads/goodreads.png"
       ],
       "features": [
         "Book Management",
@@ -1044,7 +1044,7 @@
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
-        "/assets/sealy-home-page-redesign.png"
+        "/assets/projects/sealyme/sealy-home-page-redesign.png"
       ],
       "features": [
         "Home Page Redesign",
@@ -1086,7 +1086,7 @@
       "liveUrl": "https://www.figma.com/design/BM0nYnnjshiYJZTkHRWlFh/Sealy-Mattresses-Website?node-id=0-1&t=ScgidC0bBGdIOWqF-1",
       "githubUrl": "",
       "images": [
-        "/assets/product-card-sealy.png"
+        "/assets/projects/sealyme/product-card-sealy.png"
       ],
       "features": [
         "Product Card Layout Design",
@@ -1132,7 +1132,7 @@
       "liveUrl": "https://drive.google.com/drive/folders/1X4rABAQubLtFm_tzxpFBIYqu770971aS",
       "githubUrl": "https://github.com/devDoniaAlhosin/SWT-DEPI-GraduationProject",
       "images": [
-        "/assets/GRADPROJECT - Featured.png"
+        "/assets/projects/open-cart/GRADPROJECT - Featured.png"
       ],
       "features": [
         "Manual Testing (User & Admin)",

@@ -74,7 +74,7 @@ export const AboutIntroSection = () => {
 
           <div className="relative mx-auto mt-6 w-full max-w-[220px] sm:max-w-[260px]">
             <img
-              src="/assets/avatar.png"
+              src="/assets/profile/avatar.png"
               alt="Donia Alhosin"
               width={640}
               height={853}
@@ -216,7 +216,7 @@ export const AboutIntroSection = () => {
             ))}
 
             <img
-              src="/assets/avatar.png"
+              src="/assets/profile/avatar.png"
               alt="Donia Alhosin"
               width={640}
               height={853}

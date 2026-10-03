@@ -109,12 +109,17 @@ export const ExperienceSection = () => {
   }, [panelOpen]);
 
   useEffect(() => {
-    if (!(panelOpen && selectedId != null)) {
-      document.body.style.overflow = '';
-      return;
-    }
-    document.body.style.overflow = 'hidden';
+    const desktop = window.matchMedia('(min-width: 1024px)');
+
+    const syncScrollLock = () => {
+      const lockDrawer = panelOpen && selectedId != null && !desktop.matches;
+      document.body.style.overflow = lockDrawer ? 'hidden' : '';
+    };
+
+    syncScrollLock();
+    desktop.addEventListener('change', syncScrollLock);
     return () => {
+      desktop.removeEventListener('change', syncScrollLock);
       document.body.style.overflow = '';
     };
   }, [panelOpen, selectedId]);

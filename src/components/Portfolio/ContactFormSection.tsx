@@ -142,7 +142,7 @@ export const ContactFormSection = () => {
                 />
                 <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-2 ring-white bg-transparent">
                   <img
-                    src="/assets/avatar.png"
+                    src="/assets/profile/avatar.png"
                     alt={personalData.name}
                     className="w-full h-full object-cover object-[center_15%]"
                   />

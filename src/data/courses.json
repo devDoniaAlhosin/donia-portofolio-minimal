@@ -20,7 +20,7 @@
       ],
       "icon": "zap",
       "level": "Advanced",
-      "logo": "/assets/logo-depi.png"
+      "logo": "/assets/logos/logo-depi.png"
     },
     {
       "name": "Software Testing Track",
@@ -44,7 +44,7 @@
       ],
       "icon": "book",
       "level": "Advanced",
-      "logo": "/assets/logo-depi.png"
+      "logo": "/assets/logos/logo-depi.png"
     },
     {
       "name": "Full-Stack Development Diploma using PHP",
@@ -69,7 +69,7 @@
       ],
       "icon": "zap",
       "level": "Advanced",
-      "logo": "/assets/logo-iti.png"
+      "logo": "/assets/logos/logo-iti.png"
     },
     {
       "name": "Maharath Courses",
@@ -136,7 +136,7 @@
       ],
       "icon": "star",
       "level": "Advanced",
-      "logo": "/assets/logo-nti.png"
+      "logo": "/assets/logos/logo-nti.png"
     },
     {
       "name": "Bachelor of Engineering (BSc)",
