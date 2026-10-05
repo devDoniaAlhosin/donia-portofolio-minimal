@@ -1,55 +1,56 @@
 {
   "servicesMeta": {
     "title": "What I Offer",
-    "subtitle": "Designer · Frontend · Full stack — products, SaaS, and software platforms."
+    "subtitle": "Backend software, learning platforms, and business systems — Laravel, Node.js, and PHP."
   },
   "services": [
     {
       "icon": "Code",
-      "title": "Web Development",
-      "description": "Modern, responsive websites with clean code, accessibility, and performance in mind.",
-      "subtitle": "Websites, Landing Pages, SPAs",
-      "category": "Development",
+      "title": "Backend",
+      "description": "The server side of the product: accounts, business rules, APIs, and data. Built with Laravel, Node.js, and PHP so the system can run after the screen is done.",
+      "subtitle": "Laravel · Node.js · PHP",
+      "category": "Backend",
       "features": [
-        "Responsive UI",
-        "Clean, maintainable code",
-        "Accessibility (A11y)"
+        "Accounts, login, and permissions",
+        "APIs and business rules in Laravel and Node.js",
+        "Data stored and updated in PHP and MySQL"
+      ]
+    },
+    {
+      "icon": "Layers",
+      "title": "Learning & Business Systems",
+      "description": "Complete systems a company can run day to day. Each one includes user accounts, workflows, and an admin area to manage content and people.",
+      "subtitle": "LMS · Task management · Career · Finance",
+      "category": "Systems",
+      "features": [
+        "Learning management systems (LMS): courses, students, lessons, and quizzes",
+        "Task management systems: assign work and track progress",
+        "Career systems: profiles, applications, and hiring flows",
+        "Finance systems: payments, records, and reporting"
       ]
     },
     {
       "icon": "Globe",
-      "title": "WordPress Solutions",
-      "description": "Theme & plugin customization first — built natively with React and PHP for flexible, maintainable WordPress products.",
-      "subtitle": "Theme & Plugin Customization · React + PHP",
-      "category": "WordPress",
+      "title": "PHP, Plugins & Themes",
+      "description": "PHP work that changes how a product behaves and how its pages are built. Plugins add specific features. A theme builder controls layout and content.",
+      "subtitle": "PHP · Plugin customization · Theme builder",
+      "category": "PHP",
       "features": [
-        "Custom theme development",
-        "Plugin customization",
-        "Native React + PHP"
+        "PHP for server-side features and custom logic",
+        "Plugin customization for the product's own workflow",
+        "Theme builder for page layout and editable content"
       ]
     },
     {
       "icon": "Shield",
-      "title": "Testing & QA",
-      "description": "Manual and automated testing (unit, integration, E2E) to ensure reliability and quality.",
-      "subtitle": "Unit, Integration, E2E",
+      "title": "Testing & Quality",
+      "description": "Testing before release, by hand and with automation, so broken flows are caught before users see them. Includes ISTQB foundation-level practice.",
+      "subtitle": "Manual testing · Automated testing · End-to-end",
       "category": "Quality",
       "features": [
-        "Unit & integration tests",
-        "E2E coverage",
-        "Bug prevention"
-      ]
-    },
-    {
-      "icon": "Rocket",
-      "title": "Performance & RankMath",
-      "description": "Speed optimization and RankMath on-page setup to improve ranking and user experience on WordPress sites.",
-      "subtitle": "Core Web Vitals, RankMath",
-      "category": "Performance",
-      "features": [
-        "Core Web Vitals",
-        "Image optimization",
-        "RankMath configuration"
+        "Manual testing of real user flows",
+        "Automated unit and integration tests",
+        "End-to-end tests that walk through the full product"
       ]
     }
   ]

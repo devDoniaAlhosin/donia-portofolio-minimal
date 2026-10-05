@@ -1,6 +1,131 @@
 {
   "projects": [
     {
+      "id": 26,
+      "title": "Solar Pro",
+      "description": "A booking system and a modular WordPress layout engine.",
+      "longDescription": "Two systems in one product: a modular layout engine for the public pages, and a booking system for the visit.",
+      "category": "wordpress",
+      "company": "Solar Pro",
+      "featured": true,
+      "brandTheme": "solarpro",
+      "technologies": [
+        "Custom Builder",
+        "PHP",
+        "WooCommerce",
+        "JavaScript",
+        "MySQL",
+        "Arabic RTL"
+      ],
+      "liveUrl": "",
+      "githubUrl": "",
+      "images": [
+        "/assets/projects/solar-pro/Solar Pro Car Care - Featured.png"
+      ],
+      "features": [
+        "Native layouts for Home, About, single service, and Contact",
+        "Custom builder: every layout is editable from the dashboard",
+        "Section content stored on each component and edited from the dashboard",
+        "Booking flow: size, services, branch and time, details, summary, payment",
+        "User dashboard for the customer",
+        "Admin dashboard for bookings, services, and orders",
+        "Arabic RTL layout",
+        "Product grid filtered by car size and category",
+        "Spraying, professional polishing, and upholstery flows",
+        "WooCommerce cart, coupons, and a custom Arabic thank-you page"
+      ],
+      "challenges": [
+        "Giving the team a real builder for page layouts, not a fixed theme",
+        "Keeping a six-step booking clear on mobile in Arabic RTL",
+        "Supporting simple products, variations, spraying zones, polishing, and upholstery in one cart",
+        "Saving branch, date, time, size, and services on the WooCommerce order",
+        "Giving customers a dashboard and staff an admin view of the same bookings"
+      ],
+      "solutions": [
+        "Layouts registered as compositions of components, edited from the dashboard",
+        "Multi-step form with a sidebar summary, saved progress, and a mobile product carousel",
+        "Dedicated flows for spraying, polishing, and upholstery that sync into the WooCommerce cart",
+        "Order creation that stores size, categories, branch, region, date, and time",
+        "User dashboard and admin dashboard so both sides can follow a booking after checkout"
+      ],
+      "duration": "Completed",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 0,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Home and booking",
+          "url": "/assets/projects/solar-pro/Solar Pro Car Care - Featured.png",
+          "description": "Solar Pro homepage and the first step of the booking flow on desktop and mobile"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Sunsnow – Trip Advisor Platform",
+      "description": "Laravel travel platform for packages, trip search, reviews, articles, and admin control.",
+      "longDescription": "Designed and developed Sunsnow (sunsnowadvisor.com), a full-stack Laravel travel advisor based in Dubai. The public site lets travelers discover the world in Arabic, English, and French — search by trip type (winter, summer, honeymoon, sports and adventures, or general), destination, price range, and number of days, then browse most-requested, top-rated, and connected destinations. Package prices, day programs, and full itineraries stay behind a traveler account. The platform also includes travel articles, a contact flow for custom trips and bookings, and customer reviews that only go live after admin approval. An admin control panel manages packages, destinations, featured placements, articles, users, inquiries, and review moderation so the team can update programs without a developer.",
+      "category": "native",
+      "company": "Sunsnow",
+      "featured": true,
+      "brandTheme": "sunsnow",
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Blade",
+        "JavaScript",
+        "REST API",
+        "Multilingual",
+        "Responsive Design"
+      ],
+      "liveUrl": "https://sunsnowadvisor.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/projects/sunsnow/sunsnow-article.jpg"
+      ],
+      "features": [
+        "Native Laravel Full-Stack Architecture",
+        "Trip Search by Type, Destination, Price, and Duration",
+        "Featured, Most-Requested, and Top-Rated Destinations",
+        "Account-Gated Packages, Prices, and Itineraries",
+        "Arabic, English, and French Content",
+        "Travel Articles CMS",
+        "Customer Reviews with Admin Approval",
+        "Contact and Custom Package Inquiries",
+        "Traveler Registration and Login",
+        "Admin Dashboard with Full Content Control",
+        "Featured Placement and Package Management"
+      ],
+      "challenges": [
+        "Combining a public marketing site, package catalog, and admin CMS in one Laravel app",
+        "Keeping package prices and itineraries private until a traveler creates an account",
+        "Supporting Arabic RTL plus English and French without duplicating the product",
+        "Moderating traveler reviews so only approved stories appear on the homepage",
+        "Letting the Dubai team update destinations, articles, and featured trips without code deploys"
+      ],
+      "solutions": [
+        "Modular Laravel domains for packages, destinations, articles, reviews, and inquiries",
+        "Auth gate around package details, pricing, and day-by-day programs",
+        "Locale-aware content and RTL layout for the Arabic experience",
+        "Review workflow that stays pending until an admin publishes it",
+        "Admin control panel for featured destinations, packages, users, articles, and moderation"
+      ],
+      "duration": "2 Months",
+      "teamSize": "Solo",
+      "rating": 5.0,
+      "views": 1800,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Travel article",
+          "url": "/assets/projects/sunsnow/sunsnow-article.jpg",
+          "description": "Planning guide imagery from the Sunsnow articles section"
+        }
+      ]
+    },
+    {
       "id": 24,
       "title": "Abdelrahman Sleem – LMS Platform",
       "description": "Laravel LMS for mastery programs, courses, student management, quizzes, and Fawaterak payments.",

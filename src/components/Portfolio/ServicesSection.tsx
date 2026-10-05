@@ -6,7 +6,7 @@ import {
   CheckCircle2,
   Code2,
   Globe,
-  Rocket,
+  Layers,
   ShieldCheck,
   Terminal,
 } from 'lucide-react';
@@ -16,7 +16,7 @@ import {
   SiAngular,
   SiLaravel,
   SiPhp,
-  SiWordpress,
+  SiNextdotjs,
   SiJavascript,
   SiTypescript,
   SiTailwindcss,
@@ -35,7 +35,7 @@ const TECH_STACK: { name: string; Icon: IconType }[] = [
   { name: 'Tailwind', Icon: SiTailwindcss },
   { name: 'Laravel', Icon: SiLaravel },
   { name: 'PHP', Icon: SiPhp },
-  { name: 'WordPress', Icon: SiWordpress },
+  { name: 'Next.js', Icon: SiNextdotjs },
   { name: 'Node.js', Icon: SiNodedotjs },
   { name: 'MySQL', Icon: SiMysql },
   { name: 'Selenium', Icon: SiSelenium },
@@ -47,7 +47,7 @@ const iconMap = {
   Code: Code2,
   Globe,
   Shield: ShieldCheck,
-  Rocket,
+  Layers,
 } as const;
 
 const cmdSlug = (title: string) =>
@@ -184,7 +184,7 @@ export const ServicesSection = () => {
               {/* Terminal output */}
               <div className="p-4 sm:p-5 font-mono min-h-[320px]">
                 <p className="text-[11px] text-white/35 mb-3">
-                  # designer · frontend · fullstack
+                  # backend · business systems
                 </p>
 
                 <p className="text-[12px] sm:text-[13px] text-white/80 mb-4 leading-relaxed">
@@ -213,7 +213,7 @@ export const ServicesSection = () => {
 
                     <div>
                       <p className="text-[11px] text-white/35 mb-2">
-                        <span className="text-sky-300/80">→</span> features
+                        <span className="text-sky-300/80">→</span> what this includes
                       </p>
                       <ul className="space-y-1.5">
                         {(active.features || []).map((feat) => (
@@ -229,7 +229,7 @@ export const ServicesSection = () => {
                     </div>
 
                     <p className="text-[11px] text-emerald-400/80 pt-1">
-                      ✓ service ready · status: available
+                      Available for this kind of work
                     </p>
                   </div>
                 )}
@@ -238,7 +238,7 @@ export const ServicesSection = () => {
           </div>
 
           <p className="mt-4 text-center text-[11px] text-muted-foreground font-mono">
-            Select a service to run it in the terminal.
+            Select a service to see what it includes.
           </p>
         </div>
       </div>

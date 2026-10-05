@@ -5,6 +5,8 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   isVisible: boolean;
+  /** Equal image frames so rows line up as a regular grid. */
+  uniform?: boolean;
 }
 
 const PASTELS = [
@@ -41,11 +43,13 @@ const getTagLabel = (category: Project['category']) => {
   }
 };
 
-export const ProjectCard = ({ project, index, isVisible }: ProjectCardProps) => {
+export const ProjectCard = ({ project, index, isVisible, uniform = false }: ProjectCardProps) => {
   const pastel = PASTELS[index % PASTELS.length];
-  const aspect = ASPECTS[index % ASPECTS.length];
-  const secondaryTag =
-    project.category === 'native'
+  const aspect = uniform ? 'aspect-[16/10]' : ASPECTS[index % ASPECTS.length];
+  const isSolar = project.brandTheme === 'solarpro';
+  const secondaryTag = isSolar
+    ? 'Booking'
+    : project.category === 'native'
       ? 'Full Stack'
       : project.category === 'wordpress'
         ? 'CMS'
@@ -56,7 +60,7 @@ export const ProjectCard = ({ project, index, isVisible }: ProjectCardProps) => 
   return (
     <Link
       to={`/projects/${getProjectSlug(project)}`}
-      className={`group block transition-all duration-500 ease-out ${
+      className={`group block h-full transition-all duration-500 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
       }`}
       style={{ transitionDelay: `${Math.min(index * 50, 200)}ms` }}
@@ -83,7 +87,7 @@ export const ProjectCard = ({ project, index, isVisible }: ProjectCardProps) => 
       <div className="mt-2 flex items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-1.5 min-w-0">
           <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">
-            {getTagLabel(project.category)}
+            {isSolar ? 'Custom builder' : getTagLabel(project.category)}
           </span>
           {secondaryTag && (
             <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">

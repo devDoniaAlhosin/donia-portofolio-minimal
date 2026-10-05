@@ -37,6 +37,7 @@ const honors: HonorItem[] = [
     period: '2026',
     description:
       'Passed CTFL4 — structured test design, execution, and defect reporting for professional QA practice.',
+    link: 'https://drive.google.com/file/d/1E5KMluqHhQzRE2YDAu2trviktHClaTlh/view?usp=sharing',
     badge: 'CTFL4',
     meta: 'Professional certification',
     panel: 'bg-[#1a3a4a]',
@@ -181,7 +182,7 @@ export const HonorsAwardsSection = () => {
               className="inline-flex items-center gap-1.5 rounded-lg bg-white text-primary px-3.5 py-2 text-[12px] font-semibold hover:bg-white/90 transition-colors"
             >
               <ExternalLink size={13} />
-              View publication
+              {selected.kind === 'certification' ? 'View certificate' : 'View publication'}
             </a>
           ) : (
             <span className="inline-flex items-center gap-1.5 text-[12px] text-white/55">

@@ -213,7 +213,7 @@ export const ProjectsContent = ({
     <div
       ref={contentRef}
       key={filterKey}
-      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 items-start"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
     >
       {filteredProjects.length > 0 ? (
         filteredProjects.map((project, index) => (
@@ -222,6 +222,7 @@ export const ProjectsContent = ({
             project={project}
             index={index}
             isVisible={cardsVisible}
+            uniform
           />
         ))
       ) : (
@@ -393,7 +394,7 @@ export const ProjectsContent = ({
             <div
               ref={contentRef}
               key={filterKey}
-              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 items-start"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             >
               {filteredProjects.map((project, index) => (
                 <ProjectCard
@@ -401,6 +402,7 @@ export const ProjectsContent = ({
                   project={project}
                   index={index}
                   isVisible={cardsVisible}
+                  uniform
                 />
               ))}
             </div>
