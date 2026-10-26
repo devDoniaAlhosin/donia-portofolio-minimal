@@ -23,6 +23,7 @@ interface ProjectsContentProps {
 const serviceFilters: ServicePortfolioCategory[] = [
   'all-services',
   'portfolio',
+  'landing',
   'blogging',
   'booking',
   'ecommerce',

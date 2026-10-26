@@ -1,16 +1,179 @@
 {
   "projects": [
     {
+      "id": 28,
+      "title": "Soliman Group – Corporate Portfolio",
+      "description": "Laravel bilingual portfolio with Pages CMS, dark/light mode, Microsoft Clarity, GTM, and SMTP.",
+      "longDescription": "Designed and developed the Soliman Group (مجموعة سليمان) corporate portfolio at https://sg.qarflow.com/ — a Laravel platform for a custom software house. The public site delivers Home, About, Services, and Our Work through a controllable Pages CMS, with Arabic RTL / English switching and full dark and light mode support. Beyond content management, the build includes Microsoft Clarity for behavior insights, Google Tag Manager (GTM) connection setup for analytics/marketing tags, and SMTP for reliable transactional and contact email delivery. The admin dashboard covers pages, media, portfolio, testimonials, tools, contact inbox, users with roles & permissions, book-a-call tracking, and dashboard stats — so the team can update the live site and follow leads without a developer.",
+      "category": "laravel",
+      "company": "Soliman Group",
+      "featured": true,
+      "brandTheme": "solimangroup",
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Blade",
+        "JavaScript",
+        "Microsoft Clarity",
+        "Google Tag Manager",
+        "SMTP",
+        "Multilingual",
+        "Arabic RTL",
+        "Dark / Light Mode"
+      ],
+      "liveUrl": "https://sg.qarflow.com/",
+      "githubUrl": "",
+      "images": [
+        "/assets/projects/solimangroup/soliman-featured-image.png"
+      ],
+      "features": [
+        "Laravel Corporate Portfolio at sg.qarflow.com",
+        "Pages CMS — Home, About, Services, Our Work",
+        "Dark and Light Mode Support",
+        "Arabic RTL and English with Language Switcher",
+        "Microsoft Clarity Integration",
+        "Google Tag Manager (GTM) Connection Setup",
+        "SMTP Email Delivery for Contact and Notifications",
+        "Controllable Admin Dashboard",
+        "Media Library and Portfolio Management",
+        "Testimonials, Tools, and Contact Inbox",
+        "Users with Roles & Permissions",
+        "Book-a-Call Tracking and Inquiry Stats",
+        "Selected Work, Services Storytelling, and Tech Stack Showcase"
+      ],
+      "challenges": [
+        "Running Home, About, Services, and Our Work from a clear Pages CMS",
+        "Shipping polished dark and light experiences for Arabic and English",
+        "Wiring Clarity and GTM without slowing the public site",
+        "Reliable contact delivery through SMTP configuration",
+        "Giving non-developers full control of portfolio content and leads"
+      ],
+      "solutions": [
+        "Pages CMS that manages Home, About, Services, and Our Work content",
+        "Theme system with dark/light mode plus bilingual RTL/LTR layouts",
+        "Microsoft Clarity and GTM connected for analytics and tag management",
+        "SMTP setup for outbound contact and notification email",
+        "Admin modules for pages, media, portfolio, inbox, and roles"
+      ],
+      "duration": "Completed",
+      "teamSize": "Solo",
+      "rating": 5,
+      "views": 0,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Featured mockup",
+          "url": "/assets/projects/solimangroup/soliman-featured-image.png",
+          "description": "Desktop dark mode and mobile light mode — Soliman Group portfolio"
+        },
+        {
+          "type": "image",
+          "name": "Admin dashboard",
+          "url": "/assets/projects/solimangroup/sg-admin-dashboard.png",
+          "description": "Controllable admin dashboard — Pages CMS, stats, inquiries, and inbox"
+        },
+        {
+          "type": "image",
+          "name": "Admin sign-in",
+          "url": "/assets/projects/solimangroup/sg-admin-login.png",
+          "description": "Admin dashboard login with brand panel and theme toggle"
+        },
+        {
+          "type": "image",
+          "name": "Full homepage",
+          "url": "/assets/projects/solimangroup/sg-full-home.png",
+          "description": "Full-page Soliman Group portfolio homepage"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Mustaneer – Strategic Thinking Landing Page",
+      "description": "Bilingual conversion landing page to sell seats for a 40-hour executive training program.",
+      "longDescription": "Designed and built a conversion-focused landing page for Mustaneer (مُستنير), a training and business development company, to maximize seat bookings for Strategic Thinking for Growth — a 40-hour in-person program for executives, founders, and business owners. The page walks senior visitors from “what is this?” to payment or WhatsApp application: Early Bird offer (20% off), intro video, four-phase overview and outcomes, who it’s for / who it’s not, curriculum in browsable tabs with session outputs, trainer profiles, real cohort photos and testimonials, schedule with dates and venue, fees with three payment methods (online, bank transfer, Vodafone Cash), client logos, and FAQ that pre-answers objections. Includes WhatsApp apply CTAs, an application form, and brochure download in multiple places. Fully responsive (mobile-first), Arabic and English with a language switcher, SEO and Open Graph tags for clean social sharing, and structured, extendable code. Stack: HTML5, CSS3, JavaScript, Fawaterk payment gateway, and WhatsApp integration.",
+      "category": "ui",
+      "company": "Mustaneer",
+      "featured": true,
+      "brandTheme": "mustaneer",
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Fawaterk",
+        "WhatsApp",
+        "Responsive Design",
+        "SEO",
+        "Open Graph"
+      ],
+      "liveUrl": "",
+      "githubUrl": "",
+      "images": [
+        "/assets/projects/mustaneer/mustaner-featured-image.png"
+      ],
+      "features": [
+        "Hero with Early Bird 20% offer and pay / WhatsApp apply CTAs",
+        "Intro video that explains the program quickly",
+        "Four-phase program overview and participant outcomes",
+        "Who this course is for — and who it is not",
+        "Curriculum in browsable tabs with per-session outputs",
+        "Trainer profiles and credentials",
+        "Real cohort photos and participant testimonials",
+        "Schedule with dates, days, and venue",
+        "Fees section with three payment methods (online, bank transfer, Vodafone Cash)",
+        "Client company logos trained with Mustaneer",
+        "FAQ that answers objections before booking",
+        "WhatsApp application, application form, and brochure download",
+        "Mobile-first responsive layout (phone, tablet, desktop)",
+        "Arabic and English versions with language switcher",
+        "SEO and Open Graph tags for professional social sharing",
+        "Fawaterk payment gateway integration"
+      ],
+      "challenges": [
+        "Building trust and clarity for a senior audience before they commit to a seat",
+        "Explaining a dense 40-hour program without overwhelming the page",
+        "Qualifying the right executives while filtering mismatched leads",
+        "Making payment and application paths obvious across devices",
+        "Shipping Arabic and English experiences with consistent conversion flow"
+      ],
+      "solutions": [
+        "Conversion path from hero offer through proof, curriculum, and FAQ to pay or WhatsApp apply",
+        "Phased overview plus tabbed curriculum with clear session outcomes",
+        "Explicit “for / not for” section to attract the right senior buyers",
+        "Repeated CTAs, brochure download, and three clear payment options including Fawaterk",
+        "Bilingual UI with language switcher, mobile-first layout, and Open Graph for sharing"
+      ],
+      "duration": "Completed",
+      "teamSize": "Solo",
+      "rating": 5,
+      "views": 0,
+      "assets": [
+        {
+          "type": "image",
+          "name": "Featured mockup",
+          "url": "/assets/projects/mustaneer/mustaner-featured-image.png",
+          "description": "Mustaneer Strategic Thinking for Growth landing page — featured presentation"
+        },
+        {
+          "type": "image",
+          "name": "Full-page landing",
+          "url": "/assets/projects/mustaneer/mustaner-landing-fullpage-mockup.png",
+          "description": "Full-page mockup of the conversion landing page sections"
+        }
+      ]
+    },
+    {
       "id": 26,
-      "title": "Solar Pro",
-      "description": "A booking system and a modular WordPress layout engine.",
-      "longDescription": "Two systems in one product: a modular layout engine for the public pages, and a booking system for the visit.",
+      "title": "SolarPro – Booking system",
+      "description": "WordPress build with two custom PHP plugins: a modular layout engine and a car care booking system.",
+      "longDescription": "Built on WordPress with two custom PHP plugins — a modular layout engine for the public pages, and a booking system for the visit. The layout plugin registers page compositions and editable components from the dashboard; the booking plugin handles the multi-step car care flow, WooCommerce cart sync, and customer/admin dashboards.",
       "category": "wordpress",
       "company": "Solar Pro",
       "featured": true,
       "brandTheme": "solarpro",
       "technologies": [
-        "Custom Builder",
+        "WordPress",
+        "Custom PHP Plugins",
         "PHP",
         "WooCommerce",
         "JavaScript",
@@ -23,6 +186,7 @@
         "/assets/projects/solar-pro/Solar Pro Car Care - Featured.png"
       ],
       "features": [
+        "Two custom PHP plugins (layout engine + booking)",
         "Native layouts for Home, About, single service, and Contact",
         "Custom builder: every layout is editable from the dashboard",
         "Section content stored on each component and edited from the dashboard",
@@ -50,7 +214,7 @@
       ],
       "duration": "Completed",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 0,
       "assets": [
         {
@@ -63,10 +227,10 @@
     },
     {
       "id": 25,
-      "title": "Sunsnow – Trip Advisor Platform",
-      "description": "Laravel travel platform for packages, trip search, reviews, articles, and admin control.",
-      "longDescription": "Designed and developed Sunsnow (sunsnowadvisor.com), a full-stack Laravel travel advisor based in Dubai. The public site lets travelers discover the world in Arabic, English, and French — search by trip type (winter, summer, honeymoon, sports and adventures, or general), destination, price range, and number of days, then browse most-requested, top-rated, and connected destinations. Package prices, day programs, and full itineraries stay behind a traveler account. The platform also includes travel articles, a contact flow for custom trips and bookings, and customer reviews that only go live after admin approval. An admin control panel manages packages, destinations, featured placements, articles, users, inquiries, and review moderation so the team can update programs without a developer.",
-      "category": "native",
+      "title": "Sunsnow – Travel Packages Platform",
+      "description": "Multilingual Laravel travel platform with package search, OTP auth, guest lock, and Arabic RTL admin.",
+      "longDescription": "Built Sunsnow (sunsnowadvisor.com) as a multilingual travel packages platform on Laravel — a premium public site for browsing and requesting trips, plus an Arabic RTL admin panel for packages, content, users, and settings. Travelers browse a packages catalog with advanced search (category → destination cascade, price range, duration, sort), while guests see blurred placeholders until they register or log in via email OTP. Authenticated users unlock package details — executive summary, day-by-day notes, hotels, activities, smart apps, gallery, and PDF download. The site supports Arabic (RTL), English, Spanish, and French, plus contact inquiries, “request a package” flows, moderated public reviews, and a configurable floating contact button. Admins manage everything from /admin: packages CRUD, Excel import/export, bulk JSON translations, categories and tags, testimonials, contact inbox, users, site settings (including GA/GTM), languages, UI translations, and database backup.",
+      "category": "laravel",
       "company": "Sunsnow",
       "featured": true,
       "brandTheme": "sunsnow",
@@ -75,53 +239,66 @@
         "PHP",
         "MySQL",
         "Blade",
-        "JavaScript",
-        "REST API",
+        "Tailwind CSS",
+        "Swiper",
+        "mPDF",
+        "PhpSpreadsheet",
         "Multilingual",
-        "Responsive Design"
+        "Arabic RTL"
       ],
       "liveUrl": "https://sunsnowadvisor.com/",
       "githubUrl": "",
       "images": [
-        "/assets/projects/sunsnow/sunsnow-article.jpg"
+        "/assets/projects/sunsnow/sunsnow-featured.png"
       ],
       "features": [
-        "Native Laravel Full-Stack Architecture",
-        "Trip Search by Type, Destination, Price, and Duration",
-        "Featured, Most-Requested, and Top-Rated Destinations",
-        "Account-Gated Packages, Prices, and Itineraries",
-        "Arabic, English, and French Content",
-        "Travel Articles CMS",
-        "Customer Reviews with Admin Approval",
-        "Contact and Custom Package Inquiries",
-        "Traveler Registration and Login",
-        "Admin Dashboard with Full Content Control",
-        "Featured Placement and Package Management"
+        "Packages Catalog with Premium Reusable Cards",
+        "Advanced Search — Category → Destination, Price, Duration, Sort",
+        "Guest Lock — Blurred Placeholders Until Login",
+        "Customer Auth via Email OTP (No Password Flow)",
+        "Package Details — Itinerary, Hotels, Activities, Gallery, PDF",
+        "Multilingual UI — Arabic RTL, English, Spanish, French",
+        "Contact Form & Request-a-Package Inquiry Modal",
+        "Public Reviews with Star Ratings and Admin Approval",
+        "Floating WhatsApp / Phone / Email Contact Button",
+        "Arabic RTL Admin Dashboard with Overview Stats",
+        "Packages CRUD with Rich Multilingual Editor",
+        "Excel Import / Export for Bulk Package Updates",
+        "Bulk JSON Translations for Offline / AI Locales",
+        "Categories, Tags, Why Us, Testimonials & Contact Inbox",
+        "Site Settings, Languages, UI Translations & DB Backup",
+        "Optional Google Analytics or Tag Manager via Admin"
       ],
       "challenges": [
-        "Combining a public marketing site, package catalog, and admin CMS in one Laravel app",
-        "Keeping package prices and itineraries private until a traveler creates an account",
-        "Supporting Arabic RTL plus English and French without duplicating the product",
-        "Moderating traveler reviews so only approved stories appear on the homepage",
-        "Letting the Dubai team update destinations, articles, and featured trips without code deploys"
+        "Shipping a premium public catalog and a full Arabic RTL admin in one Laravel app",
+        "Keeping package details, pricing, and PDF download gated behind guest lock and OTP auth",
+        "Supporting four locales (AR/EN/ES/FR) without duplicating packages or UI strings",
+        "Giving operators bulk Excel and JSON translation workflows for large catalogs",
+        "Moderating public reviews and routing contact / package requests to the right inbox"
       ],
       "solutions": [
-        "Modular Laravel domains for packages, destinations, articles, reviews, and inquiries",
-        "Auth gate around package details, pricing, and day-by-day programs",
-        "Locale-aware content and RTL layout for the Arabic experience",
-        "Review workflow that stays pending until an admin publishes it",
-        "Admin control panel for featured destinations, packages, users, articles, and moderation"
+        "Laravel domains for packages, search, auth, reviews, contact, and admin CMS",
+        "Blurred guest placeholders plus email OTP register/login for full access",
+        "Locale-aware content, dynamic language tabs, and RTL admin/public layouts",
+        "PhpSpreadsheet Excel pipelines and bulk JSON export/import with merge or replace",
+        "Pending review approval, contact inbox filters, and configurable floating contact + GA/GTM"
       ],
       "duration": "2 Months",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 1800,
       "assets": [
         {
           "type": "image",
-          "name": "Travel article",
-          "url": "/assets/projects/sunsnow/sunsnow-article.jpg",
-          "description": "Planning guide imagery from the Sunsnow articles section"
+          "name": "Featured platform",
+          "url": "/assets/projects/sunsnow/sunsnow-featured.png",
+          "description": "Sunsnow public travel packages experience"
+        },
+        {
+          "type": "image",
+          "name": "Package featured",
+          "url": "/assets/projects/sunsnow/sunsnow-package-featured.png",
+          "description": "Package browsing and discovery on the public site"
         }
       ]
     },
@@ -130,7 +307,7 @@
       "title": "Abdelrahman Sleem – LMS Platform",
       "description": "Laravel LMS for mastery programs, courses, student management, quizzes, and Fawaterak payments.",
       "longDescription": "Designed and developed a complete native Laravel-based learning and business platform for Abdelrahman Sleem (abdelrahmansleem.com). The system combines a public marketing website, mastery programs, and course catalog with a full LMS engine — lesson delivery, student management, tasks, quizzes, and progress tracking. Integrated online payments through Fawaterak, plus admin dashboard and CMS controls for content management, enrollments, and platform operations. Built learner and admin experiences with role-based access so students can learn and track progress while admins manage courses, assessments, and payments at scale.",
-      "category": "native",
+      "category": "laravel",
       "company": "Abdelrahman Sleem",
       "featured": true,
       "brandTheme": "abdelrahman",
@@ -180,7 +357,7 @@
       ],
       "duration": "2 Months",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 2600,
       "assets": [
         {
@@ -188,6 +365,18 @@
           "name": "Homepage",
           "url": "/assets/projects/abdelrahman-sleem/as-home.png",
           "description": "Marketing homepage — hero, programs, courses, and conversion sections"
+        },
+        {
+          "type": "image",
+          "name": "Courses",
+          "url": "/assets/projects/abdelrahman-sleem/as-course.png",
+          "description": "Courses catalog with filters, search, and course cards"
+        },
+        {
+          "type": "image",
+          "name": "Single Course",
+          "url": "/assets/projects/abdelrahman-sleem/as-single-course.png",
+          "description": "Course detail page — preview, curriculum, instructor, and enrollment"
         }
       ]
     },
@@ -196,7 +385,7 @@
       "title": "FouadHoussien LMS Platform",
       "description": "Online academy for courses, coaching, and digital learning with payments and certificates.",
       "longDescription": "Designed and developed a complete native Laravel-based learning and business platform for Fouad Houssien. The system combines a public marketing website, course catalog, and service presentation with a full LMS engine, integrated AI chatbot experience, secure video learning delivery via Bunny, and online payments through Paymob and Fawaterak. Built a complete CMS with role-based control, including admin dashboard and user dashboard for course progress tracking, quiz workflows, assignment handling, grading, and certificate management. The architecture focuses on scalability, clean UX, content control, and conversion-ready learning funnels.",
-      "category": "native",
+      "category": "laravel",
       "company": "Fouad Houssien",
       "featured": true,
       "brandTheme": "fouad",
@@ -248,7 +437,7 @@
       ],
       "duration": "2 Months",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 2900,
       "assets": [
         {
@@ -311,7 +500,7 @@
       ],
       "duration": "1 Week",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 3200,
       "assets": [
         {
@@ -325,8 +514,8 @@
     {
       "id": 18,
       "title": "Frontier Academy – Landing Page",
-      "description": "Landing page to sell a finance course for business managers.",
-      "longDescription": "Designed and implemented a complete WordPress landing page for Frontier Academy's Finance for Business Managers course. The landing page comprehensively covers all course advantages, featuring problem-solution sections, instructor profiles, program details, pricing information, and enrollment forms. The page is designed to convert visitors by clearly communicating the value proposition, course benefits, and investment details, with a focus on helping business managers understand financials and make data-driven decisions.",
+      "description": "Conversion landing page for a finance course for business managers — not a portfolio site.",
+      "longDescription": "Designed and implemented a conversion-focused WordPress landing page for Frontier Academy's Finance for Business Managers course. Built as a single-purpose sales page (not a multi-page portfolio), it covers course advantages through problem-solution sections, instructor profiles, program details, pricing, and enrollment forms. The layout is optimized to convert visitors by clarifying the value proposition, benefits, and investment — helping business managers understand financials and make data-driven decisions.",
       "category": "wordpress",
       "company": "Bohemiangeeks",
       "technologies": [
@@ -343,9 +532,10 @@
         "/assets/projects/frontier-academy/frontier-academy-finance.png"
       ],
       "features": [
+        "Single-Purpose Conversion Landing Page",
         "Comprehensive Course Information Sections",
         "Problem-Solution Presentation",
-        "Instructor Profile Showcase",
+        "Instructor Profiles",
         "Program Details & Curriculum",
         "Pricing & Investment Comparison",
         "Enrollment Form Integration",
@@ -403,7 +593,6 @@
         "Responsive Design"
       ],
       "liveUrl": "https://frontier-me.com/",
-   
       "images": [
         "/assets/projects/frontier-academy/frontier-academy-website.png"
       ],
@@ -896,7 +1085,7 @@
       "title": "Restaurant Reservation Platform – ITI Graduation Project",
       "description": "Online restaurant table reservation system.",
       "longDescription": "A comprehensive restaurant reservation platform developed as an ITI graduation project, featuring a modern Angular frontend and a robust Laravel backend. The system includes table reservation management, menu management, user authentication, and admin dashboard with real-time booking capabilities.",
-      "category": "native",
+      "category": "angular",
       "technologies": [
         "Angular",
         "Laravel",
@@ -946,7 +1135,7 @@
       "title": "Goodreads Library – Angular & NodeJS",
       "description": "Book library with reviews and reading lists.",
       "longDescription": "A comprehensive library management system inspired by Goodreads, featuring book management, user reviews, and reading lists. Built with Angular for the frontend and NodeJS with MongoDB for the backend, completed in 2 weeks with a team of 2 developers.",
-      "category": "native",
+      "category": "angular",
       "technologies": [
         "Angular",
         "Node.js",
@@ -990,7 +1179,7 @@
       "title": "Simple Portfolio Website – Angular",
       "description": "Personal developer portfolio showcasing skills and projects.",
       "longDescription": "A clean and simple personal portfolio website built with Angular framework, featuring skills showcase, project display, and professional presentation. The portfolio demonstrates Angular fundamentals with a focus on clean design and user experience, showcasing front-end development expertise including React, Angular, Node.js, and WordPress technologies.",
-      "category": "native",
+      "category": "angular",
       "technologies": [
         "Angular",
         "TypeScript",
@@ -1035,7 +1224,7 @@
       "title": "Frontend E-commerce Project – ReactJS",
       "description": "E-commerce storefront for browsing and purchasing products.",
       "longDescription": "A modern eCommerce frontend application built with ReactJS, featuring product browsing, shopping cart functionality, and user interface design. The project demonstrates modern React development practices and responsive design.",
-      "category": "native",
+      "category": "react",
       "technologies": [
         "React",
         "JavaScript",
@@ -1277,7 +1466,7 @@
       ],
       "duration": "Ongoing",
       "teamSize": "Solo",
-      "rating": 5.0,
+      "rating": 5,
       "views": 0
     }
   ],
@@ -1287,8 +1476,16 @@
       "label": "All Projects"
     },
     {
-      "key": "native",
-      "label": "Native Web"
+      "key": "laravel",
+      "label": "Laravel (PHP)"
+    },
+    {
+      "key": "angular",
+      "label": "Angular"
+    },
+    {
+      "key": "react",
+      "label": "React"
     },
     {
       "key": "wordpress",
@@ -1301,6 +1498,10 @@
     {
       "key": "testing",
       "label": "Testing"
+    },
+    {
+      "key": "native",
+      "label": "Other Web"
     }
   ]
 }

@@ -1,7 +1,17 @@
-export type ProjectFilter = 'all' | 'native' | 'wordpress' | 'ui' | 'testing';
+export type ProjectFilter =
+  | 'all'
+  | 'laravel'
+  | 'angular'
+  | 'react'
+  | 'php'
+  | 'native'
+  | 'wordpress'
+  | 'ui'
+  | 'testing';
 export type ServicePortfolioCategory =
   | 'all-services'
   | 'portfolio'
+  | 'landing'
   | 'blogging'
   | 'booking'
   | 'ecommerce';
@@ -40,14 +50,24 @@ export interface Project {
 
 export const getCategoryLabel = (category: ProjectFilter) => {
   switch (category) {
+    case 'laravel':
+      return 'Laravel (PHP)';
+    case 'angular':
+      return 'Angular';
+    case 'react':
+      return 'React';
+    case 'php':
+      return 'Native PHP';
     case 'wordpress':
       return 'WordPress';
     case 'native':
-      return 'Web App';
+      return 'Other Web';
     case 'testing':
       return 'Testing';
-    default:
+    case 'ui':
       return 'UI Design';
+    default:
+      return 'All Projects';
   }
 };
 
@@ -84,6 +104,8 @@ export const getServiceCategoryLabel = (category: ServicePortfolioCategory) => {
   switch (category) {
     case 'portfolio':
       return 'Portfolio';
+    case 'landing':
+      return 'Landing Page';
     case 'blogging':
       return 'Blogging';
     case 'booking':
@@ -98,6 +120,14 @@ export const getServiceCategoryLabel = (category: ServicePortfolioCategory) => {
 export const inferServiceCategory = (project: Project): ServicePortfolioCategory => {
   const primaryText = `${project.title} ${project.description}`.toLowerCase();
   const fullText = `${primaryText} ${project.features.join(' ')}`.toLowerCase();
+
+  if (
+    primaryText.includes('landing page') ||
+    primaryText.includes('landing-page') ||
+    (primaryText.includes('landing') && !primaryText.includes('portfolio'))
+  ) {
+    return 'landing';
+  }
 
   if (
     fullText.includes('booking') ||

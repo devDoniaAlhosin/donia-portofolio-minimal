@@ -61,7 +61,11 @@ export const ProjectsSearch = ({ className = '' }: ProjectsSearchProps) => {
     let list = [...projects];
 
     if (scope === 'projects') {
-      list = list.filter((p) => p.featured || p.category === 'native' || p.category === 'wordpress');
+      list = list.filter(
+        (p) =>
+          p.featured ||
+          ['laravel', 'angular', 'react', 'native', 'wordpress'].includes(p.category)
+      );
     }
 
     if (q) {

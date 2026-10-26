@@ -32,6 +32,12 @@ import {
   Linkedin,
   Mail,
   Twitter,
+  ArrowUpRight,
+  Layers,
+  Puzzle,
+  LayoutTemplate,
+  CalendarCheck,
+  Code2,
 } from 'lucide-react';
 
 type ProcessSection = {
@@ -99,57 +105,57 @@ const LMS_PROCESS: ProcessSection[] = [
 
 const SUNSNOW_PROCESS: ProcessSection[] = [
   {
-    title: 'Discovery & Trip Search',
-    desc: 'Arabic-first homepage with trip type, destination, price range, and duration filters.',
+    title: 'Public Site & Catalog',
+    desc: 'Premium home, about, and packages catalog with reusable cards for browsing trips.',
     points: [
-      'Built the public journey around winter, summer, honeymoon, adventure, and general trips.',
-      'Mapped destinations with most-requested, top-rated, and connected-destination views.',
-      'Kept search results tied to live package data instead of static pages.',
+      'Home and About with hero, featured packages, why-us, testimonials slider, and contact.',
+      'Packages catalog for browse, filter, and sort with consistent premium cards.',
+      'Package details cover summary, trip days, hotels, activities, smart apps, and gallery.',
     ],
   },
   {
-    title: 'Packages & Account Gate',
-    desc: 'Full itineraries, prices, and program details unlock after registration.',
+    title: 'Advanced Search & Guest Lock',
+    desc: 'Cascading filters and blurred placeholders until the traveler authenticates.',
     points: [
-      'Gated package prices and day-by-day programs behind traveler accounts.',
-      'Structured packages with stays, activities, restaurants, and visit timing.',
-      'Supported custom package requests from the contact flow.',
+      'Search by category → destination, price range chips, days/duration, and sort options.',
+      'Guests see blurred package placeholders instead of full details or PDF download.',
+      'Empty-search inquiry modal lets visitors request a package with 24–48h follow-up messaging.',
     ],
   },
   {
-    title: 'Multilingual Content',
-    desc: 'Arabic, English, and French content for a Dubai-based travel brand.',
+    title: 'OTP Auth & Package Access',
+    desc: 'Customers register and log in with email OTP — no password flow.',
     points: [
-      'Shipped language switching across navigation, packages, and articles.',
-      'Kept RTL layout correct for the Arabic experience.',
-      'Let admins publish the same offer in more than one language.',
+      'Email OTP for register and login on the public site.',
+      'Authenticated users unlock full package details and PDF download (mPDF).',
+      'Keeps pricing and itinerary content behind a real traveler account.',
     ],
   },
   {
-    title: 'Reviews with Admin Approval',
-    desc: 'Travelers submit ratings, photos, and stories that stay hidden until an admin approves them.',
+    title: 'Reviews, Contact & Floating Actions',
+    desc: 'Inquiries and social proof with admin moderation and quick contact shortcuts.',
     points: [
-      'Public review form with name, role, rating, optional photo, and comment.',
-      'Moderation queue so nothing goes live before admin approval.',
-      'Approved stories appear in the customer opinions section.',
+      'Contact form with subject dropdown, required markers, and AJAX success feedback.',
+      '“Add your review” popup with interactive stars and optional photo — pending until approved.',
+      'Floating contact button for WhatsApp, phone, and email, configured from admin.',
     ],
   },
   {
-    title: 'Articles & Contact',
-    desc: 'Travel guides plus a structured inquiry form for bookings and custom trips.',
+    title: 'Multilingual UI',
+    desc: 'Arabic RTL, English, Spanish, and French with a navbar language switcher.',
     points: [
-      'Article CMS for planning guides and destination posts.',
-      'Contact subjects cover general questions, listed packages, bookings, and custom trips.',
-      'Stored inquiries for the team in Dubai to follow up.',
+      'Four locales across the public UI with correct Arabic RTL layout.',
+      'Dynamic language tabs on admin forms for package and content translations.',
+      'UI strings managed as JSON per locale with export, import, clone, and edit tools.',
     ],
   },
   {
-    title: 'Admin Control Panel',
-    desc: 'Operators manage packages, destinations, reviews, articles, users, and featured placements.',
+    title: 'Arabic RTL Admin Panel',
+    desc: 'Full /admin control for packages, bulk workflows, users, settings, and analytics.',
     points: [
-      'Full CMS for packages, destinations, price bands, and itinerary content.',
-      'Controls for featured, most-requested, and highest-rated destinations.',
-      'User accounts, review moderation, and site content updates without a deploy.',
+      'Packages CRUD with rich multilingual editor, categories, tags, why-us, and testimonials.',
+      'Excel import/export (PhpSpreadsheet) and bulk JSON translations for offline or AI localization.',
+      'Contact inbox, users by role, site settings, GA/GTM tracking, languages, and DB backup.',
     ],
   },
 ];
@@ -304,10 +310,48 @@ const SOLAR_BOOKING = [
   { title: 'Payment', layer: 'Order', edit: 'Enabled gateways are listed. The order stores size, categories, branch, region, date, and time, then the thank-you page reads that order.' },
 ] as const;
 
+const SOLAR_PLUGINS = [
+  {
+    id: 'layout-engine',
+    number: '01',
+    slug: 'solar-layout-engine',
+    title: 'Layout Engine',
+    subtitle: 'Custom WordPress layout plugin (PHP)',
+    summary:
+      'Registers page compositions and editable components. Staff control section content from the dashboard; shortcodes place that content on the page.',
+    owns: [
+      'Layout registry & compositions',
+      'Component fields & media',
+      'Arabic / English copy',
+      'Dashboard shortcodes',
+    ],
+    stack: ['WordPress', 'Custom PHP', 'Custom builder', 'RTL'],
+    icon: LayoutTemplate,
+  },
+  {
+    id: 'booking',
+    number: '02',
+    slug: 'solar-booking',
+    title: 'Booking System',
+    subtitle: 'Car care booking & commerce plugin',
+    summary:
+      'Owns the multi-step visit flow, WooCommerce cart sync, order metadata, and both customer and admin dashboards.',
+    owns: [
+      'Six-step booking pipeline',
+      'WooCommerce cart & orders',
+      'Spray / polish / upholstery',
+      'Customer & admin dashboards',
+    ],
+    stack: ['PHP', 'WooCommerce', 'MySQL', 'JavaScript'],
+    icon: CalendarCheck,
+  },
+] as const;
+
 function SolarProjectStudio() {
   const [pageId, setPageId] = useState<(typeof SOLAR_LAYOUTS)[number]['id']>('homepage');
   const [partName, setPartName] = useState<string>(SOLAR_LAYOUTS[0].parts[0].name);
   const [step, setStep] = useState(0);
+  const [activePlugin, setActivePlugin] = useState<(typeof SOLAR_PLUGINS)[number]['id']>('layout-engine');
 
   const page = SOLAR_LAYOUTS.find((item) => item.id === pageId) ?? SOLAR_LAYOUTS[0];
   const part = page.parts.find((item) => item.name === partName) ?? page.parts[0];
@@ -319,25 +363,148 @@ function SolarProjectStudio() {
     setPartName(next.parts[0].name);
   };
 
+  const focusPlugin = (id: (typeof SOLAR_PLUGINS)[number]['id']) => {
+    setActivePlugin(id);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="space-y-4">
-      <section id="layout-engine" className="rounded-lg border border-border/70 bg-background p-5 sm:p-6">
-        <p className="text-[11px] font-bold tabular-nums text-accent">01</p>
-        <h2 className="mt-2 font-display text-2xl font-bold text-primary tracking-tight">
-          Modular WordPress Layout Engine
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
-          Layouts are registered as compositions of components. Admin fields, media, and Arabic/English copy live on the component. Pick a layout, then a module.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {['Layout registry', 'Component fields', 'Media library', 'AR / EN locale'].map((item) => (
-            <span key={item} className="rounded-full bg-secondary px-3 py-1 text-[12px] text-primary">
-              {item}
+      <section
+        id="plugins"
+        className="relative overflow-hidden rounded-2xl border border-accent/25 bg-accent/[0.06] p-4 sm:p-6"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent pointer-events-none" />
+        <div className="relative">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[11px] font-semibold text-accent">
+              <Puzzle size={12} />
+              WordPress + custom plugins
             </span>
-          ))}
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/70 px-2.5 py-1 text-[11px] font-medium text-primary">
+              <Code2 size={12} className="text-accent" />
+              Custom PHP plugins
+            </span>
+            <span className="text-[11px] font-medium text-muted-foreground tabular-nums">
+              2 plugins · 1 product
+            </span>
+          </div>
+
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-primary tracking-tight">
+            Two custom PHP plugins on WordPress
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+            Solar Pro runs on WordPress, extended with two custom PHP plugins — one owns public layouts and
+            content, the other owns booking, cart, and dashboards. Both plugins integrate with WooCommerce for
+            commerce and orders.
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+            {SOLAR_PLUGINS.map((plugin) => {
+              const Icon = plugin.icon;
+              const on = activePlugin === plugin.id;
+              return (
+                <button
+                  key={plugin.id}
+                  type="button"
+                  onClick={() => focusPlugin(plugin.id)}
+                  className={`group text-left rounded-xl border p-4 transition-all duration-300 ${
+                    on
+                      ? 'border-accent bg-background shadow-md shadow-accent/10'
+                      : 'border-border/60 bg-background/70 hover:border-accent/40 hover:bg-background'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                          on ? 'bg-accent text-white' : 'bg-secondary text-accent'
+                        }`}
+                      >
+                        <Icon size={18} />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold tabular-nums text-accent">
+                          Plugin {plugin.number}
+                        </p>
+                        <p className="text-sm font-bold text-primary truncate">{plugin.title}</p>
+                        <p className="text-[11px] font-mono text-muted-foreground truncate">
+                          {plugin.slug}.php
+                        </p>
+                      </div>
+                    </div>
+                    <ArrowUpRight
+                      size={14}
+                      className={`shrink-0 mt-1 transition-colors ${
+                        on ? 'text-accent' : 'text-muted-foreground group-hover:text-accent'
+                      }`}
+                    />
+                  </div>
+                  <p className="mt-3 text-xs text-muted-foreground leading-relaxed">{plugin.summary}</p>
+                  <ul className="mt-3 space-y-1">
+                    {plugin.owns.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[12px] text-primary">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {plugin.stack.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md border border-border/50 bg-secondary/60 px-2 py-0.5 text-[10px] font-medium text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="layout-engine"
+        className="rounded-2xl border border-border/40 bg-background/85 p-4 sm:p-6 backdrop-blur-sm shadow-md scroll-mt-28"
+        onMouseEnter={() => setActivePlugin('layout-engine')}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+          <div>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent text-white px-2.5 py-1 text-[10px] font-bold tabular-nums">
+                01 · PHP plugin
+              </span>
+              <span className="rounded-md border border-border/60 bg-secondary/70 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+                solar-layout-engine
+              </span>
+            </div>
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-primary tracking-tight flex items-center gap-2">
+              <LayoutTemplate size={20} className="text-accent shrink-0" />
+              Modular WordPress Layout Engine
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+              Custom PHP plugin for WordPress. Layouts are registered as compositions of components. Admin
+              fields, media, and Arabic/English copy live on the component. Pick a layout, then a module.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {['WordPress', 'Custom PHP plugin', 'Layout registry', 'Component fields', 'Media library', 'AR / EN locale', 'Shortcodes'].map(
+            (item) => (
+              <span key={item} className="rounded-full bg-secondary px-3 py-1 text-[12px] text-primary">
+                {item}
+              </span>
+            )
+          )}
         </div>
 
-        <div className="mt-5 grid grid-cols-1 lg:grid-cols-[13rem_minmax(0,1fr)] gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[13rem_minmax(0,1fr)] gap-4">
           <div className="flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-visible pb-1">
             {SOLAR_LAYOUTS.map((item) => {
               const on = item.id === page.id;
@@ -356,7 +523,7 @@ function SolarProjectStudio() {
             })}
           </div>
 
-          <div className="rounded-lg border border-border/70 p-4">
+          <div className="rounded-xl border border-border/50 bg-background/90 p-4">
             <p className="text-sm text-muted-foreground leading-relaxed">{page.role}</p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {page.parts.map((item) => {
@@ -391,14 +558,34 @@ function SolarProjectStudio() {
         </div>
       </section>
 
-      <section id="booking" className="rounded-lg border border-border/70 bg-background p-5 sm:p-6">
-        <p className="text-[11px] font-bold tabular-nums text-accent">02</p>
-        <h2 className="mt-2 font-display text-2xl font-bold text-primary tracking-tight">
-          Booking system
+      <section
+        id="booking"
+        className="rounded-2xl border border-border/40 bg-background/85 p-4 sm:p-6 backdrop-blur-sm shadow-md scroll-mt-28"
+        onMouseEnter={() => setActivePlugin('booking')}
+      >
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent text-white px-2.5 py-1 text-[10px] font-bold tabular-nums">
+            02 · PHP plugin
+          </span>
+          <span className="rounded-md border border-border/60 bg-secondary/70 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+            solar-booking
+          </span>
+        </div>
+        <h2 className="font-display text-xl sm:text-2xl font-bold text-primary tracking-tight flex items-center gap-2">
+          <CalendarCheck size={20} className="text-accent shrink-0" />
+          Booking System
         </h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground leading-relaxed">
-          A step pipeline. Selection state feeds the product query, the cart, then the order. Select a step.
+          Custom PHP plugin. A step pipeline where selection state feeds the product query, the cart, then
+          the order. Select a step.
         </p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {['WordPress', 'Custom PHP plugin', 'WooCommerce', 'Multi-step flow', 'Order meta', 'Dashboards'].map((item) => (
+            <span key={item} className="rounded-full bg-secondary px-3 py-1 text-[12px] text-primary">
+              {item}
+            </span>
+          ))}
+        </div>
         <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
           {SOLAR_BOOKING.map((item, index) => {
             const on = index === step;
@@ -421,16 +608,16 @@ function SolarProjectStudio() {
             );
           })}
         </div>
-        <div className="mt-4 rounded-lg bg-secondary/60 px-4 py-3.5">
+        <div className="mt-4 rounded-xl bg-secondary/60 px-4 py-3.5">
           <p className="text-sm font-semibold text-primary">{booking.title}</p>
           <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{booking.edit}</p>
         </div>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-          <p className="rounded-lg border border-border/70 px-3 py-2.5 text-primary">
+          <p className="rounded-xl border border-border/60 bg-background/80 px-3 py-2.5 text-primary">
             <span className="block text-[11px] font-semibold uppercase tracking-wider text-accent">Customer</span>
             Follows the booking after checkout.
           </p>
-          <p className="rounded-lg border border-border/70 px-3 py-2.5 text-primary">
+          <p className="rounded-xl border border-border/60 bg-background/80 px-3 py-2.5 text-primary">
             <span className="block text-[11px] font-semibold uppercase tracking-wider text-accent">Admin</span>
             Manages services, orders, and visits.
           </p>
@@ -644,20 +831,29 @@ const ProjectDetails = () => {
     ? 'Owned the software end to end — from structure and UI through build and delivery.'
     : `Delivered with a ${project.teamSize.toLowerCase()} team.`;
   const workKind =
-    project.category === 'native'
-      ? 'Full-stack web application'
-      : project.category === 'wordpress'
-        ? 'WordPress build'
-        : project.category === 'testing'
-          ? 'Testing and quality work'
-          : 'UI design';
+    project.category === 'laravel'
+      ? 'Laravel (PHP) application'
+      : project.category === 'angular'
+        ? 'Angular application'
+        : project.category === 'react'
+          ? 'React application'
+          : project.category === 'php'
+            ? 'Native PHP build'
+            : project.category === 'native'
+              ? 'Full-stack web application'
+              : project.category === 'wordpress'
+                ? 'WordPress build'
+                : project.category === 'testing'
+                  ? 'Testing and quality work'
+                  : 'UI design';
   const shipped = project.features.slice(0, 5);
   const engineered = project.solutions.slice(0, 3);
 
   const sectionAnchors = isSolar
     ? [
-        { id: 'layout-engine', label: 'Layout engine', icon: Target },
-        { id: 'booking', label: 'Booking system', icon: BadgeCheck },
+        { id: 'plugins', label: 'PHP plugins', icon: Puzzle },
+        { id: 'layout-engine', label: 'Layout engine', icon: LayoutTemplate },
+        { id: 'booking', label: 'Booking system', icon: CalendarCheck },
       ]
     : [
     { id: 'built', label: 'What was built', icon: Target },
@@ -694,7 +890,9 @@ const ProjectDetails = () => {
     ...project.technologies,
     ...(isSolar
       ? [
+          'Custom PHP plugins',
           'Layout engine',
+          'Booking plugin',
           'Component fields',
           'Media library',
           'Booking pipeline',
@@ -820,7 +1018,7 @@ const ProjectDetails = () => {
                 </div>
                 <div className="grid grid-cols-[4.75rem_minmax(0,1fr)] gap-2">
                   <dt className="font-semibold text-primary">Focus:</dt>
-                  <dd className="text-primary/90">{isSolar ? 'Layout engine and booking' : workKind}</dd>
+                  <dd className="text-primary/90">{isSolar ? 'WordPress + custom PHP plugins' : workKind}</dd>
                 </div>
               </dl>
             </div>
@@ -1031,7 +1229,7 @@ const ProjectDetails = () => {
                     {isSolar
                       ? 'Native layouts, a custom builder for every section, dashboard control, and a shortcode that places that content on the page — plus booking and both dashboards.'
                       : isSunsnow
-                        ? 'Laravel travel platform for Sunsnow — trip search, gated packages, multilingual content, moderated reviews, articles, and full admin control.'
+                        ? 'Laravel travel packages platform — advanced search, guest lock, email OTP auth, four locales (AR/EN/ES/FR), moderated reviews, and an Arabic RTL admin with Excel and JSON translation workflows.'
                         : isLmsProcess
                           ? 'End-to-end Laravel LMS delivery — from public catalog and lessons to students, quizzes, payments, and admin CMS.'
                           : 'Structured implementation flow from analysis to delivery, tailored for client-facing outcomes.'}
@@ -1152,21 +1350,61 @@ const ProjectDetails = () => {
               )}
 
               {relatedProjects.length > 0 && (
-                <section className="bg-background/85 border border-border/40 rounded-2xl p-6 backdrop-blur-sm shadow-md">
-                  <h2 className="text-xl font-bold text-primary mb-4">Related Case Studies</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <section className="relative overflow-hidden bg-background/85 border border-border/40 rounded-2xl p-4 sm:p-6 backdrop-blur-sm shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none" />
+                  <div className="relative flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-5">
+                    <div>
+                      <h2 className="text-xl font-bold text-primary flex items-center gap-2">
+                        <Layers size={18} className="text-accent" />
+                        Related Case Studies
+                      </h2>
+                      <p className="text-xs text-muted-foreground mt-1.5 max-w-md">
+                        More work in the same stack or business type.
+                      </p>
+                    </div>
+                    <Link
+                      to="/projects"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:text-accent/80 transition-colors shrink-0"
+                    >
+                      View all projects
+                      <ArrowUpRight size={13} />
+                    </Link>
+                  </div>
+                  <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                     {relatedProjects.map((item) => (
                       <Link
                         key={item.id}
                         to={`/projects/${getProjectSlug(item)}`}
-                        className="group rounded-xl border border-border/50 bg-background/90 overflow-hidden hover:border-accent/40 transition-all"
+                        className="group flex flex-col rounded-xl border border-border/50 bg-background/90 overflow-hidden hover:border-accent/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
                       >
-                        <div className="h-28 overflow-hidden">
-                          <img src={item.images[0]} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                        <div className="aspect-[16/10] overflow-hidden bg-muted/20 relative">
+                          <img
+                            src={item.images[0]}
+                            alt={item.title}
+                            className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-background/90 text-primary border border-border/40 backdrop-blur-sm">
+                            {getCategoryLabel(item.category)}
+                          </span>
                         </div>
-                        <div className="p-3">
-                          <p className="text-xs text-accent font-medium mb-1">{getServiceCategoryLabel(inferServiceCategory(item))}</p>
-                          <p className="text-sm font-semibold text-primary line-clamp-2">{item.title}</p>
+                        <div className="flex flex-1 flex-col p-3.5">
+                          <p className="text-[11px] text-accent font-medium mb-1">
+                            {getServiceCategoryLabel(inferServiceCategory(item))}
+                          </p>
+                          <p className="text-sm font-semibold text-primary leading-snug line-clamp-2 group-hover:text-accent transition-colors">
+                            {item.title}
+                          </p>
+                          <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 flex-1">
+                            {item.description}
+                          </p>
+                          <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground group-hover:text-accent transition-colors">
+                            View case study
+                            <ArrowUpRight
+                              size={12}
+                              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            />
+                          </span>
                         </div>
                       </Link>
                     ))}

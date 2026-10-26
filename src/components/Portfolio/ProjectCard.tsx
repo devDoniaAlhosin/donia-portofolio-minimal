@@ -30,10 +30,18 @@ const ASPECTS = [
 
 const getTagLabel = (category: Project['category']) => {
   switch (category) {
+    case 'laravel':
+      return 'Laravel';
+    case 'angular':
+      return 'Angular';
+    case 'react':
+      return 'React';
+    case 'php':
+      return 'Native PHP';
     case 'wordpress':
       return 'WordPress';
     case 'native':
-      return 'Development';
+      return 'Web';
     case 'testing':
       return 'Testing';
     case 'ui':
@@ -48,14 +56,20 @@ export const ProjectCard = ({ project, index, isVisible, uniform = false }: Proj
   const aspect = uniform ? 'aspect-[16/10]' : ASPECTS[index % ASPECTS.length];
   const isSolar = project.brandTheme === 'solarpro';
   const secondaryTag = isSolar
-    ? 'Booking'
-    : project.category === 'native'
-      ? 'Full Stack'
-      : project.category === 'wordpress'
-        ? 'CMS'
-        : project.category === 'ui'
-          ? 'UI/UX'
-          : null;
+    ? 'Custom plugins'
+    : project.category === 'laravel'
+      ? 'PHP'
+      : project.category === 'angular'
+        ? 'SPA'
+        : project.category === 'react'
+          ? 'Frontend'
+          : project.category === 'wordpress'
+            ? 'CMS'
+            : project.category === 'ui'
+              ? 'UI/UX'
+              : project.category === 'native'
+                ? 'Full Stack'
+                : null;
 
   return (
     <Link
@@ -87,7 +101,7 @@ export const ProjectCard = ({ project, index, isVisible, uniform = false }: Proj
       <div className="mt-2 flex items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-1.5 min-w-0">
           <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">
-            {isSolar ? 'Custom builder' : getTagLabel(project.category)}
+            {getTagLabel(project.category)}
           </span>
           {secondaryTag && (
             <span className="px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-muted-foreground rounded-lg border border-border/70 bg-background">
